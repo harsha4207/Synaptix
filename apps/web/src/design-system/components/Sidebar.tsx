@@ -18,6 +18,7 @@ import {
   ArrowLeft
 } from 'lucide-react';
 import { WorkspaceItem } from '../../types/workspace';
+import { Tooltip } from '../../components/ui/Tooltip';
 
 export type WorkspaceModuleId =
   | 'overview'
@@ -71,10 +72,28 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <aside className={`ds-sidebar ${isCollapsed ? 'collapsed' : ''}`} aria-label="Workspace Navigation">
       {/* Top Header: Return to Hub & Active Workspace Title */}
       <div className="sidebar-header">
-        <button type="button" onClick={onBackToHub} className="sidebar-back-btn" title="Return to Workspace Hub">
-          <ArrowLeft size={16} />
-          {!isCollapsed && <span>Workspace Hub</span>}
-        </button>
+        {isCollapsed ? (
+          <Tooltip content="Back to My Workspaces" position="right">
+            <button
+              type="button"
+              onClick={onBackToHub}
+              className="sidebar-back-btn collapsed"
+              aria-label="Back to My Workspaces"
+            >
+              <ArrowLeft size={18} />
+            </button>
+          </Tooltip>
+        ) : (
+          <button
+            type="button"
+            onClick={onBackToHub}
+            className="sidebar-back-btn"
+            title="Return to Workspace Hub"
+          >
+            <ArrowLeft size={16} />
+            <span>Workspace Hub</span>
+          </button>
+        )}
 
         {!isCollapsed && (
           <div className="active-workspace-badge-box">
@@ -91,13 +110,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <nav className="sidebar-nav-list">
         {modules.map((mod) => {
           const isActive = activeModule === mod.id;
-          return (
+
+          const navButton = (
             <button
-              key={mod.id}
               type="button"
-              className={`sidebar-nav-item ${isActive ? 'active' : ''}`}
+              className={`sidebar-nav-item ${isActive ? 'active' : ''} ${isCollapsed ? 'collapsed' : ''}`}
               onClick={() => onSelectModule(mod.id)}
-              title={isCollapsed ? mod.label : undefined}
+              aria-label={mod.label}
             >
               <div className="nav-item-icon">{mod.icon}</div>
               {!isCollapsed && <span className="nav-item-label">{mod.label}</span>}
@@ -106,18 +125,45 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   {mod.badge}
                 </span>
               ) : null}
+              {isCollapsed && mod.badge && mod.badge > 0 ? (
+                <span className={`nav-item-dot-badge ${mod.id === 'actions' ? 'pending-alert' : ''}`} />
+              ) : null}
             </button>
           );
+
+          if (isCollapsed) {
+            return (
+              <Tooltip key={mod.id} content={mod.label} position="right">
+                {navButton}
+              </Tooltip>
+            );
+          }
+
+          return <React.Fragment key={mod.id}>{navButton}</React.Fragment>;
         })}
       </nav>
 
       {/* Collapse Toggle */}
       <div className="sidebar-footer">
-        <button type="button" onClick={onToggleCollapse} className="collapse-toggle-btn">
-          {isCollapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
-          {!isCollapsed && <span>Collapse Sidebar</span>}
-        </button>
+        {isCollapsed ? (
+          <Tooltip content="Expand Sidebar" position="right">
+            <button
+              type="button"
+              onClick={onToggleCollapse}
+              className="collapse-toggle-btn collapsed"
+              aria-label="Expand Sidebar"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </Tooltip>
+        ) : (
+          <button type="button" onClick={onToggleCollapse} className="collapse-toggle-btn">
+            <ChevronLeft size={16} />
+            <span>Collapse Sidebar</span>
+          </button>
+        )}
       </div>
     </aside>
   );
 };
+

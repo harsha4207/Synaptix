@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, ShieldCheck, RefreshCw } from 'lucide-react';
+import { Bot, ShieldCheck, RefreshCw, User } from 'lucide-react';
 import { WorkspaceItem } from '../types/workspace';
 import { CommandInputArea } from '../components/command-center/CommandInputArea';
 import { DynamicResultView, CommandResultData, ResultType } from '../components/command-center/DynamicResultView';
 import { EvidencePanel } from '../components/command-center/EvidencePanel';
 import { ReasoningProgress } from '../components/command-center/ReasoningProgress';
+import { PageContainer } from '../components/layout';
 
 interface CommandModuleProps {
   workspace: WorkspaceItem;
@@ -177,105 +178,113 @@ export const CommandModule: React.FC<CommandModuleProps> = ({
   }, [isProcessing, currentStageIndex, activeQuery, workspace.name, workspace.documentCount, onAddToast]);
 
   return (
-    <div className="command-center-layout">
-      {/* CENTER & LEFT BODY PANEL */}
-      <div className="command-center-main-column">
-        {/* TOP BAR / HEADER */}
-        <div className="command-center-top-bar">
-          <div className="top-bar-left">
-            <div className="bot-avatar-badge">
-              <Bot size={22} className="bot-icon" />
-            </div>
-            <div>
-              <div className="top-bar-title-row">
-                <h1 className="top-bar-title">{workspace.name} Command Center</h1>
-                <span className="context-indicator-pill">
-                  <ShieldCheck size={13} /> {workspace.domain} Boundary • Engine Active
-                </span>
+    <PageContainer maxWidth="1600px">
+      <div className="command-center-layout">
+        {/* CENTER & LEFT BODY PANEL */}
+        <div className="command-center-main-column">
+          {/* TOP BAR / HEADER */}
+          <div className="command-center-top-bar">
+            <div className="top-bar-left">
+              <div className="bot-avatar-badge">
+                <Bot size={24} className="bot-icon" />
               </div>
-              <p className="top-bar-subtitle">
-                Primary conversational & operational intelligence interface for {workspace.name}
-              </p>
-            </div>
-          </div>
-
-          <div className="top-bar-right">
-            <button
-              type="button"
-              className="btn-header-sm"
-              onClick={() => onAddToast(`Reset ${workspace.name} Command Session`)}
-            >
-              <RefreshCw size={13} /> Clear Session
-            </button>
-          </div>
-        </div>
-
-        {/* CENTER CONVERSATION & INPUT AREA */}
-        <div className="command-center-scroll-body">
-          {/* 1. Large Command Input Area */}
-          <CommandInputArea
-            workspace={workspace}
-            onSubmitCommand={handleSubmitCommand}
-            onAddToast={onAddToast}
-            isProcessing={isProcessing}
-          />
-
-          {/* 2. Active Stage-by-Stage Reasoning Progress Sequence */}
-          {isProcessing && (
-            <div className="active-reasoning-container animate-fade-in-up">
-              <div className="user-query-card-preview">
-                <span className="user-label">User Query:</span>
-                <p className="query-text">"{activeQuery}"</p>
-              </div>
-              <ReasoningProgress
-                currentStageIndex={currentStageIndex}
-                isComplete={false}
-              />
-            </div>
-          )}
-
-          {/* 3. Stream of Generated Dynamic Result Cards */}
-          <div className="command-results-stream" aria-label="Command Execution History">
-            <div className="stream-header-bar">
-              <h3>Reasoning Execution Stream</h3>
-              <span className="stream-count-tag">{history.length} Results</span>
-            </div>
-
-            {history.map((item) => {
-              const isSelected = selectedResultId === item.id;
-
-              return (
-                <div
-                  key={item.id}
-                  onClick={() => setSelectedResultId(item.id)}
-                  className={`result-stream-item-wrapper ${isSelected ? 'selected-item' : ''}`}
-                >
-                  <div className="user-query-header-row">
-                    <div className="user-avatar-dot">U</div>
-                    <div className="query-text-group">
-                      <span className="query-label">Request</span>
-                      <h4 className="query-title">"{item.query}"</h4>
-                    </div>
-                  </div>
-
-                  <DynamicResultView
-                    workspace={workspace}
-                    result={item}
-                    onAddToast={onAddToast}
-                  />
+              <div className="top-bar-text-group">
+                <div className="command-breadcrumb">
+                  SYNAPTIX COMMAND / {workspace.name.toUpperCase()} / COMMAND CENTER
                 </div>
-              );
-            })}
+                <div className="top-bar-title-row">
+                  <h1 className="top-bar-title">{workspace.name} Command Center</h1>
+                  <span className="context-indicator-pill">
+                    <ShieldCheck size={13} /> {workspace.domain} Boundary • Engine Active
+                  </span>
+                </div>
+                <p className="top-bar-subtitle">
+                  Primary conversational & operational intelligence interface for {workspace.name}
+                </p>
+              </div>
+            </div>
+
+            <div className="top-bar-right">
+              <button
+                type="button"
+                className="btn-header-sm"
+                onClick={() => onAddToast(`Reset ${workspace.name} Command Session`)}
+                title="Reset session"
+              >
+                <RefreshCw size={13} /> Clear Session
+              </button>
+            </div>
+          </div>
+
+          {/* CENTER CONVERSATION & INPUT AREA */}
+          <div className="command-center-scroll-body">
+            {/* 1. Large Command Input Area */}
+            <CommandInputArea
+              workspace={workspace}
+              onSubmitCommand={handleSubmitCommand}
+              onAddToast={onAddToast}
+              isProcessing={isProcessing}
+            />
+
+            {/* 2. Active Stage-by-Stage Reasoning Progress Sequence */}
+            {isProcessing && (
+              <div className="active-reasoning-container animate-fade-in-up">
+                <div className="user-query-card-preview">
+                  <span className="user-label">User Query:</span>
+                  <p className="query-text">"{activeQuery}"</p>
+                </div>
+                <ReasoningProgress
+                  currentStageIndex={currentStageIndex}
+                  isComplete={false}
+                />
+              </div>
+            )}
+
+            {/* 3. Stream of Generated Dynamic Result Cards */}
+            <div className="command-results-stream" aria-label="Command Execution History">
+              <div className="stream-header-bar">
+                <h3>Reasoning Execution Stream</h3>
+                <span className="stream-count-tag">{history.length} Results</span>
+              </div>
+
+              {history.map((item) => {
+                const isSelected = selectedResultId === item.id;
+
+                return (
+                  <div
+                    key={item.id}
+                    onClick={() => setSelectedResultId(item.id)}
+                    className={`result-stream-item-wrapper ${isSelected ? 'selected-item' : ''}`}
+                  >
+                    <div className="user-query-header-row">
+                      <div className="user-avatar-dot">
+                        <User size={14} />
+                      </div>
+                      <div className="query-text-group">
+                        <span className="query-label">Request • {item.timestamp}</span>
+                        <h4 className="query-title">"{item.query}"</h4>
+                      </div>
+                    </div>
+
+                    <DynamicResultView
+                      workspace={workspace}
+                      result={item}
+                      onAddToast={onAddToast}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* RIGHT CONTEXT / EVIDENCE PANEL */}
-      <EvidencePanel
-        workspace={workspace}
-        activeResult={activeResultItem}
-        onAddToast={onAddToast}
-      />
-    </div>
+        {/* RIGHT CONTEXT / EVIDENCE PANEL */}
+        <EvidencePanel
+          workspace={workspace}
+          activeResult={activeResultItem}
+          onAddToast={onAddToast}
+        />
+      </div>
+    </PageContainer>
   );
 };

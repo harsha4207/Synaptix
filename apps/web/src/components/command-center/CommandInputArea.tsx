@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Sparkles, Mic, Paperclip, ArrowRight, CornerDownLeft } from 'lucide-react';
 import { VoiceWaveform } from './VoiceWaveform';
 import { WorkspaceItem } from '../../types/workspace';
+import { Tooltip } from '../ui/Tooltip';
 
 interface CommandInputAreaProps {
   workspace: WorkspaceItem;
@@ -110,26 +111,30 @@ export const CommandInputArea: React.FC<CommandInputAreaProps> = ({
             />
 
             {/* File Attachment Button */}
-            <button
-              type="button"
-              onClick={handleFileAttachClick}
-              className={`action-icon-btn ${attachedFileName ? 'has-file' : ''}`}
-              title="Attach document or dataset"
-              disabled={isProcessing}
-            >
-              <Paperclip size={16} />
-            </button>
+            <Tooltip content="Attach document or dataset">
+              <button
+                type="button"
+                onClick={handleFileAttachClick}
+                className={`action-icon-btn ${attachedFileName ? 'has-file' : ''}`}
+                aria-label="Attach document or dataset"
+                disabled={isProcessing}
+              >
+                <Paperclip size={16} />
+              </button>
+            </Tooltip>
 
             {/* Microphone Button */}
-            <button
-              type="button"
-              onClick={handleMicClick}
-              className={`action-icon-btn mic-btn ${isListening ? 'listening-active' : ''}`}
-              title="Voice Command Mode"
-              disabled={isProcessing}
-            >
-              <Mic size={16} />
-            </button>
+            <Tooltip content="Voice Command Mode">
+              <button
+                type="button"
+                onClick={handleMicClick}
+                className={`action-icon-btn mic-btn ${isListening ? 'listening-active' : ''}`}
+                aria-label="Voice Command Mode"
+                disabled={isProcessing}
+              >
+                <Mic size={16} />
+              </button>
+            </Tooltip>
 
             {/* Submit Button */}
             <button

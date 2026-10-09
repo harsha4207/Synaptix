@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Bell, LogOut, ChevronDown, Sliders } from 'lucide-react';
+import { Search, Bell, LogOut, ChevronDown, Sliders, User, Shield } from 'lucide-react';
 import { UserProfileInfo } from '../types/workspace';
 import { NotificationItem } from '../types/notification';
 import { WorkspaceModuleId } from '../design-system/components/Sidebar';
@@ -13,6 +13,7 @@ interface TopNavigationProps {
   onSearchQuery?: (query: string) => void;
   onFocusCommandInput?: () => void;
   onOpenSearchModal?: () => void;
+  onOpenSettings?: (tab: 'profile' | 'security' | 'preferences') => void;
   notifications?: NotificationItem[];
   onMarkAsRead?: (id: string) => void;
   onMarkAllAsRead?: () => void;
@@ -25,6 +26,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
   onSearchQuery,
   onFocusCommandInput,
   onOpenSearchModal,
+  onOpenSettings,
   notifications = [],
   onMarkAsRead = () => {},
   onMarkAllAsRead = () => {},
@@ -36,6 +38,8 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
   
   const menuRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
+
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Close menus when clicking outside
   useEffect(() => {
@@ -49,6 +53,19 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Global ⌘K / Ctrl+K keyboard shortcut to focus search input
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+        searchInputRef.current?.select();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const handleGlobalSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,19 +85,35 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
         </div>
 
         {/* Center: Global Search Bar */}
-        <div className="navbar-search-wrapper" onClick={() => onOpenSearchModal && onOpenSearchModal()}>
-          <div className="global-search-input-box" style={{ cursor: 'pointer' }}>
+        <div className="navbar-search-wrapper">
+          <div
+            className="global-search-input-box"
+            onClick={() => searchInputRef.current?.focus()}
+          >
             <Search className="search-icon" size={16} />
             <input
+              ref={searchInputRef}
               type="text"
               value={searchVal}
-              onFocus={() => onOpenSearchModal && onOpenSearchModal()}
               onChange={handleGlobalSearchChange}
               placeholder="Search Synaptix... (⌘K)"
               className="global-search-input"
-              readOnly
+              aria-label="Search Synaptix workspaces"
             />
-            <kbd className="search-kbd-shortcut">⌘K</kbd>
+            <kbd
+              className="search-kbd-shortcut"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (onOpenSearchModal) {
+                  onOpenSearchModal();
+                } else {
+                  searchInputRef.current?.focus();
+                }
+              }}
+              title="Press ⌘K or Ctrl+K to search"
+            >
+              ⌘K
+            </kbd>
           </div>
         </div>
 
@@ -124,7 +157,11 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
               aria-expanded={isProfileMenuOpen}
             >
               <div className="user-avatar-circle">
-                {user.name ? user.name.charAt(0).toUpperCase() : 'A'}
+                {user.avatarUrl ? (
+                  <img src={user.avatarUrl} alt={user.name || 'User'} className="avatar-img-fit" />
+                ) : (
+                  <span>{user.name ? user.name.charAt(0).toUpperCase() : 'A'}</span>
+                )}
               </div>
               <div className="user-info-text">
                 <span className="user-name">{user.name || 'Enterprise Admin'}</span>
@@ -136,21 +173,86 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
             {isProfileMenuOpen && (
               <div className="dropdown-panel profile-panel">
                 <div className="profile-panel-header">
-                  <p className="profile-header-email">{user.email}</p>
-                  <span className="profile-header-org">{user.organization}</span>
+                  <div className="profile-panel-summary">
+                    <div className="user-avatar-circle small">
+                      {user.avatarUrl ? (
+                        <img src={user.avatarUrl} alt={user.name || 'User'} className="avatar-img-fit" />
+                      ) : (
+                        <span>{user.name ? user.name.charAt(0).toUpperCase() : 'A'}</span>
+                      )}
+                    </div>
+                    <div className="profile-summary-details">
+                      <p className="profile-header-name">{user.name || 'Enterprise Administrator'}</p>
+                      <p className="profile-header-email">{user.email}</p>
+                    </div>
+                  </div>
+                  <div className="profile-header-meta">
+                    <span className="profile-header-role">{user.role}</span>
+                    <span className="profile-header-org">{user.organization}</span>
+                  </div>
                 </div>
                 <div className="dropdown-divider" />
                 <div className="profile-menu-options">
-                  <button type="button" className="profile-menu-item" onClick={onFocusCommandInput}>
+                  <button
+                    type="button"
+                    className="profile-menu-item"
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onOpenSettings?.('profile');
+                    }}
+                  >
+                    <User size={15} />
+                    <span>Profile Settings</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="profile-menu-item"
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onOpenSettings?.('security');
+                    }}
+                  >
+                    <Shield size={15} />
+                    <span>Accounts & Security</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="profile-menu-item"
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onOpenSettings?.('preferences');
+                    }}
+                  >
+                    <Sliders size={15} />
+                    <span>Preferences</span>
+                  </button>
+
+                  <div className="dropdown-divider" />
+
+                  <button
+                    type="button"
+                    className="profile-menu-item"
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onFocusCommandInput?.();
+                    }}
+                  >
                     <Search size={15} />
                     <span>Focus Command Center</span>
                   </button>
-                  <button type="button" className="profile-menu-item" onClick={() => setIsProfileMenuOpen(false)}>
-                    <Sliders size={15} />
-                    <span>Account & Security</span>
-                  </button>
+
                   <div className="dropdown-divider" />
-                  <button type="button" className="profile-menu-item danger" onClick={onSignOut}>
+
+                  <button
+                    type="button"
+                    className="profile-menu-item danger"
+                    onClick={() => {
+                      setIsProfileMenuOpen(false);
+                      onSignOut();
+                    }}
+                  >
                     <LogOut size={15} />
                     <span>Sign Out</span>
                   </button>

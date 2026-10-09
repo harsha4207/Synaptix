@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
-  FileSpreadsheet,
   Download,
-  ShieldCheck,
   Search
 } from 'lucide-react';
 import { InsightItem } from './InsightPanel';

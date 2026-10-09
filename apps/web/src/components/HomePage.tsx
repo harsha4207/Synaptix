@@ -6,20 +6,37 @@ import { CreateWorkspaceModal } from './CreateWorkspaceModal';
 import { RecentActivitySection } from './RecentActivitySection';
 import { QuickActionsSection } from './QuickActionsSection';
 import { WorkspaceItem, RecentActivityItem, UserProfileInfo } from '../types/workspace';
+import { NotificationItem } from '../types/notification';
+import { WorkspaceModuleId } from '../design-system/components/Sidebar';
 import { INITIAL_WORKSPACES, INITIAL_RECENT_ACTIVITIES } from '../data/mockWorkspaces';
+import { UserPreferences } from '../types/preferences';
 
 interface HomePageProps {
   userEmail: string;
+  currentUser?: UserProfileInfo;
+  preferences?: UserPreferences;
   onSignOut: () => void;
   onSelectWorkspace: (workspaceId: string) => void;
   onAddToast: (msg: string) => void;
+  onOpenSettings?: (tab: 'profile' | 'security' | 'preferences') => void;
+  notifications?: NotificationItem[];
+  onMarkAsRead?: (id: string) => void;
+  onMarkAllAsRead?: () => void;
+  onOpenNotificationTarget?: (workspaceId: string, targetModule: WorkspaceModuleId, title: string) => void;
 }
 
 export const HomePage: React.FC<HomePageProps> = ({
   userEmail,
+  currentUser: propUser,
+  preferences,
   onSignOut,
   onSelectWorkspace,
   onAddToast,
+  onOpenSettings,
+  notifications = [],
+  onMarkAsRead,
+  onMarkAllAsRead,
+  onOpenNotificationTarget,
 }) => {
   const [workspaces, setWorkspaces] = useState<WorkspaceItem[]>(INITIAL_WORKSPACES);
   const [activities, setActivities] = useState<RecentActivityItem[]>(INITIAL_RECENT_ACTIVITIES);
@@ -30,7 +47,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
   const commandInputRef = useRef<HTMLInputElement>(null);
 
-  const currentUser: UserProfileInfo = {
+  const currentUser: UserProfileInfo = propUser || {
     name: userEmail ? userEmail.split('@')[0].replace('.', ' ') : 'Enterprise Admin',
     email: userEmail || 'admin@company.com',
     role: 'Enterprise Administrator',
@@ -123,6 +140,11 @@ export const HomePage: React.FC<HomePageProps> = ({
         onSignOut={onSignOut}
         onSearchQuery={setSearchFilter}
         onFocusCommandInput={handleFocusCommandInput}
+        onOpenSettings={onOpenSettings}
+        notifications={notifications}
+        onMarkAsRead={onMarkAsRead}
+        onMarkAllAsRead={onMarkAllAsRead}
+        onOpenNotificationTarget={onOpenNotificationTarget}
       />
 
       {/* Main Content Body */}
@@ -138,34 +160,59 @@ export const HomePage: React.FC<HomePageProps> = ({
           }}
         />
 
-        {/* 3. Your Workspaces & 4. Create Workspace Action */}
+        {/* 3. Your Workspaces & 4. Create Workspace Action (Three cards per row) */}
         <WorkspaceGrid
           workspaces={filteredWorkspaces}
           highlightedWorkspaceId={highlightedWorkspaceId}
           onSelectWorkspace={onSelectWorkspace}
           onCreateWorkspaceClick={() => setIsCreateModalOpen(true)}
+          showWorkspaceMetadata={preferences ? preferences.showWorkspaceMetadata : true}
         />
 
-        {/* Two-Column Section: 5. Recent Activity & 6. Quick Actions */}
-        <div className="home-lower-grid">
-          <RecentActivitySection
-            activities={activities}
-            onSelectWorkspace={onSelectWorkspace}
-          />
+        {/* 5. Recent Activity — Full-Width Section (Controlled by preferences) */}
+        {(!preferences || preferences.showRecentActivity) && (
+          <section className="home-recent-activity-wrapper" aria-label="Recent Activity Section">
+            <RecentActivitySection
+              activities={activities}
+              onSelectWorkspace={onSelectWorkspace}
+            />
+          </section>
+        )}
 
-          <QuickActionsSection
-            onFocusCommandInput={handleFocusCommandInput}
-            onUploadDataClick={handleUploadDataClick}
-            onCreateWorkspaceClick={() => setIsCreateModalOpen(true)}
-          />
-        </div>
+        {/* 6. Quick Actions — Compact Horizontal Bar Centered Below Recent Activity (Controlled by preferences) */}
+        {(!preferences || preferences.showQuickActions) && (
+          <div className="home-quick-actions-wrapper">
+            <QuickActionsSection
+              onFocusCommandInput={handleFocusCommandInput}
+              onUploadDataClick={handleUploadDataClick}
+              onCreateWorkspaceClick={() => setIsCreateModalOpen(true)}
+            />
+          </div>
+        )}
       </main>
 
-      {/* 7. Minimal Status Footer */}
-      <footer className="home-minimal-footer">
+      {/* 7. Refined Enterprise Footer */}
+      <footer className="home-minimal-footer" role="contentinfo">
         <div className="footer-container">
-          <span>SYNAPTIX COMMAND v2.4 • Enterprise Security SAML 2.0 Compliant</span>
-          <span className="footer-status-tag">System Operational • All Engines Active</span>
+          <div className="footer-left-group">
+            <span className="footer-brand-title">SYNAPTIX COMMAND</span>
+            <span className="footer-version-tag">v2.4</span>
+            <span className="footer-separator">•</span>
+            <span className="footer-compliance-text">Enterprise Security SAML 2.0 Compliant</span>
+          </div>
+
+          <div className="footer-links-group">
+            <a href="#docs" className="footer-link" onClick={(e) => { e.preventDefault(); onAddToast('Documentation loaded'); }}>Documentation</a>
+            <span className="footer-separator">•</span>
+            <a href="#help" className="footer-link" onClick={(e) => { e.preventDefault(); onAddToast('Support desk connected'); }}>Help</a>
+            <span className="footer-separator">•</span>
+            <a href="#privacy" className="footer-link" onClick={(e) => { e.preventDefault(); onAddToast('Security & Privacy policy verified'); }}>Privacy</a>
+          </div>
+
+          <div className="footer-status-group">
+            <span className="footer-live-dot" aria-hidden="true" />
+            <span className="footer-status-tag">System Operational • All Engines Active</span>
+          </div>
         </div>
       </footer>
 

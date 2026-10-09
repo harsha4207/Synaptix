@@ -20,15 +20,15 @@ export interface GovernedActionItem {
   changesSummary: string;
   evidenceGrade: string;
   evidenceHash: string;
-  approvalStatus: 'Pending' | 'Approved' | 'Rejected' | 'Invalidated';
-  verificationStatus: 'Unverified' | 'Verified' | 'Pending Verification' | 'Unknown';
-  statusCategory: 'Pending' | 'Approved' | 'Running' | 'Completed' | 'Failed' | 'Unknown' | 'Rolled Back';
+  approvalStatus: 'Pending' | 'Approved' | 'Rejected' | 'Invalidated' | 'Running' | 'Completed' | string;
+  verificationStatus: 'Unverified' | 'Verified' | 'Pending Verification' | 'Unknown' | 'Verification Failed' | string;
+  statusCategory: 'Pending' | 'Approved' | 'Running' | 'Completed' | 'Failed' | 'Unknown' | 'Rolled Back' | string;
   goalUnderstood: string;
   planSummary: string;
   planVersion: string;
   planHash: string;
   isPlanValid: boolean;
-  reversibility: 'Fully Reversible' | 'Partially Reversible' | 'Irreversible';
+  reversibility: 'Fully Reversible' | 'Partially Reversible' | 'Irreversible' | string;
   verificationMethod: string;
   steps: {
     stepIndex: number;
@@ -44,7 +44,7 @@ interface ActionPreviewModalProps {
   isOpen: boolean;
   onClose: () => void;
   onApprove: (id: string, untilStep?: number) => void;
-  onReject: (id: string) => void;
+  onReject: (id: string, reason?: string) => void;
   onModifyPlan: (id: string, newPlanText: string) => void;
   onAddToast: (msg: string) => void;
 }
@@ -345,7 +345,7 @@ export const ActionPreviewModal: React.FC<ActionPreviewModalProps> = ({
               <button
                 type="button"
                 onClick={() => {
-                  onReject(action.id);
+                  onReject(action.id, 'User rejected governance plan');
                   onClose();
                 }}
                 className="px-3.5 py-2 bg-white border border-red-200 text-red-700 hover:bg-red-50 rounded-xl font-bold text-xs"

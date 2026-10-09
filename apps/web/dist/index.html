@@ -9,14 +9,45 @@
     <!-- Fonts: Plus Jakarta Sans & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/assets/SYNAPTIX Command Logo.png" />
-    <script type="module" crossorigin src="/assets/index-CCUXEeRC.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-QBQC6tD1.css">
+
+    <!-- Early Theme Application Script (Prevents flash of light theme on reload) -->
+    <script>
+      (function() {
+        try {
+          var raw = localStorage.getItem('synaptix_user_preferences_v1');
+          if (raw) {
+            var prefs = JSON.parse(raw);
+            var theme = prefs.theme || 'light';
+            var effectiveTheme = theme;
+            if (theme === 'system') {
+              var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+              effectiveTheme = systemDark ? 'dark' : 'light';
+            }
+            if (effectiveTheme === 'dark') {
+              document.documentElement.setAttribute('data-theme', 'dark');
+              document.documentElement.classList.add('theme-dark');
+            } else {
+              document.documentElement.setAttribute('data-theme', 'light');
+              document.documentElement.classList.remove('theme-dark');
+            }
+            if (prefs.displayDensity) {
+              document.documentElement.setAttribute('data-density', prefs.displayDensity);
+            }
+            if (prefs.reducedMotion) {
+              document.documentElement.setAttribute('data-reduced-motion', 'true');
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-BgZK9h7z.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-E0BfVJ8V.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>

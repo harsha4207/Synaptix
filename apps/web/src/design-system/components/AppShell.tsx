@@ -17,6 +17,8 @@ interface AppShellProps {
   onBackToHub: () => void;
   onSignOut: () => void;
   userEmail: string;
+  currentUser?: UserProfileInfo;
+  onOpenSettings?: (tab: 'profile' | 'security' | 'preferences') => void;
   onOpenSearchModal?: () => void;
   notifications?: NotificationItem[];
   onMarkAsRead?: (id: string) => void;
@@ -35,6 +37,8 @@ export const AppShell: React.FC<AppShellProps> = ({
   onBackToHub,
   onSignOut,
   userEmail,
+  currentUser: propUser,
+  onOpenSettings,
   onOpenSearchModal,
   notifications,
   onMarkAsRead,
@@ -45,7 +49,7 @@ export const AppShell: React.FC<AppShellProps> = ({
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const user: UserProfileInfo = {
+  const user: UserProfileInfo = propUser || {
     name: userEmail ? userEmail.split('@')[0].replace('.', ' ') : 'Enterprise Admin',
     email: userEmail || 'admin@company.com',
     role: 'Enterprise Administrator',
@@ -72,6 +76,7 @@ export const AppShell: React.FC<AppShellProps> = ({
           <TopNavigation
             user={user}
             onSignOut={onSignOut}
+            onOpenSettings={onOpenSettings}
             onOpenSearchModal={onOpenSearchModal}
             notifications={notifications}
             onMarkAsRead={onMarkAsRead}

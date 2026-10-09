@@ -12,7 +12,8 @@ import {
   Shield,
   ChevronRight,
   Lock,
-  RotateCcw
+  RotateCcw,
+  X
 } from 'lucide-react';
 import { SearchResultItem, SearchResultType, EvidenceGradeFilter } from '../types/search';
 import { MOCK_SEARCH_ITEMS } from '../data/mockSearchData';
@@ -162,6 +163,17 @@ export const GlobalSearchModule: React.FC<GlobalSearchModuleProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
+          {query && (
+            <button
+              type="button"
+              className="search-clear-btn"
+              onClick={() => setQuery('')}
+              title="Clear search query"
+              aria-label="Clear query"
+            >
+              <X size={16} />
+            </button>
+          )}
           <kbd className="big-kbd-badge">⌘K</kbd>
         </div>
 
@@ -304,6 +316,13 @@ export const GlobalSearchModule: React.FC<GlobalSearchModuleProps> = ({
                         className="page-result-item-card"
                         onClick={() => handleOpenResult(item)}
                       >
+                        <div
+                          className="page-item-type-icon-box"
+                          style={{ backgroundColor: cfg.bgColor, color: cfg.color }}
+                        >
+                          {cfg.icon}
+                        </div>
+
                         <div className="page-item-main">
                           <div className="page-item-header">
                             <h3 className="page-item-title">{item.title}</h3>

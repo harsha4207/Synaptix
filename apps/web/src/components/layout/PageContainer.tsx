@@ -9,13 +9,13 @@ export interface PageContainerProps {
 
 export const PageContainer: React.FC<PageContainerProps> = ({
   children,
-  maxWidth = 'var(--content-max)',
+  maxWidth = '100%',
   className = '',
   style,
 }) => {
   return (
     <div
-      className={`page-container ${className}`.trim()}
+      className={`page-container w-full min-w-0 ${className}`.trim()}
       style={{
         width: '100%',
         maxWidth,
@@ -27,6 +27,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         ...style,
       }}
     >
+
       {children}
     </div>
   );

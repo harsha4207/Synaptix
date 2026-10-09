@@ -1,52 +1,44 @@
-import React from 'react';
+import * as React from 'react';
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import { cn } from '../../lib/utils';
 
-export interface SeparatorProps {
-  orientation?: 'horizontal' | 'vertical';
+export interface SeparatorProps
+  extends React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root> {
   label?: string;
-  className?: string;
-  style?: React.CSSProperties;
 }
 
-export const Separator: React.FC<SeparatorProps> = ({
-  orientation = 'horizontal',
-  label,
-  className = '',
-  style,
-}) => {
-  if (label && orientation === 'horizontal') {
-    return (
-      <div className={`divider ${className}`.trim()} style={style} role="separator">
-        <span>{label}</span>
-      </div>
-    );
-  }
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  SeparatorProps
+>(
+  (
+    { className, orientation = 'horizontal', decorative = true, label, style, ...props },
+    ref
+  ) => {
+    if (label && orientation === 'horizontal') {
+      return (
+        <div className={cn('divider', className)} style={style} role="separator">
+          <span>{label}</span>
+        </div>
+      );
+    }
 
-  if (orientation === 'vertical') {
     return (
-      <div
-        role="separator"
-        aria-orientation="vertical"
-        className={className}
-        style={{
-          width: '1px',
-          backgroundColor: 'var(--c-border)',
-          alignSelf: 'stretch',
-          ...style,
-        }}
+      <SeparatorPrimitive.Root
+        ref={ref}
+        decorative={decorative}
+        orientation={orientation}
+        style={style}
+        className={cn(
+          'shrink-0 bg-[var(--c-border)]',
+          orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
+          className
+        )}
+        {...props}
       />
     );
   }
+);
+Separator.displayName = SeparatorPrimitive.Root.displayName;
 
-  return (
-    <hr
-      className={`hr ${className}`.trim()}
-      role="separator"
-      style={{
-        border: 'none',
-        borderTop: '1px solid var(--c-border)',
-        margin: 'var(--sp-4) 0',
-        ...style,
-      }}
-    />
-  );
-};
+export { Separator };

@@ -157,28 +157,35 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
                     opacity={hoveredNodeId && !isHighlighted ? 0.25 : 0.85}
                   />
                   {/* Relationship Label Pill */}
-                  <rect
-                    x={midX - 35}
-                    y={midY - 9}
-                    width={70}
-                    height={18}
-                    rx={4}
-                    fill="#FFFFFF"
-                    stroke={isHighlighted ? '#1769E0' : '#E2E8F0'}
-                    strokeWidth="1"
-                    opacity={hoveredNodeId && !isHighlighted ? 0.3 : 0.95}
-                  />
-                  <text
-                    x={midX}
-                    y={midY + 3}
-                    textAnchor="middle"
-                    fontSize="9"
-                    fontWeight="600"
-                    fill={isHighlighted ? '#1769E0' : '#64748B'}
-                    opacity={hoveredNodeId && !isHighlighted ? 0.3 : 1}
-                  >
-                    {edge.label}
-                  </text>
+                  {(() => {
+                    const edgeLabelWidth = Math.max(76, edge.label.length * 6.5 + 18);
+                    return (
+                      <>
+                        <rect
+                          x={midX - edgeLabelWidth / 2}
+                          y={midY - 10}
+                          width={edgeLabelWidth}
+                          height={20}
+                          rx={5}
+                          fill="#FFFFFF"
+                          stroke={isHighlighted ? '#1769E0' : '#E2E8F0'}
+                          strokeWidth={isHighlighted ? 1.5 : 1}
+                          opacity={hoveredNodeId && !isHighlighted ? 0.3 : 0.96}
+                        />
+                        <text
+                          x={midX}
+                          y={midY + 4}
+                          textAnchor="middle"
+                          fontSize="9.5"
+                          fontWeight="600"
+                          fill={isHighlighted ? '#1769E0' : '#64748B'}
+                          opacity={hoveredNodeId && !isHighlighted ? 0.3 : 1}
+                        >
+                          {edge.label}
+                        </text>
+                      </>
+                    );
+                  })()}
                 </g>
               );
             })}
@@ -193,6 +200,7 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
               const isSearchMatch = matchingNodeIds.includes(node.id);
 
               const opacity = (hoveredNodeId && !isConnected) || (!isSearchMatch) ? 0.25 : 1;
+              const labelWidth = Math.max(120, node.label.length * 7 + 22);
 
               return (
                 <g
@@ -224,10 +232,10 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
 
                   {/* Node Label Card below */}
                   <rect
-                    x="-55"
-                    y="24"
-                    width="110"
-                    height="22"
+                    x={-labelWidth / 2}
+                    y="25"
+                    width={labelWidth}
+                    height="23"
                     rx="5"
                     fill="#FFFFFF"
                     stroke={isSelected ? '#1769E0' : '#E2E8F0'}
@@ -236,7 +244,7 @@ export const KnowledgeGraph: React.FC<KnowledgeGraphProps> = ({
                   />
                   <text
                     x="0"
-                    y="38"
+                    y="40"
                     textAnchor="middle"
                     fontSize="10"
                     fontWeight="700"

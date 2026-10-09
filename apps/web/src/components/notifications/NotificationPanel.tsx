@@ -11,7 +11,6 @@ import {
   Check,
   CheckCheck,
   ChevronRight,
-  X,
   Bell
 } from 'lucide-react';
 import { NotificationItem, NotificationType, NotificationGroup } from '../../types/notification';
@@ -108,34 +107,6 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
             <h3>Notification Center</h3>
             {unreadCount > 0 && <span className="unread-badge-count">{unreadCount} New</span>}
           </div>
-          <button type="button" className="notif-close-btn" onClick={onClose} title="Close">
-            <X size={14} />
-          </button>
-        </div>
-
-        {/* Filter Tabs & Mark All Read */}
-        <div className="notif-toolbar">
-          <div className="notif-tabs">
-            <button
-              className={`notif-tab ${activeTab === 'all' ? 'active' : ''}`}
-              onClick={() => setActiveTab('all')}
-            >
-              All ({notifications.length})
-            </button>
-            <button
-              className={`notif-tab ${activeTab === 'unread' ? 'active' : ''}`}
-              onClick={() => setActiveTab('unread')}
-            >
-              Unread ({unreadCount})
-            </button>
-            <button
-              className={`notif-tab ${activeTab === 'action' ? 'active' : ''}`}
-              onClick={() => setActiveTab('action')}
-            >
-              Action Required
-            </button>
-          </div>
-
           {unreadCount > 0 && (
             <button
               type="button"
@@ -146,6 +117,37 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
               <CheckCheck size={13} /> Mark all read
             </button>
           )}
+        </div>
+
+        {/* Filter Segmented Control */}
+        <div className="notif-segmented-control" role="tablist" aria-label="Notification Filters">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'all'}
+            className={`notif-segment-btn ${activeTab === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveTab('all')}
+          >
+            All <span className="segment-count">({notifications.length})</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'unread'}
+            className={`notif-segment-btn ${activeTab === 'unread' ? 'active' : ''}`}
+            onClick={() => setActiveTab('unread')}
+          >
+            Unread <span className="segment-count">({unreadCount})</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'action'}
+            className={`notif-segment-btn ${activeTab === 'action' ? 'active' : ''}`}
+            onClick={() => setActiveTab('action')}
+          >
+            Action Required
+          </button>
         </div>
       </div>
 

@@ -15,7 +15,8 @@ import { WorkflowStepNode, WorkflowNodeType } from '../components/workflows/Work
 import { WorkflowCanvas } from '../components/workflows/WorkflowCanvas';
 import { StepConfigDrawer } from '../components/workflows/StepConfigDrawer';
 import { DryRunModal } from '../components/workflows/DryRunModal';
-import { PageContainer, PageContent } from '../components/layout';
+import { PageContainer, PageContent, PageHeader } from '../components/layout';
+import { Badge } from '../components/ui/Badge';
 
 interface WorkflowsModuleProps {
   workspace: WorkspaceItem;
@@ -120,6 +121,7 @@ export const WorkflowsModule: React.FC<WorkflowsModuleProps> = ({ workspace, onA
   // Handle Natural Language Workflow Generation
   const handleGenerateWorkflow = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
+    if (!nlPrompt.trim()) return;
     setIsGenerating(true);
     onAddToast('Interpreting natural-language automation prompt...');
 
@@ -266,185 +268,234 @@ export const WorkflowsModule: React.FC<WorkflowsModuleProps> = ({ workspace, onA
 
   return (
     <PageContainer>
-      <PageContent>
-      {/* TOP NATURAL-LANGUAGE AUTOMATION BUILDER */}
-      <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-2xl p-6 text-white shadow-xl space-y-4">
-        <div className="flex items-center justify-between">
+      {/* 1. STANDARDIZED PAGE HEADER */}
+      <PageHeader
+        title="Workflows & Automation"
+        description={`Automated reasoning pipelines, event triggers and multi-step execution plans for ${workspace.name}.`}
+        breadcrumb={
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-blue-400" />
-            <h1 className="text-lg font-bold tracking-tight">Create an Automation</h1>
+            <span>{workspace.name}</span>
+            <span className="text-[var(--c-text-3)]">/</span>
+            <span className="text-[var(--c-blue)]">Workflows & Automation</span>
           </div>
-          <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-200 border border-blue-400/30 font-mono">
-            {workspace.name} Domain Sandbox
-          </span>
-        </div>
+        }
+        badge={
+          <Badge variant="blue">
+            <Sparkles size={13} style={{ marginRight: 4 }} />
+            Deterministic Pipelines
+          </Badge>
+        }
+      />
 
-        <form onSubmit={handleGenerateWorkflow} className="relative flex items-center">
-          <input
-            type="text"
-            value={nlPrompt}
-            onChange={(e) => setNlPrompt(e.target.value)}
-            placeholder="“Describe what should happen automatically...” (e.g., When a new invoice is uploaded, extract the amount, check for duplicates, and send invoices above ₹100,000 for approval.)"
-            className="w-full bg-white/10 border border-white/20 rounded-xl pl-4 pr-32 py-3 text-sm text-white placeholder-blue-200/60 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white/15 transition-all"
-          />
-          <button
-            type="submit"
-            disabled={isGenerating}
-            className="absolute right-2 px-4 py-1.5 bg-blue-500 hover:bg-blue-400 text-slate-950 font-extrabold rounded-lg text-xs transition-colors flex items-center gap-1.5 shadow disabled:opacity-50"
-          >
-            {isGenerating ? (
-              <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <>
-                Convert
-                <ArrowRight className="w-3.5 h-3.5" />
-              </>
-            )}
-          </button>
-        </form>
-
-        <div className="flex items-center gap-2 pt-1 text-xs">
-          <span className="text-blue-300">Try example prompt:</span>
-          <button
-            onClick={() => {
-              setNlPrompt(
-                'When a new invoice is uploaded, extract the amount, check for duplicates, and send invoices above ₹100,000 for approval.'
-              );
-              handleGenerateWorkflow();
-            }}
-            className="px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg text-blue-100 text-left transition-all hover:scale-[1.01]"
-          >
-            “When a new invoice is uploaded, extract the amount, check for duplicates, and send invoices above ₹100,000 for approval.”
-          </button>
-        </div>
-      </div>
-
-      {/* TOP WORKFLOW TOOLBAR */}
-      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl">
-              <Workflow className="w-6 h-6" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <input
-                  type="text"
-                  value={workflowName}
-                  onChange={(e) => {
-                    setWorkflowName(e.target.value);
-                    setIsSaved(false);
-                  }}
-                  className="font-extrabold text-slate-900 text-lg bg-transparent hover:bg-slate-100 border-b border-transparent hover:border-slate-300 rounded px-1 outline-none transition-colors"
-                />
-                {!isSaved && (
-                  <span className="text-xs px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-semibold border border-amber-200">
-                    Unsaved Changes
-                  </span>
-                )}
+      <PageContent>
+        {/* 2. REFINED CREATE AN AUTOMATION PANEL */}
+        {/* 2. REFINED CREATE AN AUTOMATION PANEL */}
+        <div className="nl-prompt-panel">
+          <div className="nl-prompt-header">
+            <div className="nl-prompt-header-left">
+              <div className="nl-prompt-icon-badge">
+                <Sparkles className="w-5 h-5" />
               </div>
-              <p className="text-xs text-slate-500">
-                Visual Workflow Engine with Cryptographic Verification ({steps.length} Steps)
-              </p>
+              <div className="nl-prompt-title-group">
+                <h2 className="nl-prompt-title">Create an Automation</h2>
+                <p className="nl-prompt-subtitle">Generate multi-step reasoning pipelines using natural language</p>
+              </div>
             </div>
+            <span className="nl-prompt-badge">
+              {workspace.name} Domain Sandbox
+            </span>
           </div>
 
-          {/* Action Buttons: Save, Test, Dry Run, Enable/Disable */}
-          <div className="flex flex-wrap items-center gap-2">
+          <form
+            onSubmit={handleGenerateWorkflow}
+            className="nl-prompt-form"
+          >
+            <div className="nl-prompt-input-wrapper">
+              <input
+                type="text"
+                value={nlPrompt}
+                onChange={(e) => setNlPrompt(e.target.value)}
+                placeholder="Describe what should happen automatically (e.g. When a new invoice is uploaded, extract the amount, check for duplicates, and send invoices above ₹100,000 for approval)..."
+                className="nl-prompt-input"
+              />
+            </div>
             <button
-              onClick={() => {
-                setIsEnabled(!isEnabled);
-                onAddToast(isEnabled ? 'Workflow disabled' : 'Workflow enabled and listening for triggers');
-              }}
-              className={`px-3 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors border ${
-                isEnabled
-                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                  : 'bg-slate-100 text-slate-500 border-slate-200'
-              }`}
+              type="submit"
+              disabled={isGenerating}
+              className="nl-prompt-btn-primary"
+              style={{ backgroundColor: '#2496FF', color: '#0B1F3A' }}
             >
-              <Power className="w-3.5 h-3.5" />
-              {isEnabled ? 'Enabled' : 'Disabled'}
-            </button>
-
-            <button
-              onClick={handleTestWorkflow}
-              disabled={isTesting}
-              className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors disabled:opacity-50"
-            >
-              <Play className={`w-3.5 h-3.5 text-blue-600 ${isTesting ? 'animate-spin' : ''}`} />
-              {isTesting ? 'Testing...' : 'Test'}
-            </button>
-
-            <button
-              onClick={() => setIsDryRunOpen(true)}
-              className="px-3.5 py-2 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-amber-900 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm"
-            >
-              <Zap className="w-3.5 h-3.5 text-amber-600" />
-              Dry Run
-            </button>
-
-            <button
-              onClick={handleSaveWorkflow}
-              className={`px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all shadow ${
-                showSaveSuccess
-                  ? 'bg-emerald-600 text-white'
-                  : 'bg-blue-600 hover:bg-blue-700 text-white'
-              }`}
-            >
-              {showSaveSuccess ? (
+              {isGenerating ? (
                 <>
-                  <Check className="w-4 h-4" />
-                  Saved!
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>Generating...</span>
                 </>
               ) : (
                 <>
-                  <Save className="w-4 h-4" />
-                  Save Workflow
+                  <span>Convert to Workflow</span>
+                  <ArrowRight className="w-4 h-4" />
                 </>
               )}
             </button>
+          </form>
+
+          <div className="nl-prompt-examples-row">
+            <span className="nl-prompt-examples-label">Try example:</span>
+            <button
+              type="button"
+              onClick={() => {
+                setNlPrompt(
+                  'When a new invoice is uploaded, extract the amount, check for duplicates, and send invoices above ₹100,000 for approval.'
+                );
+                handleGenerateWorkflow();
+              }}
+              className="nl-prompt-example-chip"
+            >
+              “When a new invoice is uploaded, extract the amount, check for duplicates, and send invoices above ₹100,000 for approval.”
+            </button>
           </div>
         </div>
-      </div>
 
-      {/* VISUAL WORKFLOW EDITOR CANVAS */}
-      <div className="bg-slate-50/70 border border-slate-200 rounded-3xl p-6 min-h-[500px]">
-        <div className="flex items-center justify-between pb-4 mb-2 border-b border-slate-200/60 text-xs">
-          <span className="font-bold text-slate-700 uppercase tracking-wider text-[11px]">
-            Visual Execution Sequence (Trigger → Conditions → Actions → Notifications)
-          </span>
-          <span className="text-slate-400 font-mono">
-            Click any node to configure parameters in right inspector
-          </span>
+        {/* 3. WORKFLOW OVERVIEW CARD */}
+        <div className="w-full bg-[var(--c-surface)] p-5 sm:p-6 rounded-2xl border border-[var(--c-border)] shadow-xs transition-colors">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 sm:gap-5 min-w-0">
+            {/* Left: Workflow metadata */}
+            <div className="flex items-start sm:items-center gap-3.5 sm:gap-4 min-w-0 flex-1">
+              <div className="w-12 h-12 rounded-xl bg-[var(--c-blue-soft)] text-[var(--c-blue)] border border-[rgba(23,105,224,0.15)] flex items-center justify-center flex-shrink-0 shadow-2xs">
+                <Workflow className="w-6 h-6" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <input
+                    type="text"
+                    value={workflowName}
+                    onChange={(e) => {
+                      setWorkflowName(e.target.value);
+                      setIsSaved(false);
+                    }}
+                    style={{
+                      fontWeight: 800,
+                      fontSize: '18px',
+                      color: 'var(--c-text-1)',
+                      background: 'transparent',
+                      border: '1px solid transparent',
+                      borderRadius: '8px',
+                      padding: '2px 8px',
+                      outline: 'none',
+                      width: '100%',
+                      maxWidth: '480px',
+                    }}
+                    className="hover:border-[var(--c-border)] hover:bg-[var(--c-surface-2)] focus:border-[var(--c-blue)] focus:bg-[var(--c-surface)] transition-all font-display text-base sm:text-lg"
+                    aria-label="Workflow Name"
+                  />
+                  {!isSaved && (
+                    <span className="text-xs px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-700 font-semibold border border-amber-200 select-none">
+                      Unsaved Changes
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-[var(--c-text-2)] mt-1 font-normal">
+                  Visual Workflow Engine with Cryptographic Verification • <span className="font-medium text-[var(--c-text-1)]">{steps.length} Steps Active</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Action Buttons (Power, Test, Dry Run, Save) */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 flex-shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--c-border)]">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsEnabled(!isEnabled);
+                  onAddToast(isEnabled ? 'Workflow disabled' : 'Workflow enabled and listening for triggers');
+                }}
+                className={`h-10 px-3.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all border cursor-pointer ${
+                  isEnabled
+                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'
+                    : 'bg-[var(--c-surface-2)] text-[var(--c-text-2)] border-[var(--c-border)] hover:bg-slate-200/60'
+                }`}
+              >
+                <Power className="w-4 h-4" />
+                <span>{isEnabled ? 'Enabled' : 'Disabled'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleTestWorkflow}
+                disabled={isTesting}
+                className="h-10 px-4 bg-[var(--c-surface)] hover:bg-[var(--c-surface-2)] border border-[var(--c-border)] text-[var(--c-text-1)] rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer shadow-2xs hover:shadow-xs"
+              >
+                <Play className={`w-3.5 h-3.5 text-[var(--c-blue)] ${isTesting ? 'animate-spin' : ''}`} />
+                <span>{isTesting ? 'Testing...' : 'Test Run'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setIsDryRunOpen(true)}
+                className="h-10 px-4 bg-amber-50/80 hover:bg-amber-100/80 border border-amber-200 text-amber-900 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs hover:shadow-xs"
+              >
+                <Zap className="w-3.5 h-3.5 text-amber-600" />
+                <span>Dry Run</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={handleSaveWorkflow}
+                className={`h-10 px-4 rounded-lg text-xs font-bold text-white flex items-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs ${
+                  showSaveSuccess
+                    ? 'bg-[#16803C] hover:bg-[#126b32]'
+                    : 'bg-[#1769E0] hover:bg-[#1254B7]'
+                }`}
+              >
+                {showSaveSuccess ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
+                <span>{showSaveSuccess ? 'Saved!' : 'Save Workflow'}</span>
+              </button>
+            </div>
+          </div>
         </div>
 
-        <WorkflowCanvas
-          steps={steps}
-          selectedNodeId={selectedNode?.id || null}
-          onSelectNode={handleSelectNode}
-          onAddNode={handleAddNode}
-          onDeleteNode={handleDeleteNode}
-          onDuplicateNode={handleDuplicateNode}
+        {/* 4. VISUAL WORKFLOW EDITOR CANVAS */}
+        <div className="w-full bg-[var(--c-surface)] rounded-2xl border border-[var(--c-border)] p-5 sm:p-7 shadow-xs min-h-[500px]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-[var(--c-border)] gap-2.5 text-xs">
+            <div className="flex items-center gap-2 flex-wrap">
+              <span className="font-bold text-[var(--c-text-1)] uppercase tracking-wider text-xs">
+                Visual Execution Sequence
+              </span>
+              <span className="text-[11px] text-[var(--c-text-3)] font-medium">
+                (Trigger → Conditions → Actions → Notifications)
+              </span>
+            </div>
+            <span className="text-xs text-[var(--c-text-3)]">
+              Click any step node to configure parameters in right inspector
+            </span>
+          </div>
+
+          <WorkflowCanvas
+            steps={steps}
+            selectedNodeId={selectedNode?.id || null}
+            onSelectNode={handleSelectNode}
+            onAddNode={handleAddNode}
+            onDeleteNode={handleDeleteNode}
+            onDuplicateNode={handleDuplicateNode}
+          />
+        </div>
+
+        {/* RIGHT STEP CONFIGURATION DRAWER */}
+        <StepConfigDrawer
+          node={selectedNode}
+          isOpen={isConfigDrawerOpen}
+          onClose={() => setIsConfigDrawerOpen(false)}
+          onSaveNode={handleSaveNodeConfig}
+          onAddToast={onAddToast}
         />
-      </div>
 
-      {/* RIGHT STEP CONFIGURATION DRAWER */}
-      <StepConfigDrawer
-        node={selectedNode}
-        isOpen={isConfigDrawerOpen}
-        onClose={() => setIsConfigDrawerOpen(false)}
-        onSaveNode={handleSaveNodeConfig}
-        onAddToast={onAddToast}
-      />
-
-      {/* DRY RUN SIMULATION MODAL */}
-      <DryRunModal
-        isOpen={isDryRunOpen}
-        onClose={() => setIsDryRunOpen(false)}
-        workflowName={workflowName}
-        steps={steps}
-        onAddToast={onAddToast}
-      />
+        {/* DRY RUN SIMULATION MODAL */}
+        <DryRunModal
+          isOpen={isDryRunOpen}
+          onClose={() => setIsDryRunOpen(false)}
+          workflowName={workflowName}
+          steps={steps}
+          onAddToast={onAddToast}
+        />
       </PageContent>
     </PageContainer>
   );

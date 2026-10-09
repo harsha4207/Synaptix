@@ -9,7 +9,8 @@ import {
   Workflow,
   Sparkles,
   Layers,
-  CheckCircle2
+  CheckCircle2,
+  Copy
 } from 'lucide-react';
 import { CommandResultData } from './DynamicResultView';
 import { WorkspaceItem } from '../../types/workspace';
@@ -99,7 +100,20 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
           </div>
 
           <div className="evidence-hash-box">
-            <span className="hash-label">SHA-256 Hash Verification:</span>
+            <div className="hash-header-row">
+              <span className="hash-label">SHA-256 Hash Verification:</span>
+              <button
+                type="button"
+                className="copy-hash-btn"
+                title="Copy hash"
+                onClick={() => {
+                  navigator.clipboard?.writeText(activeResult.evidenceHash);
+                  onAddToast('Copied SHA-256 hash to clipboard');
+                }}
+              >
+                <Copy size={11} /> Copy
+              </button>
+            </div>
             <code className="hash-code-full">{activeResult.evidenceHash}</code>
           </div>
 
@@ -118,7 +132,12 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
 
           <div className="sources-list">
             {sources.map((src, i) => (
-              <div key={i} className="source-item">
+              <div
+                key={i}
+                className="source-item"
+                onClick={() => onAddToast(`Inspecting source: ${src}`)}
+                title="Click to view source"
+              >
                 <FileText size={13} className="doc-icon" />
                 <span className="source-name-text">{src}</span>
               </div>

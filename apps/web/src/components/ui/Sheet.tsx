@@ -1,146 +1,197 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import * as SheetPrimitive from '@radix-ui/react-dialog';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { X } from 'lucide-react';
+import { cn } from '../../lib/utils';
+
+const SheetRoot = SheetPrimitive.Root;
+const SheetTrigger = SheetPrimitive.Trigger;
+const SheetClose = SheetPrimitive.Close;
+const SheetPortal = SheetPrimitive.Portal;
+
+const SheetOverlay = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Overlay
+    className={cn(
+      'fixed inset-0 z-50 bg-[#0B1F3A]/40 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      className
+    )}
+    style={{ zIndex: 1000 }}
+    {...props}
+    ref={ref}
+  />
+));
+SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
+
+const sheetVariants = cva(
+  'fixed z-50 gap-4 bg-[var(--c-surface)] p-6 shadow-xl transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-400 border-[var(--c-border)]',
+  {
+    variants: {
+      side: {
+        top: 'inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
+        bottom:
+          'inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
+        left: 'inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-md',
+        right:
+          'inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-md',
+      },
+    },
+    defaultVariants: {
+      side: 'right',
+    },
+  }
+);
+
+interface SheetContentProps
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+    VariantProps<typeof sheetVariants> {
+  width?: string;
+  hideClose?: boolean;
+}
+
+const SheetContent = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Content>,
+  SheetContentProps
+>(({ side = 'right', className, children, width, hideClose = false, style, ...props }, ref) => (
+  <SheetPortal>
+    <SheetOverlay />
+    <SheetPrimitive.Content
+      ref={ref}
+      style={{
+        zIndex: 1001,
+        maxWidth: width || undefined,
+        ...style,
+      }}
+      className={cn(sheetVariants({ side }), className)}
+      {...props}
+    >
+      {children}
+      {!hideClose && (
+        <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-[var(--c-blue)] focus:ring-offset-2 disabled:pointer-events-none p-1 text-[var(--c-text-2)] hover:text-[var(--c-text-1)]">
+          <X className="h-4 w-4" />
+          <span className="sr-only">Close</span>
+        </SheetPrimitive.Close>
+      )}
+    </SheetPrimitive.Content>
+  </SheetPortal>
+));
+SheetContent.displayName = SheetPrimitive.Content.displayName;
+
+const SheetHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      'flex flex-col space-y-2 text-center sm:text-left border-b border-[var(--c-border)] pb-4',
+      className
+    )}
+    {...props}
+  />
+);
+SheetHeader.displayName = 'SheetHeader';
+
+const SheetFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div
+    className={cn(
+      'flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 border-t border-[var(--c-border)] pt-4 mt-auto',
+      className
+    )}
+    {...props}
+  />
+);
+SheetFooter.displayName = 'SheetFooter';
+
+const SheetTitle = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Title
+    ref={ref}
+    className={cn('text-lg font-bold font-display text-[var(--c-text-1)]', className)}
+    {...props}
+  />
+));
+SheetTitle.displayName = SheetPrimitive.Title.displayName;
+
+const SheetDescription = React.forwardRef<
+  React.ElementRef<typeof SheetPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
+>(({ className, ...props }, ref) => (
+  <SheetPrimitive.Description
+    ref={ref}
+    className={cn('text-xs text-[var(--c-text-2)]', className)}
+    {...props}
+  />
+));
+SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 export interface SheetProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  open?: boolean;
+  onClose?: () => void;
+  onOpenChange?: (open: boolean) => void;
   title?: string;
   description?: string;
-  side?: 'left' | 'right';
+  side?: 'top' | 'bottom' | 'left' | 'right';
   width?: string;
   children: React.ReactNode;
   footer?: React.ReactNode;
+  className?: string;
 }
 
 export const Sheet: React.FC<SheetProps> = ({
   isOpen,
+  open,
   onClose,
+  onOpenChange,
   title,
   description,
   side = 'right',
   width = '480px',
   children,
   footer,
+  className,
 }) => {
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+  if (isOpen !== undefined) {
+    const handleOpenChange = (nextOpen: boolean) => {
+      if (!nextOpen && onClose) onClose();
+      if (onOpenChange) onOpenChange(nextOpen);
     };
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+    return (
+      <SheetRoot open={isOpen} onOpenChange={handleOpenChange}>
+        <SheetContent side={side} width={width} className={cn('flex flex-col', className)}>
+          {(title || description) && (
+            <SheetHeader>
+              {title && <SheetTitle>{title}</SheetTitle>}
+              {description && <SheetDescription>{description}</SheetDescription>}
+            </SheetHeader>
+          )}
+          <div className="flex-1 overflow-y-auto py-4">{children}</div>
+          {footer && <SheetFooter>{footer}</SheetFooter>}
+        </SheetContent>
+      </SheetRoot>
+    );
+  }
 
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        backgroundColor: 'rgba(11, 31, 58, 0.35)',
-        backdropFilter: 'blur(3px)',
-        zIndex: 250,
-        display: 'flex',
-        justifyContent: side === 'right' ? 'flex-end' : 'flex-start',
-        animation: 'fade-in 0.15s ease',
-      }}
-      onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div
-        style={{
-          width: '100%',
-          maxWidth: width,
-          height: '100%',
-          backgroundColor: 'var(--c-surface)',
-          boxShadow: 'var(--shadow-xl)',
-          display: 'flex',
-          flexDirection: 'column',
-          animation: 'slide-in-right 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-        }}
-      >
-        {/* Drawer Header */}
-        <div
-          style={{
-            padding: 'var(--sp-5) var(--sp-6)',
-            borderBottom: '1px solid var(--c-border)',
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            gap: 'var(--sp-4)',
-          }}
-        >
-          <div>
-            {title && (
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'var(--text-xl)',
-                  fontWeight: 700,
-                  color: 'var(--c-text-1)',
-                  margin: 0,
-                }}
-              >
-                {title}
-              </h3>
-            )}
-            {description && (
-              <p
-                style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'var(--c-text-2)',
-                  marginTop: 'var(--sp-1)',
-                }}
-              >
-                {description}
-              </p>
-            )}
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            className="modal-close"
-            aria-label="Close drawer"
-          >
-            <X size={18} />
-          </button>
-        </div>
+  return <SheetRoot open={open} onOpenChange={onOpenChange}>{children}</SheetRoot>;
+};
 
-        {/* Drawer Body */}
-        <div
-          style={{
-            flex: 1,
-            overflowY: 'auto',
-            padding: 'var(--sp-6)',
-          }}
-        >
-          {children}
-        </div>
-
-        {/* Drawer Footer */}
-        {footer && (
-          <div
-            style={{
-              padding: 'var(--sp-4) var(--sp-6)',
-              borderTop: '1px solid var(--c-border)',
-              backgroundColor: 'var(--c-page)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-              gap: 'var(--sp-3)',
-            }}
-          >
-            {footer}
-          </div>
-        )}
-      </div>
-    </div>
-  );
+export {
+  SheetRoot,
+  SheetTrigger,
+  SheetClose,
+  SheetPortal,
+  SheetOverlay,
+  SheetContent,
+  SheetHeader,
+  SheetFooter,
+  SheetTitle,
+  SheetDescription,
 };

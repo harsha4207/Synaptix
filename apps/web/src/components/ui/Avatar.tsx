@@ -1,20 +1,70 @@
-import React from 'react';
+import * as React from 'react';
+import * as AvatarPrimitive from '@radix-ui/react-avatar';
+import { cn } from '../../lib/utils';
+
+const AvatarRoot = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn(
+      'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+      className
+    )}
+    {...props}
+  />
+));
+AvatarRoot.displayName = AvatarPrimitive.Root.displayName;
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn('aspect-square h-full w-full object-cover', className)}
+    {...props}
+  />
+));
+AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Fallback
+    ref={ref}
+    className={cn(
+      'flex h-full w-full items-center justify-center rounded-full bg-[var(--c-navy)] text-white font-display text-xs font-bold select-none',
+      className
+    )}
+    {...props}
+  />
+));
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
 export interface AvatarProps {
-  name: string;
+  name?: string;
   src?: string;
   size?: 'sm' | 'md' | 'lg';
   status?: 'online' | 'busy' | 'away' | 'offline';
   className?: string;
+  children?: React.ReactNode;
 }
 
 export const Avatar: React.FC<AvatarProps> = ({
-  name,
+  name = 'User',
   src,
   size = 'md',
   status,
   className = '',
+  children,
 }) => {
+  if (children) {
+    return <AvatarRoot className={className}>{children}</AvatarRoot>;
+  }
+
   const getInitials = (fullName: string) => {
     const parts = fullName.trim().split(' ');
     if (parts.length >= 2) {
@@ -23,65 +73,35 @@ export const Avatar: React.FC<AvatarProps> = ({
     return (parts[0]?.[0] || 'U').toUpperCase();
   };
 
-  let sizePx = 32;
-  let fontSize = 'var(--text-sm)';
-  if (size === 'sm') {
-    sizePx = 24;
-    fontSize = 'var(--text-xs)';
-  } else if (size === 'lg') {
-    sizePx = 40;
-    fontSize = 'var(--text-md)';
-  }
+  const sizeClasses = {
+    sm: 'h-6 w-6 text-[10px]',
+    md: 'h-8 w-8 text-xs',
+    lg: 'h-10 w-10 text-sm',
+  };
 
-  let statusBg = 'var(--c-success)';
-  if (status === 'busy') statusBg = 'var(--c-danger)';
-  else if (status === 'away') statusBg = 'var(--c-warning)';
-  else if (status === 'offline') statusBg = 'var(--c-text-3)';
+  const statusColors = {
+    online: 'bg-[var(--c-success)]',
+    busy: 'bg-[var(--c-danger)]',
+    away: 'bg-[var(--c-warning)]',
+    offline: 'bg-[var(--c-text-3)]',
+  };
 
   return (
-    <div
-      style={{
-        position: 'relative',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: `${sizePx}px`,
-        height: `${sizePx}px`,
-        borderRadius: '50%',
-        backgroundColor: 'var(--c-navy)',
-        color: '#FFFFFF',
-        fontFamily: 'var(--font-display)',
-        fontSize,
-        fontWeight: 700,
-        flexShrink: 0,
-        userSelect: 'none',
-      }}
-      className={className}
-      aria-label={name}
-    >
-      {src ? (
-        <img
-          src={src}
-          alt={name}
-          style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }}
-        />
-      ) : (
-        <span>{getInitials(name)}</span>
-      )}
+    <div className="relative inline-flex shrink-0">
+      <AvatarRoot className={cn(sizeClasses[size], className)} aria-label={name}>
+        {src && <AvatarImage src={src} alt={name} />}
+        <AvatarFallback>{getInitials(name)}</AvatarFallback>
+      </AvatarRoot>
       {status && (
         <span
-          style={{
-            position: 'absolute',
-            bottom: '-1px',
-            right: '-1px',
-            width: size === 'sm' ? '6px' : '8px',
-            height: size === 'sm' ? '6px' : '8px',
-            borderRadius: '50%',
-            backgroundColor: statusBg,
-            border: '2px solid var(--c-surface)',
-          }}
+          className={cn(
+            'absolute bottom-0 right-0 h-2 w-2 rounded-full border-2 border-[var(--c-surface)]',
+            statusColors[status]
+          )}
         />
       )}
     </div>
   );
 };
+
+export { AvatarRoot, AvatarImage, AvatarFallback };

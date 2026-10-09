@@ -48,17 +48,7 @@ export const WorkflowCanvas: React.FC<WorkflowCanvasProps> = ({
   ];
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: 'var(--sp-6) var(--sp-4)',
-        gap: 'var(--sp-4)',
-        maxWidth: 680,
-        margin: '0 auto',
-      }}
-    >
+    <div className="flex flex-col items-center w-full max-w-2xl mx-auto px-1 sm:px-4 py-1">
       {steps.map((step, index) => {
         const isSelected = selectedNodeId === step.id;
 
@@ -74,100 +64,45 @@ export const WorkflowCanvas: React.FC<WorkflowCanvasProps> = ({
             />
 
             {index < steps.length - 1 && (
-              <div
-                style={{
-                  position: 'relative',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  padding: '4px 0',
-                }}
-              >
-                <div style={{ width: 2, height: 32, backgroundColor: 'var(--c-border)' }} />
-                <ArrowDown size={14} style={{ color: 'var(--c-text-3)', marginTop: -4 }} />
+              <div className="relative flex flex-col items-center py-2 sm:py-2.5 my-0.5 select-none w-full max-w-2xl">
+                {/* Top connector stem */}
+                <div className="w-0.5 h-4 bg-[var(--c-border)]" />
 
+                {/* Centered Add intermediate step button */}
                 <button
                   type="button"
                   onClick={() =>
                     setShowAddMenuIndex(showAddMenuIndex === index ? null : index)
                   }
-                  style={{
-                    position: 'absolute',
-                    top: -2,
-                    width: 24,
-                    height: 24,
-                    borderRadius: 'var(--radius-full)',
-                    backgroundColor: 'var(--c-surface)',
-                    border: '1px solid var(--c-border)',
-                    boxShadow: 'var(--shadow-sm)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--c-text-2)',
-                    cursor: 'pointer',
-                    zIndex: 10,
-                  }}
-                  title="Insert step here"
+                  className="w-7 h-7 rounded-full bg-[var(--c-surface)] border border-[var(--c-border)] shadow-xs hover:border-[var(--c-blue)] hover:text-[var(--c-blue)] hover:bg-[#F0F6FE] hover:scale-105 flex items-center justify-center text-[var(--c-text-2)] transition-all cursor-pointer z-10 focus:outline-none focus:ring-2 focus:ring-[var(--c-blue-ring)]"
+                  title="Insert intermediate step"
+                  aria-label="Insert intermediate step"
                 >
-                  <Plus size={13} />
+                  <Plus size={14} />
                 </button>
 
+                {/* Bottom connector stem & Arrow */}
+                <div className="w-0.5 h-3.5 bg-[var(--c-border)]" />
+                <ArrowDown size={14} className="text-[var(--c-text-3)] -mt-1" />
+
+                {/* Dropdown Menu */}
                 {showAddMenuIndex === index && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: 32,
-                      width: 260,
-                      backgroundColor: 'var(--c-surface)',
-                      border: '1px solid var(--c-border)',
-                      borderRadius: 'var(--radius-xl)',
-                      boxShadow: 'var(--shadow-xl)',
-                      padding: 'var(--sp-2)',
-                      zIndex: 30,
-                      animation: 'fade-in 0.15s ease',
-                      fontSize: 'var(--text-xs)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: 2,
-                    }}
-                  >
-                    <div
-                      style={{
-                        padding: '4px 8px',
-                        fontWeight: 700,
-                        color: 'var(--c-text-3)',
-                        textTransform: 'uppercase',
-                        fontSize: '10px',
-                      }}
-                    >
+                  <div className="absolute top-12 w-64 bg-[var(--c-surface)] border border-[var(--c-border)] rounded-2xl shadow-xl p-2 z-30 animate-fade-in text-xs flex flex-col gap-1">
+                    <div className="px-2.5 py-1.5 font-bold text-[var(--c-text-3)] uppercase text-[10px] tracking-wider border-b border-[var(--c-border)] mb-1">
                       Insert Intermediate Step
                     </div>
                     {availableNodeTypes.map((item) => (
                       <button
                         key={item.type}
+                        type="button"
                         onClick={() => {
                           onAddNode(item.type, index + 1);
                           setShowAddMenuIndex(null);
                         }}
-                        style={{
-                          width: '100%',
-                          textAlign: 'left',
-                          padding: '6px 10px',
-                          borderRadius: 'var(--radius-md)',
-                          border: 'none',
-                          backgroundColor: 'transparent',
-                          color: 'var(--c-text-1)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: 'var(--sp-2)',
-                          fontWeight: 500,
-                          cursor: 'pointer',
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--c-page)')}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+                        className="w-full text-left px-2.5 py-2 rounded-lg border-0 bg-transparent text-[var(--c-text-1)] hover:bg-[var(--c-page)] hover:text-[var(--c-blue)] flex items-center gap-2.5 font-medium text-xs transition-colors cursor-pointer"
                       >
-                        {item.icon}
-                        {item.label}
+                        <span className="flex-shrink-0">{item.icon}</span>
+                        <span className="truncate">{item.label}</span>
                       </button>
                     ))}
                   </div>
@@ -178,98 +113,37 @@ export const WorkflowCanvas: React.FC<WorkflowCanvasProps> = ({
         );
       })}
 
-      <div style={{ position: 'relative', paddingTop: 'var(--sp-2)' }}>
+      <div className="relative pt-4 sm:pt-5 w-full flex justify-center">
         <button
+          type="button"
           onClick={() =>
             setShowAddMenuIndex(
               showAddMenuIndex === steps.length ? null : steps.length
             )
           }
-          style={{
-            padding: '10px 18px',
-            backgroundColor: 'var(--c-surface)',
-            border: '2px dashed var(--c-border)',
-            color: 'var(--c-blue)',
-            borderRadius: 'var(--radius-xl)',
-            fontWeight: 700,
-            fontSize: 'var(--text-xs)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--sp-2)',
-            cursor: 'pointer',
-            transition: 'all 0.15s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'var(--c-blue)';
-            e.currentTarget.style.backgroundColor = '#F0F6FE';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'var(--c-border)';
-            e.currentTarget.style.backgroundColor = 'var(--c-surface)';
-          }}
+          className="px-5 py-3 bg-[var(--c-surface)] hover:bg-[#F0F6FE] border-2 border-dashed border-[var(--c-border)] hover:border-[var(--c-blue)] text-[var(--c-blue)] rounded-2xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-sm"
         >
           <Plus size={16} />
-          Add Next Workflow Step
+          <span>Add Next Workflow Step</span>
         </button>
 
         {showAddMenuIndex === steps.length && (
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 48,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: 260,
-              backgroundColor: 'var(--c-surface)',
-              border: '1px solid var(--c-border)',
-              borderRadius: 'var(--radius-xl)',
-              boxShadow: 'var(--shadow-xl)',
-              padding: 'var(--sp-2)',
-              zIndex: 30,
-              animation: 'fade-in 0.15s ease',
-              fontSize: 'var(--text-xs)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 2,
-            }}
-          >
-            <div
-              style={{
-                padding: '4px 8px',
-                fontWeight: 700,
-                color: 'var(--c-text-3)',
-                textTransform: 'uppercase',
-                fontSize: '10px',
-              }}
-            >
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-64 bg-[var(--c-surface)] border border-[var(--c-border)] rounded-2xl shadow-xl p-2 z-30 animate-fade-in text-xs flex flex-col gap-1">
+            <div className="px-2.5 py-1.5 font-bold text-[var(--c-text-3)] uppercase text-[10px] tracking-wider border-b border-[var(--c-border)] mb-1">
               Select Step Type to Append
             </div>
             {availableNodeTypes.map((item) => (
               <button
                 key={item.type}
+                type="button"
                 onClick={() => {
                   onAddNode(item.type);
                   setShowAddMenuIndex(null);
                 }}
-                style={{
-                  width: '100%',
-                  textAlign: 'left',
-                  padding: '6px 10px',
-                  borderRadius: 'var(--radius-md)',
-                  border: 'none',
-                  backgroundColor: 'transparent',
-                  color: 'var(--c-text-1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'var(--sp-2)',
-                  fontWeight: 500,
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = 'var(--c-page)')}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+                className="w-full text-left px-2.5 py-2 rounded-lg border-0 bg-transparent text-[var(--c-text-1)] hover:bg-[var(--c-page)] hover:text-[var(--c-blue)] flex items-center gap-2.5 font-medium text-xs transition-colors cursor-pointer"
               >
-                {item.icon}
-                {item.label}
+                <span className="flex-shrink-0">{item.icon}</span>
+                <span className="truncate">{item.label}</span>
               </button>
             ))}
           </div>

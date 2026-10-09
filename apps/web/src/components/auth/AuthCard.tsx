@@ -6,17 +6,36 @@ export interface AuthCardProps {
   onOpenForgotPassword: () => void;
   onSuccessAuth: (email: string, mode: 'login' | 'signup') => void;
   onGoogleAuth: () => void;
+  defaultMode?: 'login' | 'signup';
+  onBackToLanding?: () => void;
 }
 
 export const AuthCard: React.FC<AuthCardProps> = ({
   onOpenForgotPassword,
   onSuccessAuth,
   onGoogleAuth,
+  defaultMode = 'login',
+  onBackToLanding,
 }) => {
-  const [mode, setMode] = useState<'login' | 'signup'>('login');
+  const [mode, setMode] = useState<'login' | 'signup'>(defaultMode);
+
+  // Sync mode if defaultMode changes externally (e.g. navigation trigger)
+  React.useEffect(() => {
+    setMode(defaultMode);
+  }, [defaultMode]);
 
   return (
     <div className="auth-card" role="region" aria-label="Authentication Form">
+      {onBackToLanding && (
+        <button
+          type="button"
+          className="auth-back-landing-btn"
+          onClick={onBackToLanding}
+          aria-label="Back to landing page"
+        >
+          ← Back to Synaptix Overview
+        </button>
+      )}
       {/* Header */}
       <header className="auth-header">
         <h1>Welcome to Synaptix Command</h1>

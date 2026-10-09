@@ -13,49 +13,63 @@ export const QuickActionsSection: React.FC<QuickActionsSectionProps> = ({
   onCreateWorkspaceClick,
 }) => {
   return (
-    <div className="quick-actions-card" aria-label="Quick Actions">
-      <div className="card-section-header">
-        <h3 className="card-section-title">Quick Actions</h3>
-        <span className="card-subtitle-tag">Global Shortcuts</span>
-      </div>
-
-      <div className="quick-actions-list">
-        {/* Ask Synaptix */}
-        <button type="button" onClick={onFocusCommandInput} className="quick-action-item">
-          <div className="action-icon-circle blue">
+    <section className="quick-actions-bar-section" aria-label="Quick Actions">
+      <div className="quick-actions-bar-container">
+        {/* Action 1: Ask Synaptix */}
+        <button
+          type="button"
+          onClick={onFocusCommandInput}
+          className="quick-action-bar-btn"
+          title="Focus command center"
+        >
+          <div className="action-bar-icon blue">
             <MessageSquarePlus size={18} />
           </div>
-          <div className="action-text">
-            <h4>Ask Synaptix</h4>
-            <p>Focus command center</p>
+          <div className="action-bar-text">
+            <span className="action-bar-title">Ask Synaptix</span>
+            <span className="action-bar-desc">Focus command center</span>
           </div>
-          <ArrowRight size={14} className="action-arrow" />
+          <ArrowRight size={14} className="action-bar-arrow" />
         </button>
 
-        {/* Upload Data */}
-        <button type="button" onClick={onUploadDataClick} className="quick-action-item">
-          <div className="action-icon-circle cyan">
+        <div className="action-bar-divider" aria-hidden="true" />
+
+        {/* Action 2: Upload Data */}
+        <button
+          type="button"
+          onClick={onUploadDataClick}
+          className="quick-action-bar-btn"
+          title="Ingest documents & datasets"
+        >
+          <div className="action-bar-icon cyan">
             <UploadCloud size={18} />
           </div>
-          <div className="action-text">
-            <h4>Upload Data</h4>
-            <p>Ingest documents & datasets</p>
+          <div className="action-bar-text">
+            <span className="action-bar-title">Upload Data</span>
+            <span className="action-bar-desc">Ingest docs & data</span>
           </div>
-          <ArrowRight size={14} className="action-arrow" />
+          <ArrowRight size={14} className="action-bar-arrow" />
         </button>
 
-        {/* Create Workspace */}
-        <button type="button" onClick={onCreateWorkspaceClick} className="quick-action-item">
-          <div className="action-icon-circle navy">
+        <div className="action-bar-divider" aria-hidden="true" />
+
+        {/* Action 3: Create Workspace */}
+        <button
+          type="button"
+          onClick={onCreateWorkspaceClick}
+          className="quick-action-bar-btn"
+          title="Add new domain boundary"
+        >
+          <div className="action-bar-icon navy">
             <FolderPlus size={18} />
           </div>
-          <div className="action-text">
-            <h4>Create Workspace</h4>
-            <p>Add new domain boundary</p>
+          <div className="action-bar-text">
+            <span className="action-bar-title">Create Workspace</span>
+            <span className="action-bar-desc">New domain boundary</span>
           </div>
-          <ArrowRight size={14} className="action-arrow" />
+          <ArrowRight size={14} className="action-bar-arrow" />
         </button>
       </div>
-    </div>
+    </section>
   );
 };

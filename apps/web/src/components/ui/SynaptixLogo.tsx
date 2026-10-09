@@ -56,6 +56,7 @@ export const SynaptixLogo: React.FC<SynaptixLogoProps> = ({
         alt="SYNAPTIX COMMAND"
         width={width}
         height={height}
+        className="logo-img-light"
         style={{
           width: `${width}px`,
           height: 'auto',
@@ -63,7 +64,21 @@ export const SynaptixLogo: React.FC<SynaptixLogoProps> = ({
           objectFit: 'contain',
           position: 'relative',
           zIndex: 1,
-          display: 'block',
+        }}
+      />
+      <img
+        src="/assets/SYNAPTIX Command Logo Dark.png"
+        alt="SYNAPTIX COMMAND"
+        width={width}
+        height={height}
+        className="logo-img-dark"
+        style={{
+          width: `${width}px`,
+          height: 'auto',
+          maxHeight: `${height}px`,
+          objectFit: 'contain',
+          position: 'relative',
+          zIndex: 1,
         }}
       />
     </div>

@@ -13,7 +13,8 @@ import {
   FileSpreadsheet,
   ArrowRight,
   Database,
-  Sliders
+  Sliders,
+  ChevronDown
 } from 'lucide-react';
 import { WorkspaceItem } from '../types/workspace';
 import {
@@ -259,11 +260,17 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
 
   return (
     <PageContainer>
-      {/* TOP CONFIGURATION BAR */}
+      {/* 1. STANDARDIZED PAGE HEADER */}
       <PageHeader
-        title="Analytics Workspace"
-        description="Analytical investigation environment: datasets, trends, anomalies & relationships."
-        breadcrumb={`SYNAPTIX COMMAND / ${workspace.name.toUpperCase()} / ANALYTICS`}
+        title="Analytics Engine"
+        description={`Automated quantitative analysis, trends, correlation exploration and predictive modeling for ${workspace.name}.`}
+        breadcrumb={
+          <div className="flex items-center gap-2">
+            <span>{workspace.name}</span>
+            <span className="text-[var(--c-text-3)]">/</span>
+            <span className="text-[var(--c-blue)]">Analytics Engine</span>
+          </div>
+        }
         badge={
           <Badge variant="blue">
             <ShieldCheck size={13} style={{ marginRight: '4px' }} />
@@ -273,242 +280,370 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
       />
 
       <PageContent>
-        <div className="card card-body card-shadow" style={{ padding: 'var(--sp-4)' }}>
-          <div className="flex flex-wrap items-center gap-2.5 text-xs">
-            <div className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 font-medium">
-              <Database className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <select
-                value={selectedDataset}
-                onChange={(e) => {
-                  setSelectedDataset(e.target.value);
-                  onAddToast(`Loaded dataset: ${e.target.value}`);
-                }}
-                className="bg-transparent text-slate-800 font-semibold outline-none cursor-pointer pr-1"
-              >
-                {datasetsList.map((ds) => (
-                  <option key={ds} value={ds}>
-                    {ds}
-                  </option>
-                ))}
-              </select>
+        {/* 2. ANALYTICAL FILTER TOOLBAR */}
+        <div className="analytics-toolbar-card">
+          <div className="analytics-toolbar-row">
+            {/* Dataset Selector */}
+            <div className="analytics-selector-box flex-1 min-w-[200px] sm:min-w-[225px] lg:min-w-[250px] max-w-[340px]">
+              <Database className="w-4 h-4 text-[var(--c-text-2)] shrink-0" />
+              <span className="analytics-selector-label">Dataset:</span>
+              <div className="relative flex-1 min-w-0 flex items-center">
+                <select
+                  value={selectedDataset}
+                  onChange={(e) => {
+                    setSelectedDataset(e.target.value);
+                    onAddToast(`Loaded dataset: ${e.target.value}`);
+                  }}
+                  className="analytics-selector-select"
+                >
+                  {datasetsList.map((ds) => (
+                    <option key={ds} value={ds} className="bg-surface text-[var(--c-text-1)]">
+                      {ds}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={14} className="text-[var(--c-text-3)] absolute right-0 pointer-events-none shrink-0" />
+              </div>
             </div>
 
-            <div className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 font-medium">
-              <Calendar className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <select
-                value={dateRange}
-                onChange={(e) => {
-                  setDateRange(e.target.value);
-                  onAddToast(`Updated Date Range: ${e.target.value}`);
-                }}
-                className="bg-transparent text-slate-800 font-semibold outline-none cursor-pointer pr-1"
-              >
-                {dateRanges.map((r) => (
-                  <option key={r} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
+            {/* Period Selector */}
+            <div className="analytics-selector-box min-w-[135px] sm:min-w-[155px]">
+              <Calendar className="w-4 h-4 text-[var(--c-text-2)] shrink-0" />
+              <span className="analytics-selector-label">Period:</span>
+              <div className="relative flex-1 min-w-0 flex items-center">
+                <select
+                  value={dateRange}
+                  onChange={(e) => {
+                    setDateRange(e.target.value);
+                    onAddToast(`Updated Date Range: ${e.target.value}`);
+                  }}
+                  className="analytics-selector-select"
+                >
+                  {dateRanges.map((r) => (
+                    <option key={r} value={r} className="bg-surface text-[var(--c-text-1)]">
+                      {r}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={14} className="text-[var(--c-text-3)] absolute right-0 pointer-events-none shrink-0" />
+              </div>
             </div>
 
-            <div className="flex items-center gap-1 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200 font-medium">
-              <BarChart3 className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <select
-                value={selectedMetric}
-                onChange={(e) => {
-                  setSelectedMetric(e.target.value);
-                  onAddToast(`Active Metric: ${e.target.value}`);
-                }}
-                className="bg-transparent text-slate-800 font-semibold outline-none cursor-pointer pr-1"
-              >
-                {metricOptions.map((m) => (
-                  <option key={m} value={m}>
-                    {m}
-                  </option>
-                ))}
-              </select>
+            {/* Metric Selector */}
+            <div className="analytics-selector-box min-w-[155px] sm:min-w-[180px]">
+              <BarChart3 className="w-4 h-4 text-[var(--c-text-2)] shrink-0" />
+              <span className="analytics-selector-label">Metric:</span>
+              <div className="relative flex-1 min-w-0 flex items-center">
+                <select
+                  value={selectedMetric}
+                  onChange={(e) => {
+                    setSelectedMetric(e.target.value);
+                    onAddToast(`Active Metric: ${e.target.value}`);
+                  }}
+                  className="analytics-selector-select"
+                >
+                  {metricOptions.map((m) => (
+                    <option key={m} value={m} className="bg-surface text-[var(--c-text-1)]">
+                      {m}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown size={14} className="text-[var(--c-text-3)] absolute right-0 pointer-events-none shrink-0" />
+              </div>
             </div>
 
-            <button
-              onClick={() => setShowFiltersDrawer(!showFiltersDrawer)}
-              className={`px-3 py-1.5 rounded-xl border font-medium flex items-center gap-1.5 transition-colors ${
-                showFiltersDrawer
-                  ? 'bg-blue-600 text-white border-blue-600'
-                  : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              <Sliders className="w-3.5 h-3.5" />
-              Filters
-            </button>
-
-            <button
-              onClick={() => handleNlSubmit()}
-              disabled={isAnalyzing}
-              className="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-sm flex items-center gap-1.5 transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50"
-            >
-              <RefreshCw className={`w-3.5 h-3.5 ${isAnalyzing ? 'animate-spin' : ''}`} />
-              {isAnalyzing ? 'Analyzing...' : 'Analyze'}
-            </button>
-          </div>
-
-        {showFiltersDrawer && (
-          <div className="pt-3 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs animate-fade-in bg-slate-50 p-3 rounded-xl">
-            <div>
-              <label className="block text-slate-500 font-medium mb-1">Region Dimension</label>
-              <select className="w-full p-2 bg-white border border-slate-200 rounded-lg text-slate-800">
-                <option>All Global Regions</option>
-                <option>North America</option>
-                <option>EMEA</option>
-                <option>APAC</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-slate-500 font-medium mb-1">Evidence Grade Filter</label>
-              <select className="w-full p-2 bg-white border border-slate-200 rounded-lg text-slate-800">
-                <option>All Evidence Grades</option>
-                <option>G1 Verified Only</option>
-                <option>G2 Parsed & Above</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-slate-500 font-medium mb-1">Anomaly Threshold</label>
-              <select className="w-full p-2 bg-white border border-slate-200 rounded-lg text-slate-800">
-                <option>All Signals</option>
-                <option>High Severity (&gt;0.80)</option>
-                <option>Medium Severity (&gt;0.50)</option>
-              </select>
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* MAIN: NATURAL-LANGUAGE ANALYSIS BAR */}
-      <div className="bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-2xl p-6 text-white shadow-lg space-y-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-blue-400" />
-            <h2 className="font-bold text-base tracking-wide">Natural-Language Analytical Query</h2>
-          </div>
-          <span className="text-xs text-blue-200 font-mono">Governed AI Engine</span>
-        </div>
-
-        <form onSubmit={handleNlSubmit} className="relative flex items-center">
-          <input
-            type="text"
-            value={nlQuery}
-            onChange={(e) => setNlQuery(e.target.value)}
-            placeholder="“Analyze this data...” (e.g., Ask about trends, declines, anomalies or correlations)"
-            className="w-full bg-white/10 border border-white/20 rounded-xl pl-4 pr-24 py-3 text-sm text-white placeholder-blue-200/60 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white/15 transition-all"
-          />
-
-          <div className="absolute right-2 flex items-center gap-1">
+            {/* Filters Button */}
             <button
               type="button"
-              onClick={() => {
-                setIsListening(!isListening);
-                onAddToast(isListening ? 'Voice input stopped' : 'Voice listening active... Speak your query');
-              }}
-              className={`p-2 rounded-lg transition-colors ${
-                isListening ? 'bg-red-500 text-white animate-pulse' : 'text-blue-200 hover:bg-white/10'
-              }`}
-              title="Toggle Voice Input"
+              onClick={() => setShowFiltersDrawer(!showFiltersDrawer)}
+              className={`analytics-btn-filter ${showFiltersDrawer ? 'active' : ''}`}
             >
-              {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+              <Sliders className="w-4 h-4 text-inherit shrink-0" />
+              <span>Filters</span>
             </button>
 
+            {/* Run Analysis Button */}
             <button
-              type="submit"
-              disabled={isAnalyzing || !nlQuery.trim()}
-              className="px-3.5 py-1.5 bg-blue-500 hover:bg-blue-400 text-slate-950 font-bold rounded-lg text-xs transition-colors flex items-center gap-1 shadow disabled:opacity-40"
+              type="button"
+              onClick={() => handleNlSubmit()}
+              disabled={isAnalyzing}
+              className="analytics-btn-run"
             >
-              {isAnalyzing ? (
-                <RefreshCw className="w-3.5 h-3.5 animate-spin" />
-              ) : (
-                <>
-                  Analyze
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </>
-              )}
+              <RefreshCw className={`w-3.5 h-3.5 ${isAnalyzing ? 'animate-spin' : ''} shrink-0`} />
+              <span>{isAnalyzing ? 'Analyzing...' : 'Run Analysis'}</span>
             </button>
           </div>
-        </form>
 
-        <div className="space-y-1.5 pt-1">
-          <span className="text-xs text-blue-300 font-medium">Try example prompts:</span>
-          <div className="flex flex-wrap gap-2">
+          {showFiltersDrawer && (
+            <div className="pt-3.5 border-t border-border grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-xs animate-fade-in bg-surface-2 p-4 rounded-xl">
+              <div>
+                <label className="block text-[var(--c-text-2)] font-semibold mb-1.5 text-xs">Region Dimension</label>
+                <div className="relative flex items-center">
+                  <select className="w-full h-10 px-3.5 pr-8 bg-surface border border-border rounded-lg text-[var(--c-text-1)] font-medium outline-none text-xs appearance-none cursor-pointer hover:border-[var(--c-border-2)] focus:border-[var(--c-blue)]">
+                    <option>All Global Regions</option>
+                    <option>North America</option>
+                    <option>EMEA</option>
+                    <option>APAC</option>
+                  </select>
+                  <ChevronDown size={14} className="text-[var(--c-text-3)] absolute right-2.5 pointer-events-none shrink-0" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-[var(--c-text-2)] font-semibold mb-1.5 text-xs">Evidence Grade Filter</label>
+                <div className="relative flex items-center">
+                  <select className="w-full h-10 px-3.5 pr-8 bg-surface border border-border rounded-lg text-[var(--c-text-1)] font-medium outline-none text-xs appearance-none cursor-pointer hover:border-[var(--c-border-2)] focus:border-[var(--c-blue)]">
+                    <option>All Evidence Grades</option>
+                    <option>G1 Verified Only</option>
+                    <option>G2 Parsed & Above</option>
+                  </select>
+                  <ChevronDown size={14} className="text-[var(--c-text-3)] absolute right-2.5 pointer-events-none shrink-0" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-[var(--c-text-2)] font-semibold mb-1.5 text-xs">Anomaly Threshold</label>
+                <div className="relative flex items-center">
+                  <select className="w-full h-10 px-3.5 pr-8 bg-surface border border-border rounded-lg text-[var(--c-text-1)] font-medium outline-none text-xs appearance-none cursor-pointer hover:border-[var(--c-border-2)] focus:border-[var(--c-blue)]">
+                    <option>All Signals</option>
+                    <option>High Severity (&gt;0.80)</option>
+                    <option>Medium Severity (&gt;0.50)</option>
+                  </select>
+                  <ChevronDown size={14} className="text-[var(--c-text-3)] absolute right-2.5 pointer-events-none shrink-0" />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* 3. NATURAL-LANGUAGE ANALYTICAL QUERY PANEL */}
+        <div className="nl-prompt-panel">
+          <div className="nl-prompt-header">
+            <div className="nl-prompt-header-left">
+              <div className="nl-prompt-icon-badge">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div className="nl-prompt-title-group">
+                <h2 className="nl-prompt-title">Natural-Language Analytical Query</h2>
+                <p className="nl-prompt-subtitle">Ask natural language questions about trends, margins, anomalies, and correlations</p>
+              </div>
+            </div>
+            <span className="nl-prompt-badge">
+              Governed AI Engine
+            </span>
+          </div>
+
+          <form
+            onSubmit={handleNlSubmit}
+            className="nl-prompt-form"
+          >
+            <div className="nl-prompt-input-wrapper">
+              <input
+                type="text"
+                value={nlQuery}
+                onChange={(e) => setNlQuery(e.target.value)}
+                placeholder="Ask about trends, declines, anomalies, or correlations (e.g. Analyze the decline from 2010 to 2026)..."
+                className="nl-prompt-input"
+              />
+            </div>
+
+            <div className="nl-prompt-actions-group">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsListening(!isListening);
+                  onAddToast(isListening ? 'Voice input stopped' : 'Voice listening active... Speak your query');
+                }}
+                className={`nl-prompt-btn-mic ${isListening ? 'listening' : ''}`}
+                title="Toggle Voice Input"
+              >
+                {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
+              </button>
+
+              <button
+                type="submit"
+                disabled={isAnalyzing || !nlQuery.trim()}
+                className="nl-prompt-btn-primary"
+                style={{ backgroundColor: '#2496FF', color: '#0B1F3A' }}
+              >
+                {isAnalyzing ? (
+                  <>
+                    <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                    <span>Analyzing...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Analyze</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </>
+                )}
+              </button>
+            </div>
+          </form>
+
+          <div className="nl-prompt-examples-row">
+            <span className="nl-prompt-examples-label">Try example prompts:</span>
             {promptExamples.map((prompt) => (
               <button
                 key={prompt}
+                type="button"
                 onClick={() => handleSelectPromptChip(prompt)}
-                className="px-3 py-1 bg-white/10 hover:bg-white/20 border border-white/15 rounded-lg text-xs text-blue-100 transition-all hover:scale-[1.02] text-left"
+                className="nl-prompt-example-chip"
               >
                 “{prompt}”
               </button>
             ))}
           </div>
         </div>
-      </div>
 
-      {/* ANALYSIS SECTIONS / TABS NAVIGATION */}
-      <div className="border-b border-slate-200 flex items-center gap-1 overflow-x-auto pb-1 no-scrollbar">
-        {[
-          { id: 'overview', label: 'Overview' },
-          { id: 'trends', label: 'Trends' },
-          { id: 'comparisons', label: 'Comparisons' },
-          { id: 'anomalies', label: 'Anomalies' },
-          { id: 'relationships', label: 'Relationships' },
-          { id: 'drivers', label: 'Drivers' },
-          { id: 'detailed_data', label: 'Detailed Data' },
-        ].map((tab) => (
-          <button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id as AnalysisSectionTab)}
-            className={`px-4 py-2 rounded-t-xl text-xs font-bold transition-all shrink-0 border-b-2 ${
-              activeTab === tab.id
-                ? 'border-blue-600 text-blue-600 bg-white shadow-sm'
-                : 'border-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-100/60'
-            }`}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+        {/* 4. ANALYSIS NAVIGATION TABS */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            overflowX: 'auto',
+            backgroundColor: 'var(--c-surface)',
+            padding: '6px',
+            borderRadius: '12px',
+            border: '1px solid var(--c-border)',
+            boxShadow: 'var(--shadow-xs)',
+          }}
+        >
+          {[
+            { id: 'overview', label: 'Overview' },
+            { id: 'trends', label: 'Trends' },
+            { id: 'comparisons', label: 'Comparisons' },
+            { id: 'anomalies', label: 'Anomalies' },
+            { id: 'relationships', label: 'Relationships' },
+            { id: 'drivers', label: 'Drivers' },
+            { id: 'detailed_data', label: 'Detailed Data' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              onClick={() => setActiveTab(tab.id as AnalysisSectionTab)}
+              style={{
+                height: '36px',
+                padding: '0 16px',
+                borderRadius: '8px',
+                fontSize: '12px',
+                fontWeight: activeTab === tab.id ? 700 : 600,
+                backgroundColor: activeTab === tab.id ? '#1769E0' : 'transparent',
+                color: activeTab === tab.id ? '#FFFFFF' : 'var(--c-text-2)',
+                border: 'none',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.15s ease',
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-      {/* TAB CONTENTS */}
-      {/* 1. OVERVIEW TAB */}
-      {activeTab === 'overview' && (
-        <div className="space-y-6 animate-fade-in">
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-xs font-medium text-slate-500">Active Metric Value</span>
-              <div className="text-2xl font-extrabold text-slate-900 font-mono">41.2%</div>
-              <div className="text-xs text-emerald-600 font-medium flex items-center gap-1">
-                <TrendingUp className="w-3.5 h-3.5" /> +1.8% vs FY2025
+        {/* 5. TAB CONTENTS & METRIC CARDS */}
+        {/* 1. OVERVIEW TAB */}
+        {activeTab === 'overview' && (
+          <div className="space-y-6 animate-fade-in">
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gap: '16px',
+              }}
+            >
+              <div
+                style={{
+                  padding: '20px',
+                  borderRadius: '14px',
+                  border: '1px solid var(--c-border)',
+                  backgroundColor: '#FFFFFF',
+                  boxShadow: 'var(--shadow-xs)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '120px',
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Active Metric Value</span>
+                  <BarChart3 className="w-4 h-4 text-[var(--c-blue)]" />
+                </div>
+                <div className="text-2xl font-extrabold text-[var(--c-text-1)] font-mono my-1">41.2%</div>
+                <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                  <TrendingUp className="w-3.5 h-3.5" /> +1.8% vs FY2025
+                </div>
+              </div>
+
+              <div
+                style={{
+                  padding: '20px',
+                  borderRadius: '14px',
+                  border: '1px solid var(--c-border)',
+                  backgroundColor: '#FFFFFF',
+                  boxShadow: 'var(--shadow-xs)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '120px',
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Historical Trough (2021)</span>
+                  <TrendingDown className="w-4 h-4 text-red-500" />
+                </div>
+                <div className="text-2xl font-extrabold text-red-600 font-mono my-1">28.3%</div>
+                <div className="text-xs text-red-600 font-semibold flex items-center gap-1">
+                  <TrendingDown className="w-3.5 h-3.5" /> -14.2% drop from 2019
+                </div>
+              </div>
+
+              <div
+                style={{
+                  padding: '20px',
+                  borderRadius: '14px',
+                  border: '1px solid var(--c-border)',
+                  backgroundColor: '#FFFFFF',
+                  boxShadow: 'var(--shadow-xs)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '120px',
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Strongest Correlation</span>
+                  <Sliders className="w-4 h-4 text-amber-500" />
+                </div>
+                <div className="text-2xl font-extrabold text-amber-700 font-mono my-1">r = -0.84</div>
+                <div className="text-xs text-[var(--c-text-2)]">Logistics Latency vs Margin</div>
+              </div>
+
+              <div
+                style={{
+                  padding: '20px',
+                  borderRadius: '14px',
+                  border: '1px solid var(--c-border)',
+                  backgroundColor: '#FFFFFF',
+                  boxShadow: 'var(--shadow-xs)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '120px',
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Verified Evidence Grade</span>
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                </div>
+                <div className="text-2xl font-extrabold text-emerald-700 font-mono my-1">G1 Ledger</div>
+                <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                  <ShieldCheck className="w-3.5 h-3.5" /> Cryptographic Integrity
+                </div>
               </div>
             </div>
-
-            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-xs font-medium text-slate-500">Historical Trough (2021)</span>
-              <div className="text-2xl font-extrabold text-red-600 font-mono">28.3%</div>
-              <div className="text-xs text-red-600 font-medium flex items-center gap-1">
-                <TrendingDown className="w-3.5 h-3.5" /> -14.2% drop from 2019
-              </div>
-            </div>
-
-            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-xs font-medium text-slate-500">Strongest Correlation</span>
-              <div className="text-2xl font-extrabold text-amber-700 font-mono">r = -0.84</div>
-              <div className="text-xs text-slate-500">Logistics Latency vs Margin</div>
-            </div>
-
-            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
-              <span className="text-xs font-medium text-slate-500">Verified Evidence Grade</span>
-              <div className="text-2xl font-extrabold text-emerald-700 font-mono">G1 Ledger</div>
-              <div className="text-xs text-emerald-600 font-medium flex items-center gap-1">
-                <ShieldCheck className="w-3.5 h-3.5" /> Cryptographic Integrity
-              </div>
-            </div>
-          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             <div className="lg:col-span-7 space-y-6">
@@ -563,24 +698,36 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
             onDrillDown={(p) => handleOpenDrillDownForSubject(`Trend Period ${p}`)}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-              <h3 className="font-bold text-slate-900 text-sm">Decline Phase Breakdown (2019–2021)</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Empirical evidence isolates the primary drop between Q2 2019 and Q4 2021. Margin decreased at an average rate of 4.73 percentage points per year during this phase.
-              </p>
-              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-900 font-mono">
-                Decline Velocity: -0.39% / Month | Peak Drift: $42.8M
+          <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2 w-full">
+            <div className="bg-[var(--c-surface)] p-5 sm:p-6 rounded-2xl border border-[var(--c-border)] shadow-xs flex flex-col justify-between space-y-3.5 min-w-0 transition-colors hover:border-[var(--c-border-2)]">
+              <div className="space-y-2.5 min-w-0">
+                <h3 className="font-bold text-[var(--c-text-1)] text-sm sm:text-base tracking-tight">
+                  Decline Phase Breakdown (2019–2021)
+                </h3>
+                <p className="text-xs sm:text-[13px] text-[var(--c-text-2)] leading-6 break-words">
+                  Empirical evidence isolates the primary drop between Q2 2019 and Q4 2021. Margin decreased at an average rate of 4.73 percentage points per year during this phase.
+                </p>
+              </div>
+              <div className="mt-3.5 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-red-500/10 border border-red-500/20 rounded-xl text-xs sm:text-[13px] text-red-600 dark:text-red-400 font-mono font-semibold flex items-center gap-2 flex-wrap min-w-0">
+                <span>Decline Velocity: -0.39% / Month</span>
+                <span className="text-red-300 dark:text-red-600 hidden sm:inline select-none">|</span>
+                <span>Peak Drift: $42.8M</span>
               </div>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-              <h3 className="font-bold text-slate-900 text-sm">Recovery Phase Analysis (2022–2026)</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                Post-2022 restructuring and automation initiatives resulted in a steady recovery curve (+2.58 percentage points per year).
-              </p>
-              <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 font-mono">
-                Recovery Velocity: +0.22% / Month | Regained Margin: +12.9%
+            <div className="bg-[var(--c-surface)] p-5 sm:p-6 rounded-2xl border border-[var(--c-border)] shadow-xs flex flex-col justify-between space-y-3.5 min-w-0 transition-colors hover:border-[var(--c-border-2)]">
+              <div className="space-y-2.5 min-w-0">
+                <h3 className="font-bold text-[var(--c-text-1)] text-sm sm:text-base tracking-tight">
+                  Recovery Phase Analysis (2022–2026)
+                </h3>
+                <p className="text-xs sm:text-[13px] text-[var(--c-text-2)] leading-6 break-words">
+                  Post-2022 restructuring and automation initiatives resulted in a steady recovery curve (+2.58 percentage points per year).
+                </p>
+              </div>
+              <div className="mt-3.5 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-xs sm:text-[13px] text-emerald-600 dark:text-emerald-400 font-mono font-semibold flex items-center gap-2 flex-wrap min-w-0">
+                <span>Recovery Velocity: +0.22% / Month</span>
+                <span className="text-emerald-300 dark:text-emerald-600 hidden sm:inline select-none">|</span>
+                <span>Regained Margin: +12.9%</span>
               </div>
             </div>
           </div>
@@ -658,10 +805,10 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
             onDrillDown={(lbl) => handleOpenDrillDownForSubject(`Scatter Point: ${lbl}`)}
           />
 
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-            <h3 className="font-bold text-slate-900 text-sm">Governance Note on Correlation vs Causation</h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Synaptix Command strictly separates <strong>Correlated</strong> observations from <strong>Verified explanations</strong>. While Freight Latency exhibits a strong negative correlation (r = -0.84), direct causality requires verification against underlying freight contract billing records.
+          <div className="bg-[var(--c-surface)] p-5 sm:p-6 rounded-2xl border border-[var(--c-border)] shadow-xs space-y-2.5 min-w-0 transition-colors hover:border-[var(--c-border-2)]">
+            <h3 className="font-bold text-[var(--c-text-1)] text-sm sm:text-base tracking-tight">Governance Note on Correlation vs Causation</h3>
+            <p className="text-xs sm:text-[13px] text-[var(--c-text-2)] leading-6 break-words">
+              Synaptix Command strictly separates <strong className="text-[var(--c-text-1)] font-semibold">Correlated</strong> observations from <strong className="text-[var(--c-text-1)] font-semibold">Verified explanations</strong>. While Freight Latency exhibits a strong negative correlation (r = -0.84), direct causality requires verification against underlying freight contract billing records.
             </p>
           </div>
         </div>

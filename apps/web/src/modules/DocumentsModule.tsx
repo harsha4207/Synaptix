@@ -5,13 +5,13 @@ import {
   Cloud,
   Table as TableIcon,
   Search,
-  Filter,
   Trash2,
   Download,
   ShieldCheck,
   CheckCircle2,
   Loader2,
-  ChevronRight
+  ChevronRight,
+  ChevronDown
 } from 'lucide-react';
 import { WorkspaceItem } from '../types/workspace';
 import { DocumentDetailsDrawer, ExtendedDocumentRecord } from '../components/documents/DocumentDetailsDrawer';
@@ -20,6 +20,8 @@ import { ConnectSourceModal } from '../components/documents/ConnectSourceModal';
 import { PageContainer, PageHeader, PageContent } from '../components/layout';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
+import { Input } from '../components/ui/Input';
+import { TableRow, TableCell } from '../components/ui/table';
 
 interface DocumentsModuleProps {
   workspace: WorkspaceItem;
@@ -301,9 +303,9 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
           </Badge>
         }
         actions={
-          <>
+          <div className="flex items-center gap-2 flex-wrap">
             <Button
-              variant="primary"
+              variant="blue"
               size="sm"
               leftIcon={<Upload size={14} />}
               onClick={handleUploadClick}
@@ -326,101 +328,119 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
             >
               Connect Source
             </Button>
-          </>
+          </div>
         }
       />
 
       <PageContent>
+        {/* Hidden File Input */}
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileInputChange}
+          style={{ display: 'none' }}
+          accept=".pdf,.docx,.xlsx,.csv,.txt,.png,.jpg"
+        />
 
-      {/* Hidden File Input */}
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleFileInputChange}
-        style={{ display: 'none' }}
-        accept=".pdf,.docx,.xlsx,.csv,.txt,.png,.jpg"
-      />
-
-      {/* 2. UPLOAD EXPERIENCE DRAG & DROP ZONE */}
-      <div
-        ref={dropZoneRef}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleFileDrop}
-        onClick={handleUploadClick}
-        className={`premium-upload-zone ${isDragging ? 'dragging' : ''}`}
-        aria-label="Drag and Drop Upload Area"
-      >
-        <div className="upload-zone-inner">
-          <div className="upload-icon-circle-lg">
-            <Upload size={24} />
-          </div>
-
-          <div className="upload-text-group">
-            <h3 className="upload-title">
-              Drag and drop files here, or <span className="browse-link">browse your computer</span>
+        {/* 2. UPLOAD EXPERIENCE DRAG & DROP ZONE */}
+        <div
+          ref={dropZoneRef}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleFileDrop}
+          onClick={handleUploadClick}
+          className={`doc-upload-zone ${isDragging ? 'dragging' : ''}`}
+          aria-label="Drag and Drop Upload Area"
+        >
+          <div className="flex flex-col items-center text-center max-w-lg">
+            <div className="w-12 h-12 rounded-full bg-[var(--c-blue-soft)] text-[var(--c-blue)] flex items-center justify-center mb-3 shadow-xs">
+              <Upload size={22} />
+            </div>
+            <h3 className="text-sm font-semibold text-[var(--c-text-1)] mb-1">
+              Drag and drop files here, or <span className="text-[var(--c-blue)] hover:underline font-bold">browse your computer</span>
             </h3>
-            <p className="upload-formats-text">
-              Supported formats: <strong>PDF, DOCX, XLSX, CSV, TXT, PNG, JPG</strong> • Up to 500 MB per file
+            <p className="text-xs text-[var(--c-text-2)] leading-relaxed">
+              Supported formats: <strong className="text-[var(--c-text-1)] font-semibold">PDF, DOCX, XLSX, CSV, TXT, PNG, JPG</strong> • Up to 500 MB per file
             </p>
           </div>
+
+          {/* Live Upload Progress Pipeline Bar */}
+          {isUploading && (
+            <div
+              className="mt-6 w-full max-w-xl bg-[var(--c-page)] border border-[var(--c-border)] rounded-lg p-4 animate-fade-in text-left"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-3 text-xs">
+                <span className="font-semibold text-[var(--c-text-1)] truncate max-w-[280px]">
+                  {activeFileName}
+                </span>
+                <span className="text-[var(--c-blue)] font-semibold">Stage: {uploadStage}...</span>
+              </div>
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                {(['Uploading', 'Processing', 'Classifying', 'Extracting', 'Indexing', 'Ready'] as const).map((stg) => {
+                  const stagesList = ['Uploading', 'Processing', 'Classifying', 'Extracting', 'Indexing', 'Ready'];
+                  const stgIdx = stagesList.indexOf(stg);
+                  const activeIdx = stagesList.indexOf(uploadStage);
+                  const isPassed = stgIdx < activeIdx;
+                  const isCurrent = stgIdx === activeIdx;
+
+                  return (
+                    <div
+                      key={stg}
+                      className={`flex flex-col items-center gap-1.5 text-center text-[10px] font-medium transition-colors ${
+                        isPassed
+                          ? 'text-[var(--c-success)]'
+                          : isCurrent
+                          ? 'text-[var(--c-blue)]'
+                          : 'text-[var(--c-text-3)]'
+                      }`}
+                    >
+                      <div
+                        className={`w-6 h-6 rounded-full flex items-center justify-center border text-[11px] font-semibold ${
+                          isPassed
+                            ? 'bg-[var(--c-success-bg)] border-[var(--c-success-border)] text-[var(--c-success)]'
+                            : isCurrent
+                            ? 'bg-[var(--c-blue-soft)] border-[var(--c-blue)] text-[var(--c-blue)]'
+                            : 'bg-[var(--c-surface)] border-[var(--c-border)] text-[var(--c-text-3)]'
+                        }`}
+                      >
+                        {isPassed ? (
+                          <CheckCircle2 size={12} />
+                        ) : isCurrent ? (
+                          <Loader2 size={12} className="animate-spin" />
+                        ) : (
+                          <span>{stgIdx + 1}</span>
+                        )}
+                      </div>
+                      <span className="truncate w-full">{stg}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Live Upload Progress Pipeline Bar */}
-        {isUploading && (
-          <div className="upload-pipeline-banner" onClick={(e) => e.stopPropagation()}>
-            <div className="banner-file-info">
-              <span className="file-name-bold">{activeFileName}</span>
-              <span className="stage-status-label">Stage: {uploadStage}...</span>
-            </div>
-
-            <div className="pipeline-stages-stepper">
-              {(['Uploading', 'Processing', 'Classifying', 'Extracting', 'Indexing', 'Ready'] as const).map((stg) => {
-                const stagesList: typeof stg[] = ['Uploading', 'Processing', 'Classifying', 'Extracting', 'Indexing', 'Ready'];
-                const stgIdx = stagesList.indexOf(stg);
-                const activeIdx = stagesList.indexOf(uploadStage);
-                const isPassed = stgIdx < activeIdx;
-                const isCurrent = stgIdx === activeIdx;
-
-                return (
-                  <div key={stg} className={`pipeline-step ${isPassed ? 'passed' : ''} ${isCurrent ? 'current' : ''}`}>
-                    <div className="step-circle">
-                      {isPassed ? (
-                        <CheckCircle2 size={12} />
-                      ) : isCurrent ? (
-                        <Loader2 size={12} className="animate-spin" />
-                      ) : (
-                        <span className="dot" />
-                      )}
-                    </div>
-                    <span className="step-text">{stg}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* 3. DOCUMENT LIST & FILTER BAR */}
-      <div className="document-list-container">
-        {/* Filters Row */}
-        <div className="documents-filter-bar">
-          <div className="search-input-box">
-            <Search size={16} className="search-icon" />
-            <input
+        {/* 3. SEARCH & FILTER TOOLBAR */}
+        <div className="doc-toolbar-card">
+          <div className="doc-search-wrapper">
+            <Input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search documents & datasets by name or content..."
-              className="search-input"
+              leftIcon={<Search size={15} />}
+              className="h-10 text-xs w-full"
             />
           </div>
 
-          <div className="filter-dropdowns-group">
-            <div className="filter-select-wrapper">
-              <Filter size={13} className="filter-icon" />
-              <select value={formatFilter} onChange={(e) => setFormatFilter(e.target.value)} className="filter-select">
+          <div className="doc-filter-group">
+            <div className="doc-filter-select-wrapper">
+              <select
+                value={formatFilter}
+                onChange={(e) => setFormatFilter(e.target.value)}
+                className="doc-filter-select"
+              >
                 <option value="All">All Formats</option>
                 <option value="PDF">PDF</option>
                 <option value="DOCX">DOCX</option>
@@ -428,157 +448,195 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
                 <option value="CSV">CSV</option>
                 <option value="TXT">TXT</option>
               </select>
+              <ChevronDown size={14} className="doc-filter-chevron" />
             </div>
 
-            <div className="filter-select-wrapper">
-              <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="filter-select">
+            <div className="doc-filter-select-wrapper">
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="doc-filter-select"
+              >
                 <option value="All">All Statuses</option>
                 <option value="Ready">Ready</option>
                 <option value="Processing">Processing</option>
                 <option value="Indexing">Indexing</option>
               </select>
+              <ChevronDown size={14} className="doc-filter-chevron" />
             </div>
 
-            <div className="filter-select-wrapper">
-              <select value={sourceFilter} onChange={(e) => setSourceFilter(e.target.value)} className="filter-select">
+            <div className="doc-filter-select-wrapper">
+              <select
+                value={sourceFilter}
+                onChange={(e) => setSourceFilter(e.target.value)}
+                className="doc-filter-select"
+              >
                 <option value="All">All Sources</option>
                 <option value="Direct Upload">Direct Upload</option>
                 <option value="S3 Bucket">S3 Bucket</option>
                 <option value="API Sync">API Sync</option>
               </select>
+              <ChevronDown size={14} className="doc-filter-chevron" />
             </div>
 
-            <div className="filter-select-wrapper">
-              <select value={gradeFilter} onChange={(e) => setGradeFilter(e.target.value)} className="filter-select">
+            <div className="doc-filter-select-wrapper">
+              <select
+                value={gradeFilter}
+                onChange={(e) => setGradeFilter(e.target.value)}
+                className="doc-filter-select"
+              >
                 <option value="All">All Evidence Grades</option>
                 <option value="Grade A+">Grade A+ (Verified)</option>
                 <option value="Grade A">Grade A</option>
                 <option value="Grade B">Grade B</option>
               </select>
+              <ChevronDown size={14} className="doc-filter-chevron" />
             </div>
           </div>
         </div>
 
-        {/* Enterprise Data Table */}
-        <div className="table-wrapper-card">
-          <div className="table-header-sm">
-            <h3>Workspace Data Manifest ({filteredDocs.length})</h3>
-            <span className="table-subtitle-tag">Cryptographically verified knowledge index</span>
+        {/* 4. WORKSPACE DATA MANIFEST TABLE */}
+        <div className="doc-manifest-card">
+          <div className="doc-manifest-header">
+            <div>
+              <h3 className="doc-manifest-title">
+                Workspace Data Manifest ({filteredDocs.length})
+              </h3>
+              <p className="doc-manifest-subtitle">
+                Cryptographically verified knowledge index
+              </p>
+            </div>
           </div>
 
-          <div className="data-table-scroll-container">
-            <table className="enterprise-data-table">
+          <div className="doc-table-container">
+            <table className="doc-manifest-table">
               <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Size</th>
-                  <th>Uploaded</th>
-                  <th>Status</th>
-                  <th>Evidence Grade</th>
-                  <th style={{ textAlign: 'right' }}>Actions</th>
+                  <th style={{ minWidth: '260px' }}>Name</th>
+                  <th style={{ width: '90px' }}>Type</th>
+                  <th style={{ width: '90px' }}>Size</th>
+                  <th style={{ width: '110px' }}>Uploaded</th>
+                  <th style={{ width: '110px' }}>Status</th>
+                  <th style={{ width: '140px' }}>Evidence Grade</th>
+                  <th style={{ width: '140px', textAlign: 'right' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredDocs.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="empty-table-td">
-                      No documents match the active search and filter criteria.
-                    </td>
-                  </tr>
-                ) : (
-                  filteredDocs.map((doc) => (
-                    <tr
-                      key={doc.id}
-                      onClick={() => setSelectedDoc(doc)}
-                      className="table-row-clickable"
-                    >
-                      {/* Name Column */}
-                      <td>
-                        <div className="name-col-cell">
-                          <div className={`doc-type-icon ${doc.isDataset ? 'dataset' : ''}`}>
-                            {doc.isDataset ? <TableIcon size={16} /> : <FileText size={16} />}
+                  {filteredDocs.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={7} className="text-center py-12 text-xs text-[var(--c-text-3)]">
+                        No documents match the active search and filter criteria.
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    filteredDocs.map((doc) => (
+                      <TableRow
+                        key={doc.id}
+                        onClick={() => setSelectedDoc(doc)}
+                        className="cursor-pointer hover:bg-[var(--c-page)] transition-colors border-b border-[var(--c-border)] group"
+                      >
+                        {/* Name */}
+                        <TableCell className="py-3.5 px-4">
+                          <div className="flex items-center gap-3">
+                            <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${
+                              doc.isDataset
+                                ? 'bg-[var(--c-blue-soft)] text-[var(--c-blue)]'
+                                : 'bg-[var(--c-surface-2)] text-[var(--c-text-2)]'
+                            }`}>
+                              {doc.isDataset ? <TableIcon size={16} /> : <FileText size={16} />}
+                            </div>
+                            <div className="flex flex-col min-w-0">
+                              <div className="flex items-center gap-2">
+                                <span className="font-semibold text-xs text-[var(--c-text-1)] group-hover:text-[var(--c-blue)] transition-colors truncate max-w-[280px]" title={doc.name}>
+                                  {doc.name}
+                                </span>
+                                {doc.isDataset && (
+                                  <Badge variant="blue" size="sm" className="shrink-0 text-[10px]">
+                                    Dataset
+                                  </Badge>
+                                )}
+                              </div>
+                            </div>
                           </div>
-                          <div className="doc-title-group">
-                            <span className="doc-name-text">{doc.name}</span>
-                            {doc.isDataset && <span className="dataset-badge-sm">Dataset</span>}
+                        </TableCell>
+
+                        {/* Type */}
+                        <TableCell className="py-3.5 px-4">
+                          <span className="inline-block px-2 py-0.5 rounded text-[11px] font-mono font-semibold bg-[var(--c-surface-2)] text-[var(--c-text-2)] border border-[var(--c-border)]">
+                            {doc.type}
+                          </span>
+                        </TableCell>
+
+                        {/* Size */}
+                        <TableCell className="py-3.5 px-4 text-xs font-mono text-[var(--c-text-2)]">
+                          {doc.size}
+                        </TableCell>
+
+                        {/* Uploaded */}
+                        <TableCell className="py-3.5 px-4 text-xs text-[var(--c-text-3)] whitespace-nowrap">
+                          {doc.uploadedAt}
+                        </TableCell>
+
+                        {/* Status */}
+                        <TableCell className="py-3.5 px-4">
+                          <Badge variant="success" size="sm" className="gap-1 font-medium whitespace-nowrap">
+                            <CheckCircle2 size={11} /> {doc.status}
+                          </Badge>
+                        </TableCell>
+
+                        {/* Evidence Grade */}
+                        <TableCell className="py-3.5 px-4">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-[var(--c-success-bg)] text-[var(--c-success)] border border-[var(--c-success-border)] whitespace-nowrap">
+                            <ShieldCheck size={13} />
+                            <span>{doc.evidenceGrade}</span>
+                          </span>
+                        </TableCell>
+
+                        {/* Actions */}
+                        <TableCell className="py-3.5 px-4 text-right" onClick={(e) => e.stopPropagation()}>
+                          <div className="flex items-center justify-end gap-1">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => setSelectedDoc(doc)}
+                              className="h-8 px-2 text-xs font-semibold text-[var(--c-blue)] hover:bg-[var(--c-blue-soft)]"
+                              title="Inspect document details"
+                            >
+                              <span>Inspect</span>
+                              <ChevronRight size={13} className="ml-0.5" />
+                            </Button>
+
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => onAddToast(`Downloaded ${doc.name}`)}
+                              className="h-8 w-8 p-0 text-[var(--c-text-2)] hover:text-[var(--c-text-1)]"
+                              title="Download file"
+                            >
+                              <Download size={14} />
+                            </Button>
+
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => {
+                                setDocs(docs.filter((d) => d.id !== doc.id));
+                                onAddToast(`Removed ${doc.name}`);
+                              }}
+                              className="h-8 w-8 p-0 text-[var(--c-text-3)] hover:text-[var(--c-danger)] hover:bg-[var(--c-danger-bg)]"
+                              title="Delete file"
+                            >
+                              <Trash2 size={14} />
+                            </Button>
                           </div>
-                        </div>
-                      </td>
-
-                      {/* Type */}
-                      <td>
-                        <span className="type-pill">{doc.type}</span>
-                      </td>
-
-                      {/* Size */}
-                      <td>
-                        <span className="size-text">{doc.size}</span>
-                      </td>
-
-                      {/* Uploaded */}
-                      <td>
-                        <span className="time-text">{doc.uploadedAt}</span>
-                      </td>
-
-                      {/* Status */}
-                      <td>
-                        <span className={`status-pill ${doc.status.toLowerCase()}`}>
-                          <CheckCircle2 size={12} /> {doc.status}
-                        </span>
-                      </td>
-
-                      {/* Evidence Grade */}
-                      <td>
-                        <span className="evidence-grade-pill">
-                          <ShieldCheck size={13} className="shield-green" />
-                          <span>{doc.evidenceGrade}</span>
-                        </span>
-                      </td>
-
-                      {/* Actions */}
-                      <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
-                        <div className="actions-btn-group">
-                          <button
-                            type="button"
-                            className="btn-table-action"
-                            onClick={() => setSelectedDoc(doc)}
-                            title="Inspect document details"
-                          >
-                            <span>Inspect</span>
-                            <ChevronRight size={13} />
-                          </button>
-
-                          <button
-                            type="button"
-                            className="btn-icon-table"
-                            onClick={() => onAddToast(`Downloaded ${doc.name}`)}
-                            title="Download file"
-                          >
-                            <Download size={14} />
-                          </button>
-
-                          <button
-                            type="button"
-                            className="btn-icon-table danger"
-                            onClick={() => {
-                              setDocs(docs.filter((d) => d.id !== doc.id));
-                              onAddToast(`Removed ${doc.name}`);
-                            }}
-                            title="Delete file"
-                          >
-                            <Trash2 size={14} />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))
-                )}
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
               </tbody>
             </table>
           </div>
         </div>
-      </div>
 
       {/* 4. DOCUMENT DETAILS DRAWER */}
       <DocumentDetailsDrawer

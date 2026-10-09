@@ -33,4 +33,9 @@ export interface UserProfileInfo {
   role: string;
   organization: string;
   avatarUrl?: string;
+  displayName?: string;
+  jobTitle?: string;
+  department?: string;
+  phone?: string;
+  bio?: string;
 }

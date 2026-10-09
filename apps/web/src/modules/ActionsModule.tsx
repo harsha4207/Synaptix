@@ -3,11 +3,7 @@ import {
   ShieldCheck,
   CheckSquare,
   Search,
-  CheckCircle2,
   AlertTriangle,
-  Play,
-  RotateCcw,
-  Clock,
 } from 'lucide-react';
 import { WorkspaceItem } from '../types/workspace';
 import { GovernedActionItem, ActionPreviewModal } from '../components/actions/ActionPreviewModal';
@@ -320,7 +316,7 @@ export const ActionsModule: React.FC<ActionsModuleProps> = ({ workspace, onAddTo
     onAddToast(`Action ${id} successfully approved with cryptographic signature!`);
   };
 
-  const handleReject = (id: string, reason: string) => {
+  const handleReject = (id: string, reason: string = 'User rejected governance plan') => {
     setActions((prev) =>
       prev.map((a) =>
         a.id === id

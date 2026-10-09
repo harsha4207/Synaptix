@@ -21,6 +21,7 @@ interface WorkspaceGridProps {
   onSelectWorkspace: (workspaceId: string) => void;
   onCreateWorkspaceClick: () => void;
   isLoading?: boolean;
+  showWorkspaceMetadata?: boolean;
 }
 
 export const WorkspaceGrid: React.FC<WorkspaceGridProps> = ({
@@ -29,6 +30,7 @@ export const WorkspaceGrid: React.FC<WorkspaceGridProps> = ({
   onSelectWorkspace,
   onCreateWorkspaceClick,
   isLoading = false,
+  showWorkspaceMetadata = true,
 }) => {
   const getDomainIcon = (iconName: string) => {
     switch (iconName) {
@@ -132,20 +134,22 @@ export const WorkspaceGrid: React.FC<WorkspaceGridProps> = ({
                 </div>
 
                 {/* Dynamic Data Counters (Documents, Datasets, Dashboards) */}
-                <div className="workspace-metrics-row">
-                  <div className="metric-tag" title="Documents">
-                    <FileText size={13} />
-                    <span>{ws.documentCount} Docs</span>
+                {showWorkspaceMetadata && (
+                  <div className="workspace-metrics-row">
+                    <div className="metric-tag" title="Documents">
+                      <FileText size={13} />
+                      <span>{ws.documentCount} Docs</span>
+                    </div>
+                    <div className="metric-tag" title="Datasets">
+                      <Database size={13} />
+                      <span>{ws.datasetCount} Datasets</span>
+                    </div>
+                    <div className="metric-tag" title="Dashboards">
+                      <LayoutDashboard size={13} />
+                      <span>{ws.dashboardCount} Dashboards</span>
+                    </div>
                   </div>
-                  <div className="metric-tag" title="Datasets">
-                    <Database size={13} />
-                    <span>{ws.datasetCount} Datasets</span>
-                  </div>
-                  <div className="metric-tag" title="Dashboards">
-                    <LayoutDashboard size={13} />
-                    <span>{ws.dashboardCount} Dashboards</span>
-                  </div>
-                </div>
+                )}
 
                 {/* Card Footer: Activity & Affordance */}
                 <div className="card-footer">

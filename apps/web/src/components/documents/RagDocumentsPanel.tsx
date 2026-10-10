@@ -220,12 +220,12 @@ export const RagDocumentsPanel: React.FC<RagDocumentsPanelProps> = ({
       onDrop={handleDrop}
     >
       {/* Header Stats */}
-      <div className="flex items-center justify-between px-1">
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5 text-xs text-[var(--c-text-2)]">
+      <div className="flex items-center justify-between px-1 py-1 min-h-[40px]">
+        <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 text-xs text-[var(--c-text-2)] bg-[var(--c-surface-2)] border border-[var(--c-border)] rounded-md px-2.5 py-1.5">
             <Database size={13} className="text-[var(--c-blue)]" />
             <span>
-              <strong className="text-[var(--c-text-1)]">{readyCount}</strong> indexed
+              <strong className="text-[var(--c-text-1)]">{readyCount}</strong> Indexed
             </span>
           </div>
           {processingCount > 0 && (
@@ -236,7 +236,7 @@ export const RagDocumentsPanel: React.FC<RagDocumentsPanelProps> = ({
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <Button
             variant="ghost"
             size="sm"
@@ -247,15 +247,15 @@ export const RagDocumentsPanel: React.FC<RagDocumentsPanelProps> = ({
             <RefreshCw size={13} className={isRefreshing ? 'animate-spin' : ''} />
           </Button>
 
-          <label className="cursor-pointer">
+          <label className="cursor-pointer shrink-0">
             <input
               type="file"
               className="hidden"
               accept=".pdf,.docx,.xlsx,.csv,.txt,.md,.json,.jpg,.jpeg,.png"
               onChange={handleFileInputChange}
             />
-            <Button variant="blue" size="sm" className="pointer-events-none" leftIcon={<Upload size={13} />}>
-              Upload & Index
+            <Button variant="blue" size="sm" className="pointer-events-none whitespace-nowrap" leftIcon={<Upload size={13} />}>
+              Upload &amp; Index
             </Button>
           </label>
         </div>
@@ -264,10 +264,10 @@ export const RagDocumentsPanel: React.FC<RagDocumentsPanelProps> = ({
       {/* Document List or Unified Interactive Dropzone Empty State */}
       {ragDocs.length === 0 ? (
         <label
-          className={`flex flex-col items-center py-10 px-4 text-center gap-3 border-2 border-dashed rounded-xl cursor-pointer transition-all ${
+          className={`flex flex-col items-center py-16 px-6 text-center gap-4 border-2 border-dashed rounded-xl cursor-pointer transition-all ${
             isDragging
               ? 'border-[var(--c-blue)] bg-[var(--c-blue-soft)]'
-              : 'border-[var(--c-border)] hover:border-[var(--c-blue)] bg-[var(--c-surface-2)]/40 hover:bg-[var(--c-surface-2)]/80'
+              : 'border-[var(--c-border-2)] hover:border-[var(--c-blue)] bg-[var(--c-surface-2)]/40 hover:bg-[var(--c-blue-soft)]/30'
           }`}
         >
           <input
@@ -276,16 +276,17 @@ export const RagDocumentsPanel: React.FC<RagDocumentsPanelProps> = ({
             accept=".pdf,.docx,.xlsx,.csv,.txt,.md,.json,.jpg,.jpeg,.png"
             onChange={handleFileInputChange}
           />
-          <div className="w-12 h-12 rounded-full bg-[var(--c-blue-soft)] text-[var(--c-blue)] flex items-center justify-center shadow-xs">
-            <Upload size={22} />
+          <div className="w-14 h-14 rounded-full bg-[var(--c-blue-soft)] text-[var(--c-blue)] flex items-center justify-center shadow-sm">
+            <Upload size={26} />
           </div>
           <div>
-            <p className="text-sm font-semibold text-[var(--c-text-1)] mb-1">
+            <p className="text-sm font-semibold text-[var(--c-text-1)] mb-1.5">
               Drag and drop files here, or <span className="text-[var(--c-blue)] hover:underline font-bold">browse your computer</span>
             </p>
             <p className="text-xs text-[var(--c-text-2)] max-w-md leading-relaxed">
-              Supported formats: <strong className="text-[var(--c-text-1)] font-semibold">PDF, DOCX, XLSX, CSV, TXT, Markdown, JSON, PNG, JPG</strong> • Up to 500 MB per file
+              Supported formats: <strong className="text-[var(--c-text-1)] font-semibold">PDF, DOCX, XLSX, CSV, TXT, Markdown, JSON, PNG, JPG</strong>
             </p>
+            <p className="text-xs text-[var(--c-text-3)] mt-1">Up to 500 MB per file</p>
           </div>
         </label>
       ) : (

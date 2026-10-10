@@ -665,6 +665,24 @@ img { max-width: 100%; height: auto; display: block; }
   box-shadow: 0 1px 2px rgba(11, 31, 58, 0.03);
 }
 
+/* When TopNavigation is nested inside AppShell's shell-nav-right,
+   strip the standalone header chrome so it acts as an action row only */
+.shell-nav-right .global-top-navbar {
+  height: auto;
+  background: transparent;
+  border-bottom: none;
+  position: static;
+  box-shadow: none;
+  z-index: auto;
+}
+
+.shell-nav-right .navbar-container {
+  padding: 0;
+  height: auto;
+  max-width: none;
+  margin: 0;
+}
+
 .navbar-container {
   height: 100%;
   display: flex;
@@ -697,14 +715,12 @@ img { max-width: 100%; height: auto; display: block; }
   text-transform: uppercase;
   letter-spacing: 0.08em;
   white-space: nowrap;
-  padding-left: var(--sp-2);
-  border-left: 1px solid var(--c-border);
   line-height: 1.4;
 }
 
 .navbar-search-wrapper {
   flex: 1;
-  max-width: 460px;
+  max-width: 520px;
   margin: 0 var(--sp-4);
   display: flex;
   align-items: center;
@@ -717,15 +733,17 @@ img { max-width: 100%; height: auto; display: block; }
   height: 38px;
   width: 100%;
   padding: 0 var(--sp-3);
-  background: var(--c-page);
-  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  border: 1.5px solid var(--c-border-2);
   border-radius: var(--r-md);
   transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.07);
 }
 
 .global-search-input-box:hover {
-  border-color: var(--c-border-2);
+  border-color: var(--c-blue);
   background: var(--c-surface);
+  box-shadow: 0 1px 4px rgba(59,130,246,0.10);
 }
 
 .global-search-input-box:focus-within {
@@ -758,7 +776,7 @@ img { max-width: 100%; height: auto; display: block; }
 .search-kbd-shortcut {
   font-size: 10px;
   font-weight: 600;
-  background: var(--c-surface);
+  background: var(--c-page);
   border: 1px solid var(--c-border);
   border-radius: 4px;
   padding: 1px 6px;
@@ -767,6 +785,42 @@ img { max-width: 100%; height: auto; display: block; }
   flex-shrink: 0;
   cursor: pointer;
   user-select: none;
+}
+
+/* Voice button inside search bar */
+.search-voice-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  border: 1px solid transparent;
+  background: none;
+  color: var(--c-text-3);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast);
+  margin-left: var(--sp-1);
+}
+
+.search-voice-btn:hover {
+  background: var(--c-page);
+  color: var(--c-blue);
+  border-color: var(--c-border);
+}
+
+.search-voice-btn.listening {
+  color: var(--c-blue);
+  background: rgba(59, 130, 246, 0.08);
+  border-color: var(--c-blue);
+  animation: voice-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes voice-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(59,130,246,0.3); }
+  50% { box-shadow: 0 0 0 4px rgba(59,130,246,0.0); }
 }
 
 .navbar-actions-wrapper {

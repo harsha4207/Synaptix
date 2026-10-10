@@ -82,6 +82,7 @@ export const AppShell: React.FC<AppShellProps> = ({
             onMarkAsRead={onMarkAsRead}
             onMarkAllAsRead={onMarkAllAsRead}
             onOpenNotificationTarget={onOpenNotificationTarget}
+            hideLogo={true}
           />
         </div>
       </header>

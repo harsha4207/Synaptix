@@ -191,7 +191,7 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
           </Badge>
         }
         actions={
-          <div className="flex items-center gap-2 flex-wrap">
+          <div className="flex items-center gap-2">
             <Button
               variant="blue"
               size="sm"
@@ -243,7 +243,7 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
               </p>
             </div>
           </div>
-          <div className="p-4 sm:p-5 pt-0">
+          <div className="px-5 pb-5 pt-2">
             <RagDocumentsPanel
               workspaceId={workspace.id}
               onAddToast={onAddToast}

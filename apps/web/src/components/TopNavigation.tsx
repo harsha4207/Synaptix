@@ -4,9 +4,9 @@ import { UserProfileInfo } from '../types/workspace';
 import { NotificationItem } from '../types/notification';
 import { WorkspaceModuleId } from '../design-system/components/Sidebar';
 import { NotificationPanel } from './notifications/NotificationPanel';
+import { SynaptixLogo } from './ui/SynaptixLogo';
 import { useVoiceCommand } from '../lib/voice/VoiceContext';
 
-import { SynaptixLogo } from './ui/SynaptixLogo';
 
 interface TopNavigationProps {
   user: UserProfileInfo;
@@ -19,6 +19,8 @@ interface TopNavigationProps {
   onMarkAsRead?: (id: string) => void;
   onMarkAllAsRead?: () => void;
   onOpenNotificationTarget?: (workspaceId: string, targetModule: WorkspaceModuleId, title: string) => void;
+  /** When true, hides the brand logo — use when a parent header already shows the logo (e.g. AppShell) */
+  hideLogo?: boolean;
 }
 
 export const TopNavigation: React.FC<TopNavigationProps> = ({
@@ -32,6 +34,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
   onMarkAsRead = () => {},
   onMarkAllAsRead = () => {},
   onOpenNotificationTarget = () => {},
+  hideLogo = false,
 }) => {
   const { startVoiceCommand, stopVoiceCapture, isListening } = useVoiceCommand();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -80,13 +83,14 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
   return (
     <header className="global-top-navbar" role="banner">
       <div className="navbar-container">
-        {/* Left: Brand Identity */}
-        <div className="navbar-brand-wrapper">
-          <SynaptixLogo size="sm" />
-          <span className="navbar-brand-tag">WORKSPACE HUB</span>
-        </div>
+        {/* Left: Brand Logo — only shown when not inside AppShell */}
+        {!hideLogo && (
+          <div className="navbar-brand-wrapper">
+            <SynaptixLogo size="sm" />
+          </div>
+        )}
 
-        {/* Center: Global Search Bar */}
+        {/* Center: Global Search Bar with Voice */}
         <div className="navbar-search-wrapper">
           <div
             className="global-search-input-box"
@@ -98,7 +102,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
               type="text"
               value={searchVal}
               onChange={handleGlobalSearchChange}
-              placeholder="Search Synaptix... (⌘K)"
+              placeholder="Search Synaptix..."
               className="global-search-input"
               aria-label="Search Synaptix workspaces"
             />
@@ -116,28 +120,22 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
             >
               ⌘K
             </kbd>
+            {/* Voice Assistant — adjacent to search */}
+            <button
+              type="button"
+              className={`search-voice-btn ${isListening ? 'listening' : ''}`}
+              onClick={(e) => { e.stopPropagation(); isListening ? stopVoiceCapture() : startVoiceCommand(); }}
+              aria-label="Voice Assistant"
+              title="Voice Assistant (Ctrl+Shift+Space)"
+            >
+              <Mic size={15} />
+              {isListening && <span className="voice-mic-active-dot" />}
+            </button>
           </div>
         </div>
 
         {/* Right: Notifications & Profile */}
         <div className="navbar-actions-wrapper">
-          {/* Voice Assistant Trigger */}
-          <button
-            type="button"
-            className={`navbar-icon-btn voice-command-trigger-btn ${isListening ? 'listening' : ''}`}
-            onClick={isListening ? stopVoiceCapture : startVoiceCommand}
-            aria-label="Voice Assistant (Ctrl+Shift+Space)"
-            title="Voice Assistant (Ctrl+Shift+Space)"
-          >
-            <Mic size={17} />
-            {isListening && <span className="voice-mic-active-dot" />}
-          </button>
-
-          {/* System Status Indicator */}
-          <div className="system-live-pill" title="All reasoning engines operational">
-            <span className="status-dot-green"></span>
-            <span className="system-pill-text">System Active</span>
-          </div>
 
           {/* Notifications Center */}
           <div className="notifications-dropdown-container" ref={notifRef}>

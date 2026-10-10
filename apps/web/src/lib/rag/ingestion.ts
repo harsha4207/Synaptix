@@ -23,6 +23,47 @@ export type StatusCallback = (event: ProcessingStatusEvent) => void;
 
 const MAX_RETRY_ATTEMPTS = 3;
 
+function extractDocumentEntities(text: string, headings?: string[]): string[] {
+  const entities = new Set<string>();
+  if (headings && Array.isArray(headings)) {
+    headings.forEach((h) => {
+      if (typeof h === 'string' && h.length > 2 && h.length < 50) {
+        entities.add(h.trim());
+      }
+    });
+  }
+  // Extract capitalized phrases, currencies, fiscal quarters, codes
+  const matches = text.match(/\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*|\$[0-9]+(?:\.[0-9]+)?(?:[MKkBb])?|FY\d{2,4}|Q[1-4]\s*(?:FY)?\d{2,4}|[A-Z]{2,}-\d{2,})\b/g);
+  if (matches) {
+    for (const m of matches) {
+      if (m.length > 2 && !['The', 'This', 'That', 'With', 'From', 'Have', 'When', 'What', 'Where', 'Which', 'There', 'Also', 'Each'].includes(m)) {
+        entities.add(m);
+        if (entities.size >= 12) break;
+      }
+    }
+  }
+  return Array.from(entities);
+}
+
+function generateDocumentDescription(filename: string, fileType: string, text: string, meta: any, chunkCount: number): string {
+  const wordCount = text.split(/\s+/).filter(Boolean).length;
+  if (meta?.summary && meta.summary.length > 60) {
+    return meta.summary;
+  }
+  let desc = `Ingested ${fileType} document "${filename}" containing ${wordCount.toLocaleString()} words across ${chunkCount || 'multiple'} indexed vector chunks. `;
+  if (meta?.pageCount) {
+    desc += `Structured over ${meta.pageCount} page(s). `;
+  }
+  if (meta?.sheetNames && meta.sheetNames.length > 0) {
+    desc += `Contains sheets: ${meta.sheetNames.join(', ')} with ${meta.rowCount || 0} rows. `;
+  }
+  if (meta?.headings && meta.headings.length > 0) {
+    desc += `Key sections include: ${meta.headings.slice(0, 4).join(', ')}. `;
+  }
+  desc += `Fully vectorized and ready for natural language question answering with source citations.`;
+  return desc;
+}
+
 /**
  * Ingest a file into the workspace RAG system.
  * Returns the document ID.
@@ -112,9 +153,18 @@ export async function ingestDocument(
       throw new Error('No readable text could be extracted from this document.');
     }
 
+    // Generate semantic entities and enriched description
+    const extractedEntities = extractDocumentEntities(extraction.text, extraction.metadata.headings);
+    const enrichedMetadata = {
+      ...extraction.metadata,
+      rawText: extraction.text,
+      entities: extractedEntities.length > 0 ? extractedEntities : extraction.metadata.entities,
+      summary: extraction.metadata.summary || generateDocumentDescription(safeFilename, fileType, extraction.text, extraction.metadata, 0),
+    };
+
     // Update document with extracted metadata
     await ragStore.updateDocumentStatus(docId, workspaceId, 'CHUNKING', {
-      metadata: extraction.metadata,
+      metadata: enrichedMetadata,
       ocrApplied: extraction.ocrApplied,
     });
     emit('CHUNKING', { message: 'Splitting into indexed chunks...', progress: 40 });

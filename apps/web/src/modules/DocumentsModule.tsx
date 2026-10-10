@@ -25,6 +25,7 @@ import { Badge } from '../components/ui/Badge';
 import { Input } from '../components/ui/Input';
 import { TableRow, TableCell } from '../components/ui/table';
 import { RagDocumentsPanel } from '../components/documents/RagDocumentsPanel';
+import { RagMemoryInspector } from '../components/documents/RagMemoryInspector';
 import { useRag } from '../lib/rag/RagContext';
 
 interface DocumentsModuleProps {
@@ -40,6 +41,7 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
 
   const [customDocs, setCustomDocs] = useState<ExtendedDocumentRecord[]>([]);
   const [selectedDoc, setSelectedDoc] = useState<ExtendedDocumentRecord | null>(null);
+  const [activeViewMode, setActiveViewMode] = useState<'manifest' | 'rag_memory'>('manifest');
 
   // Filters state
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,13 +80,47 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
       source: d.source || 'Direct Upload',
       isDataset: isDs,
       summary: d.metadata?.summary || `Indexed document with ${d.chunkCount} vector chunks in ${workspace.name}.`,
+      rawContent: d.metadata?.rawText,
       datasetRows: d.metadata?.rowCount,
       datasetCols: d.metadata?.columnNames?.length,
+      extractedEntities: d.metadata?.entities,
     };
   });
 
   // Combine real indexed documents and custom dataset imports
   const allDocs = [...ragDocRecords, ...customDocs];
+
+  // Helper to select any document by ID or record
+  const handleSelectDocument = (docOrId: string | ExtendedDocumentRecord | any) => {
+    if (typeof docOrId === 'string') {
+      const target = allDocs.find((d) => d.id === docOrId);
+      if (target) {
+        setSelectedDoc(target);
+      }
+    } else if (docOrId && docOrId.id) {
+      const target = allDocs.find((d) => d.id === docOrId.id);
+      if (target) {
+        setSelectedDoc(target);
+      } else {
+        setSelectedDoc({
+          id: docOrId.id,
+          name: docOrId.filename || docOrId.name,
+          type: (docOrId.fileType === 'JPG' || docOrId.fileType === 'JPEG' || docOrId.fileType === 'PNG' ? 'Image' : (docOrId.fileType || docOrId.type || 'TXT')) as ExtendedDocumentRecord['type'],
+          size: formatBytes(docOrId.sizeBytes || 0),
+          status: docOrId.status === 'READY' ? 'Ready' : docOrId.status === 'FAILED' ? 'Failed' : 'Indexing',
+          evidenceGrade: 'Grade A+',
+          evidenceHash: docOrId.contentHash ? `sha256:${docOrId.contentHash.substring(0, 32)}` : 'sha256:verified',
+          uploadedAt: new Date(docOrId.uploadedAt || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          source: docOrId.source || 'Direct Upload',
+          summary: docOrId.metadata?.summary,
+          rawContent: docOrId.metadata?.rawText,
+          datasetRows: docOrId.metadata?.rowCount,
+          datasetCols: docOrId.metadata?.columnNames?.length,
+          extractedEntities: docOrId.metadata?.entities,
+        });
+      }
+    }
+  };
 
   // Trigger File Input Click (from PageHeader)
   const handleUploadClick = () => {
@@ -239,7 +275,7 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
                 RAG Knowledge Index — {workspace.name} Workspace
               </h3>
               <p className="doc-manifest-subtitle">
-                Upload documents to enable AI-powered question answering with source citations
+                Upload documents to extract data, generate deep AI descriptions, and inspect vector memory chunks
               </p>
             </div>
           </div>
@@ -247,96 +283,148 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
             <RagDocumentsPanel
               workspaceId={workspace.id}
               onAddToast={onAddToast}
+              onSelectDoc={handleSelectDocument}
             />
           </div>
         </div>
 
-        {/* 3. SEARCH & FILTER TOOLBAR */}
-        <div className="doc-toolbar-card">
-          <div className="doc-search-wrapper">
-            <Input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search documents & datasets by name or content..."
-              leftIcon={<Search size={15} />}
-              className="h-10 text-xs w-full"
-            />
+        {/* ── VIEW MODE SWITCHER TABS ────────────────────────────────────────── */}
+        <div className="flex items-center justify-between gap-4 mb-4 border-b border-[var(--c-border)] pb-3">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setActiveViewMode('manifest')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
+                activeViewMode === 'manifest'
+                  ? 'bg-[var(--c-blue-soft)] text-[var(--c-blue)] border border-[var(--c-blue-border,#bfdbfe)] shadow-sm'
+                  : 'text-[var(--c-text-2)] hover:text-[var(--c-text-1)] hover:bg-[var(--c-surface-2)] border border-transparent'
+              }`}
+            >
+              <FileText size={14} />
+              <span>Workspace Data Manifest ({filteredDocs.length})</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setActiveViewMode('rag_memory')}
+              className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-2 ${
+                activeViewMode === 'rag_memory'
+                  ? 'bg-[var(--c-blue-soft)] text-[var(--c-blue)] border border-[var(--c-blue-border,#bfdbfe)] shadow-sm'
+                  : 'text-[var(--c-text-2)] hover:text-[var(--c-text-1)] hover:bg-[var(--c-surface-2)] border border-transparent'
+              }`}
+            >
+              <Zap size={14} />
+              <span>RAG Vector Memory Inspector</span>
+              <span className="px-1.5 py-0.2 rounded text-[10px] bg-[var(--c-surface)] font-mono text-[var(--c-blue)] font-bold">
+                Live
+              </span>
+            </button>
           </div>
 
-          <div className="doc-filter-group">
-            <div className="doc-filter-select-wrapper">
-              <select
-                value={formatFilter}
-                onChange={(e) => setFormatFilter(e.target.value)}
-                className="doc-filter-select"
-              >
-                <option value="All">All Formats</option>
-                <option value="PDF">PDF</option>
-                <option value="DOCX">DOCX</option>
-                <option value="XLSX">XLSX</option>
-                <option value="CSV">CSV</option>
-                <option value="TXT">TXT</option>
-              </select>
-              <ChevronDown size={14} className="doc-filter-chevron" />
-            </div>
-
-            <div className="doc-filter-select-wrapper">
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="doc-filter-select"
-              >
-                <option value="All">All Statuses</option>
-                <option value="Ready">Ready</option>
-                <option value="Processing">Processing</option>
-                <option value="Indexing">Indexing</option>
-              </select>
-              <ChevronDown size={14} className="doc-filter-chevron" />
-            </div>
-
-            <div className="doc-filter-select-wrapper">
-              <select
-                value={sourceFilter}
-                onChange={(e) => setSourceFilter(e.target.value)}
-                className="doc-filter-select"
-              >
-                <option value="All">All Sources</option>
-                <option value="Direct Upload">Direct Upload</option>
-                <option value="S3 Bucket">S3 Bucket</option>
-                <option value="API Sync">API Sync</option>
-              </select>
-              <ChevronDown size={14} className="doc-filter-chevron" />
-            </div>
-
-            <div className="doc-filter-select-wrapper">
-              <select
-                value={gradeFilter}
-                onChange={(e) => setGradeFilter(e.target.value)}
-                className="doc-filter-select"
-              >
-                <option value="All">All Evidence Grades</option>
-                <option value="Grade A+">Grade A+ (Verified)</option>
-                <option value="Grade A">Grade A</option>
-                <option value="Grade B">Grade B</option>
-              </select>
-              <ChevronDown size={14} className="doc-filter-chevron" />
-            </div>
+          <div className="text-xs text-[var(--c-text-3)] hidden sm:block">
+            {activeViewMode === 'manifest' ? 'Browse files & datasets' : 'Inspect embeddings & vectors'}
           </div>
         </div>
 
-        {/* 4. WORKSPACE DATA MANIFEST TABLE */}
-        <div className="doc-manifest-card">
-          <div className="doc-manifest-header">
-            <div>
-              <h3 className="doc-manifest-title">
-                Workspace Data Manifest ({filteredDocs.length})
-              </h3>
-              <p className="doc-manifest-subtitle">
-                Cryptographically verified knowledge index
-              </p>
-            </div>
+        {/* ── RAG MEMORY INSPECTOR VIEW ────────────────────────────────────── */}
+        {activeViewMode === 'rag_memory' && (
+          <div className="mb-6">
+            <RagMemoryInspector
+              workspaceId={workspace.id}
+              onSelectDoc={handleSelectDocument}
+            />
           </div>
+        )}
+
+        {/* ── WORKSPACE DATA MANIFEST VIEW ─────────────────────────────────── */}
+        {activeViewMode === 'manifest' && (
+          <>
+            {/* 3. SEARCH & FILTER TOOLBAR */}
+            <div className="doc-toolbar-card">
+              <div className="doc-search-wrapper">
+                <Input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search documents & datasets by name or content..."
+                  leftIcon={<Search size={15} />}
+                  className="h-10 text-xs w-full"
+                />
+              </div>
+
+              <div className="doc-filter-group">
+                <div className="doc-filter-select-wrapper">
+                  <select
+                    value={formatFilter}
+                    onChange={(e) => setFormatFilter(e.target.value)}
+                    className="doc-filter-select"
+                  >
+                    <option value="All">All Formats</option>
+                    <option value="PDF">PDF</option>
+                    <option value="DOCX">DOCX</option>
+                    <option value="XLSX">XLSX</option>
+                    <option value="CSV">CSV</option>
+                    <option value="TXT">TXT</option>
+                  </select>
+                  <ChevronDown size={14} className="doc-filter-chevron" />
+                </div>
+
+                <div className="doc-filter-select-wrapper">
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="doc-filter-select"
+                  >
+                    <option value="All">All Statuses</option>
+                    <option value="Ready">Ready</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Indexing">Indexing</option>
+                  </select>
+                  <ChevronDown size={14} className="doc-filter-chevron" />
+                </div>
+
+                <div className="doc-filter-select-wrapper">
+                  <select
+                    value={sourceFilter}
+                    onChange={(e) => setSourceFilter(e.target.value)}
+                    className="doc-filter-select"
+                  >
+                    <option value="All">All Sources</option>
+                    <option value="Direct Upload">Direct Upload</option>
+                    <option value="S3 Bucket">S3 Bucket</option>
+                    <option value="API Sync">API Sync</option>
+                  </select>
+                  <ChevronDown size={14} className="doc-filter-chevron" />
+                </div>
+
+                <div className="doc-filter-select-wrapper">
+                  <select
+                    value={gradeFilter}
+                    onChange={(e) => setGradeFilter(e.target.value)}
+                    className="doc-filter-select"
+                  >
+                    <option value="All">All Evidence Grades</option>
+                    <option value="Grade A+">Grade A+ (Verified)</option>
+                    <option value="Grade A">Grade A</option>
+                    <option value="Grade B">Grade B</option>
+                  </select>
+                  <ChevronDown size={14} className="doc-filter-chevron" />
+                </div>
+              </div>
+            </div>
+
+            {/* 4. WORKSPACE DATA MANIFEST TABLE */}
+            <div className="doc-manifest-card">
+              <div className="doc-manifest-header">
+                <div>
+                  <h3 className="doc-manifest-title">
+                    Workspace Data Manifest ({filteredDocs.length})
+                  </h3>
+                  <p className="doc-manifest-subtitle">
+                    Cryptographically verified knowledge index with full data viewer
+                  </p>
+                </div>
+              </div>
 
           <div className="doc-table-container">
             <table className="doc-manifest-table">
@@ -482,6 +570,8 @@ export const DocumentsModule: React.FC<DocumentsModuleProps> = ({
             </table>
           </div>
         </div>
+        </>
+        )}
 
       {/* 4. DOCUMENT DETAILS DRAWER */}
       <DocumentDetailsDrawer

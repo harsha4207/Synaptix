@@ -77,6 +77,8 @@ export interface DocumentMetadata {
   entities?: string[];
   /** Summary of the document content */
   summary?: string;
+  /** Complete extracted text content */
+  rawText?: string;
 }
 
 /** A chunk of text derived from a document, ready for embedding and retrieval */

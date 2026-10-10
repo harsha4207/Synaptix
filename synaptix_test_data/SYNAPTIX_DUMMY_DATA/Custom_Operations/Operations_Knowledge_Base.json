@@ -1,0 +1,31 @@
+{
+  "workspace": "Custom_Operations",
+  "entity": "Apex Continuity Operations Center",
+  "period": "2024-2025",
+  "planted_anomalies": [
+    {
+      "id": "ANOM-OPS-001",
+      "type": "overdue_maintenance",
+      "equipment": [
+        "EQ-OP-CNV-02",
+        "EQ-OP-CMP-05"
+      ],
+      "description": "Multiple overdue work orders"
+    },
+    {
+      "id": "ANOM-OPS-002",
+      "type": "recurring_incident",
+      "equipment": "EQ-OP-CNV-02",
+      "description": "Five related conveyor belt misalignment incidents"
+    }
+  ],
+  "related_documents": [
+    "Operations_Overview.pdf",
+    "Maintenance_Records.xlsx",
+    "Incident_Register.csv",
+    "Standard_Operating_Procedure.md",
+    "Shift_Handover_Notes.txt",
+    "Equipment_Inspection_Form.png",
+    "Operations_Workflow_Definitions.json"
+  ]
+}

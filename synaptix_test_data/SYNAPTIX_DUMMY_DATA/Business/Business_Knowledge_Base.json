@@ -1,0 +1,50 @@
+{
+  "workspace": "Business",
+  "company": "LumenForge Products Inc.",
+  "period": "2023-2025",
+  "products": [
+    {
+      "id": "PRD-LF-100",
+      "name": "LumenSense Pro Sensor"
+    },
+    {
+      "id": "PRD-LF-200",
+      "name": "ForgeHub Gateway"
+    },
+    {
+      "id": "PRD-LF-300",
+      "name": "EcoRelay Switch Pack"
+    },
+    {
+      "id": "PRD-LF-400",
+      "name": "AeroTrack Asset Tag"
+    },
+    {
+      "id": "PRD-LF-500",
+      "name": "PulseMonitor Industrial"
+    }
+  ],
+  "planted_anomalies": [
+    {
+      "id": "ANOM-BUS-001",
+      "type": "declining_product_sales",
+      "product": "PRD-LF-500",
+      "description": "Sharp unit volume decline from 2025 onward; elevated inventory"
+    },
+    {
+      "id": "ANOM-BUS-002",
+      "type": "delivery_delays",
+      "description": "Multiple supply-chain incidents with 5\u201312 day delays"
+    }
+  ],
+  "related_documents": [
+    "Business_Performance_Report.pdf",
+    "Sales_Transactions.xlsx",
+    "Customer_Segments.csv",
+    "Inventory_Operations.xlsx",
+    "Quarterly_Business_Review.docx",
+    "Customer_Feedback.md",
+    "Supply_Chain_Incidents.txt",
+    "Business_Process_Policy.md"
+  ]
+}

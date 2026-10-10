@@ -1,0 +1,23 @@
+role_id,role_title,department_id,department_name,reports_to_role,level,approval_authority_inr,can_approve_leave,can_approve_expense,synthetic
+ROLE-CEO-001,Chief Executive Officer,DEPT-EXEC-001,Executive Management,Board,C-Level,Unlimited,Yes,Yes,Yes
+ROLE-CFO-001,Chief Financial Officer,DEPT-FIN-001,Finance,ROLE-CEO-001,C-Level,5000000,Yes,Yes,Yes
+ROLE-CHRO-001,Chief Human Resources Officer,DEPT-HR-001,Human Resources,ROLE-CEO-001,C-Level,1000000,Yes,Yes,Yes
+ROLE-COO-001,Chief Operating Officer,DEPT-OPS-001,Operations,ROLE-CEO-001,C-Level,2000000,Yes,Yes,Yes
+ROLE-CIO-001,Chief Information Officer,DEPT-IT-001,Information Technology,ROLE-CEO-001,C-Level,1500000,Yes,Yes,Yes
+ROLE-CISO-001,Chief Information Security Officer,DEPT-SEC-001,Information Security,ROLE-CEO-001,C-Level,500000,Yes,Yes,Yes
+ROLE-CTO-001,Chief Technology Officer,DEPT-RND-001,Research and Development,ROLE-CEO-001,C-Level,2000000,Yes,Yes,Yes
+ROLE-CCO-001,Chief Compliance Officer,DEPT-LEG-001,Legal and Compliance,ROLE-CEO-001,C-Level,500000,Yes,Yes,Yes
+ROLE-CDO-001,Chief Data Officer,DEPT-DG-001,Data Governance,ROLE-CIO-001,C-Level,300000,Yes,Yes,Yes
+ROLE-VP-SAL-001,VP Sales,DEPT-SAL-001,Sales,ROLE-CEO-001,VP,1000000,Yes,Yes,Yes
+ROLE-VP-MKT-001,VP Marketing,DEPT-MKT-001,Marketing,ROLE-CEO-001,VP,500000,Yes,Yes,Yes
+ROLE-VP-CS-001,VP Customer Success,DEPT-CS-001,Customer Support,ROLE-COO-001,VP,300000,Yes,Yes,Yes
+ROLE-HOP-001,Head of Procurement,DEPT-PRC-001,Procurement,ROLE-COO-001,Director,750000,Yes,Yes,Yes
+ROLE-DIR-FIN-001,Finance Director,DEPT-FIN-001,Finance,ROLE-CFO-001,Director,500000,Yes,Yes,Yes
+ROLE-MGR-FIN-001,Finance Manager,DEPT-FIN-001,Finance,ROLE-DIR-FIN-001,Manager,100000,Yes,Yes,Yes
+ROLE-MGR-HR-001,HR Manager,DEPT-HR-001,Human Resources,ROLE-CHRO-001,Manager,50000,Yes,Yes,Yes
+ROLE-MGR-IT-001,IT Manager,DEPT-IT-001,Information Technology,ROLE-CIO-001,Manager,75000,Yes,Yes,Yes
+ROLE-MGR-SEC-001,Security Manager,DEPT-SEC-001,Information Security,ROLE-CISO-001,Manager,50000,Yes,Yes,Yes
+ROLE-MGR-RND-001,Engineering Manager,DEPT-RND-001,Research and Development,ROLE-CTO-001,Manager,75000,Yes,Yes,Yes
+ROLE-MGR-SAL-001,Sales Manager,DEPT-SAL-001,Sales,ROLE-VP-SAL-001,Manager,100000,Yes,Yes,Yes
+ROLE-EMP-001,Individual Contributor,ALL,Any department,Manager,IC,0,No,No,Yes
+ROLE-INT-001,Intern,ALL,Any department,Manager,Intern,0,No,No,Yes

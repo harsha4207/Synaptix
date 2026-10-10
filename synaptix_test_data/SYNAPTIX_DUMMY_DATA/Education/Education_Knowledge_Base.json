@@ -1,0 +1,37 @@
+{
+  "workspace": "Education",
+  "institution": "Northbridge Synthetic University",
+  "academic_years": [
+    "2022-23",
+    "2023-24",
+    "2024-25"
+  ],
+  "student_id_pattern": "STU-SYN-####",
+  "courses": [
+    "CS-201",
+    "CS-305",
+    "MATH-210",
+    "ENG-110",
+    "PHYS-150",
+    "BUS-220",
+    "CS-410"
+  ],
+  "planted_anomalies": [
+    {
+      "id": "ANOM-EDU-001",
+      "type": "declining_completion",
+      "course": "CS-410",
+      "year": "2024-25",
+      "description": "Elevated non-completion rate (~35%) for Distributed Systems"
+    }
+  ],
+  "related_documents": [
+    "Academic_Performance_Report.pdf",
+    "Student_Performance_Synthetic.xlsx",
+    "Attendance_Records.csv",
+    "Curriculum_Review.docx",
+    "Examination_Analysis.md",
+    "Education_Operations_Notes.txt",
+    "Course_Enrollment.json"
+  ]
+}

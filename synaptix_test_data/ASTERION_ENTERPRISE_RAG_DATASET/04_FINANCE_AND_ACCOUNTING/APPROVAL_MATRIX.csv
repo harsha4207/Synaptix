@@ -1,0 +1,12 @@
+matrix_id,transaction_type,min_amount_inr,max_amount_inr,approver_role_budgeted,approver_role_unbudgeted,secondary_requirement,policy_id,effective_from,synthetic
+AM-EXP-01,Expense Claim,0,10000,Direct Manager,Direct Manager + Finance Manager,System receipt validation,POL-FIN-003,2025-04-01,Yes
+AM-EXP-02,Expense Claim,10001,50000,Direct Manager,Department Head + Finance Manager,,POL-FIN-003,2025-04-01,Yes
+AM-EXP-03,Expense Claim,50001,100000,Department Head,Department Head + Finance Director,,POL-FIN-003,2025-04-01,Yes
+AM-EXP-04,Expense Claim,100001,500000,Finance Director,CFO,,POL-FIN-003,2025-04-01,Yes
+AM-EXP-05,Expense Claim,500001,2000000,CFO,CFO + CEO,,POL-FIN-003,2025-04-01,Yes
+AM-EXP-06,Expense Claim,2000001,999999999,CEO,CEO + Board notification,Board pack 30 days,POL-FIN-003,2025-04-01,Yes
+AM-PO-01,Purchase Order,0,25000,Cost Center Owner (Manager+),Cost Center Owner (Manager+),Vendor in master,POL-FIN-003,2025-04-01,Yes
+AM-PO-02,Purchase Order,25001,100000,Department Head,Department Head,Min 2 quotes if >50000,POL-FIN-003,2025-04-01,Yes
+AM-PO-03,Purchase Order,100001,500000,Finance Director or Head of Procurement,Finance Director or Head of Procurement,Min 3 quotes or single-source,POL-FIN-003,2025-04-01,Yes
+AM-PO-04,Purchase Order,500001,2000000,CFO,CFO,Legal review if no MSA,POL-FIN-003,2025-04-01,Yes
+AM-PO-05,Purchase Order,2000001,999999999,CEO,CEO,Legal + Procurement + Finance,POL-FIN-003,2025-04-01,Yes

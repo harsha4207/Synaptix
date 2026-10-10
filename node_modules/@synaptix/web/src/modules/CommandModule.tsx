@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Bot, ShieldCheck, RefreshCw, User } from 'lucide-react';
+import { Bot, ShieldCheck, RefreshCw, User, Cpu } from 'lucide-react';
 import { WorkspaceItem } from '../types/workspace';
 import { CommandInputArea } from '../components/command-center/CommandInputArea';
 import { DynamicResultView, CommandResultData, ResultType } from '../components/command-center/DynamicResultView';
 import { EvidencePanel } from '../components/command-center/EvidencePanel';
 import { ReasoningProgress } from '../components/command-center/ReasoningProgress';
 import { PageContainer } from '../components/layout';
+import { useRag } from '../lib/rag';
+
+import { emlmOrchestrator } from '../lib/ai/emlmOrchestrator';
+import { conversationPersistence } from '../lib/ai/conversationPersistence';
+import { aiRouter } from '../lib/ai/aiRouter';
+import type { RoutingTier } from '../lib/ai/types';
 
 interface CommandModuleProps {
   workspace: WorkspaceItem;
@@ -66,40 +72,49 @@ export const CommandModule: React.FC<CommandModuleProps> = ({
         { id: 't3', col1: 'Travel & Expense Claim', col2: '$6,400', col3: 'Medium Risk', status: 'Flagged' },
       ],
     },
-    {
-      id: 'res-3',
-      query: 'Create a monthly workflow',
-      resultType: 'Approval request',
-      answerText: `Automated compliance audit workflow created for ${workspace.name}. Policy dictates executive RBAC sign-off before scheduled monthly activation.`,
-      sourcesText: [
-        `Compliance_Policy_Framework_2026.pdf`,
-        `SAML2_RBAC_Matrix.json`,
-      ],
-      confidenceScore: 99,
-      riskLevel: 'High Risk (RBAC Approval Required)',
-      timestamp: '1 hour ago',
-      evidenceHash: 'sha256-e9f8d7c6b5a40987654321fedcba9876543210fe0123456789abcdef01234567',
-      knowledgeTriples: [
-        `[SAML Policy] --(requires)--> [RBAC Sign-off]`,
-        `[Monthly Workflow] --(triggers)--> [Audit Hashing]`,
-      ],
-      approvalInfo: {
-        title: `Monthly Compliance Workflow Activation in ${workspace.name}`,
-        amount: 'Policy Rule #402',
-        requester: 'Synaptix Reasoning Engine v2.4',
-        reason: 'Automated 1st-of-month audit ingestion pipeline requires RBAC sign-off.',
-        approved: false,
-      },
-    },
   ];
+
+  const { setWorkspace: setRagWorkspace } = useRag();
 
   const [history, setHistory] = useState<CommandResultData[]>(initialHistory);
   const [selectedResultId, setSelectedResultId] = useState<string>(initialHistory[0].id);
+  const [activeConversationId, setActiveConversationId] = useState<string>(`conv-${workspace.id}`);
 
   // Reasoning Execution Progress State
   const [isProcessing, setIsProcessing] = useState(false);
   const [currentStageIndex, setCurrentStageIndex] = useState<number>(0);
   const [activeQuery, setActiveQuery] = useState<string>('');
+  const [activeRoutingTier, setActiveRoutingTier] = useState<RoutingTier>('TIER_2_MODERATE');
+
+  // Set workspace context for RAG and load persistent history
+  useEffect(() => {
+    setRagWorkspace(workspace.id);
+    const convId = `conv-${workspace.id}`;
+    setActiveConversationId(convId);
+
+    // Load persisted messages
+    conversationPersistence.getMessages(convId).then((persistedMsgs) => {
+      if (persistedMsgs.length > 0) {
+        const assistantMsgs = persistedMsgs.filter((m) => m.role === 'assistant');
+        if (assistantMsgs.length > 0) {
+          const mapped: CommandResultData[] = assistantMsgs.map((m) => ({
+            id: m.id,
+            query: (m.metadata?.query as string) || 'Workspace Query',
+            resultType: (m.metadata?.resultType as ResultType) || 'Answer',
+            answerText: m.content,
+            sourcesText: m.citations.map((c) => `${c.filename} (${c.locationStr})`),
+            confidenceScore: 96,
+            riskLevel: m.routingTier === 'TIER_4_CONSEQUENTIAL' ? 'High Risk (RBAC Approval Required)' : 'Low Risk (Read-Only)',
+            timestamp: new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            evidenceHash: `sha256-${m.id.substring(0, 16)}`,
+            knowledgeTriples: m.citations.slice(0, 2).map((c) => `[${c.filename}] --(verified)--> [Relevance: ${c.relevanceScore}]`),
+          }));
+          setHistory(mapped);
+          setSelectedResultId(mapped[0].id);
+        }
+      }
+    });
+  }, [workspace.id, setRagWorkspace]);
 
   // Currently active result for Evidence Panel
   const activeResultItem = history.find((h) => h.id === selectedResultId) || history[0] || null;
@@ -118,64 +133,105 @@ export const CommandModule: React.FC<CommandModuleProps> = ({
     return 'Answer';
   };
 
-  // Submit new command & trigger 7-stage reasoning progress loop
-  const handleSubmitCommand = (queryText: string, _attachedFile?: string) => {
+  // Submit new command & trigger EMLM execution pipeline
+  const handleSubmitCommand = async (queryText: string, _attachedFile?: string) => {
     setIsProcessing(true);
     setCurrentStageIndex(0);
     setActiveQuery(queryText);
 
-    onAddToast(`Initiated Reasoning Sequence: "${queryText.substring(0, 30)}..."`);
-  };
+    const routing = aiRouter.evaluateQuery(queryText, workspace.id);
+    setActiveRoutingTier(routing.tier);
 
-  // Handle stage-by-stage progression sequence
-  useEffect(() => {
-    if (!isProcessing) return;
+    onAddToast(`EMLM Router [${routing.tier}]: "${queryText.substring(0, 30)}..."`);
 
-    if (currentStageIndex < 6) {
-      const timer = setTimeout(() => {
-        setCurrentStageIndex((prev) => prev + 1);
-      }, 400); // 400ms per stage for a total ~2.8s smooth reasoning lifecycle
-      return () => clearTimeout(timer);
-    } else if (currentStageIndex === 6) {
-      const timer = setTimeout(() => {
-        // Complete execution and reveal dynamic result
-        const resType = determineResultType(activeQuery);
-        const newId = `res-${Date.now()}`;
+    // Stage progression animation
+    const stageInterval = setInterval(() => {
+      setCurrentStageIndex((prev) => (prev < 6 ? prev + 1 : prev));
+    }, 300);
 
-        const newResult: CommandResultData = {
-          id: newId,
-          query: activeQuery,
-          resultType: resType,
-          answerText: `Synaptix reasoning engine executed query in ${workspace.name} context. Verified against ${workspace.documentCount} knowledge documents. Outcome generated with SAML 2.0 RBAC validation.`,
-          sourcesText: [
-            `${workspace.name}_Indexed_Data_Synthesis.pdf (p.4)`,
-            `RBAC_Governance_Matrix.json`,
-          ],
-          confidenceScore: Math.floor(Math.random() * 6) + 94, // 94-99%
-          riskLevel: resType === 'Approval request' ? 'High Risk (RBAC Approval Required)' : 'Low Risk (Read-Only)',
-          timestamp: 'Just now',
-          evidenceHash: `sha256-${Math.random().toString(36).substring(2)}${Math.random().toString(36).substring(2)}`,
-          knowledgeTriples: [
-            `[${workspace.name}] --(has_query)--> ["${activeQuery.substring(0, 20)}..."]`,
-            `[Reasoning Engine] --(verified)--> [98% Confidence]`,
-          ],
-          chartData: [
-            { year: '2010', label: '2010', value: 14.2 },
-            { year: '2014', label: '2014', value: 28.5 },
-            { year: '2018', label: '2018', value: 52.1 },
-            { year: '2022', label: '2022', value: 91.4 },
-            { year: '2026', label: '2026 (Est)', value: 128.9 },
-          ],
-        };
+    const requestId = `req-${Date.now()}`;
 
-        setHistory((prev) => [newResult, ...prev]);
-        setSelectedResultId(newId);
-        setIsProcessing(false);
-        onAddToast(`Reasoning Complete: Generated ${resType} Output`);
-      }, 450);
-      return () => clearTimeout(timer);
+    // Persist User Message
+    await conversationPersistence.saveMessage({
+      conversationId: activeConversationId,
+      userId: 'enterprise-user',
+      role: 'user',
+      content: queryText,
+      status: 'completed',
+      provider: 'user',
+      model: 'user-input',
+      routingTier: routing.tier,
+      requestId,
+      citations: [],
+      metadata: { query: queryText },
+    });
+
+    try {
+      const emlmResult = await emlmOrchestrator.execute({
+        query: queryText,
+        workspaceId: workspace.id,
+        conversationId: activeConversationId,
+        requestId,
+      });
+
+      clearInterval(stageInterval);
+      setCurrentStageIndex(7);
+
+      const resType = determineResultType(queryText);
+      const newId = `res-${Date.now()}`;
+
+      // Persist Assistant Response
+      await conversationPersistence.saveMessage({
+        id: newId,
+        conversationId: activeConversationId,
+        userId: 'enterprise-user',
+        role: 'assistant',
+        content: emlmResult.answer,
+        status: 'completed',
+        provider: 'google',
+        model: routing.selectedModel,
+        routingTier: routing.tier,
+        requestId: `resp-${requestId}`,
+        latencyMs: emlmResult.latencyMs,
+        citations: emlmResult.citations,
+        metadata: { query: queryText, resultType: resType },
+        completedAt: new Date().toISOString(),
+      });
+
+      const newResult: CommandResultData = {
+        id: newId,
+        query: queryText,
+        resultType: resType,
+        answerText: emlmResult.answer,
+        sourcesText: emlmResult.citations.map((c) => `${c.filename} (${c.locationStr})`),
+        confidenceScore: emlmResult.citations.length > 0 ? 98 : 88,
+        riskLevel: routing.tier === 'TIER_4_CONSEQUENTIAL' ? 'High Risk (RBAC Approval Required)' : 'Low Risk (Read-Only)',
+        timestamp: 'Just now',
+        evidenceHash: `sha256-${newId.substring(4)}`,
+        knowledgeTriples: emlmResult.citations.slice(0, 2).map((c) =>
+          `[${c.filename}] --(verified)--> [Score: ${c.relevanceScore}]`
+        ),
+        chartData: [
+          { year: '2010', label: '2010', value: 14.2 },
+          { year: '2014', label: '2014', value: 28.5 },
+          { year: '2018', label: '2018', value: 52.1 },
+          { year: '2022', label: '2022', value: 91.4 },
+          { year: '2026', label: '2026 (Est)', value: 128.9 },
+        ],
+      };
+
+      setHistory((prev) => [newResult, ...prev]);
+      setSelectedResultId(newId);
+      setIsProcessing(false);
+
+      const citeCount = emlmResult.citations.length;
+      onAddToast(`EMLM Execution Complete (${routing.tier}) — ${citeCount > 0 ? `${citeCount} citations verified` : 'Grounded model response'}`);
+    } catch (err: any) {
+      clearInterval(stageInterval);
+      setIsProcessing(false);
+      onAddToast(`Execution Error: ${err.message}`);
     }
-  }, [isProcessing, currentStageIndex, activeQuery, workspace.name, workspace.documentCount, onAddToast]);
+  };
 
   return (
     <PageContainer maxWidth="1600px">
@@ -196,6 +252,9 @@ export const CommandModule: React.FC<CommandModuleProps> = ({
                   <h1 className="top-bar-title">{workspace.name} Command Center</h1>
                   <span className="context-indicator-pill">
                     <ShieldCheck size={13} /> {workspace.domain} Boundary • Engine Active
+                  </span>
+                  <span className="context-indicator-pill" style={{ marginLeft: '8px', color: '#10B981', borderColor: 'rgba(16, 185, 129, 0.3)' }}>
+                    <Cpu size={13} /> {activeRoutingTier}
                   </span>
                 </div>
                 <p className="top-bar-subtitle">

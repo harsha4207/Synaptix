@@ -11,6 +11,11 @@
   "scripts": {
     "dev": "npm --prefix apps/web run dev",
     "dev:web": "npm --prefix apps/web run dev",
-    "build:web": "npm --prefix apps/web run build"
+    "build:web": "npm --prefix apps/web run build",
+    "test": "npm --prefix apps/web test",
+    "test:web": "npm --prefix apps/web test"
+  },
+  "dependencies": {
+    "@google/genai": "^2.28.0"
   }
 }

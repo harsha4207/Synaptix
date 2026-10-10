@@ -1,0 +1,19 @@
+policy_id,title,version,status,effective_from,owner_role,department_id,path
+POL-HR-001,Leave Policy,5.2,Approved,2025-04-01,CHRO,DEPT-HR-001,03_HR_POLICIES/POL-HR-001_Leave_Policy.md
+POL-HR-001-v5.1,Leave Policy Historical,5.1,Superseded,2024-04-01,CHRO,DEPT-HR-001,16_CONFLICT_AND_VERSION_TESTS/POL-HR-001_v5.1_Historical_Stub.md
+POL-HR-002,Working Hours and Attendance,3.1,Approved,2025-04-01,CHRO,DEPT-HR-001,03_HR_POLICIES/POL-HR-002_Working_Hours_Attendance.md
+POL-HR-003,Travel and Expense Reimbursement,4.0,Approved,2025-04-01,CHRO,DEPT-HR-001,03_HR_POLICIES/POL-HR-003_Travel_Expense.md
+POL-HR-004,Code of Conduct,3.0,Approved,2024-10-01,CHRO,DEPT-HR-001,03_HR_POLICIES/POL-HR-004_Code_of_Conduct.md
+POL-HR-005,Disciplinary Procedure,2.2,Approved,2025-01-01,CHRO,DEPT-HR-001,03_HR_POLICIES/POL-HR-005_Disciplinary_Procedure.md
+POL-FIN-001,Budget Planning and Control,3.0,Approved,2025-04-01,CFO,DEPT-FIN-001,04_FINANCE_AND_ACCOUNTING/POL-FIN-001_Budget_Policy.md
+POL-FIN-002,Accounts Payable and Invoice Processing,2.5,Approved,2025-01-01,CFO,DEPT-FIN-001,04_FINANCE_AND_ACCOUNTING/POL-FIN-002_Accounts_Payable.md
+POL-FIN-003,Financial Approval Matrix,6.0,Approved,2025-04-01,CFO,DEPT-FIN-001,04_FINANCE_AND_ACCOUNTING/POL-FIN-003_Approval_Matrix.md
+POL-SEC-001,Access Control and Data Classification,4.1,Approved,2025-04-01,CISO,DEPT-SEC-001,06_INFORMATION_SECURITY/POL-SEC-001_Access_Control_Data_Classification.md
+POL-SEC-002,Security Incident Response,3.0,Approved,2025-01-01,CISO,DEPT-SEC-001,06_INFORMATION_SECURITY/POL-SEC-002_Incident_Response.md
+POL-AI-001,AI Usage and Governance,2.0,Approved,2025-04-01,CIO,DEPT-IT-001,12_AI_GOVERNANCE/POL-AI-001_AI_Usage_Governance.md
+POL-PRC-001,Procurement Policy,3.0,Approved,2025-04-01,Head of Procurement,DEPT-PRC-001,07_PROCUREMENT_AND_VENDORS/POL-PRC-001_Procurement_Policy.md
+POL-LEG-001,Policy Governance and Precedence,2.0,Approved,2025-04-01,Chief Compliance Officer,DEPT-LEG-001,05_LEGAL_AND_COMPLIANCE/POL-LEG-001_Policy_Governance_Precedence.md
+POL-LEG-002,Records Retention and Confidentiality,1.5,Approved,2025-01-01,Chief Compliance Officer,DEPT-LEG-001,05_LEGAL_AND_COMPLIANCE/POL-LEG-002_Records_Retention.md
+SOP-HR-001,Leave Application and Approval,2.0,Approved,2025-04-01,HR Manager,DEPT-HR-001,08_OPERATIONS_AND_SOPS/SOP-HR-001_Leave_Application_Approval.md
+SOP-HR-002,Employee Onboarding,2.1,Approved,2025-01-01,HR Manager,DEPT-HR-001,08_OPERATIONS_AND_SOPS/SOP-HR-002_Employee_Onboarding.md
+SOP-FIN-001,Expense Claim Processing,1.5,Approved,2025-04-01,Finance Manager,DEPT-FIN-001,08_OPERATIONS_AND_SOPS/SOP-FIN-001_Expense_Claim_Processing.md

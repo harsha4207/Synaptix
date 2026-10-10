@@ -4,7 +4,7 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--r-md)] text-xs font-semibold ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--c-blue)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none gap-2 cursor-pointer',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-[var(--r-md)] text-xs font-semibold ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--c-blue)] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none cursor-pointer leading-normal tracking-tight',
   {
     variants: {
       variant: {
@@ -27,11 +27,13 @@ const buttonVariants = cva(
         link: 'text-[var(--c-blue)] underline-offset-4 hover:underline p-0 h-auto',
       },
       size: {
-        default: 'h-9 px-4 py-2',
-        sm: 'h-7 rounded-[var(--r-sm)] px-2.5 text-[11px]',
-        md: 'h-9 px-3.5 py-2 text-xs',
-        lg: 'h-11 rounded-[var(--r-lg)] px-6 text-sm',
-        icon: 'h-9 w-9 p-0',
+        default: 'h-9 px-4 py-2 text-xs gap-2',
+        sm: 'h-8.5 rounded-[var(--r-sm)] px-3.5 py-1.5 text-xs font-medium gap-2',
+        md: 'h-9 px-4 py-2 text-xs gap-2',
+        lg: 'h-10 rounded-[var(--r-md)] px-5 py-2.5 text-sm gap-2.5',
+        icon: 'h-8.5 w-8.5 p-0',
+        'icon-sm': 'h-7.5 w-7.5 p-0',
+        'icon-md': 'h-9 w-9 p-0',
       },
       fullWidth: {
         true: 'w-full',
@@ -108,11 +110,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {isActuallyLoading ? (
           <Loader2 className="h-4 w-4 animate-spin shrink-0" />
         ) : (
-          leadingIcon && <span className="inline-flex shrink-0">{leadingIcon}</span>
+          leadingIcon && <span className="inline-flex items-center justify-center shrink-0">{leadingIcon}</span>
         )}
-        {children && <span>{children}</span>}
+        {children && (
+          <span className="inline-flex items-center justify-center leading-normal tracking-tight whitespace-nowrap">
+            {children}
+          </span>
+        )}
         {!isActuallyLoading && rightIcon && (
-          <span className="inline-flex shrink-0">{rightIcon}</span>
+          <span className="inline-flex items-center justify-center shrink-0">{rightIcon}</span>
         )}
       </button>
     );

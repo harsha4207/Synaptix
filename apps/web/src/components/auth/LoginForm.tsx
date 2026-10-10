@@ -6,12 +6,15 @@ import { PasswordInput } from '../ui/PasswordInput';
 import { FormField } from '../ui/FormField';
 import { Separator } from '../ui/Separator';
 import { GoogleSignInButton } from '../ui/GoogleSignInButton';
+import { useSupabaseAuth } from '../../lib/supabase/SupabaseAuthContext';
 
 export interface LoginFormProps {
   onSuccess: (email: string) => void;
   onGoogleAuth: () => void;
   onOpenForgotPassword: () => void;
   onSwitchToSignup: () => void;
+  isGoogleLoading?: boolean;
+  errorMessage?: string | null;
 }
 
 export const LoginForm: React.FC<LoginFormProps> = ({
@@ -19,12 +22,31 @@ export const LoginForm: React.FC<LoginFormProps> = ({
   onGoogleAuth,
   onOpenForgotPassword,
   onSwitchToSignup,
+  isGoogleLoading = false,
+  errorMessage = null,
 }) => {
+  const { signInWithEmail } = useSupabaseAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [localError, setLocalError] = useState<string | null>(null);
+
+  const formatErrorMessage = (err: Error | string): string => {
+    const raw = typeof err === 'string' ? err : err.message || '';
+    const lower = raw.toLowerCase();
+    if (lower.includes('invalid login credentials') || lower.includes('invalid_credentials')) {
+      return 'Invalid email or password. If you previously used Google to sign in, please click "Sign in with Google" below, or confirm your email.';
+    }
+    if (lower.includes('email not confirmed') || lower.includes('email_not_confirmed')) {
+      return 'Please verify your email address before signing in. Check your inbox or confirm the user in the Supabase dashboard.';
+    }
+    if (lower.includes('failed to fetch') || lower.includes('network') || lower.includes('fetch failed')) {
+      return 'Unable to reach the authentication service. Please check your network connection.';
+    }
+    return raw;
+  };
 
   const validate = () => {
     const errs: { email?: string; password?: string } = {};
@@ -44,19 +66,54 @@ export const LoginForm: React.FC<LoginFormProps> = ({
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isLoading || isGoogleLoading) return;
     if (!validate()) return;
 
     setIsLoading(true);
-    setTimeout(() => {
+    setLocalError(null);
+
+    try {
+      const res = await signInWithEmail(email.trim(), password);
+      if (res.error) {
+        setLocalError(formatErrorMessage(res.error));
+        setIsLoading(false);
+        return;
+      }
+
       setIsLoading(false);
-      onSuccess(email);
-    }, 900);
+      onSuccess(email.trim());
+    } catch (err) {
+      setLocalError(formatErrorMessage(err instanceof Error ? err : String(err)));
+      setIsLoading(false);
+    }
   };
+
+  const activeError = localError || errorMessage;
 
   return (
     <form onSubmit={handleSubmit} noValidate className="auth-form-content">
+      {/* Authentication Error Banner */}
+      {activeError && (
+        <div
+          className="auth-error-banner"
+          style={{
+            padding: '0.65rem 0.9rem',
+            marginBottom: '0.75rem',
+            borderRadius: '8px',
+            backgroundColor: 'rgba(239, 68, 68, 0.12)',
+            border: '1px solid rgba(239, 68, 68, 0.35)',
+            color: '#f87171',
+            fontSize: '0.82rem',
+            lineHeight: 1.4,
+          }}
+          role="alert"
+        >
+          {activeError}
+        </div>
+      )}
+
       {/* Email Address */}
       <FormField
         label="Work Email"
@@ -149,6 +206,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({
       <GoogleSignInButton
         onClick={onGoogleAuth}
         text="Sign in with Google"
+        isLoading={isGoogleLoading}
+        disabled={isLoading || isGoogleLoading}
       />
 
       {/* Switch to Signup */}

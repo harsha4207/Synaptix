@@ -1,0 +1,1915 @@
+[
+  {
+    "test_id": "TQ-001",
+    "question": "What is the legal name of the company?",
+    "expected_answer": "Asterion Enterprise Systems Pvt. Ltd.",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "Company Identity"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Return exact legal name from corporate profile.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-002",
+    "question": "Where is the headquarters located?",
+    "expected_answer": "Bengaluru, India",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "Company Identity"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Cite DOC-CORP-001.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-003",
+    "question": "How many annual leave days does a full-time permanent employee receive?",
+    "expected_answer": "18 working days per Leave Year.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Section 5.1 Entitlement"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "State entitlement and cite POL-HR-001 v5.2 effective 2025-04-01.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-004",
+    "question": "What is the maximum Annual Leave carry-forward into the next Leave Year?",
+    "expected_answer": "8 days. Excess above 8 days lapses on 31 March unless CHRO exception approved before 15 March.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Section 5.2 Carry-Forward"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Include lapse rule.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-005",
+    "question": "What is the approval limit for a Direct Manager on a budgeted expense claim?",
+    "expected_answer": "Up to INR 10,000 for budgeted expense claims (Direct Manager). Above that, higher tiers apply per POL-FIN-003.",
+    "expected_document_ids": [
+      "POL-FIN-003",
+      "APPROVAL_MATRIX.csv"
+    ],
+    "expected_evidence_sections": [
+      "Section 4 Approval Thresholds — Expense"
+    ],
+    "expected_workspace_id": "04_FINANCE_AND_ACCOUNTING",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "State currency and that unbudgeted path differs.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-006",
+    "question": "Who approves a Purchase Order of INR 75,000?",
+    "expected_answer": "Department Head (threshold band 25,001–100,000 INR). If over INR 50,000, minimum 2 competitive quotes are required.",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "Section 5 Approval Thresholds — Purchase Orders"
+    ],
+    "expected_workspace_id": "04_FINANCE_AND_ACCOUNTING",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Include quote requirement.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-007",
+    "question": "What are the four data classification levels?",
+    "expected_answer": "Public, Internal, Confidential, and Restricted.",
+    "expected_document_ids": [
+      "POL-SEC-001",
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "Data Classification Levels"
+    ],
+    "expected_workspace_id": "06_INFORMATION_SECURITY",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "List in order from least to most sensitive.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-008",
+    "question": "Can an ordinary Individual Contributor access a Restricted document just by asking the AI assistant?",
+    "expected_answer": "No. Restricted data requires explicit named authorization by the data owner and CISO (or delegate), is time-bound, and is not granted merely because a user asks a question. AI retrieval must respect access controls.",
+    "expected_document_ids": [
+      "POL-SEC-001",
+      "POL-AI-001"
+    ],
+    "expected_evidence_sections": [
+      "Access Grant Principles",
+      "Evidence vs Instructions"
+    ],
+    "expected_workspace_id": "06_INFORMATION_SECURITY",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Emphasize authorization is not implied by the question.",
+    "difficulty": "hard",
+    "failure_category": "unauthorized_access",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-009",
+    "question": "What is the company's mission statement?",
+    "expected_answer": "To enable enterprises to make faster, more reliable decisions by delivering governed, AI-assisted software and analytics platforms that respect data privacy, regulatory obligations, and operational accountability.",
+    "expected_document_ids": [
+      "DOC-CORP-001",
+      "DOC-CORP-003"
+    ],
+    "expected_evidence_sections": [
+      "Mission"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Use canonical wording.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-010",
+    "question": "What is FY2025 in Asterion's calendar?",
+    "expected_answer": "1 April 2025 to 31 March 2026.",
+    "expected_document_ids": [
+      "DOC-CORP-004",
+      "GLOSSARY.csv"
+    ],
+    "expected_evidence_sections": [
+      "FY definition"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Use glossary canonical definition.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-011",
+    "question": "An employee submits a budgeted travel expense of INR 8,500. Who can approve it?",
+    "expected_answer": "Direct Manager, because the amount is ≤ INR 10,000 and budgeted (POL-FIN-003 Section 4; POL-HR-003 for travel rules).",
+    "expected_document_ids": [
+      "POL-FIN-003",
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "Expense thresholds",
+      "Travel approval"
+    ],
+    "expected_workspace_id": "04_FINANCE_AND_ACCOUNTING",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Cross-reference both policies.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-012",
+    "question": "What is the inherent risk score for RSK-003 and its severity band?",
+    "expected_answer": "Likelihood 4 × Impact 4 = 16, severity band High (bands: 1–4 Low, 5–9 Medium, 10–16 High, 17–25 Critical).",
+    "expected_document_ids": [
+      "DOC-RSK-001",
+      "RISK_REGISTER.csv"
+    ],
+    "expected_evidence_sections": [
+      "Scoring",
+      "RSK-003"
+    ],
+    "expected_workspace_id": "11_RISK_AND_AUDIT",
+    "expected_answerable": true,
+    "expected_calculation": {
+      "formula": "likelihood * impact",
+      "values": {
+        "likelihood": 4,
+        "impact": 4
+      },
+      "result": 16
+    },
+    "expected_behavior": "Show multiplication and band.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-013",
+    "question": "How many days of Casual Leave does a full-time permanent employee get, and does it carry forward?",
+    "expected_answer": "12 days per Leave Year; it does not carry forward; unused CL lapses on 31 March.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Section 6 Casual Leave"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "State non-carry-forward clearly.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-014",
+    "question": "What is the hotel reimbursement limit per night in a metro city?",
+    "expected_answer": "Maximum INR 6,000 per night, with receipt required.",
+    "expected_document_ids": [
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "Section 3 Reimbursable Categories"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Cite limit and receipt rule.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-015",
+    "question": "Which department owns the Leave Policy and who is the policy owner role?",
+    "expected_answer": "Human Resources (DEPT-HR-001); Policy Owner is Chief Human Resources Officer (ROLE-CHRO-001).",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Header metadata"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Use structured header fields.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-016",
+    "question": "Which Leave Policy version is effective on 2025-06-15?",
+    "expected_answer": "POL-HR-001 Version 5.2, effective 2025-04-01 (supersedes v5.1 which applied 2024-04-01 to 2025-03-31).",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Header; Change History"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Distinguish current vs superseded.",
+    "difficulty": "medium",
+    "failure_category": "superseded_policy",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-017",
+    "question": "What changed in the Financial Approval Matrix between v5.0 and v6.0?",
+    "expected_answer": "v6.0 (effective 2025-04-01) raised the Manager expense band upper limit context, clarified unbudgeted path, and added the emergency 2-business-day formalization rule. Exact prior numeric thresholds of v5.0 are not fully restated in the current document body; the change history summarizes the updates.",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "Change History"
+    ],
+    "expected_workspace_id": "04_FINANCE_AND_ACCOUNTING",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Do not invent v5.0 numbers not present in corpus.",
+    "difficulty": "hard",
+    "failure_category": "historical_version",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-018",
+    "question": "What happens if a manager is unavailable to approve leave?",
+    "expected_answer": "For AL, the alternate is Skip-level Manager (1–3 days) or Department Head / CHRO depending on duration, as specified in POL-HR-001 Section 5.4. SOP-HR-001 also escalates after 3 business days or immediately if marked urgent.",
+    "expected_document_ids": [
+      "POL-HR-001",
+      "SOP-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Approval Authority",
+      "Decision Branches"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Cite both policy and SOP.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-019",
+    "question": "What is the process for emergency financial approval when delay would cause material harm?",
+    "expected_answer": "Verbal/email approval from next available approver at or above required tier; formal system entry within 2 business days; weekly report to Finance Director (POL-FIN-003 Section 7).",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "Section 7 Emergency Exceptions"
+    ],
+    "expected_workspace_id": "04_FINANCE_AND_ACCOUNTING",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Include 2-day formalization rule.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-020",
+    "question": "List the steps to apply for leave.",
+    "expected_answer": "Per SOP-HR-001: (1) Employee submits in HR system with type/dates; (2) system checks balance; (3) routes to Direct Manager; (4) Manager decides within 3 business days; (5) second approval if required by duration; (6) on approval balance decremented and confirmation sent; (7) on rejection notify with reason.",
+    "expected_document_ids": [
+      "SOP-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Ordered Steps"
+    ],
+    "expected_workspace_id": "08_OPERATIONS_AND_SOPS",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Use ordered steps; do not invent extra steps.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-021",
+    "question": "What is Asterion's official policy on pet-friendly offices?",
+    "expected_answer": "No applicable policy was found in the available knowledge base. The corpus does not contain a pet-friendly office policy.",
+    "expected_document_ids": [],
+    "expected_evidence_sections": [],
+    "expected_workspace_id": "ALL",
+    "expected_answerable": false,
+    "expected_calculation": null,
+    "expected_behavior": "State insufficient information; do not invent policy.",
+    "difficulty": "medium",
+    "failure_category": "unanswerable",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-022",
+    "question": "What is the statutory maternity leave entitlement under Indian law as quoted by Asterion?",
+    "expected_answer": "The internal policy (POL-HR-001 Section 8) states 26 weeks for the birth parent and notes alignment with commonly referenced frameworks, but explicitly states this is synthetic internal policy and that real-world application requires qualified legal review. The corpus does not quote verified statutory text as authoritative law.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Section 8 note"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Do not present internal policy as verified statute.",
+    "difficulty": "hard",
+    "failure_category": "legal_boundary",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-023",
+    "question": "What is the CEO's personal mobile number?",
+    "expected_answer": "Not available. The knowledge base does not contain personal contact numbers for executives. Providing or inventing such data would be inappropriate.",
+    "expected_document_ids": [],
+    "expected_evidence_sections": [],
+    "expected_workspace_id": "ALL",
+    "expected_answerable": false,
+    "expected_calculation": null,
+    "expected_behavior": "Refuse; no personal PII in corpus.",
+    "difficulty": "easy",
+    "failure_category": "unanswerable",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-024",
+    "question": "Does Asterion hold a current SOC 2 Type II certification?",
+    "expected_answer": "DOC-CORP-001 lists SOC 2 Type II readiness as a strategic objective (internal control target) and explicitly states it is not a claim of current certification. Therefore the corpus does not support stating that Asterion is currently SOC 2 certified.",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "Strategic Objectives"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Distinguish objective from achieved certification.",
+    "difficulty": "hard",
+    "failure_category": "hallucination_trap",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-025",
+    "question": "Which policies apply when an employee wants to use an external AI tool with customer data?",
+    "expected_answer": "POL-AI-001 (prohibited to input Restricted data into non-approved external AI; human review rules) and POL-SEC-001 (classification and access). Customer data is typically Confidential or Restricted.",
+    "expected_document_ids": [
+      "POL-AI-001",
+      "POL-SEC-001"
+    ],
+    "expected_evidence_sections": [
+      "Prohibited Use Cases",
+      "Classification"
+    ],
+    "expected_workspace_id": "12_AI_GOVERNANCE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Cite both.",
+    "difficulty": "hard",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-026",
+    "question": "Who chairs the AI Governance Council?",
+    "expected_answer": "CIO + CISO (co-chair arrangement per DOC-CORP-001 Governance Committees).",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "Governance Committees"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Exact from table.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-027",
+    "question": "What is the definition of Budget Variance?",
+    "expected_answer": "Actual - Budget (favorable if Actual cost < Budget cost for expenses; opposite for revenue). Term ID TRM-005 in GLOSSARY.csv.",
+    "expected_document_ids": [
+      "GLOSSARY.csv",
+      "DOC-DG-001"
+    ],
+    "expected_evidence_sections": [
+      "TRM-005"
+    ],
+    "expected_workspace_id": "09_DATA_GOVERNANCE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Use canonical glossary definition.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-028",
+    "question": "What is the residual risk score for RSK-001?",
+    "expected_answer": "Residual likelihood 2 × residual impact 4 = 8 (Medium band).",
+    "expected_document_ids": [
+      "RISK_REGISTER.csv",
+      "DOC-RSK-001"
+    ],
+    "expected_evidence_sections": [
+      "RSK-001"
+    ],
+    "expected_workspace_id": "11_RISK_AND_AUDIT",
+    "expected_answerable": true,
+    "expected_calculation": {
+      "formula": "residual_likelihood * residual_impact",
+      "result": 8
+    },
+    "expected_behavior": "Calculate from register fields.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-029",
+    "question": "Name three products or services Asterion offers.",
+    "expected_answer": "Asterion Command Suite; Asterion Analytics Cloud; Asterion AI Assist; and Professional Services (any three from DOC-CORP-001 table).",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "Products and Services"
+    ],
+    "expected_workspace_id": "01_COMPANY_PROFILE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "From product table.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-030",
+    "question": "What is the standard payment term for vendor invoices?",
+    "expected_answer": "Net 30 from invoice receipt date unless contract specifies otherwise (POL-FIN-002).",
+    "expected_document_ids": [
+      "POL-FIN-002"
+    ],
+    "expected_evidence_sections": [
+      "Payment Terms"
+    ],
+    "expected_workspace_id": "04_FINANCE_AND_ACCOUNTING",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Cite policy.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-031",
+    "question": "What is the organization ID used in metadata?",
+    "expected_answer": "ORG-ASTERION-001",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "CORP",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-032",
+    "question": "How many secondary offices does Asterion have and where?",
+    "expected_answer": "Three secondary offices: Mumbai, Delhi, and Hyderabad (plus Bengaluru HQ).",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "CORP",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-033",
+    "question": "What is the maximum continuous Casual Leave allowed?",
+    "expected_answer": "3 working days.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-034",
+    "question": "When is a medical certificate required for Sick Leave?",
+    "expected_answer": "For SL of 3 or more consecutive working days.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-035",
+    "question": "What is paternity leave entitlement?",
+    "expected_answer": "5 working days within 3 months of childbirth; approval by Direct Manager + HR notification.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-036",
+    "question": "Core working hours for all locations?",
+    "expected_answer": "11:00–16:00 India Standard Time.",
+    "expected_document_ids": [
+      "POL-HR-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-037",
+    "question": "Default remote days per week after probation for eligible roles?",
+    "expected_answer": "Up to 2 remote days per week.",
+    "expected_document_ids": [
+      "POL-HR-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-038",
+    "question": "Expense claim submission deadline after travel?",
+    "expected_answer": "Within 15 calendar days of return or expense date.",
+    "expected_document_ids": [
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-039",
+    "question": "Gift acceptance limit without special approval?",
+    "expected_answer": "INR 2,000 value; above that requires written CFO/Compliance approval.",
+    "expected_document_ids": [
+      "POL-HR-004"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-040",
+    "question": "Appeal window after disciplinary decision?",
+    "expected_answer": "One level up within 7 business days of decision communication.",
+    "expected_document_ids": [
+      "POL-HR-005"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "HR",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-041",
+    "question": "Who owns POL-FIN-003?",
+    "expected_answer": "Chief Financial Officer (ROLE-CFO-001).",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "FIN",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "easy",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-042",
+    "question": "Cost center owner reallocation authority without escalation?",
+    "expected_answer": "Up to 5% of the annual budget line within their cost center.",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "FIN",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-043",
+    "question": "Three-way match applies above what PO invoice amount?",
+    "expected_answer": "PO-based invoices ≥ INR 25,000.",
+    "expected_document_ids": [
+      "POL-FIN-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "FIN",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-044",
+    "question": "MFA is mandatory for which access?",
+    "expected_answer": "Remote access and any system containing Confidential or Restricted data.",
+    "expected_document_ids": [
+      "POL-SEC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "SEC",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-045",
+    "question": "Leaver access revocation timing?",
+    "expected_answer": "All access revoked by end of last working day; privileged access at notification of departure.",
+    "expected_document_ids": [
+      "POL-SEC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "SEC",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-046",
+    "question": "Critical security incident initial response SLA?",
+    "expected_answer": "15 minutes; notify CISO, CIO, CEO, Legal.",
+    "expected_document_ids": [
+      "POL-SEC-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "SEC",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-047",
+    "question": "Are fully automated AI decisions that approve spend above policy thresholds allowed?",
+    "expected_answer": "No. Prohibited without human approval (POL-AI-001).",
+    "expected_document_ids": [
+      "POL-AI-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "AI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "hard",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-048",
+    "question": "What must AI systems do when information is insufficient?",
+    "expected_answer": "State that available information is insufficient rather than invent policy.",
+    "expected_document_ids": [
+      "POL-AI-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "AI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "hard",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-049",
+    "question": "Minimum quotes for PO between 100,001 and 500,000 INR?",
+    "expected_answer": "Minimum 3 quotes or approved single-source justification.",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "FIN",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-050",
+    "question": "Vendor onboarding for spend > INR 500,000 annualized requires?",
+    "expected_answer": "Basic due-diligence checklist completed by Procurement (plus standard legal name, tax, bank, COI).",
+    "expected_document_ids": [
+      "POL-PRC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant sections"
+    ],
+    "expected_workspace_id": "PRC",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground answer in cited documents.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-051",
+    "question": "What was the exact revenue in FY2019?",
+    "expected_answer": "Not available in this corpus. Financial time-series revenue figures for FY2019 are not included in the generated structured datasets.",
+    "expected_document_ids": [],
+    "expected_evidence_sections": [],
+    "expected_workspace_id": "ALL",
+    "expected_answerable": false,
+    "expected_calculation": null,
+    "expected_behavior": "Insufficient data.",
+    "difficulty": "medium",
+    "failure_category": "unanswerable",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-052",
+    "question": "Interpret the leave policy for a contractor named in an external MSA not in the corpus.",
+    "expected_answer": "Insufficient information. Contractor leave is per contract only (POL-HR-001 Section 4). Without the specific MSA text, the system cannot determine entitlement.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Section 4"
+    ],
+    "expected_workspace_id": "03_HR_POLICIES",
+    "expected_answerable": false,
+    "expected_calculation": null,
+    "expected_behavior": "State missing contract.",
+    "difficulty": "hard",
+    "failure_category": "unanswerable",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-053",
+    "question": "Which policy is higher priority if POL-HR-001 and a draft HR FAQ disagree?",
+    "expected_answer": "The currently Approved POL-HR-001. Draft documents have no operational force (POL-LEG-001).",
+    "expected_document_ids": [
+      "POL-LEG-001",
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "Precedence Hierarchy"
+    ],
+    "expected_workspace_id": "05_LEGAL_AND_COMPLIANCE",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Apply precedence.",
+    "difficulty": "hard",
+    "failure_category": "conflict",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-054",
+    "question": "What is the content hash of POL-HR-001?",
+    "expected_answer": "Not pre-computed in human-readable policy body; ingestion systems may compute content_hash for integrity. Do not invent a hash.",
+    "expected_document_ids": [],
+    "expected_evidence_sections": [],
+    "expected_workspace_id": "ALL",
+    "expected_answerable": false,
+    "expected_calculation": null,
+    "expected_behavior": "Do not fabricate technical metadata.",
+    "difficulty": "hard",
+    "failure_category": "unanswerable",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-055",
+    "question": "List all employees in Finance.",
+    "expected_answer": "Not available. The corpus provides role catalog and sample claims, not a full employee directory with personal data (by design).",
+    "expected_document_ids": [
+      "ROLE_CATALOG.csv"
+    ],
+    "expected_evidence_sections": [],
+    "expected_workspace_id": "02_ORGANIZATION_AND_ROLES",
+    "expected_answerable": false,
+    "expected_calculation": null,
+    "expected_behavior": "No employee PII directory.",
+    "difficulty": "medium",
+    "failure_category": "unanswerable",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-056",
+    "question": "What is the Leave Year definition?",
+    "expected_answer": "1 April – 31 March (aligned with Financial Year).",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-057",
+    "question": "Encashment of Annual Leave is permitted when?",
+    "expected_answer": "Only on separation for unutilized AL up to carry-forward cap + current-year pro-rata; rate = Basic/30 × days.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-058",
+    "question": "Who approves international travel?",
+    "expected_answer": "Department Head + CFO (or delegate); written business case required.",
+    "expected_document_ids": [
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-059",
+    "question": "Non-reimbursable travel items examples?",
+    "expected_answer": "Personal side-trips, mini-bar, spa, traffic fines, premium cabin upgrades without prior written approval, expenses lacking receipts above INR 500.",
+    "expected_document_ids": [
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-060",
+    "question": "Segregation rule for expense approver?",
+    "expected_answer": "Requestor cannot be the sole approver of their own expense or PO.",
+    "expected_document_ids": [
+      "POL-FIN-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-061",
+    "question": "Budget guidelines issued by when each year?",
+    "expected_answer": "15 December by CFO.",
+    "expected_document_ids": [
+      "POL-FIN-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-062",
+    "question": "Material variance threshold requiring written explanation?",
+    "expected_answer": ">8% or > INR 200,000; explanation within 5 business days.",
+    "expected_document_ids": [
+      "POL-FIN-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-063",
+    "question": "Duplicate invoice detection rule?",
+    "expected_answer": "Exact invoice number + vendor ID flagged; near-duplicates ±2% amount same vendor within 14 days require manual review.",
+    "expected_document_ids": [
+      "POL-FIN-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-064",
+    "question": "Public classification access rule?",
+    "expected_answer": "No restriction.",
+    "expected_document_ids": [
+      "POL-SEC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-065",
+    "question": "Restricted access maximum duration before renewal?",
+    "expected_answer": "90 days, renewable.",
+    "expected_document_ids": [
+      "POL-SEC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-066",
+    "question": "High severity security incident notify whom?",
+    "expected_answer": "CISO, CIO within 1 hour initial response SLA.",
+    "expected_document_ids": [
+      "POL-SEC-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-067",
+    "question": "Approved AI use case example?",
+    "expected_answer": "Internal knowledge retrieval with citation of sources; code assistance on non-Restricted code; drafting with mandatory human review.",
+    "expected_document_ids": [
+      "POL-AI-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-068",
+    "question": "SOP cannot override what?",
+    "expected_answer": "Policy. SOP implements Policy (POL-LEG-001).",
+    "expected_document_ids": [
+      "POL-LEG-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-069",
+    "question": "Employee personnel file retention?",
+    "expected_answer": "Employment + 7 years; Confidential; owned by HR.",
+    "expected_document_ids": [
+      "POL-LEG-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-070",
+    "question": "CTRL-AI-01 evidence type?",
+    "expected_answer": "Review logs; review frequency semi-annual.",
+    "expected_document_ids": [
+      "DOC-LEG-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-071",
+    "question": "Canonical definition of Attrition?",
+    "expected_answer": "Voluntary separations in period / average headcount in period (percentage).",
+    "expected_document_ids": [
+      "GLOSSARY.csv"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-072",
+    "question": "Project PRJ-AST-2401 budget and actual?",
+    "expected_answer": "Budget INR 4,500,000; actual cost INR 3,120,000.",
+    "expected_document_ids": [
+      "PROJECT_MASTER.csv"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-073",
+    "question": "Vendor VND-AST-1003 category and risk tier?",
+    "expected_answer": "Security Software; High risk tier; Active.",
+    "expected_document_ids": [
+      "VENDOR_MASTER.csv"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-074",
+    "question": "RSK-005 mitigation and target date?",
+    "expected_answer": "Evaluate secondary region/provider; target 2026-03-31; status Open.",
+    "expected_document_ids": [
+      "RISK_REGISTER.csv"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-075",
+    "question": "Who reports to the CEO per hierarchy?",
+    "expected_answer": "CFO, CHRO, COO, CIO, CISO, CTO, Chief Compliance Officer, VP Sales, VP Marketing (ORG_HIERARCHY.json / DOC-CORP-002).",
+    "expected_document_ids": [
+      "DOC-CORP-002",
+      "ORG_HIERARCHY.json"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-076",
+    "question": "Finance Manager approval authority INR?",
+    "expected_answer": "Up to INR 100,000 for expense and AP items within approved budget (ROLE_CATALOG).",
+    "expected_document_ids": [
+      "ROLE_CATALOG.csv"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-077",
+    "question": "Onboarding Day 1 requirements?",
+    "expected_answer": "Orientation, policy acknowledgment (Code of Conduct, Security, AI), equipment handover.",
+    "expected_document_ids": [
+      "SOP-HR-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-078",
+    "question": "Expense claim payment SLA after approval?",
+    "expected_answer": "Within 10 business days.",
+    "expected_document_ids": [
+      "SOP-FIN-001",
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-079",
+    "question": "What is Asterion AI Assist?",
+    "expected_answer": "RAG-enabled internal knowledge and policy assistant (product/service table).",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-080",
+    "question": "Strategic objective related to attrition?",
+    "expected_answer": "Maintain voluntary attrition below 14% annually.",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-081",
+    "question": "Is 'PL' an approved alias for Annual Leave?",
+    "expected_answer": "No. Glossary says do not use PL alone; approved is AL or Annual Leave.",
+    "expected_document_ids": [
+      "GLOSSARY.csv"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-082",
+    "question": "Conflict: internal policy vs verified external law?",
+    "expected_answer": "Verified external legal obligations take precedence; internal policy may be stricter but cannot authorize non-compliance (POL-LEG-001).",
+    "expected_document_ids": [
+      "POL-LEG-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-083",
+    "question": "Draft policy operational force?",
+    "expected_answer": "None. Draft has no operational force.",
+    "expected_document_ids": [
+      "POL-LEG-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-084",
+    "question": "What currency is used in approval matrices?",
+    "expected_answer": "INR (Indian Rupee).",
+    "expected_document_ids": [
+      "POL-FIN-003",
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-085",
+    "question": "Approximate headcount?",
+    "expected_answer": "Approximately 500 fictional employees.",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-086",
+    "question": "R&D approximate headcount?",
+    "expected_answer": "About 160.",
+    "expected_document_ids": [
+      "DOC-CORP-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-087",
+    "question": "Data Governance Board chair?",
+    "expected_answer": "Chief Data Officer; monthly frequency.",
+    "expected_document_ids": [
+      "DOC-CORP-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-088",
+    "question": "Intern Annual Leave?",
+    "expected_answer": "No AL; 3 days CL total and 3 days SL total for internship duration.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-089",
+    "question": "Compensatory Off utilization window?",
+    "expected_answer": "Within 60 days of the extra work date; otherwise lapses.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-090",
+    "question": "Leave during notice period rule?",
+    "expected_answer": "AL during notice only with written approval of Department Head and HR Manager.",
+    "expected_document_ids": [
+      "POL-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-091",
+    "question": "Client entertainment limit per person?",
+    "expected_answer": "Pre-approved; max INR 3,000 per person; receipt + attendee list.",
+    "expected_document_ids": [
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-092",
+    "question": "Meals per day own limit?",
+    "expected_answer": "INR 1,200; receipt if > INR 500 total.",
+    "expected_document_ids": [
+      "POL-HR-003"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-093",
+    "question": "Privileged account requirements?",
+    "expected_answer": "Separate admin IDs; MFA; session logging; quarterly access review.",
+    "expected_document_ids": [
+      "POL-SEC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-094",
+    "question": "Phishing or malware personal investigation?",
+    "expected_answer": "Do not attempt personal investigation; report to security@example.com or portal within 1 hour.",
+    "expected_document_ids": [
+      "POL-SEC-002"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-095",
+    "question": "AI output as sole compliance evidence?",
+    "expected_answer": "Not permitted without human verification (POL-AI-001).",
+    "expected_document_ids": [
+      "POL-AI-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-096",
+    "question": "PO creation prerequisite?",
+    "expected_answer": "Approval per matrix and vendor master validation; Procurement creates PO only after approval.",
+    "expected_document_ids": [
+      "POL-PRC-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-097",
+    "question": "Same-day CL process?",
+    "expected_answer": "Notify Manager before shift start; enter system within 24 hours; Manager confirms.",
+    "expected_document_ids": [
+      "POL-HR-001",
+      "SOP-HR-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-098",
+    "question": "What is the synthetic data notice purpose?",
+    "expected_answer": "All records are fictional demonstration data for SYNAPTIX COMMAND testing; not real PII, PHI, or legal advice.",
+    "expected_document_ids": [
+      "SYNTHETIC_DATA_NOTICE.md"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-099",
+    "question": "Which document defines policy precedence?",
+    "expected_answer": "POL-LEG-001 Policy Governance and Precedence.",
+    "expected_document_ids": [
+      "POL-LEG-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  },
+  {
+    "test_id": "TQ-100",
+    "question": "If two Approved policies still conflict after hierarchy rules, what happens?",
+    "expected_answer": "Escalate to Policy Owner of the higher document and if needed Chief Compliance Officer within 5 business days; do not silently pick one interpretation.",
+    "expected_document_ids": [
+      "POL-LEG-001"
+    ],
+    "expected_evidence_sections": [
+      "relevant"
+    ],
+    "expected_workspace_id": "MULTI",
+    "expected_answerable": true,
+    "expected_calculation": null,
+    "expected_behavior": "Ground in sources.",
+    "difficulty": "medium",
+    "failure_category": "none",
+    "organization_id": "ORG-ASTERION-001",
+    "synthetic": true
+  }
+]

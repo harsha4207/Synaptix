@@ -19,6 +19,7 @@ import { PageContainer, PageHeader, PageContent } from '../components/layout';
 import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { RagKnowledgeSearchPanel } from '../components/knowledge/RagKnowledgeSearchPanel';
 
 interface KnowledgeModuleProps {
   workspace: WorkspaceItem;
@@ -260,7 +261,7 @@ export const KnowledgeModule: React.FC<KnowledgeModuleProps> = ({
         breadcrumb={`SYNAPTIX COMMAND / ${workspace.name.toUpperCase()} / KNOWLEDGE GRAPH`}
         badge={
           <Badge variant="blue">
-            <ShieldCheck size={13} style={{ marginRight: '4px' }} />
+            <ShieldCheck size={13} />
             {workspace.domain} Knowledge Boundary
           </Badge>
         }
@@ -388,6 +389,9 @@ export const KnowledgeModule: React.FC<KnowledgeModuleProps> = ({
             </div>
           </div>
         </div>
+
+        {/* 2.5 REAL WORKSPACE RAG SEMANTIC RETRIEVAL */}
+        <RagKnowledgeSearchPanel workspaceId={workspace.id} onAddToast={onAddToast} />
 
         {/* 3. INTERACTIVE KNOWLEDGE GRAPH VISUALIZATION */}
         <KnowledgeGraph

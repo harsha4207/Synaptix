@@ -36,7 +36,7 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
   ({ className, action, children, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('flex flex-col space-y-1.5 p-6 pb-3 text-left items-start w-full', className)}
+      className={cn('flex flex-col space-y-1.5 p-5 pb-2.5 sm:p-6 sm:pb-3 text-left items-start w-full', className)}
       {...props}
     >
       {action ? (
@@ -93,7 +93,7 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
   ({ className, noPadding = false, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(noPadding ? 'p-0' : 'p-6 pt-3', className)}
+      className={cn(noPadding ? 'p-0' : 'p-5 pt-2.5 sm:p-6 sm:pt-3', className)}
       {...props}
     />
   )
@@ -109,7 +109,7 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
     <div
       ref={ref}
       className={cn(
-        'flex items-center justify-between p-6 pt-0',
+        'flex items-center justify-between p-5 pt-0 sm:p-6 sm:pt-0',
         borderTop && 'border-t border-[var(--c-border)] pt-4 mt-2',
         className
       )}

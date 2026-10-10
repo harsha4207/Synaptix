@@ -1,0 +1,51 @@
+Incident_ID,Reported_Date,Equipment_ID,Severity,Category,Description,Assigned_Team,Status,Resolution_Days,Linked_WO
+INC-OP-4000,2024-07-06,EQ-OP-PLC-06,Low,Safety,Synthetic incident involving PLC Controller Rack,Team Alpha,Resolved,,WO-OP-9076
+INC-OP-4001,2025-03-08,EQ-OP-HVAC-03,Low,Electrical,Synthetic incident involving HVAC Unit Zone C,Team Alpha,Resolved,3,
+INC-OP-4002,2024-10-05,EQ-OP-HVAC-03,Medium,Process,Synthetic incident involving HVAC Unit Zone C,Team Alpha,Closed,,
+INC-OP-4003,2024-12-06,EQ-OP-GEN-04,High,Electrical,Synthetic incident involving Backup Generator,Team Alpha,Resolved,1,WO-OP-9016
+INC-OP-4004,2024-09-23,EQ-OP-CMP-05,High,Process,Synthetic incident involving Air Compressor 5,Team Alpha,Investigating,15,WO-OP-9005
+INC-OP-4005,2025-01-28,EQ-OP-HVAC-03,Critical,Safety,Synthetic incident involving HVAC Unit Zone C,Team Delta,Investigating,19,
+INC-OP-4006,2024-07-04,EQ-OP-PLC-06,Medium,Safety,Synthetic incident involving PLC Controller Rack,Team Delta,Resolved,6,
+INC-OP-4007,2025-04-30,EQ-OP-CNV-02,Medium,Process,Synthetic incident involving Conveyor Line 2,Team Gamma,Resolved,,
+INC-OP-4008,2025-01-16,EQ-OP-CNV-02,Low,Mechanical,Synthetic incident involving Conveyor Line 2,Team Beta,Investigating,3,WO-OP-9035
+INC-OP-4009,2024-09-01,EQ-OP-CMP-05,Low,Process,Synthetic incident involving Air Compressor 5,Team Alpha,Investigating,7,WO-OP-9047
+INC-OP-4010,2024-08-09,EQ-OP-CNV-02,Medium,Mechanical,Synthetic incident involving Conveyor Line 2,Team Gamma,Resolved,18,
+INC-OP-4011,2025-01-17,EQ-OP-PMP-01,High,Mechanical,Synthetic incident involving Primary Coolant Pump,Team Beta,Open,17,
+INC-OP-4012,2024-07-29,EQ-OP-PLC-06,Medium,Mechanical,Synthetic incident involving PLC Controller Rack,Team Alpha,Closed,1,
+INC-OP-4013,2024-10-28,EQ-OP-PMP-01,Medium,Electrical,Synthetic incident involving Primary Coolant Pump,Team Delta,Closed,14,
+INC-OP-4014,2024-10-31,EQ-OP-PMP-01,Low,Electrical,Synthetic incident involving Primary Coolant Pump,Team Alpha,Resolved,,
+INC-OP-4015,2025-06-14,EQ-OP-PMP-01,Low,Mechanical,Synthetic incident involving Primary Coolant Pump,Team Delta,Open,19,
+INC-OP-4016,2025-01-21,EQ-OP-CNV-02,Low,Mechanical,Synthetic incident involving Conveyor Line 2,Team Delta,Investigating,4,WO-OP-9036
+INC-OP-4017,2024-07-20,EQ-OP-PLC-06,Low,Process,Synthetic incident involving PLC Controller Rack,Team Beta,Closed,6,WO-OP-9038
+INC-OP-4018,2025-04-22,EQ-OP-HVAC-03,Low,Safety,Synthetic incident involving HVAC Unit Zone C,Team Gamma,Resolved,4,WO-OP-9027
+INC-OP-4019,2024-07-11,EQ-OP-HVAC-03,Low,Process,Synthetic incident involving HVAC Unit Zone C,Team Delta,Open,,WO-OP-9013
+INC-OP-4020,2024-09-27,EQ-OP-HVAC-03,Low,Environmental,Synthetic incident involving HVAC Unit Zone C,Team Beta,Open,,WO-OP-9038
+INC-OP-4021,2025-06-03,EQ-OP-CMP-05,Low,Electrical,Synthetic incident involving Air Compressor 5,Team Alpha,Closed,15,WO-OP-9013
+INC-OP-4022,2025-02-07,EQ-OP-PLC-06,Low,Process,Synthetic incident involving PLC Controller Rack,Team Gamma,Resolved,18,WO-OP-9049
+INC-OP-4023,2025-04-13,EQ-OP-PMP-01,Medium,Environmental,Synthetic incident involving Primary Coolant Pump,Team Delta,Resolved,,WO-OP-9034
+INC-OP-4024,2025-03-09,EQ-OP-CNV-02,Critical,Environmental,Synthetic incident involving Conveyor Line 2,Team Gamma,Open,16,WO-OP-9063
+INC-OP-4025,2025-06-05,EQ-OP-CMP-05,Medium,Mechanical,Synthetic incident involving Air Compressor 5,Team Gamma,Closed,,WO-OP-9021
+INC-OP-4026,2025-03-06,EQ-OP-PLC-06,Medium,Process,Synthetic incident involving PLC Controller Rack,Team Beta,Investigating,,WO-OP-9038
+INC-OP-4027,2025-06-15,EQ-OP-HVAC-03,Medium,Safety,Synthetic incident involving HVAC Unit Zone C,Team Alpha,Open,5,WO-OP-9043
+INC-OP-4028,2025-04-22,EQ-OP-PLC-06,Low,Environmental,Synthetic incident involving PLC Controller Rack,Team Gamma,Resolved,,WO-OP-9032
+INC-OP-4029,2024-07-03,EQ-OP-PMP-01,Low,Environmental,Synthetic incident involving Primary Coolant Pump,Team Gamma,Open,17,WO-OP-9065
+INC-OP-4030,2025-06-21,EQ-OP-CNV-02,Medium,Electrical,Synthetic incident involving Conveyor Line 2,Team Delta,Resolved,7,WO-OP-9034
+INC-OP-4031,2025-07-07,EQ-OP-CNV-02,High,Environmental,Synthetic incident involving Conveyor Line 2,Team Gamma,Investigating,14,WO-OP-9076
+INC-OP-4032,2024-12-17,EQ-OP-HVAC-03,Low,Process,Synthetic incident involving HVAC Unit Zone C,Team Gamma,Open,,WO-OP-9029
+INC-OP-4033,2025-07-13,EQ-OP-PLC-06,Low,Environmental,Synthetic incident involving PLC Controller Rack,Team Beta,Closed,21,WO-OP-9060
+INC-OP-4034,2024-12-19,EQ-OP-CMP-05,Critical,Safety,Synthetic incident involving Air Compressor 5,Team Delta,Resolved,6,WO-OP-9000
+INC-OP-4035,2024-08-02,EQ-OP-PLC-06,Medium,Safety,Synthetic incident involving PLC Controller Rack,Team Alpha,Closed,16,
+INC-OP-4036,2024-12-04,EQ-OP-CMP-05,Medium,Mechanical,Synthetic incident involving Air Compressor 5,Team Gamma,Closed,16,WO-OP-9030
+INC-OP-4037,2024-08-08,EQ-OP-CNV-02,Low,Environmental,Synthetic incident involving Conveyor Line 2,Team Delta,Investigating,18,WO-OP-9047
+INC-OP-4038,2024-11-10,EQ-OP-HVAC-03,Low,Electrical,Synthetic incident involving HVAC Unit Zone C,Team Beta,Resolved,20,
+INC-OP-4039,2024-10-24,EQ-OP-HVAC-03,Low,Environmental,Synthetic incident involving HVAC Unit Zone C,Team Gamma,Resolved,19,WO-OP-9036
+INC-OP-4040,2024-10-21,EQ-OP-CMP-05,Medium,Electrical,Synthetic incident involving Air Compressor 5,Team Gamma,Resolved,6,WO-OP-9043
+INC-OP-4041,2025-06-24,EQ-OP-HVAC-03,Low,Environmental,Synthetic incident involving HVAC Unit Zone C,Team Delta,Closed,3,WO-OP-9028
+INC-OP-4042,2024-12-04,EQ-OP-PMP-01,Low,Safety,Synthetic incident involving Primary Coolant Pump,Team Beta,Open,5,WO-OP-9001
+INC-OP-4043,2024-10-09,EQ-OP-GEN-04,High,Mechanical,Synthetic incident involving Backup Generator,Team Gamma,Open,0,WO-OP-9022
+INC-OP-4044,2024-12-28,EQ-OP-CMP-05,Critical,Mechanical,Synthetic incident involving Air Compressor 5,Team Beta,Closed,2,WO-OP-9023
+INC-OP-4100,2025-01-10,EQ-OP-CNV-02,Medium,Mechanical,Recurring belt misalignment on Conveyor Line 2,Team Beta,Resolved,2,WO-OP-9050
+INC-OP-4101,2025-02-04,EQ-OP-CNV-02,Medium,Mechanical,Recurring belt misalignment on Conveyor Line 2,Team Beta,Resolved,6,WO-OP-9051
+INC-OP-4102,2025-03-01,EQ-OP-CNV-02,Medium,Mechanical,Recurring belt misalignment on Conveyor Line 2,Team Beta,Resolved,6,WO-OP-9052
+INC-OP-4103,2025-03-26,EQ-OP-CNV-02,Medium,Mechanical,Recurring belt misalignment on Conveyor Line 2,Team Beta,Resolved,7,WO-OP-9053
+INC-OP-4104,2025-04-20,EQ-OP-CNV-02,Medium,Mechanical,Recurring belt misalignment on Conveyor Line 2,Team Beta,Open,5,WO-OP-9054

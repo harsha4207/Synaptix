@@ -1,0 +1,103 @@
+{
+  "workspace": "Finance",
+  "entity": "Aether Dynamics Corp",
+  "last_updated": "2026-03-01",
+  "version": "1.0-synthetic",
+  "key_metrics": {
+    "peak_revenue_year": 2018,
+    "peak_revenue_usd_m": 118.9,
+    "largest_decline_year": 2020,
+    "yoy_decline_2019_2020_pct": -26.9,
+    "anomaly_year": 2024,
+    "recovery_start": 2022,
+    "projected_2026_revenue_usd_m": 124.7
+  },
+  "entities": {
+    "vendors": [
+      {
+        "id": "VND-1001",
+        "name": "NovaForge Materials LLC"
+      },
+      {
+        "id": "VND-1002",
+        "name": "Quantum Parts Supply"
+      },
+      {
+        "id": "VND-1003",
+        "name": "Horizon Logistics Inc"
+      },
+      {
+        "id": "VND-1004",
+        "name": "Pinnacle Software Systems"
+      },
+      {
+        "id": "VND-1005",
+        "name": "Apex Industrial Tools"
+      }
+    ],
+    "departments": [
+      "Manufacturing",
+      "R&D",
+      "Sales",
+      "Operations",
+      "IT",
+      "Finance",
+      "HR"
+    ],
+    "fiscal_calendar": "Calendar year; quarters Q1=Jan-Mar"
+  },
+  "planted_anomalies": [
+    {
+      "id": "ANOM-FIN-001",
+      "type": "duplicate_invoice",
+      "invoice": "INV-2023-1087",
+      "description": "Exact duplicate invoice number with same amount",
+      "source_files": [
+        "Expense_Transactions.csv",
+        "Invoice_Register.xlsx"
+      ]
+    },
+    {
+      "id": "ANOM-FIN-002",
+      "type": "duplicate_invoice",
+      "invoice": "INV-2024-1112",
+      "description": "Near-duplicate with 2% amount variance",
+      "source_files": [
+        "Expense_Transactions.csv"
+      ]
+    },
+    {
+      "id": "ANOM-FIN-003",
+      "type": "budget_overrun",
+      "period": "2024",
+      "description": "Manufacturing OpEx +11.4%; elevated consulting spend",
+      "source_files": [
+        "Budget_Variance_Report.docx",
+        "Expense_Transactions.csv"
+      ]
+    },
+    {
+      "id": "ANOM-FIN-004",
+      "type": "revenue_anomaly",
+      "period": "2024-Q3",
+      "description": "Abnormally low Q3 revenue share and inventory spike",
+      "source_files": [
+        "Quarterly_Financial_Statements.xlsx",
+        "Revenue_History_2010_2026.xlsx"
+      ]
+    }
+  ],
+  "related_documents": [
+    "Finance_Executive_Report_2010_2026.pdf",
+    "Revenue_History_2010_2026.xlsx",
+    "Expense_Transactions.csv",
+    "Quarterly_Financial_Statements.xlsx",
+    "Vendor_Invoices.pdf",
+    "Invoice_Register.xlsx",
+    "Duplicate_Invoice_Investigation.md",
+    "Budget_Variance_Report.docx",
+    "Finance_Approval_Policy.md",
+    "Finance_Operations_Notes.txt",
+    "Scanned_Invoice_Sample.jpg"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "workspace": "Custom_Operations",
+  "entity": "Apex Continuity Operations Center",
+  "workflows": [
+    {
+      "name": "WorkOrderLifecycle",
+      "states": [
+        "Requested",
+        "Scheduled",
+        "In Progress",
+        "Completed",
+        "Overdue",
+        "Cancelled"
+      ],
+      "priority_slas_hours": {
+        "Critical": 4,
+        "High": 24,
+        "Medium": 72,
+        "Low": 168
+      }
+    },
+    {
+      "name": "IncidentManagement",
+      "states": [
+        "Open",
+        "Investigating",
+        "Resolved",
+        "Closed"
+      ],
+      "severity_levels": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ]
+    }
+  ],
+  "equipment_ids": [
+    "EQ-OP-PMP-01",
+    "EQ-OP-CNV-02",
+    "EQ-OP-HVAC-03",
+    "EQ-OP-GEN-04",
+    "EQ-OP-CMP-05",
+    "EQ-OP-PLC-06"
+  ],
+  "teams": [
+    "Team Alpha",
+    "Team Beta",
+    "Team Gamma",
+    "Team Delta"
+  ]
+}

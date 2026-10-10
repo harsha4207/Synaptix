@@ -244,15 +244,16 @@ export const InsightPanel: React.FC<InsightPanelProps> = ({ insights, onDrillDow
                 </div>
               )}
 
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 4 }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 6, flexWrap: 'wrap', gap: 8 }}>
                 <span style={{ color: 'var(--c-text-3)', fontStyle: 'italic', fontSize: '11px' }}>{style.note}</span>
                 <Button
                   variant="secondary"
                   size="sm"
                   onClick={() => onDrillDown(insight)}
-                  icon={<FileSpreadsheet size={13} />}
+                  leftIcon={<FileSpreadsheet size={13} />}
+                  rightIcon={<ChevronRight size={13} />}
                 >
-                  Drill Down to Data <ChevronRight size={13} style={{ marginLeft: 2 }} />
+                  Drill Down to Data
                 </Button>
               </div>
             </div>

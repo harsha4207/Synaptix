@@ -1,0 +1,3080 @@
+{
+  "documents": [
+    {
+      "id": "doc-6ec526d4",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-CORP-001_Company_Overview.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\01_COMPANY_PROFILE\\DOC-CORP-001_Company_Overview.md",
+      "fileType": "MD",
+      "sizeBytes": 5131,
+      "contentHash": "a7bd8603041d3240539d001f7052cdb6f9b6aaef48c3196fefed534075b87291",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Company Overview — Asterion Enterprise Systems Pvt. Ltd.",
+          "1. Purpose\nThis document establishes the authoritative corporate identity, mission, vision, values, and high-level operating model of Asterion Enterprise Systems Pvt. Ltd. for use by employees, partners, and enterprise AI systems.",
+          "2. Company Identity\n- **Legal Name:** Asterion Enterprise Systems Pvt. Ltd.\n- **Organization ID:** ORG-ASTERION-001\n- **Industry:** Enterprise software, data analytics, and AI-enabled business services\n- **Headquarters:** Bengaluru, India\n- **Secondary Offices:** Mumbai, Delhi, Hyderabad\n- **Approximate Headcount:** 500 fictional employees\n- **Primary Currency:** Indian Rupee (INR)\n- **Financial Year:** 1 April – 31 March\n- **Primary Language:** English",
+          "3. Mission\nTo enable enterprises to make faster, more reliable decisions by delivering governed, AI-assisted software and analytics platforms that respect data privacy, regulatory obligations, and operational accountability.",
+          "4. Vision\nTo become the trusted partner for mid-to-large enterprises in India and selected international markets that require transparent, auditable, and human-supervised AI-enabled business systems.",
+          "5. Core Values\n1. **Integrity** — Accurate records, honest communication, and refusal to misrepresent data or capability.\n2. **Accountability** — Clear ownership of decisions, systems, and outcomes.\n3. **Customer Stewardship** — Protect customer data and deliver measurable value.\n4. **Continuous Learning** — Improve products, processes, and people through evidence.\n5. **Governed Innovation** — Adopt new technology only within defined risk and approval boundaries.",
+          "6. Strategic Objectives (FY2025–FY2027)\n1. Grow recurring software revenue while maintaining gross margin ≥ 62%.\n2. Achieve SOC 2 Type II readiness and maintain ISO 27001 alignment (internal control target; not a claim of current certification).\n3. Reduce average customer onboarding cycle time to ≤ 21 business days.\n4. Maintain voluntary attrition below 14% annually.\n5. Ensure every production AI feature has documented human-review checkpoints.",
+          "7. Products and Services\n| Product / Service | Description | Primary Customers |\n|-------------------|-------------|-------------------|\n| Asterion Command Suite | Enterprise workflow, knowledge, and governed-action platform | Mid-to-large enterprises |\n| Asterion Analytics Cloud | Data pipeline, dashboard, and KPI services | Finance, Operations, Sales teams |\n| Asterion AI Assist | RAG-enabled internal knowledge and policy assistant | Knowledge workers (internal & customer) |\n| Professional Services | Implementation, integration, and change management | All product customers |",
+          "8. Business Model\n- Subscription software (SaaS) with annual contracts.\n- Professional services billed on time-and-materials or fixed-price statements of work.\n- Support and maintenance included in subscription tiers (Standard, Professional, Enterprise).",
+          "9. Operating Model\nAsterion operates a hybrid model: product development is centralized in Bengaluru R&D; customer-facing delivery is distributed across the four offices; finance, HR, legal, and security functions are centralized with local coordinators.",
+          "10. Governance Committees (Synthetic)\n| Committee | Chair | Frequency | Scope |\n|-----------|-------|-----------|-------|\n| Executive Leadership Team (ELT) | CEO | Weekly | Strategy, major investments, risk escalation |\n| Audit & Risk Committee | Independent Director (synthetic) | Quarterly | Financial integrity, risk register |\n| Information Security Steering | CISO | Monthly | Security posture, incidents, access reviews |\n| Data Governance Board | Chief Data Officer | Monthly | Data quality, classification, retention |\n| AI Governance Council | CIO + CISO | Monthly | AI use cases, model risk, policy compliance |",
+          "11. Related Documents\n- DOC-CORP-002 Organizational Chart and Department Catalog\n- DOC-CORP-003 Mission-Vision-Values Detail\n- POL-HR-001 through POL-HR series (Human Resources)\n- POL-FIN series (Finance)\n- POL-SEC series (Information Security)\n- POL-AI-001 AI Governance Policy",
+          "12. Change History\n| Version | Date | Author Role | Change Summary |\n|---------|------|-------------|----------------|\n| 1.0 | 2020-04-01 | CEO Office | Initial profile |\n| 2.0 | 2022-04-01 | CEO Office | Added AI product line and Hyderabad office |\n| 3.0 | 2024-04-01 | CEO Office | Updated strategic objectives FY25–27; clarified synthetic nature |",
+          "13. Source and Verification Notes\nThis document is entirely synthetic and created for SYNAPTIX COMMAND RAG evaluation. It does not represent a real legal entity."
+        ],
+        "title": "DOC-CORP-001_Company_Overview.md",
+        "summary": "# Company Overview — Asterion Enterprise Systems Pvt. Ltd.\n\n**Document ID:** DOC-CORP-001  \n**Document Type:** Corporate Profile  \n**Owning Department:** Executive Management (DEPT-EXEC-001)  \n**Policy Owner:** Chief Executive Officer  \n**Approver Role:** Board of Directors (synthetic)  \n**Version:*"
+      },
+      "createdAt": "2026-10-09T23:51:02.438Z"
+    },
+    {
+      "id": "doc-dd94bf68",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-CORP-003_Mission_Vision_Values.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\01_COMPANY_PROFILE\\DOC-CORP-003_Mission_Vision_Values.md",
+      "fileType": "MD",
+      "sizeBytes": 1494,
+      "contentHash": "8337ca7fd073de57f82c6d6282059704f55fb8e12dd050fe61f15990d4dbda53",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Mission, Vision, Values — Detail",
+          "Mission (Canonical Statement)\nTo enable enterprises to make faster, more reliable decisions by delivering governed, AI-assisted software and analytics platforms that respect data privacy, regulatory obligations, and operational accountability.",
+          "Vision (Canonical Statement)\nTo become the trusted partner for mid-to-large enterprises in India and selected international markets that require transparent, auditable, and human-supervised AI-enabled business systems.",
+          "Values — Behavioral Expectations\n| Value | Expected Behavior | Prohibited Behavior |\n|-------|-------------------|---------------------|\n| Integrity | Report accurate metrics; escalate data quality issues | Fabricating results or concealing errors |\n| Accountability | Document decisions and owners | Diffusing ownership without escalation path |\n| Customer Stewardship | Protect customer data; meet SLA commitments | Sharing customer data without authorization |\n| Continuous Learning | Complete assigned training; share post-mortems | Ignoring mandatory compliance training |\n| Governed Innovation | Follow AI and change-management policies | Deploying unapproved models or tools into production |",
+          "Related\nDOC-CORP-001 Company Overview; POL-AI-001 AI Governance Policy"
+        ],
+        "title": "DOC-CORP-003_Mission_Vision_Values.md",
+        "summary": "# Mission, Vision, Values — Detail\n\n**Document ID:** DOC-CORP-003  \n**Version:** 2.1 | **Status:** Approved | **Effective:** 2024-04-01 | **Review:** 2026-03-31  \n**Owner:** CEO | **Classification:** Internal | **Org ID:** ORG-ASTERION-001\n\n## Mission (Canonical Statement)\nTo enable enterprises to m"
+      },
+      "createdAt": "2026-10-09T23:51:02.438Z"
+    },
+    {
+      "id": "doc-00257018",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-CORP-004_Terminology_Glossary.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\01_COMPANY_PROFILE\\DOC-CORP-004_Terminology_Glossary.md",
+      "fileType": "MD",
+      "sizeBytes": 1760,
+      "contentHash": "4305a793a9c0236873372d317fc907243acd54bbd7930a06cbd489efecfde5ba",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Internal Terminology and Abbreviations"
+        ],
+        "title": "DOC-CORP-004_Terminology_Glossary.md",
+        "summary": "# Internal Terminology and Abbreviations\n\n**Document ID:** DOC-CORP-004  \n**Version:** 1.4 | **Status:** Approved | **Effective:** 2025-01-01 | **Owner:** Data Governance Board  \n**Classification:** Internal | **Org ID:** ORG-ASTERION-001\n\n| Term / Abbreviation | Canonical Definition | Domain | Note"
+      },
+      "createdAt": "2026-10-09T23:51:02.438Z"
+    },
+    {
+      "id": "doc-7140fa75",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-CORP-002_Organizational_Structure.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\02_ORGANIZATION_AND_ROLES\\DOC-CORP-002_Organizational_Structure.md",
+      "fileType": "MD",
+      "sizeBytes": 4895,
+      "contentHash": "ac18bf635d22dc662bde331d2a0ffcb0a47331b0fc7c362a651cf7147e111a46",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Organizational Structure and Department Catalog",
+          "1. Purpose\nDefine the official organizational hierarchy, department responsibilities, and reporting relationships for Asterion Enterprise Systems Pvt. Ltd.",
+          "2. Reporting Hierarchy (Summary)\n```\nBoard of Directors (synthetic)\n└── Chief Executive Officer (CEO)\n    ├── Chief Financial Officer (CFO) → Finance\n    ├── Chief Human Resources Officer (CHRO) → Human Resources\n    ├── Chief Operating Officer (COO) → Operations, Customer Support\n    ├── Chief Information Officer (CIO) → Information Technology, Data Governance (dotted)\n    ├── Chief Information Security Officer (CISO) → Information Security\n    ├── Chief Technology Officer (CTO) → Research and Development\n    ├── Chief Compliance Officer → Legal and Compliance\n    ├── VP Sales → Sales\n    ├── VP Marketing → Marketing\n    └── Head of Procurement → Procurement\n```",
+          "3. Department Catalog",
+          "3.1 Executive Management (DEPT-EXEC-001)\n- **Owner Role:** CEO\n- **Responsibilities:** Strategy, capital allocation, external representation, ELT leadership\n- **Headcount (synthetic):** 8",
+          "3.2 Finance (DEPT-FIN-001)\n- **Owner Role:** CFO\n- **Responsibilities:** Budgeting, financial reporting, AP/AR, treasury, internal financial controls, month-end/year-end close\n- **Headcount:** ~35\n- **Key Policies:** POL-FIN-001 Budget Policy, POL-FIN-002 Expense Reimbursement, POL-FIN-003 Approval Matrix",
+          "3.3 Human Resources (DEPT-HR-001)\n- **Owner Role:** CHRO\n- **Responsibilities:** Recruitment, onboarding, leave administration, performance management, compensation, employee relations, separation\n- **Headcount:** ~22\n- **Key Policies:** POL-HR-001 Leave Policy, POL-HR-002 Working Hours, POL-HR-003 Travel & Expense, POL-HR-004 Code of Conduct, POL-HR-005 Disciplinary Procedure",
+          "3.4 Legal and Compliance (DEPT-LEG-001)\n- **Owner Role:** Chief Compliance Officer\n- **Responsibilities:** Contract review, regulatory register, privacy, internal investigations, policy governance\n- **Headcount:** ~12",
+          "3.5 Information Technology (DEPT-IT-001)\n- **Owner Role:** CIO\n- **Responsibilities:** Infrastructure, applications, identity services, change management, IT service desk\n- **Headcount:** ~45",
+          "3.6 Information Security (DEPT-SEC-001)\n- **Owner Role:** CISO\n- **Responsibilities:** Access control, security monitoring, incident response, vulnerability management, security awareness\n- **Headcount:** ~18",
+          "3.7 Research and Development (DEPT-RND-001)\n- **Owner Role:** CTO\n- **Responsibilities:** Product engineering, architecture, quality assurance, release management\n- **Headcount:** ~160",
+          "3.8 Sales (DEPT-SAL-001)\n- **Owner Role:** VP Sales\n- **Responsibilities:** New business, account management, pipeline, contracts (commercial terms)\n- **Headcount:** ~55",
+          "3.9 Marketing (DEPT-MKT-001)\n- **Owner Role:** VP Marketing\n- **Responsibilities:** Brand, demand generation, content, events\n- **Headcount:** ~20",
+          "3.10 Customer Support (DEPT-CS-001)\n- **Owner Role:** VP Customer Success\n- **Responsibilities:** Support tickets, SLA management, customer health, escalations\n- **Headcount:** ~40",
+          "3.11 Procurement (DEPT-PRC-001)\n- **Owner Role:** Head of Procurement\n- **Responsibilities:** Vendor onboarding, purchase orders, vendor performance, contract commercial terms (with Legal)\n- **Headcount:** ~15",
+          "3.12 Operations (DEPT-OPS-001)\n- **Owner Role:** COO\n- **Responsibilities:** Delivery operations, resource allocation, process excellence, business continuity coordination\n- **Headcount:** ~30",
+          "3.13 Data Governance (DEPT-DG-001)\n- **Owner Role:** Chief Data Officer\n- **Responsibilities:** Data catalog, classification, quality rules, retention schedules, glossary stewardship\n- **Headcount:** ~10",
+          "4. Decision-Making Principles\n1. Decisions are made at the lowest competent level consistent with the applicable approval matrix.\n2. Material risk, legal, or security decisions escalate to the named owner or ELT.\n3. Cross-functional decisions require documented concurrence from all affected department owners.\n4. AI systems may recommend; humans approve and remain accountable.",
+          "5. Related Documents\n- DOC-CORP-001 Company Overview\n- ROLE-CATALOG.csv (structured role list)\n- POL-FIN-003 Approval Matrix\n- POL-SEC-001 Access Control Policy",
+          "6. Change History\n| Version | Effective | Summary |\n|---------|-----------|---------|\n| 4.0 | 2025-04-01 | Added Data Governance as formal department; updated headcount estimates |"
+        ],
+        "title": "DOC-CORP-002_Organizational_Structure.md",
+        "summary": "# Organizational Structure and Department Catalog\n\n**Document ID:** DOC-CORP-002  \n**Document Type:** Organizational Catalog  \n**Owning Department:** Executive Management  \n**Owner:** CEO | **Approver:** ELT  \n**Version:** 4.0 | **Status:** Approved | **Effective:** 2025-04-01 | **Review:** 2026-03-"
+      },
+      "createdAt": "2026-10-09T23:51:02.438Z"
+    },
+    {
+      "id": "doc-ad4d9ac4",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-ROLE-001_Role_Descriptions.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\02_ORGANIZATION_AND_ROLES\\DOC-ROLE-001_Role_Descriptions.md",
+      "fileType": "MD",
+      "sizeBytes": 1402,
+      "contentHash": "cba39898509ec2fe47ea11a88fef708338c51f8038744c1b02ff3039f33ade20",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Role Descriptions — Selected Positions",
+          "Chief Financial Officer (ROLE-CFO-001)\n- **Reports to:** CEO\n- **Primary Accountabilities:** Financial planning, reporting integrity, cash management, internal financial controls, investor/board financial packs (synthetic)\n- **Approval Authority:** Up to INR 5,000,000 per transaction (see POL-FIN-003)\n- **Key Relationships:** Finance Director, Controllers, External Auditor (synthetic)",
+          "Finance Manager (ROLE-MGR-FIN-001)\n- **Reports to:** Finance Director\n- **Primary Accountabilities:** Month-end close coordination, expense claim review, budget variance reporting, AP supervision\n- **Approval Authority:** Up to INR 100,000 for expense and AP items within approved budget\n- **Leave Approval:** Yes — for direct reports",
+          "Individual Contributor (ROLE-EMP-001)\n- **Reports to:** Designated Manager\n- **Primary Accountabilities:** Delivery of assigned work within role description; compliance with all policies\n- **Approval Authority:** None for financial or leave of others\n- **Access Baseline:** Internal classification systems required for role; Confidential/Restricted only with documented business need and manager + data-owner approval",
+          "Related\nROLE_CATALOG.csv; POL-FIN-003; POL-HR-001"
+        ],
+        "title": "DOC-ROLE-001_Role_Descriptions.md",
+        "summary": "# Role Descriptions — Selected Positions\n\n**Document ID:** DOC-ROLE-001  \n**Version:** 2.0 | **Status:** Approved | **Effective:** 2025-01-01  \n**Owner:** CHRO | **Classification:** Internal\n\n## Chief Financial Officer (ROLE-CFO-001)\n- **Reports to:** CEO\n- **Primary Accountabilities:** Financial pl"
+      },
+      "createdAt": "2026-10-09T23:51:02.438Z"
+    },
+    {
+      "id": "doc-8d4748b1",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ORG_HIERARCHY.json",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\02_ORGANIZATION_AND_ROLES\\ORG_HIERARCHY.json",
+      "fileType": "JSON",
+      "sizeBytes": 1221,
+      "contentHash": "28b9ccfa5f0b8beb69a9ad7e4f99f6a36f2e52b057bf85ffff2bb7ee2166c87c",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "ORG_HIERARCHY.json",
+        "summary": "{\n  \"organization_id\": \"ORG-ASTERION-001\",\n  \"effective_date\": \"2025-04-01\",\n  \"root\": {\n    \"role_id\": \"ROLE-CEO-001\",\n    \"title\": \"Chief Executive Officer\",\n    \"direct_reports\": [\n      {\n        \"role_id\": \"ROLE-CFO-001\",\n        \"title\": \"CFO\",\n        \"dept\": \"DEPT-FIN-001\"\n      },\n      {\n "
+      },
+      "createdAt": "2026-10-09T23:51:02.439Z"
+    },
+    {
+      "id": "doc-9a8ca6f2",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ROLE_CATALOG.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\02_ORGANIZATION_AND_ROLES\\ROLE_CATALOG.csv",
+      "fileType": "CSV",
+      "sizeBytes": 2368,
+      "contentHash": "86f5c2e50c6a05228ae767266e3b9463c30ee70799d5eac87c943cbd1b6fe13b",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 22,
+        "columnNames": [
+          "role_id",
+          "role_title",
+          "department_id",
+          "department_name",
+          "reports_to_role",
+          "level",
+          "approval_authority_inr",
+          "can_approve_leave",
+          "can_approve_expense",
+          "synthetic"
+        ],
+        "title": "ROLE_CATALOG.csv",
+        "summary": "Columns: role_id, role_title, department_id, department_name, reports_to_role, level, approval_authority_inr, can_approve_leave, can_approve_expense, synthetic\n\nrole_id: ROLE-CEO-001 | role_title: Chief Executive Officer | department_id: DEPT-EXEC-001 | department_name: Executive Management | report"
+      },
+      "createdAt": "2026-10-09T23:51:02.441Z"
+    },
+    {
+      "id": "doc-8ad74d36",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-HR-001_Leave_Policy.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\03_HR_POLICIES\\POL-HR-001_Leave_Policy.md",
+      "fileType": "MD",
+      "sizeBytes": 6558,
+      "contentHash": "fe62ddd1382b15c6dd0556b08d19de0987802bf47076e37d3e722f99a11c8119",
+      "status": "READY",
+      "chunkCount": 4,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Leave Policy",
+          "1. Purpose\nDefine eligibility, accrual, usage, carry-forward, encashment, and approval rules for all leave types so that managers, employees, and automated systems apply consistent rules.",
+          "2. Scope\nApplies to all locations (Bengaluru, Mumbai, Delhi, Hyderabad) and all employment classifications listed in Section 4. Does not apply to third-party vendor personnel unless a separate written agreement incorporates these rules.",
+          "3. Definitions\n| Term | Definition |\n|------|------------|\n| Annual Leave (AL) | Paid time off accrued for rest and personal needs |\n| Casual Leave (CL) | Short-notice leave for personal exigencies |\n| Sick Leave (SL) | Leave for personal illness or medical appointments |\n| Maternity Leave | Leave related to childbirth as defined in Section 7 |\n| Paternity Leave | Leave for the non-birth parent as defined in Section 7 |\n| Compensatory Off | Time off in lieu of approved extra hours |\n| Leave Year | 1 April – 31 March (aligned with Financial Year) |",
+          "4. Eligibility and Employment Classifications\n| Classification | AL Accrual | CL | SL | Notes |\n|----------------|------------|----|----|-------|\n| Full-time permanent | Yes | Yes | Yes | Standard entitlements below |\n| Part-time permanent | Pro-rata AL | Yes (pro-rata) | Yes (pro-rata) | Based on contracted FTE |\n| Probationary | Accrues but usable only after confirmation except SL | Limited CL | Yes | See POL-HR-002 Probation |\n| Intern | No AL | 3 days CL total | 3 days SL total | Fixed for internship duration |\n| Contractor | Per contract only | Per contract | Per contract | Not governed by this policy unless incorporated |",
+          "5. Annual Leave (AL)\n### 5.1 Entitlement\n- Full-time permanent employees: **18 working days** per Leave Year.\n- Accrual: 1.5 days per completed calendar month of service.\n- New joiners: Pro-rata from joining date; first accrual credited at end of joining month if joined on or before the 15th, otherwise from next month.",
+          "5.2 Carry-Forward\n- Maximum carry-forward into next Leave Year: **8 days**.\n- Excess above 8 days lapses on 31 March unless an exception is approved in writing by CHRO before 15 March.",
+          "5.3 Encashment\n- Encashment is permitted only on separation (resignation, retirement, or termination) for unutilized AL up to the carry-forward cap + current-year pro-rata balance.\n- Encashment rate: Basic salary / 30 × number of days.\n- No mid-year encashment while in service.",
+          "5.4 Approval Authority for AL\n| Duration | Approver | Alternate if Approver Unavailable |\n|----------|----------|-----------------------------------|\n| 1–3 consecutive working days | Direct Manager | Skip-level Manager |\n| 4–10 consecutive working days | Direct Manager + HR Manager acknowledgment | Department Head |\n| >10 consecutive working days | Department Head + HR Manager | CHRO |",
+          "6. Casual Leave (CL)\n- Entitlement: **12 days** per Leave Year for full-time permanent employees.\n- Maximum continuous CL: 3 working days.\n- Does not carry forward; unused CL lapses on 31 March.\n- Approval: Direct Manager (or Skip-level if Manager unavailable). Same-day CL requires telephonic/email notification before shift start plus system entry within 24 hours.",
+          "7. Sick Leave (SL)\n- Entitlement: **12 days** per Leave Year.\n- Medical certificate required for SL of 3 or more consecutive working days.\n- Does not carry forward.\n- Approval: Direct Manager; HR must be informed for absences >3 days.",
+          "8. Maternity and Paternity Leave\n- Maternity Leave: 26 weeks for the birth parent (as per applicable Indian law framework for the synthetic policy design). Application to HR at least 8 weeks before expected delivery where foreseeable.\n- Paternity Leave: 5 working days within 3 months of childbirth. Approval: Direct Manager + HR notification.",
+          "9. Compensatory Off\n- Granted only for pre-approved extra hours on weekends or public holidays, documented by Manager.\n- Must be utilized within 60 days of the extra work date; otherwise lapses.\n- Approval: Same as AL for the corresponding duration.",
+          "10. Public Holidays\n- Published annually by HR before 15 March for the next Leave Year.\n- Locations may have limited local holiday variations approved by CHRO.",
+          "11. Leave During Notice Period\n- AL may be availed during notice only with written approval of Department Head and HR Manager.\n- Company may require the employee to remain available; unapproved absence during notice may be treated as leave without pay or misconduct under POL-HR-005.",
+          "12. Exceptions\n- CHRO may grant exceptional leave (paid or unpaid) for documented extraordinary circumstances. All exceptions must be recorded with reason and duration.",
+          "13. Compliance Monitoring\n- HR runs monthly leave-balance reconciliation.\n- Managers are responsible for timely approval or rejection (SLA: 3 business days for planned leave).",
+          "14. Consequences of Non-Compliance\n- Unauthorized absence may be marked Leave Without Pay and, if repeated, may initiate disciplinary process under POL-HR-005.",
+          "15. Related Documents\n- POL-HR-002 Working Hours and Attendance\n- POL-HR-005 Disciplinary Procedure\n- SOP-HR-001 Leave Application and Approval\n- DOC-CORP-002 Organizational Structure",
+          "16. Change History\n| Version | Effective | Summary |\n|---------|-----------|---------|\n| 5.0 | 2023-04-01 | Increased AL from 15 to 18 days |\n| 5.1 | 2024-04-01 | Clarified carry-forward and encashment |\n| 5.2 | 2025-04-01 | Added explicit alternate approvers; clarified intern entitlements |",
+          "17. Source Notes\nSynthetic internal policy for RAG testing. Not legal advice."
+        ],
+        "title": "POL-HR-001_Leave_Policy.md",
+        "summary": "# Leave Policy\n\n**Document ID:** POL-HR-001  \n**Document Type:** Policy  \n**Owning Department:** Human Resources (DEPT-HR-001)  \n**Policy Owner:** Chief Human Resources Officer (ROLE-CHRO-001)  \n**Approver Role:** CEO  \n**Version:** 5.2  \n**Status:** Approved  \n**Effective Date:** 2025-04-01  \n**Rev"
+      },
+      "createdAt": "2026-10-09T23:51:02.442Z"
+    },
+    {
+      "id": "doc-f65fba06",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-HR-002_Working_Hours_Attendance.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\03_HR_POLICIES\\POL-HR-002_Working_Hours_Attendance.md",
+      "fileType": "MD",
+      "sizeBytes": 1740,
+      "contentHash": "26359ceabf8a3a0404d3311c469a44a2f041e8c5c784456b8f84956f49c3dc93",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Working Hours and Attendance Policy",
+          "1. Purpose\nDefine standard working hours, core hours, attendance recording, and hybrid/remote arrangements.",
+          "2. Standard Working Hours\n- Full-time employees: 40 hours per week, Monday–Friday.\n- Core hours (all locations): 11:00–16:00 India Standard Time — employees must be available for meetings and collaboration unless on approved leave.\n- Flexible start: between 08:00 and 10:30; corresponding end time to complete 8 hours excluding lunch break (minimum 30 minutes).",
+          "3. Attendance Recording\n- All employees must record attendance via the approved HR system or biometric device where installed.\n- Failure to record for 3 consecutive days without Manager acknowledgment escalates to HR.",
+          "4. Hybrid and Remote Work\n- Eligible roles (determined by Department Head + HR): up to 2 remote days per week by default after successful completion of probation.\n- Fully remote arrangements require written approval of Department Head, CHRO, and (for roles with customer data access) CISO.\n- Remote employees remain subject to the same leave, conduct, and security policies.",
+          "5. Overtime\n- Individual Contributors in non-exempt categories (as classified by HR): pre-approved overtime compensated as Compensatory Off (see POL-HR-001) or as per applicable wage rules.\n- Managers and above: no overtime pay; exceptional extra effort recognized via performance process.",
+          "6. Related\nPOL-HR-001 Leave; POL-SEC-001 Access Control; SOP-HR-002 Attendance Exception Handling"
+        ],
+        "title": "POL-HR-002_Working_Hours_Attendance.md",
+        "summary": "# Working Hours and Attendance Policy\n\n**Document ID:** POL-HR-002  \n**Version:** 3.1 | **Status:** Approved | **Effective:** 2025-04-01 | **Review:** 2026-03-31  \n**Owner:** CHRO | **Approver:** CEO | **Classification:** Internal | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nDefine standard working ho"
+      },
+      "createdAt": "2026-10-09T23:51:02.442Z"
+    },
+    {
+      "id": "doc-8a2589ea",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-HR-003_Travel_Expense.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\03_HR_POLICIES\\POL-HR-003_Travel_Expense.md",
+      "fileType": "MD",
+      "sizeBytes": 2313,
+      "contentHash": "2eb558ac494bcc529cc026b2363f38bbbb7f67c4b7691a25b064bb20c06bf67a",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Employee Travel and Expense Reimbursement Policy",
+          "1. Purpose\nDefine when employees may travel, what costs are reimbursable, documentation requirements, and approval thresholds. Financial approval limits are authoritative in POL-FIN-003; this policy defines eligibility and process.",
+          "2. Pre-Travel Approval\n| Trip Type | Approver | Advance Booking Rule |\n|-----------|----------|----------------------|\n| Domestic, < INR 25,000 estimated | Direct Manager | Prefer 7+ days advance |\n| Domestic, ≥ INR 25,000 | Department Head | 10+ days advance preferred |\n| International | Department Head + CFO (or delegate) | Written business case required |",
+          "3. Reimbursable Categories and Limits (INR)\n| Category | Limit / Rule | Receipt Required |\n|----------|--------------|------------------|\n| Airfare (domestic) | Economy; lowest logical fare | Yes |\n| Hotel (metro) | Max INR 6,000 / night | Yes |\n| Hotel (non-metro) | Max INR 4,000 / night | Yes |\n| Local conveyance | Actuals; prefer company-approved vendors | Yes if > INR 500 |\n| Meals (per day, own) | INR 1,200 | Yes if > INR 500 total |\n| Client entertainment | Pre-approved; max INR 3,000 / person | Yes + attendee list |\n| Internet / incidentals | Actuals up to INR 500 / day | Yes |",
+          "4. Submission and Payment\n- Claims must be submitted within **15 calendar days** of return or expense date.\n- Required: original/ digital receipts, approved travel request ID, cost center.\n- Payment SLA: 10 business days after complete submission and approval.\n- Approval of the claim amount follows POL-FIN-003 thresholds (Manager / Director / CFO bands).",
+          "5. Non-Reimbursable\nPersonal side-trips, mini-bar, spa, traffic fines, premium cabin upgrades without prior written approval, expenses lacking receipts above INR 500.",
+          "6. Related\nPOL-FIN-003 Approval Matrix; SOP-FIN-001 Expense Claim Processing; POL-HR-001 Leave (travel combined with leave requires dual approval)"
+        ],
+        "title": "POL-HR-003_Travel_Expense.md",
+        "summary": "# Employee Travel and Expense Reimbursement Policy\n\n**Document ID:** POL-HR-003  \n**Version:** 4.0 | **Status:** Approved | **Effective:** 2025-04-01 | **Review:** 2026-03-31  \n**Owner:** CHRO (policy) / CFO (financial limits) | **Classification:** Internal | **Org:** ORG-ASTERION-001\n\n## 1. Purpose"
+      },
+      "createdAt": "2026-10-09T23:51:02.442Z"
+    },
+    {
+      "id": "doc-25e17ecb",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-HR-004_Code_of_Conduct.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\03_HR_POLICIES\\POL-HR-004_Code_of_Conduct.md",
+      "fileType": "MD",
+      "sizeBytes": 1436,
+      "contentHash": "6658121775555f9bf466e447c9817130d6040f3237ac1e295dea184f7c8c6b6f",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Code of Conduct",
+          "1. Purpose\nSet behavioral expectations for all persons engaged by Asterion (employees, interns, contractors while on assignment).",
+          "2. Core Rules\n1. Comply with all applicable laws and company policies.\n2. Protect Confidential and Restricted information; share only under authorized need-to-know.\n3. Treat colleagues, customers, and partners with respect; harassment and discrimination are prohibited (see separate Workplace Harassment Prevention procedure referenced in POL-HR-005).\n4. Avoid conflicts of interest; disclose potential conflicts to Manager and HR within 5 business days of awareness.\n5. Do not accept gifts above INR 2,000 value from vendors or customers without written CFO/Compliance approval.\n6. Use company systems and AI tools only in accordance with POL-SEC and POL-AI policies.\n7. Report suspected misconduct in good faith through Manager, HR, Compliance, or the designated reporting channel.",
+          "3. Consequences\nViolations may result in coaching, written warning, suspension, or termination under POL-HR-005, and where applicable referral to external authorities.",
+          "4. Related\nPOL-HR-005 Disciplinary Procedure; POL-SEC-001; POL-AI-001; POL-LEG-001 Confidentiality"
+        ],
+        "title": "POL-HR-004_Code_of_Conduct.md",
+        "summary": "# Code of Conduct\n\n**Document ID:** POL-HR-004  \n**Version:** 3.0 | **Status:** Approved | **Effective:** 2024-10-01 | **Review:** 2026-09-30  \n**Owner:** CHRO | **Approver:** CEO | **Classification:** Internal | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nSet behavioral expectations for all persons en"
+      },
+      "createdAt": "2026-10-09T23:51:02.442Z"
+    },
+    {
+      "id": "doc-29ed0fc2",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-HR-005_Disciplinary_Procedure.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\03_HR_POLICIES\\POL-HR-005_Disciplinary_Procedure.md",
+      "fileType": "MD",
+      "sizeBytes": 1340,
+      "contentHash": "64f549455ab76635ade4fc7a190f0cca481ad6899fef6a88845b6958996ec958",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Disciplinary Procedure",
+          "1. Purpose\nProvide a fair, documented process for addressing misconduct and performance failures.",
+          "2. Principles\n- Progressive discipline where appropriate (coaching → written warning → final warning → termination).\n- Serious misconduct (theft, violence, willful data breach, harassment) may proceed directly to investigation and potential summary action.\n- Employee has right to be informed of allegations and to respond before a final decision.",
+          "3. Process Steps\n1. Manager identifies issue and consults HR Manager within 2 business days.\n2. HR determines whether informal resolution or formal investigation is required.\n3. If formal: written notice to employee; investigation by HR or designated investigator (max 15 business days unless extended with CHRO approval).\n4. Findings report; employee response opportunity (5 business days).\n5. Decision by Manager + HR Manager (or CHRO for severe cases); recorded in employee file.\n6. Appeal: one level up within 7 business days of decision communication.",
+          "4. Related\nPOL-HR-004 Code of Conduct; SOP-HR-003 Grievance Handling"
+        ],
+        "title": "POL-HR-005_Disciplinary_Procedure.md",
+        "summary": "# Disciplinary Procedure\n\n**Document ID:** POL-HR-005  \n**Version:** 2.2 | **Status:** Approved | **Effective:** 2025-01-01 | **Review:** 2026-12-31  \n**Owner:** CHRO | **Approver:** CEO | **Classification:** Internal | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nProvide a fair, documented process for "
+      },
+      "createdAt": "2026-10-09T23:51:02.442Z"
+    },
+    {
+      "id": "doc-90e3be0c",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "APPROVAL_MATRIX.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\04_FINANCE_AND_ACCOUNTING\\APPROVAL_MATRIX.csv",
+      "fileType": "CSV",
+      "sizeBytes": 1453,
+      "contentHash": "8444376890cc67765e53cd390638cb02051954a39b121e11c3f4913e6af7f16e",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 11,
+        "columnNames": [
+          "matrix_id",
+          "transaction_type",
+          "min_amount_inr",
+          "max_amount_inr",
+          "approver_role_budgeted",
+          "approver_role_unbudgeted",
+          "secondary_requirement",
+          "policy_id",
+          "effective_from",
+          "synthetic"
+        ],
+        "title": "APPROVAL_MATRIX.csv",
+        "summary": "Columns: matrix_id, transaction_type, min_amount_inr, max_amount_inr, approver_role_budgeted, approver_role_unbudgeted, secondary_requirement, policy_id, effective_from, synthetic\n\nmatrix_id: AM-EXP-01 | transaction_type: Expense Claim | min_amount_inr: 0 | max_amount_inr: 10000 | approver_role_budg"
+      },
+      "createdAt": "2026-10-09T23:51:02.444Z"
+    },
+    {
+      "id": "doc-5ba5bf8b",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-FIN-001_Budget_Policy.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\04_FINANCE_AND_ACCOUNTING\\POL-FIN-001_Budget_Policy.md",
+      "fileType": "MD",
+      "sizeBytes": 1339,
+      "contentHash": "8bc0155110c2305ae5a717a57e0314c36d19b1e82d610674e9c8ecdc3ac14221",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Budget Planning and Control Policy",
+          "1. Purpose\nDefine the annual budgeting cycle, ownership, revision rules, and variance monitoring.",
+          "2. Budget Cycle\n| Milestone | Target Date (each FY) | Owner |\n|-----------|----------------------|-------|\n| Budget guidelines issued | 15 December | CFO |\n| Department submissions due | 31 January | Department Heads |\n| ELT review | February | ELT |\n| Board approval (synthetic) | March | CEO / Board |\n| Final budgets loaded | 25 March | Finance |\n| FY start | 1 April | — |",
+          "3. Ownership\nEach Department Head owns their department budget. Finance provides templates, consolidation, and challenge.",
+          "4. Revisions\nMid-year revisions require CFO approval if the net change exceeds 5% of the department budget. Revisions are versioned and effective from the first day of the following month.",
+          "5. Variance Reporting\n- Monthly variance pack by Finance Manager to Department Heads (by 10th business day).\n- Material variances (>8% or > INR 200,000) require written explanation and action plan within 5 business days.",
+          "6. Related\nPOL-FIN-003 Approval Matrix; SOP-FIN-002 Month-End Close"
+        ],
+        "title": "POL-FIN-001_Budget_Policy.md",
+        "summary": "# Budget Planning and Control Policy\n\n**Document ID:** POL-FIN-001  \n**Version:** 3.0 | **Status:** Approved | **Effective:** 2025-04-01 | **Review:** 2026-03-31  \n**Owner:** CFO | **Classification:** Internal | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nDefine the annual budgeting cycle, ownership, r"
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-6ca05fbc",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-FIN-002_Accounts_Payable.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\04_FINANCE_AND_ACCOUNTING\\POL-FIN-002_Accounts_Payable.md",
+      "fileType": "MD",
+      "sizeBytes": 1122,
+      "contentHash": "e546ee79344613d081c641a8a82158e860fad2d2abbd661f9f742bb1299961bf",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Accounts Payable and Invoice Processing Policy",
+          "1. Purpose\nEnsure timely, accurate, and controlled payment of vendor obligations.",
+          "2. Invoice Requirements\nEvery invoice must contain: vendor legal name, vendor ID (from master), invoice number, date, PO number (if ≥ INR 5,000), description, amount, tax, bank details matching vendor master.",
+          "3. Three-Way Match\nFor PO-based invoices ≥ INR 25,000: system match of PO, goods/service receipt, and invoice. Exceptions require Finance Manager approval.",
+          "4. Payment Terms\nStandard: Net 30 from invoice receipt date unless contract specifies otherwise. Early-payment discounts may be taken if beneficial.",
+          "5. Duplicate Detection\nFinance system flags exact invoice number + vendor ID duplicates. Near-duplicates (±2% amount, same vendor, within 14 days) require manual review before payment.",
+          "6. Related\nPOL-FIN-003; SOP-PRC-001; Vendor Master procedures"
+        ],
+        "title": "POL-FIN-002_Accounts_Payable.md",
+        "summary": "# Accounts Payable and Invoice Processing Policy\n\n**Document ID:** POL-FIN-002  \n**Version:** 2.5 | **Status:** Approved | **Effective:** 2025-01-01 | **Review:** 2026-12-31  \n**Owner:** CFO | **Classification:** Internal | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nEnsure timely, accurate, and contro"
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-e15b601b",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-FIN-003_Approval_Matrix.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\04_FINANCE_AND_ACCOUNTING\\POL-FIN-003_Approval_Matrix.md",
+      "fileType": "MD",
+      "sizeBytes": 4190,
+      "contentHash": "68de085c5ce7d10662ee43298881cf995cf0626ef973cf80b727f8a7b13f3d92",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Financial Approval Matrix",
+          "1. Purpose\nEstablish binding monetary approval thresholds for expenses, purchase orders, vendor payments, and budget adjustments so that every financial commitment has a named, authorized approver.",
+          "2. Scope\nApplies to all departments and all locations. Emergency exceptions are defined in Section 7.",
+          "3. Definitions\n| Term | Definition |\n|------|------------|\n| Transaction Value | Total INR amount of the commitment including taxes where known |\n| Cost Center Owner | Manager or above assigned to the cost center in the finance system |\n| Budgeted | Amount is within the approved annual/departmental budget line |\n| Unbudgeted | Amount exceeds or is outside the approved budget line |",
+          "4. Approval Thresholds — Expense Claims and Reimbursements\n| Transaction Value (INR) | Approver (Budgeted) | Approver (Unbudgeted) | Secondary / Notes |\n|-------------------------|---------------------|-----------------------|-------------------|\n| ≤ 10,000 | Direct Manager | Direct Manager + Finance Manager | Auto-route if system-validated receipts |\n| 10,001 – 50,000 | Direct Manager | Department Head + Finance Manager | |\n| 50,001 – 100,000 | Department Head | Department Head + Finance Director | |\n| 100,001 – 500,000 | Finance Director | CFO | |\n| 500,001 – 2,000,000 | CFO | CFO + CEO | |\n| > 2,000,000 | CEO | CEO + Board notification | Board pack within 30 days |",
+          "5. Approval Thresholds — Purchase Orders and Vendor Commitments\n| Transaction Value (INR) | Approver | Additional Requirement |\n|-------------------------|----------|------------------------|\n| ≤ 25,000 | Cost Center Owner (Manager+) | Valid vendor in master; PO created |\n| 25,001 – 100,000 | Department Head | Competitive quote if > INR 50,000 (min 2 quotes) |\n| 100,001 – 500,000 | Finance Director or Head of Procurement | Min 3 quotes or approved single-source justification |\n| 500,001 – 2,000,000 | CFO | Legal review of contract terms if MSA not in place |\n| > 2,000,000 | CEO | Legal + Procurement + Finance concurrence |",
+          "6. Segregation of Duties\n- Requestor cannot be the sole approver of their own expense or PO.\n- AP processor cannot approve the same invoice they entered.\n- Vendor master creation requires dual control (Procurement + Finance).",
+          "7. Emergency Exceptions\nWhen delay would cause material business harm (production outage, safety, contractual penalty):\n1. Verbal/email approval from the next available approver at or above the required tier.\n2. Formal system entry and documentation within **2 business days**.\n3. All emergency approvals reported to Finance Director weekly.",
+          "8. Budget Variance Authority\n- Cost Center Owner may reallocate within their cost center up to 5% of the annual budget line without escalation.\n- Variances > 5% or any capital expenditure require Finance Manager review.\n- Forecast variances > 10% of department annual budget escalate to CFO.",
+          "9. Related Documents\n- POL-FIN-001 Budget Planning Policy\n- POL-FIN-002 Accounts Payable and Invoice Processing\n- POL-HR-003 Travel and Expense Reimbursement\n- SOP-FIN-001 Expense Claim Processing\n- SOP-PRC-001 Purchase Requisition and PO",
+          "10. Consequences of Non-Compliance\nCommitments made outside this matrix may be treated as unauthorized and may result in personal liability recovery and disciplinary action under POL-HR-005.",
+          "11. Change History\n| Version | Effective | Summary |\n|---------|-----------|---------|\n| 5.0 | 2024-04-01 | Prior thresholds |\n| 6.0 | 2025-04-01 | Raised Manager band to 10,000; clarified unbudgeted path; added emergency 2-day rule |",
+          "12. Source Notes\nSynthetic internal policy. Thresholds are fictional and for RAG testing only."
+        ],
+        "title": "POL-FIN-003_Approval_Matrix.md",
+        "summary": "# Financial Approval Matrix\n\n**Document ID:** POL-FIN-003  \n**Document Type:** Policy  \n**Owning Department:** Finance (DEPT-FIN-001)  \n**Policy Owner:** Chief Financial Officer (ROLE-CFO-001)  \n**Approver Role:** CEO  \n**Version:** 6.0  \n**Status:** Approved  \n**Effective Date:** 2025-04-01  \n**Rev"
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-725250f6",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-LEG-001_Compliance_Control_Register.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\05_LEGAL_AND_COMPLIANCE\\DOC-LEG-001_Compliance_Control_Register.md",
+      "fileType": "MD",
+      "sizeBytes": 1577,
+      "contentHash": "d7254fd2add0154ced502df38d9d7dab628550e75071ea5621b102de55cf53e6",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Compliance Control Register (Synthetic Internal)"
+        ],
+        "title": "DOC-LEG-001_Compliance_Control_Register.md",
+        "summary": "# Compliance Control Register (Synthetic Internal)\n\n**Document ID:** DOC-LEG-001  \n**Version:** 1.0 | **Status:** Approved | **Effective:** 2025-04-01  \n**Owner:** Chief Compliance Officer | **Org:** ORG-ASTERION-001  \n**Notice:** This register lists **internal controls** designed for demonstration."
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-840e0d01",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-LEG-001_Policy_Governance_Precedence.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\05_LEGAL_AND_COMPLIANCE\\POL-LEG-001_Policy_Governance_Precedence.md",
+      "fileType": "MD",
+      "sizeBytes": 2350,
+      "contentHash": "3fc66409c0da064f5553093470a1eead8a1c48dffe55b48ec45cd70e1b8a9e7b",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Policy Governance and Precedence",
+          "1. Purpose\nDefine how policies are created, approved, versioned, superseded, and how conflicts between documents are resolved.",
+          "2. Policy Lifecycle\n1. Draft created by owning department.\n2. Review by Legal/Compliance for conflict and clarity.\n3. Approval by designated Approver Role.\n4. Publication with Effective Date; prior version marked Superseded with Effective-To date.\n5. Periodic review by Review Date.",
+          "3. Precedence Hierarchy (Internal Documents)\nWhen two internal documents conflict:\n1. **Currently effective Approved policy** of the higher authority (CEO/Board > C-level policy > Department policy).\n2. More specific policy controls over general policy for the same subject.\n3. Later Effective Date controls over earlier if both Approved and overlapping.\n4. SOP cannot override Policy; SOP implements Policy.\n5. Draft, Retired, or Archived documents have **no operational force**.",
+          "4. External Law vs Internal Policy\nGenuine legal or regulatory obligations (where verified) take precedence over internal policy. Internal policy may be stricter than law but cannot authorize non-compliance with applicable law. This dataset contains **synthetic internal controls** and does not invent statutory text. For real-world legal questions, qualified legal counsel is required.",
+          "5. Authority Levels for RAG\n| Authority Level | Meaning |\n|-----------------|---------|\n| Authoritative | Currently Approved policy or SOP with Effective Date covering the query date |\n| Historical | Superseded version valid for a past date range |\n| Informational | Guides, examples, FAQs — not binding rules |\n| Draft | Not approved — must not be treated as current rule |",
+          "6. Related\nAll POL-* and SOP-* documents; DOCUMENT_METADATA.csv"
+        ],
+        "title": "POL-LEG-001_Policy_Governance_Precedence.md",
+        "summary": "# Policy Governance and Precedence\n\n**Document ID:** POL-LEG-001  \n**Document Type:** Policy  \n**Owning Department:** Legal and Compliance (DEPT-LEG-001)  \n**Policy Owner:** Chief Compliance Officer  \n**Approver:** CEO  \n**Version:** 2.0  \n**Status:** Approved  \n**Effective:** 2025-04-01  \n**Review:"
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-5ad13ecf",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-LEG-002_Records_Retention.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\05_LEGAL_AND_COMPLIANCE\\POL-LEG-002_Records_Retention.md",
+      "fileType": "MD",
+      "sizeBytes": 1212,
+      "contentHash": "0516cc470282c801174b9b9b6d00508ee55ce9a43344e70fa1bb9d65a8fff74b",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Records Retention and Confidentiality",
+          "1. Purpose\nDefine minimum retention periods and confidentiality handling for major record categories.",
+          "2. Retention Categories (Synthetic Internal Schedule)\n| Category | Retention | Classification Default | Owner |\n|----------|-----------|------------------------|-------|\n| Employee personnel file | Employment + 7 years | Confidential | HR |\n| Financial transactions & ledgers | 8 years | Confidential | Finance |\n| Contracts (executed) | Term + 7 years | Confidential | Legal |\n| Security incident records | 5 years | Restricted | CISO |\n| Policy versions | Permanent (archive) | Internal | Compliance |\n| Support tickets | 3 years | Internal | Customer Support |",
+          "3. Confidentiality Agreements\nEmployees acknowledge confidentiality obligations at joining (SOP-HR-002). Customer and vendor NDAs are managed by Legal.",
+          "4. Related\nPOL-SEC-001; POL-HR-004; Data catalog retention fields"
+        ],
+        "title": "POL-LEG-002_Records_Retention.md",
+        "summary": "# Records Retention and Confidentiality\n\n**Document ID:** POL-LEG-002  \n**Version:** 1.5 | **Status:** Approved | **Effective:** 2025-01-01 | **Owner:** Chief Compliance Officer | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nDefine minimum retention periods and confidentiality handling for major record "
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-ea93cfd4",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-SEC-001_Access_Control_Data_Classification.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\06_INFORMATION_SECURITY\\POL-SEC-001_Access_Control_Data_Classification.md",
+      "fileType": "MD",
+      "sizeBytes": 2918,
+      "contentHash": "3e4ae9654338d8ed317d694376ba2f7c8a96a5aa8f9beea9805cbd28e025741a",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Access Control and Data Classification Policy",
+          "1. Purpose\nDefine data classification levels, access principles, authentication requirements, and rules for granting, reviewing, and revoking access.",
+          "2. Data Classification Levels\n| Level | Definition | Examples | Access Rule |\n|-------|------------|----------|-------------|\n| Public | Approved for external release | Marketing website, published job ads | No restriction |\n| Internal | Standard company information for employees | Org charts, internal wikis, non-sensitive policies | Authenticated employees |\n| Confidential | Sensitive business or customer data | Customer contracts, financial forecasts, HR records | Role-based + business need; Manager or data-owner approval |\n| Restricted | Highest sensitivity | Credentials vaults, M&A materials, security incident details, production secrets | Explicit named authorization by data owner + CISO (or delegate); time-bound |",
+          "3. Authentication\n- All systems: unique user ID; multi-factor authentication (MFA) mandatory for remote access and for any system containing Confidential or Restricted data.\n- Privileged accounts: separate admin IDs; MFA; session logging; quarterly access review.",
+          "4. Access Grant Principles\n1. Least privilege.\n2. Need-to-know.\n3. No standing access to Restricted data without active ticket and expiry date (max 90 days, renewable).\n4. Joiner: access provisioned per role template within 1 business day of start after Manager confirmation.\n5. Mover: previous access reviewed within 3 business days of role change.\n6. Leaver: all access revoked by end of last working day; privileged access revoked at notification of departure.",
+          "5. Confidential Finance Document Access Example\nAn employee may access a Confidential Finance document only if:\n- Their role is in Finance, ELT, or a specifically authorized project role; **and**\n- There is a documented business need; **and**\n- Access is approved by the data owner (typically Finance Director or CFO) or via an approved role template; **and**\n- The system enforces MFA and audit logging.",
+          "6. Prohibited Actions\n- Sharing credentials.\n- Storing Restricted data on personal devices or unapproved cloud services.\n- Using unapproved AI tools with Confidential or Restricted data (see POL-AI-001).",
+          "7. Related\nPOL-AI-001; POL-SEC-002 Incident Response; SOP-SEC-001 Access Request; POL-HR-005"
+        ],
+        "title": "POL-SEC-001_Access_Control_Data_Classification.md",
+        "summary": "# Access Control and Data Classification Policy\n\n**Document ID:** POL-SEC-001  \n**Document Type:** Policy  \n**Owning Department:** Information Security (DEPT-SEC-001)  \n**Policy Owner:** CISO (ROLE-CISO-001)  \n**Approver:** CEO  \n**Version:** 4.1  \n**Status:** Approved  \n**Effective:** 2025-04-01  \n"
+      },
+      "createdAt": "2026-10-09T23:51:02.445Z"
+    },
+    {
+      "id": "doc-1d299681",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-SEC-002_Incident_Response.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\06_INFORMATION_SECURITY\\POL-SEC-002_Incident_Response.md",
+      "fileType": "MD",
+      "sizeBytes": 1074,
+      "contentHash": "4acbac94789456df2d81052e45431237325999c84466ff1712c68c08f3cbf0fd",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Security Incident Response Policy",
+          "1. Purpose\nDefine detection, reporting, containment, investigation, and closure of security incidents.",
+          "2. Incident Severity\n| Severity | Description | Initial Response SLA | Notify |\n|----------|-------------|----------------------|--------|\n| Critical | Active breach, ransomware, large-scale data exposure | 15 minutes | CISO, CIO, CEO, Legal |\n| High | Confirmed unauthorized access, targeted malware | 1 hour | CISO, CIO |\n| Medium | Suspicious activity, failed intrusion attempts at scale | 4 hours | Security Manager |\n| Low | Policy violation without data loss, isolated phishing click | 1 business day | Security team |",
+          "3. Reporting\nAll employees must report suspected incidents to security@example.com or the designated portal within 1 hour of discovery. Do not attempt personal investigation of malware.",
+          "4. Related\nSOP-SEC-002 Incident Handling Runbook; POL-SEC-001"
+        ],
+        "title": "POL-SEC-002_Incident_Response.md",
+        "summary": "# Security Incident Response Policy\n\n**Document ID:** POL-SEC-002  \n**Version:** 3.0 | **Status:** Approved | **Effective:** 2025-01-01 | **Owner:** CISO | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nDefine detection, reporting, containment, investigation, and closure of security incidents.\n\n## 2. Inci"
+      },
+      "createdAt": "2026-10-09T23:51:02.446Z"
+    },
+    {
+      "id": "doc-d730fa6e",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-PRC-001_Procurement_Policy.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\07_PROCUREMENT_AND_VENDORS\\POL-PRC-001_Procurement_Policy.md",
+      "fileType": "MD",
+      "sizeBytes": 999,
+      "contentHash": "3b4b8a0b7467d8811570094360703e50e0224aa04618f5d9bac1bfb7e61dd041",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Procurement Policy",
+          "1. Purpose\nEnsure purchases are necessary, competitively sourced where required, properly approved, and recorded against the correct cost center and vendor.",
+          "2. Vendor Onboarding\nNew vendors require: legal name verification, tax identifiers, bank details, conflict-of-interest declaration, and (for spend > INR 500,000 annualized) basic due-diligence checklist completed by Procurement.",
+          "3. Purchase Requisition to PO\n1. Requester creates requisition with cost center, justification, and estimated amount.\n2. Approval per POL-FIN-003 PO thresholds.\n3. Procurement creates PO only after approval and vendor master validation.\n4. Goods/services receipt recorded before invoice payment (three-way match rules in POL-FIN-002).",
+          "4. Related\nPOL-FIN-003; SOP-PRC-001 Purchase Requisition; Vendor Master dataset"
+        ],
+        "title": "POL-PRC-001_Procurement_Policy.md",
+        "summary": "# Procurement Policy\n\n**Document ID:** POL-PRC-001  \n**Version:** 3.0 | **Status:** Approved | **Effective:** 2025-04-01 | **Owner:** Head of Procurement | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nEnsure purchases are necessary, competitively sourced where required, properly approved, and recorded a"
+      },
+      "createdAt": "2026-10-09T23:51:02.446Z"
+    },
+    {
+      "id": "doc-c465d745",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "SOP-FIN-001_Expense_Claim_Processing.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\08_OPERATIONS_AND_SOPS\\SOP-FIN-001_Expense_Claim_Processing.md",
+      "fileType": "MD",
+      "sizeBytes": 979,
+      "contentHash": "ff8bc2f95b523cbe64e5cb8f2343cd89a6e0a42a01e788c577b5b744feef16fc",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "SOP — Expense Claim Processing",
+          "1. Purpose\nSteps from claim submission to payment or rejection.",
+          "2. Ordered Steps\n1. Employee submits claim in expense system with receipts, cost center, and travel request ID if applicable.\n2. System validates mandatory fields and flags amounts above Manager self-approval band.\n3. Claim routes per POL-FIN-003 thresholds.\n4. Approver reviews (business need, limits, receipts) and approves/rejects within 5 business days.\n5. On approval, AP schedules payment per payment run calendar (typically weekly).\n6. Payment confirmation posted; employee notified.",
+          "3. Completion Criteria\nStatus = Paid or Rejected; GL posting complete for paid claims.",
+          "4. SLA\nApproval: 5 business days. Payment after approval: within 10 business days."
+        ],
+        "title": "SOP-FIN-001_Expense_Claim_Processing.md",
+        "summary": "# SOP — Expense Claim Processing\n\n**Document ID:** SOP-FIN-001  \n**Version:** 1.5 | **Status:** Approved | **Effective:** 2025-04-01  \n**Owner:** Finance Manager | **Related Policy:** POL-FIN-003, POL-HR-003 | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nSteps from claim submission to payment or rejecti"
+      },
+      "createdAt": "2026-10-09T23:51:02.446Z"
+    },
+    {
+      "id": "doc-0dfad94f",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "SOP-HR-001_Leave_Application_Approval.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\08_OPERATIONS_AND_SOPS\\SOP-HR-001_Leave_Application_Approval.md",
+      "fileType": "MD",
+      "sizeBytes": 2454,
+      "contentHash": "60c2bea59e39dc44316c5f0643fc318d6c51fc1260fcd0e2e9e0744984bc728a",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "SOP — Leave Application and Approval",
+          "1. Purpose\nProvide ordered steps for employees and managers to request, approve, or reject leave in compliance with POL-HR-001.",
+          "2. Trigger\nEmployee needs time off under any leave type defined in POL-HR-001.",
+          "3. Preconditions\n- Employee has active HR system account.\n- Sufficient balance exists for the leave type (system-validated) or exception path is used.",
+          "4. Responsible Roles\n| Step | Role |\n|------|------|\n| Submit request | Employee |\n| First approval | Direct Manager (or alternate per POL-HR-001) |\n| Acknowledgment / second approval | HR Manager or Department Head when required by duration |\n| Balance update | HR system (automated) |",
+          "5. Ordered Steps\n1. Employee opens Leave Request in HR system; selects type, dates, partial-day if applicable, and comments.\n2. System checks balance and policy rules; blocks submission if balance insufficient unless exception flag is raised.\n3. Request routes to Direct Manager.\n4. Manager approves or rejects within **3 business days** (planned leave) with comments.\n5. If duration requires second approval (see POL-HR-001 Section 5.4), request routes to Department Head / HR Manager.\n6. On final approval, balance is decremented; calendar is updated; employee and Manager receive confirmation.\n7. On rejection, employee is notified with reason; no balance change.",
+          "6. Decision Branches\n- **Same-day Casual Leave:** Employee notifies Manager before shift start; enters system request within 24 hours; Manager confirms.\n- **Manager unavailable:** Request escalates to Skip-level Manager after 3 business days or immediately if marked urgent.\n- **Insufficient balance:** Employee may request unpaid leave; requires Department Head + HR Manager approval.",
+          "7. Completion Criteria\nApproved or rejected status in HR system; employee notification sent; audit log entry created.",
+          "8. SLA\nManager decision: 3 business days for planned leave. HR acknowledgment when required: 2 business days.",
+          "9. Exception Handling\nCHRO-approved exceptions per POL-HR-001 Section 12; recorded with reason code.",
+          "10. Related\nPOL-HR-001; POL-HR-002; HR system user guide (internal)"
+        ],
+        "title": "SOP-HR-001_Leave_Application_Approval.md",
+        "summary": "# SOP — Leave Application and Approval\n\n**Document ID:** SOP-HR-001  \n**Document Type:** Standard Operating Procedure  \n**Owning Department:** Human Resources  \n**Owner:** HR Manager  \n**Version:** 2.0  \n**Status:** Approved  \n**Effective:** 2025-04-01  \n**Related Policy:** POL-HR-001  \n**Org ID:** "
+      },
+      "createdAt": "2026-10-09T23:51:02.446Z"
+    },
+    {
+      "id": "doc-02744630",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "SOP-HR-002_Employee_Onboarding.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\08_OPERATIONS_AND_SOPS\\SOP-HR-002_Employee_Onboarding.md",
+      "fileType": "MD",
+      "sizeBytes": 961,
+      "contentHash": "f09bf2d900242625cddef0e994051d09d1ae590ce5cb1e26897a08ee8ce10431",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "SOP — Employee Onboarding",
+          "1. Purpose\nEnsure new joiners receive accounts, equipment, training, and policy acknowledgments before or on day one.",
+          "2. Ordered Steps (summary)\n1. Offer accepted → HR creates employee record (status: Pre-join).\n2. T-7 days: IT provisions accounts per role template; Manager confirms start date.\n3. T-3 days: Security assigns baseline access; Restricted access only if pre-approved.\n4. Day 1: Orientation, policy acknowledgment (Code of Conduct, Security, AI), equipment handover.\n5. Day 1–5: Role-specific training checklist completed by Manager.\n6. Day 30/60/90: Probation check-ins per POL-HR probation rules.\n7. Confirmation: HR updates status to Confirmed; full AL usability unlocked per POL-HR-001.",
+          "3. Related\nPOL-HR-001; POL-SEC-001; POL-AI-001; POL-HR-004"
+        ],
+        "title": "SOP-HR-002_Employee_Onboarding.md",
+        "summary": "# SOP — Employee Onboarding\n\n**Document ID:** SOP-HR-002  \n**Version:** 2.1 | **Status:** Approved | **Effective:** 2025-01-01  \n**Owner:** HR Manager | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nEnsure new joiners receive accounts, equipment, training, and policy acknowledgments before or on day one."
+      },
+      "createdAt": "2026-10-09T23:51:02.447Z"
+    },
+    {
+      "id": "doc-459e9680",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-DG-001_Data_Dictionary_Overview.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\09_DATA_GOVERNANCE\\DOC-DG-001_Data_Dictionary_Overview.md",
+      "fileType": "MD",
+      "sizeBytes": 1533,
+      "contentHash": "a5ae14460c74d6d8918617efe11aaccfa4fa5c4e242e7af52b46f77c3a59dfa1",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Enterprise Data Dictionary — Overview",
+          "1. Purpose\nCatalog major structured datasets used for analytics and RAG grounding.",
+          "2. Dataset Index\n| Dataset ID | Name | Owner | Classification | Primary Key | Location |\n|------------|------|-------|----------------|-------------|----------|\n| DS-FIN-001 | Approval Matrix | CFO | Internal | matrix_id | 04_FINANCE_AND_ACCOUNTING/APPROVAL_MATRIX.csv |\n| DS-FIN-002 | Expense Claims Sample | CFO | Confidential | claim_id | 13_STRUCTURED_DATASETS/FIN_Expense_Claims_Sample.xlsx |\n| DS-HR-001 | Role Catalog | CHRO | Internal | role_id | 02_ORGANIZATION_AND_ROLES/ROLE_CATALOG.csv |\n| DS-PRC-001 | Vendor Master | Head of Procurement | Internal | vendor_id | 13_STRUCTURED_DATASETS/VENDOR_MASTER.csv |\n| DS-RSK-001 | Risk Register | CISO / Compliance | Confidential | risk_id | 11_RISK_AND_AUDIT/RISK_REGISTER.csv |\n| DS-PRJ-001 | Project Master | COO | Internal | project_id | 13_STRUCTURED_DATASETS/PROJECT_MASTER.csv |\n| DS-META-001 | Document Metadata | Compliance | Internal | document_id | DOCUMENT_METADATA.csv |",
+          "3. Data Quality Rules (Global)\n- Primary keys unique and non-null.\n- Amounts in INR unless currency column present.\n- Dates ISO 8601 (YYYY-MM-DD).\n- Status values restricted to documented enums.\n- synthetic=Yes on all demonstration rows.",
+          "4. Related\nGLOSSARY.csv; POL-SEC-001 classification rules"
+        ],
+        "title": "DOC-DG-001_Data_Dictionary_Overview.md",
+        "summary": "# Enterprise Data Dictionary — Overview\n\n**Document ID:** DOC-DG-001  \n**Version:** 1.0 | **Status:** Approved | **Effective:** 2025-04-01  \n**Owner:** Chief Data Officer | **Org:** ORG-ASTERION-001\n\n## 1. Purpose\nCatalog major structured datasets used for analytics and RAG grounding.\n\n## 2. Dataset"
+      },
+      "createdAt": "2026-10-09T23:51:02.447Z"
+    },
+    {
+      "id": "doc-a68d9e79",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "GLOSSARY.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\09_DATA_GOVERNANCE\\GLOSSARY.csv",
+      "fileType": "CSV",
+      "sizeBytes": 2150,
+      "contentHash": "3b67d08375a26cdf4ef6643eacab6523ca3be442994adbbbf32270159b52a05b",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 14,
+        "columnNames": [
+          "term_id",
+          "term",
+          "canonical_definition",
+          "domain",
+          "approved_aliases",
+          "unit_or_format",
+          "formula_or_notes",
+          "synthetic"
+        ],
+        "title": "GLOSSARY.csv",
+        "summary": "Columns: term_id, term, canonical_definition, domain, approved_aliases, unit_or_format, formula_or_notes, synthetic\n\nterm_id: TRM-001 | term: Revenue | canonical_definition: Total recognized income from software subscriptions and professional services in the period | domain: Finance | approved_alias"
+      },
+      "createdAt": "2026-10-09T23:51:02.448Z"
+    },
+    {
+      "id": "doc-c5c3de68",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-RSK-001_Risk_Methodology.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\11_RISK_AND_AUDIT\\DOC-RSK-001_Risk_Methodology.md",
+      "fileType": "MD",
+      "sizeBytes": 912,
+      "contentHash": "644479356d6f1f4c7118230f8329902d1d9d40c974de4aec1fe8f1a1e35d2855",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Risk Assessment Methodology and Scoring",
+          "1. Scoring\n- **Likelihood:** 1 (Rare) – 5 (Almost Certain)\n- **Impact:** 1 (Insignificant) – 5 (Severe)\n- **Inherent Risk Score:** Likelihood × Impact (range 1–25)\n- **Severity Bands:** 1–4 Low; 5–9 Medium; 10–16 High; 17–25 Critical",
+          "2. Residual Risk\nAfter documenting existing controls, residual likelihood and impact are assessed; residual score = residual likelihood × residual impact.",
+          "3. Escalation\n- Critical residual risks: escalate to ELT within 5 business days.\n- High residual risks: mitigation plan with owner and target date required within 15 business days.",
+          "4. Related\nRISK_REGISTER.csv; POL-SEC-002; POL-LEG-001"
+        ],
+        "title": "DOC-RSK-001_Risk_Methodology.md",
+        "summary": "# Risk Assessment Methodology and Scoring\n\n**Document ID:** DOC-RSK-001  \n**Version:** 1.2 | **Status:** Approved | **Effective:** 2025-01-01  \n**Owner:** Chief Compliance Officer (methodology) / Risk owners (individual risks)  \n**Org:** ORG-ASTERION-001\n\n## 1. Scoring\n- **Likelihood:** 1 (Rare) – 5"
+      },
+      "createdAt": "2026-10-09T23:51:02.449Z"
+    },
+    {
+      "id": "doc-d6557304",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "RISK_REGISTER.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\11_RISK_AND_AUDIT\\RISK_REGISTER.csv",
+      "fileType": "CSV",
+      "sizeBytes": 1125,
+      "contentHash": "c62390ed3bce15ee0c9c5e80fd0324557d6f4fbf17bbd963750111e9952ccac6",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 5,
+        "columnNames": [
+          "risk_id",
+          "title",
+          "category",
+          "likelihood",
+          "impact",
+          "inherent_score",
+          "severity_band",
+          "owner_role",
+          "existing_controls",
+          "residual_likelihood",
+          "residual_impact",
+          "residual_score",
+          "mitigation",
+          "target_date",
+          "status",
+          "synthetic"
+        ],
+        "title": "RISK_REGISTER.csv",
+        "summary": "Columns: risk_id, title, category, likelihood, impact, inherent_score, severity_band, owner_role, existing_controls, residual_likelihood, residual_impact, residual_score, mitigation, target_date, status, synthetic\n\nrisk_id: RSK-001 | title: Unauthorized access to Confidential customer data | categor"
+      },
+      "createdAt": "2026-10-09T23:51:02.450Z"
+    },
+    {
+      "id": "doc-8660dcbb",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-AI-001_AI_Usage_Governance.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\12_AI_GOVERNANCE\\POL-AI-001_AI_Usage_Governance.md",
+      "fileType": "MD",
+      "sizeBytes": 2443,
+      "contentHash": "d5c1e070b77aee77d494441ec437e8ef2d7987afffa47b8d356a9ed8f5b432d5",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "AI Usage and Governance Policy",
+          "1. Purpose\nGovern the use of artificial intelligence tools and models so that Asterion benefits from AI while protecting data, customers, and decision integrity.",
+          "2. Approved Use Cases\n- Internal knowledge retrieval and policy Q&A (RAG systems such as Asterion AI Assist) with citation of sources.\n- Code assistance for developers on non-Restricted codebases using approved tools.\n- Drafting of internal documents with mandatory human review before external or decision use.\n- Analytics feature assistance where outputs are validated against source data.",
+          "3. Prohibited Use Cases\n- Inputting Restricted data into any non-approved external AI service.\n- Fully automated decisions that grant access, approve spend above policy thresholds, hire/fire, or modify production security controls without human approval.\n- Generating content presented as factual company policy when no supporting document exists.\n- Using AI output as the sole evidence for compliance or audit without human verification.",
+          "4. Human Review Requirements\n| Output Type | Review Requirement |\n|-------------|-------------------|\n| External customer communication | Mandatory human approval |\n| Policy interpretation for action | Human confirmation against source policy |\n| Financial figure or approval recommendation | Human verification against POL-FIN-003 and source data |\n| Security or access change recommendation | CISO or delegate approval |",
+          "5. Evidence vs Instructions\nRetrieved documents and passages are **evidence**. They do not override system authorization, approval workflows, or security controls. AI systems may recommend actions; they must not bypass authorization or independently execute prohibited operations.",
+          "6. Hallucination and Gap Reporting\nUsers and operators must report suspected hallucinations or missing-policy answers through the designated feedback channel. AI systems must state when available information is insufficient rather than invent policy.",
+          "7. Related\nPOL-SEC-001; POL-FIN-003; DOC-CORP-001; AI Governance Council charter (ELT)"
+        ],
+        "title": "POL-AI-001_AI_Usage_Governance.md",
+        "summary": "# AI Usage and Governance Policy\n\n**Document ID:** POL-AI-001  \n**Document Type:** Policy  \n**Owning Department:** Information Technology / Information Security  \n**Policy Owner:** CIO (joint with CISO)  \n**Approver:** CEO  \n**Version:** 2.0  \n**Status:** Approved  \n**Effective:** 2025-04-01  \n**Rev"
+      },
+      "createdAt": "2026-10-09T23:51:02.450Z"
+    },
+    {
+      "id": "doc-4df32bf2",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "FIN_Expense_Claims_Sample.xlsx",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\13_STRUCTURED_DATASETS\\FIN_Expense_Claims_Sample.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 5438,
+      "contentHash": "8f0a188dfdc9f80d449ee4697a6175e7ad3658d140cbb0e28e12fdd47b735d66",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Expense Claims Sample"
+        ],
+        "rowCount": 5,
+        "columnNames": [
+          "claim_id",
+          "employee_role",
+          "department_id",
+          "claim_date",
+          "category",
+          "amount_inr",
+          "status",
+          "approver_role",
+          "policy_ref",
+          "notes"
+        ],
+        "title": "FIN_Expense_Claims_Sample.xlsx",
+        "summary": "Sheet: Expense Claims Sample | Columns: claim_id, employee_role, department_id, claim_date, category, amount_inr, status, approver_role, policy_ref, notes\n\nclaim_id: CLM-2025-1001 | employee_role: ROLE-EMP-001 | department_id: DEPT-RND-001 | claim_date: 2025-05-12 | category: Travel | amount_inr: 85"
+      },
+      "createdAt": "2026-10-09T23:51:02.466Z"
+    },
+    {
+      "id": "doc-347998b9",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "PROJECT_MASTER.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\13_STRUCTURED_DATASETS\\PROJECT_MASTER.csv",
+      "fileType": "CSV",
+      "sizeBytes": 678,
+      "contentHash": "86b996d4c67a36441a53c7bcf304d153161cc5fa47c41637efef3f4fce33af4a",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 4,
+        "columnNames": [
+          "project_id",
+          "project_name",
+          "customer_id",
+          "department_id",
+          "status",
+          "start_date",
+          "target_end_date",
+          "budget_inr",
+          "actual_cost_inr",
+          "pm_role",
+          "synthetic"
+        ],
+        "title": "PROJECT_MASTER.csv",
+        "summary": "Columns: project_id, project_name, customer_id, department_id, status, start_date, target_end_date, budget_inr, actual_cost_inr, pm_role, synthetic\n\nproject_id: PRJ-AST-2401 | project_name: Command Suite Implementation — Client Alpha | customer_id: CUST-1001 | department_id: DEPT-OPS-001 | status: A"
+      },
+      "createdAt": "2026-10-09T23:51:02.467Z"
+    },
+    {
+      "id": "doc-5ecd6370",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "VENDOR_MASTER.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\13_STRUCTURED_DATASETS\\VENDOR_MASTER.csv",
+      "fileType": "CSV",
+      "sizeBytes": 610,
+      "contentHash": "455f68a24e59de78b4f420fb8dd7f29a919ccc78f5eb91ae1e3728034381c75d",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 5,
+        "columnNames": [
+          "vendor_id",
+          "vendor_name",
+          "category",
+          "status",
+          "risk_tier",
+          "onboarded_date",
+          "primary_contact_email",
+          "synthetic"
+        ],
+        "title": "VENDOR_MASTER.csv",
+        "summary": "Columns: vendor_id, vendor_name, category, status, risk_tier, onboarded_date, primary_contact_email, synthetic\n\nvendor_id: VND-AST-1001 | vendor_name: NovaCloud Infrastructure Pvt Ltd | category: Cloud Infrastructure | status: Active | risk_tier: Medium | onboarded_date: 45092.22928240741 | primary_"
+      },
+      "createdAt": "2026-10-09T23:51:02.468Z"
+    },
+    {
+      "id": "doc-2987b49b",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOC-TEST-001_Conflict_Version_Scenarios.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\16_CONFLICT_AND_VERSION_TESTS\\DOC-TEST-001_Conflict_Version_Scenarios.md",
+      "fileType": "MD",
+      "sizeBytes": 1053,
+      "contentHash": "1f70777cab225037cda0838906d3cc26928066022f4d5b818802222f62e8018d",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Conflict and Version Test Scenarios",
+          "Scenario CV-1 — Superseded Leave Policy\n- Query date: 2024-06-01\n- Current document: POL-HR-001 v5.2 effective 2025-04-01\n- Prior: v5.1 effective 2024-04-01 to 2025-03-31\n- Expected behavior: For historical question about June 2024, identify v5.1 as the then-effective version if detailed v5.1 body is unavailable, state that full prior text is not in corpus and avoid applying v5.2 rules to the past date without disclosure.",
+          "Scenario CV-2 — Draft vs Approved\n- If a draft FAQ contradicts POL-HR-001 Approved text, Approved policy wins (POL-LEG-001). Draft has no operational force.",
+          "Scenario CV-3 — Silent conflict ban\n- System must not silently reconcile contradictory Approved documents; must disclose conflict and cite POL-LEG-001 escalation path.",
+          "Scenario CV-4 — Law vs policy\n- Internal synthetic policy must not be presented as verified external statute."
+        ],
+        "title": "DOC-TEST-001_Conflict_Version_Scenarios.md",
+        "summary": "# Conflict and Version Test Scenarios\n\n**Document ID:** DOC-TEST-001  \n**Purpose:** Explicit scenarios for RAG evaluation of conflict handling and historical versions.\n\n## Scenario CV-1 — Superseded Leave Policy\n- Query date: 2024-06-01\n- Current document: POL-HR-001 v5.2 effective 2025-04-01\n- Prio"
+      },
+      "createdAt": "2026-10-09T23:51:02.468Z"
+    },
+    {
+      "id": "doc-f1310a79",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POL-HR-001_v5.1_Historical_Stub.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\16_CONFLICT_AND_VERSION_TESTS\\POL-HR-001_v5.1_Historical_Stub.md",
+      "fileType": "MD",
+      "sizeBytes": 704,
+      "contentHash": "1d5fb11c0a84826ce32f8c7714cffdfdfe62596b048342e968c3f352571c816c",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Leave Policy — Historical Summary (v5.1)",
+          "Summary of v5.1 (for historical RAG tests)\n- Annual Leave entitlement was already 18 days (changed from 15 in v5.0).\n- Carry-forward and encashment rules were clarified in v5.1.\n- Explicit alternate approver table and intern entitlements were expanded in v5.2 (not fully present in v5.1)."
+        ],
+        "title": "POL-HR-001_v5.1_Historical_Stub.md",
+        "summary": "# Leave Policy — Historical Summary (v5.1)\n\n**Document ID:** POL-HR-001  \n**Version:** 5.1  \n**Status:** Superseded  \n**Effective:** 2024-04-01  \n**Effective To:** 2025-03-31  \n**Superseded By:** POL-HR-001 v5.2  \n\n## Summary of v5.1 (for historical RAG tests)\n- Annual Leave entitlement was already "
+      },
+      "createdAt": "2026-10-09T23:51:02.468Z"
+    },
+    {
+      "id": "doc-2a98a419",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "INGESTION_NOTES.md",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\17_INGESTION_EDGE_CASES\\INGESTION_NOTES.md",
+      "fileType": "MD",
+      "sizeBytes": 712,
+      "contentHash": "3d95df4f72b2e1356b6d2068f64e0a0add311d6106d29388129e19cce28320bf",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Ingestion Edge Cases"
+        ],
+        "title": "INGESTION_NOTES.md",
+        "summary": "# Ingestion Edge Cases\n\n1. **Empty optional fields:** Some CSV rows may have empty secondary_requirement — parsers must allow nulls.\n2. **Status enums:** Use only Draft | Approved | Superseded | Retired | Archived for policies.\n3. **Currency:** All money fields default INR; do not assume USD.\n4. **e"
+      },
+      "createdAt": "2026-10-09T23:51:02.468Z"
+    },
+    {
+      "id": "doc-acb632c3",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DOCUMENT_METADATA.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\DOCUMENT_METADATA.csv",
+      "fileType": "CSV",
+      "sizeBytes": 5715,
+      "contentHash": "f94ad7ec09f9245ab5b4ef4393f2a7eacec2672b848bb22de3419c36c053da74",
+      "status": "READY",
+      "chunkCount": 7,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 26,
+        "columnNames": [
+          "document_id",
+          "document_title",
+          "document_type",
+          "organization_id",
+          "department_id",
+          "domain",
+          "owner_role",
+          "classification",
+          "status",
+          "version",
+          "effective_from",
+          "effective_to",
+          "review_date",
+          "language",
+          "synthetic_data",
+          "authority_level",
+          "relative_path"
+        ],
+        "title": "DOCUMENT_METADATA.csv",
+        "summary": "Columns: document_id, document_title, document_type, organization_id, department_id, domain, owner_role, classification, status, version, effective_from, effective_to, review_date, language, synthetic_data, authority_level, relative_path\n\ndocument_id: DOC-CORP-001 | document_title: Company Overview "
+      },
+      "createdAt": "2026-10-09T23:51:02.470Z"
+    },
+    {
+      "id": "doc-5005a178",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "GLOSSARY.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\GLOSSARY.csv",
+      "fileType": "CSV",
+      "sizeBytes": 2150,
+      "contentHash": "3b67d08375a26cdf4ef6643eacab6523ca3be442994adbbbf32270159b52a05b",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 14,
+        "columnNames": [
+          "term_id",
+          "term",
+          "canonical_definition",
+          "domain",
+          "approved_aliases",
+          "unit_or_format",
+          "formula_or_notes",
+          "synthetic"
+        ],
+        "title": "GLOSSARY.csv",
+        "summary": "Columns: term_id, term, canonical_definition, domain, approved_aliases, unit_or_format, formula_or_notes, synthetic\n\nterm_id: TRM-001 | term: Revenue | canonical_definition: Total recognized income from software subscriptions and professional services in the period | domain: Finance | approved_alias"
+      },
+      "createdAt": "2026-10-09T23:51:02.471Z"
+    },
+    {
+      "id": "doc-0478176e",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "POLICY_CATALOG.csv",
+      "relativePath": "ASTERION_ENTERPRISE_RAG_DATASET\\POLICY_CATALOG.csv",
+      "fileType": "CSV",
+      "sizeBytes": 2642,
+      "contentHash": "2698465916b0ffbeb53fce1894fb8468d1444792d06db2a90a0e6c2c936707e6",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 18,
+        "columnNames": [
+          "policy_id",
+          "title",
+          "version",
+          "status",
+          "effective_from",
+          "owner_role",
+          "department_id",
+          "path"
+        ],
+        "title": "POLICY_CATALOG.csv",
+        "summary": "Columns: policy_id, title, version, status, effective_from, owner_role, department_id, path\n\npolicy_id: POL-HR-001 | title: Leave Policy | version: 5.2 | status: Approved | effective_from: 45748.22928240741 | owner_role: CHRO | department_id: DEPT-HR-001 | path: 03_HR_POLICIES/POL-HR-001_Leave_Polic"
+      },
+      "createdAt": "2026-10-09T23:51:02.472Z"
+    },
+    {
+      "id": "doc-34044035",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "BI_Executive_Summary.pdf",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\BI_Executive_Summary.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 3217,
+      "contentHash": "ceb01bc1a4ca5792e89bb480df9c97878fff383f282eccdb116b3fb390811a3d",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "BI_Executive_Summary.pdf",
+        "summary": "Aether Dynamics Corp  Synthetic BI Executive Summary 2010–2026 Document ID: BI-PDF-001 | SYNAPTIX COMMAND Prototype Data  1. Scope  This summary accompanies the SYNAPTIX_BI_ANALYTICS_DATASET package. All figures are synthetic and aligned with the Finance workspace revenue history for Aether Dynamics"
+      },
+      "createdAt": "2026-10-09T23:51:02.951Z"
+    },
+    {
+      "id": "doc-1918b3de",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "BI_Financials_2010_2026.xlsx",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\BI_Financials_2010_2026.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 22718,
+      "contentHash": "5c6f8ad58c4e3dd66c1c11b6650b990305ad0dc5fd94b99d116c7267d1b3d7be",
+      "status": "READY",
+      "chunkCount": 33,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Yearly_PnL",
+          "Monthly_Revenue",
+          "Segment_Revenue",
+          "Region_Revenue",
+          "KPI_Summary",
+          "Anomalies_Log"
+        ],
+        "rowCount": 381,
+        "columnNames": [
+          "Year",
+          "Revenue_USD_M",
+          "COGS_USD_M",
+          "Gross_Profit_USD_M",
+          "Gross_Margin_Pct",
+          "OpEx_USD_M",
+          "Operating_Income_USD_M",
+          "Net_Income_USD_M",
+          "Units_Sold",
+          "ASP_USD",
+          "Phase_Note",
+          "Month",
+          "Period",
+          "Segment",
+          "Region",
+          "Aether Dynamics Corp — Synthetic BI KPI Summary",
+          "Planted Anomalies (Synthetic)"
+        ],
+        "title": "BI_Financials_2010_2026.xlsx",
+        "summary": "Sheet: Yearly_PnL | Columns: Year, Revenue_USD_M, COGS_USD_M, Gross_Profit_USD_M, Gross_Margin_Pct, OpEx_USD_M, Operating_Income_USD_M, Net_Income_USD_M, Units_Sold, ASP_USD, Phase_Note\n\nYear: 2010 | Revenue_USD_M: 42.5 | COGS_USD_M: 28.9 | Gross_Profit_USD_M: 13.6 | Gross_Margin_Pct: 32 | OpEx_USD_"
+      },
+      "createdAt": "2026-10-09T23:51:02.982Z"
+    },
+    {
+      "id": "doc-9a2ec55e",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DASHBOARD_SPEC.md",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\DASHBOARD_SPEC.md",
+      "fileType": "MD",
+      "sizeBytes": 2517,
+      "contentHash": "f834a9ff370be29c0cb2ab030905429942ee2c7b071521041a11a75054dafb53",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Dashboard Specification — Aether Dynamics Synthetic BI",
+          "1. Recommended KPI cards (top row)\n| Card | Metric | Source | Format | Highlight rule |\n|------|--------|--------|--------|----------------|\n| Revenue (latest) | 2026 revenue | Yearly_PnL | 124.7 USD M | — |\n| YoY Growth | 2025→2026 growth % | Yearly_PnL | +14.0% approx | Red if negative |\n| Gross Margin | 2026 GM % | Yearly_PnL | % | — |\n| Peak vs Latest | 2018 peak vs 2026 | Yearly_PnL | dual value | — |\n| Anomaly flag | 2024 YoY % | Yearly_PnL | −8.0% | Always surface if filters include 2024 |",
+          "2. Time-series charts\n1. **Revenue 2010–2026 (line)** — Yearly_PnL.revenue_usd_m  \n   - Annotate peak (2018), trough (2021), anomaly (2024)\n2. **Monthly revenue heatmap or line** — Monthly_Revenue for selected year(s)  \n   - Default comparison: 2023 vs 2024 to show Q3 compression\n3. **Gross margin % trend (line)** — Yearly_PnL.gross_margin_pct",
+          "3. Category comparisons\n1. **Segment stacked bar or 100% stack by year** — Segment_Revenue  \n2. **Region bar for latest year** — Region_Revenue filtered year=2026  \n3. **Segment rank table** — top segments by revenue for selected year",
+          "4. Anomaly panels\n| Panel | Content |\n|-------|---------|\n| Decline episode | 2019–2021 revenue path + YoY % |\n| 2024 break | 2023 vs 2024 revenue, margin, Q3 monthly share |\n| Anomaly log | Table from Anomalies_Log sheet |",
+          "5. Supporting tables\n1. Full Yearly_PnL sortable table  \n2. Monthly detail for selected year  \n3. Segment pivot (years × segments)  \n4. Region pivot (years × regions)",
+          "6. Filters\n- Year range (default 2010–2026)\n- Segment multi-select\n- Region multi-select\n- Toggle “Highlight anomalies”",
+          "7. Non-goals\n- Do not invent drill-through to real GL accounts  \n- Do not present causal story as fact  \n- Do not mix INR Asterion figures into this USD Aether pack without an explicit FX bridge (none provided)",
+          "8. Acceptance checks for generated dashboards\n- [ ] 2026 revenue card = 124.7  \n- [ ] Peak marker on 2018 = 118.9  \n- [ ] 2020 YoY ≈ −26.9%  \n- [ ] 2024 visible as negative YoY  \n- [ ] Segment/region totals reconcile to yearly revenue for any selected year"
+        ],
+        "title": "DASHBOARD_SPEC.md",
+        "summary": "# Dashboard Specification — Aether Dynamics Synthetic BI\n\n**Document ID:** BI-DASH-001  \n**Audience:** AI dashboard generation / analytics layout testing  \n**Data sources:** BI_Financials_2010_2026.xlsx and CSV extracts\n\n## 1. Recommended KPI cards (top row)\n| Card | Metric | Source | Format | Highl"
+      },
+      "createdAt": "2026-10-09T23:51:02.982Z"
+    },
+    {
+      "id": "doc-e3a4fa46",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DATASET_REPORT.md",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\DATASET_REPORT.md",
+      "fileType": "MD",
+      "sizeBytes": 3109,
+      "contentHash": "0882f064390dc462f4fc41d288ec51f25133837fc9457f58988188260b6d11c4",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Synthetic BI Dataset Report — Aether Dynamics Corp",
+          "1. Purpose\nProvide a coherent multi-dimensional financial fact set for testing analytics engines, dashboard generation, anomaly detection, and grounded Q&A in SYNAPTIX COMMAND.",
+          "2. Observed Trajectory (facts in the data)\n| Phase | Years | Observed pattern |\n|-------|-------|------------------|\n| Growth | 2010–2018 | Revenue rises from 42.5 to **118.9** USD M (peak) |\n| Decline | 2019–2021 | Revenue falls to **68.5** USD M (trough in 2021) |\n| Recovery | 2022–2023 | Revenue recovers to 95.8 USD M |\n| Anomaly | **2024** | Revenue **88.1** USD M (−8.0% YoY) despite prior recovery |\n| Expansion | 2025–2026 | Revenue rises to **124.7** USD M |",
+          "3. Planted anomalies (documented)\n| ID | Observation in data |\n|----|---------------------|\n| ANOM-BI-001 | 2020 largest YoY revenue decline |\n| ANOM-BI-002 | 2024 revenue dip during recovery |\n| ANOM-BI-003 | 2024 Jul–Sep monthly revenue shares compressed |\n| ANOM-BI-004 | 2024 elevated COGS and OpEx ratios (lower margins) |\n| ANOM-BI-005 | Multi-year 2019–2021 contraction from peak |",
+          "4. What the data does *not* claim\nThe dataset records **observed** synthetic values only. It does **not** encode a verified real-world causal model.  \nAny narrative about “market shock,” “inventory write-down,” or “project delays” is a **hypothesis label** carried from the Finance workspace notes for test continuity—not a fact proven by external evidence inside this BI pack.",
+          "5. Structural assumptions\n- Calendar year reporting (not fiscal April–March).\n- Monthly revenues are a seasonal allocation of the annual total; 2024 uses a deliberately distorted Q3 pattern.\n- Segment and region mixes are synthetic allocations that always reconcile to annual revenue.\n- Units = Revenue_USD × 1e6 / ASP; ASP is an assumption schedule, not a SKU-level fact table.\n- Net income uses a simplified 0.76 × operating income proxy for demo KPIs—not a full tax/interest model.",
+          "6. Consistency guarantees\n- Σ segments (year) = yearly revenue  \n- Σ regions (year) = yearly revenue  \n- Σ months (year) = yearly revenue  \n- Gross profit = Revenue − COGS  \n- Operating income = Gross profit − OpEx",
+          "7. Files\n- `BI_Financials_2010_2026.xlsx` — Yearly_PnL, Monthly_Revenue, Segment_Revenue, Region_Revenue, KPI_Summary, Anomalies_Log  \n- `Yearly_PnL.csv`, `Monthly_Revenue.csv`, `Segment_Revenue.csv`, `Region_Revenue.csv`  \n- `DATA_DICTIONARY.md`, `DASHBOARD_SPEC.md`, `ANALYTICS_TEST_QA.json`  \n- `BI_Executive_Summary.pdf`",
+          "8. Notice\nAll figures are synthetic prototype data for SYNAPTIX COMMAND. Not for investment, audit, or operational decisions."
+        ],
+        "title": "DATASET_REPORT.md",
+        "summary": "# Synthetic BI Dataset Report — Aether Dynamics Corp\n\n**Document ID:** BI-RPT-001  \n**Status:** Synthetic prototype  \n**Aligned with:** SYNAPTIX_DUMMY_DATA/Finance (Revenue_History_2010_2026.xlsx)\n\n## 1. Purpose\nProvide a coherent multi-dimensional financial fact set for testing analytics engines, d"
+      },
+      "createdAt": "2026-10-09T23:51:02.982Z"
+    },
+    {
+      "id": "doc-6306f0ab",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "DATA_DICTIONARY.md",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\DATA_DICTIONARY.md",
+      "fileType": "MD",
+      "sizeBytes": 2793,
+      "contentHash": "06774e55ca6778b4a62e4999022328ec78d47fc603e247ce9f0eaf35cb32fcbe",
+      "status": "READY",
+      "chunkCount": 7,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Data Dictionary — SYNAPTIX BI Analytics Dataset",
+          "Yearly_PnL (sheet / Yearly_PnL.csv)",
+          "Monthly_Revenue",
+          "Segment_Revenue",
+          "Region_Revenue",
+          "KPI definitions (canonical)",
+          "Related identifiers from Finance workspace\n- Company: Aether Dynamics Corp\n- Vendors (contextual): VND-1001 NovaForge, VND-1002 Quantum Parts, VND-1003 Horizon Logistics\n- Anomaly cross-ref: ANOM-FIN-004 (2024 Q3 / inventory) aligns with ANOM-BI-002/003"
+        ],
+        "title": "DATA_DICTIONARY.md",
+        "summary": "# Data Dictionary — SYNAPTIX BI Analytics Dataset\n\n**Entity:** Aether Dynamics Corp (fictional)  \n**Package:** SYNAPTIX_BI_ANALYTICS_DATASET  \n**Currency:** USD millions unless noted  \n**Period:** Calendar years 2010–2026  \n**Synthetic:** Yes — prototype data only\n\n## Yearly_PnL (sheet / Yearly_PnL."
+      },
+      "createdAt": "2026-10-09T23:51:02.983Z"
+    },
+    {
+      "id": "doc-07ad1731",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Monthly_Revenue.csv",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\Monthly_Revenue.csv",
+      "fileType": "CSV",
+      "sizeBytes": 10687,
+      "contentHash": "0d09b1b423df896879ac2dfcbe78f5ba7529cda185708336568f1a75572c2d43",
+      "status": "READY",
+      "chunkCount": 21,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 204,
+        "columnNames": [
+          "year",
+          "month",
+          "period",
+          "revenue_usd_m",
+          "cogs_usd_m",
+          "gross_profit_usd_m",
+          "opex_usd_m",
+          "operating_income_usd_m",
+          "units_sold"
+        ],
+        "title": "Monthly_Revenue.csv",
+        "summary": "Columns: year, month, period, revenue_usd_m, cogs_usd_m, gross_profit_usd_m, opex_usd_m, operating_income_usd_m, units_sold\n\nyear: 2010 | month: 1 | period: 40179.22928240741 | revenue_usd_m: 2.975 | cogs_usd_m: 2.023 | gross_profit_usd_m: 0.952 | opex_usd_m: 0.565 | operating_income_usd_m: 0.387 | "
+      },
+      "createdAt": "2026-10-09T23:51:02.987Z"
+    },
+    {
+      "id": "doc-9acc988f",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Region_Revenue.csv",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\Region_Revenue.csv",
+      "fileType": "CSV",
+      "sizeBytes": 1685,
+      "contentHash": "36eef3501d55d04b614007b36253df6122b8a335d346d7e27fd91af2133044e2",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 68,
+        "columnNames": [
+          "year",
+          "region",
+          "revenue_usd_m"
+        ],
+        "title": "Region_Revenue.csv",
+        "summary": "Columns: year, region, revenue_usd_m\n\nyear: 2010 | region: North America | revenue_usd_m: 19.125\nyear: 2010 | region: Europe | revenue_usd_m: 11.9\nyear: 2010 | region: Asia-Pacific | revenue_usd_m: 7.65\nyear: 2010 | region: Rest of World | revenue_usd_m: 3.825\nyear: 2011 | region: North America | re"
+      },
+      "createdAt": "2026-10-09T23:51:02.987Z"
+    },
+    {
+      "id": "doc-265da323",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Segment_Revenue.csv",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\Segment_Revenue.csv",
+      "fileType": "CSV",
+      "sizeBytes": 2610,
+      "contentHash": "0644a4df8a0e95dd17a2478627b248e8f9b059d7e086bee5f250005fe564ee2c",
+      "status": "READY",
+      "chunkCount": 5,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 68,
+        "columnNames": [
+          "year",
+          "segment",
+          "revenue_usd_m",
+          "units_sold"
+        ],
+        "title": "Segment_Revenue.csv",
+        "summary": "Columns: year, segment, revenue_usd_m, units_sold\n\nyear: 2010 | segment: Industrial Sensors | revenue_usd_m: 20.4 | units_sold: 110270\nyear: 2010 | segment: IoT Gateways | revenue_usd_m: 9.35 | units_sold: 50541\nyear: 2010 | segment: Software & Analytics | revenue_usd_m: 5.1 | units_sold: 27568\nyear"
+      },
+      "createdAt": "2026-10-09T23:51:03.001Z"
+    },
+    {
+      "id": "doc-f5c0c1f6",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Yearly_PnL.csv",
+      "relativePath": "SYNAPTIX_BI_ANALYTICS_DATASET\\Yearly_PnL.csv",
+      "fileType": "CSV",
+      "sizeBytes": 1075,
+      "contentHash": "d02ac2a909ae61cbb6d079e6c937838a3493650b548f488d365020efe84164a5",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 17,
+        "columnNames": [
+          "year",
+          "revenue_usd_m",
+          "cogs_usd_m",
+          "gross_profit_usd_m",
+          "gross_margin_pct",
+          "opex_usd_m",
+          "operating_income_usd_m",
+          "net_income_usd_m",
+          "units_sold",
+          "asp_usd"
+        ],
+        "title": "Yearly_PnL.csv",
+        "summary": "Columns: year, revenue_usd_m, cogs_usd_m, gross_profit_usd_m, gross_margin_pct, opex_usd_m, operating_income_usd_m, net_income_usd_m, units_sold, asp_usd\n\nyear: 2010 | revenue_usd_m: 42.5 | cogs_usd_m: 28.9 | gross_profit_usd_m: 13.6 | gross_margin_pct: 32 | opex_usd_m: 8.07 | operating_income_usd_m"
+      },
+      "createdAt": "2026-10-09T23:51:03.002Z"
+    },
+    {
+      "id": "doc-c1a9c437",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Business_Knowledge_Base.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Business_Knowledge_Base.json",
+      "fileType": "JSON",
+      "sizeBytes": 1172,
+      "contentHash": "67ca221adf29bb8a788045b56621355329475b125864242a218de1454de7c161",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Business_Knowledge_Base.json",
+        "summary": "{\n  \"workspace\": \"Business\",\n  \"company\": \"LumenForge Products Inc.\",\n  \"period\": \"2023-2025\",\n  \"products\": [\n    {\n      \"id\": \"PRD-LF-100\",\n      \"name\": \"LumenSense Pro Sensor\"\n    },\n    {\n      \"id\": \"PRD-LF-200\",\n      \"name\": \"ForgeHub Gateway\"\n    },\n    {\n      \"id\": \"PRD-LF-300\",\n      \"n"
+      },
+      "createdAt": "2026-10-09T23:51:03.002Z"
+    },
+    {
+      "id": "doc-57d89947",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Business_Performance_Report.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Business_Performance_Report.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 3079,
+      "contentHash": "8e3cfec2d28da08bc485e76c0e43f66e82b4f4c6c41f40d6718125af9b078161",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "Business_Performance_Report.pdf",
+        "summary": "LumenForge Products Inc.  Business Performance Report — 2023 to 2025 (Synthetic) Document ID: BUS-PERF-2025-01 | SYNAPTIX COMMAND Test Data  1. Company Overview  LumenForge Products Inc. is a fictional manufacturer of smart-home and industrial sensing devices. This report summarizes sales transactio"
+      },
+      "createdAt": "2026-10-09T23:51:03.022Z"
+    },
+    {
+      "id": "doc-79978f33",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Business_Process_Policy.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Business_Process_Policy.md",
+      "fileType": "MD",
+      "sizeBytes": 1003,
+      "contentHash": "0a3f62306cf37aa383383dffa0aac00b26908b17f64e1ec2bd1134edacc5d6b7",
+      "status": "READY",
+      "chunkCount": 0,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Business Process Policy\n**LumenForge Products Inc.**  \n**Document ID:** BUS-POL-001  \n**Version:** 2.0  \n**Effective:** 2025-01-01",
+          "1. Order-to-Cash\n- All orders require valid customer segment and region coding.\n- Discounts > 15% require Sales Director approval.\n- Returns must be logged within 30 days of delivery; Return_Flag set in transaction system.",
+          "2. Inventory Management\n- Reorder points reviewed quarterly.\n- SKUs with Days_of_Supply > 45 days trigger Overstock review.\n- Below-reorder items escalate to Procurement within 2 business days.",
+          "3. Supply Chain Incident Handling\n- Any delivery delay > 5 days is logged as an incident.\n- Root cause and resolution date mandatory before closure.\n- Recurring carrier or region issues escalate to quarterly business review.",
+          "4. Data Integrity for Analytics\nAll transactional and inventory data in this workspace is synthetic and maintained for SYNAPTIX COMMAND prototype testing. Real commercial data must not be mixed into these files."
+        ],
+        "title": "Business_Process_Policy.md",
+        "summary": "# Business Process Policy\n**LumenForge Products Inc.**  \n**Document ID:** BUS-POL-001  \n**Version:** 2.0  \n**Effective:** 2025-01-01\n\n## 1. Order-to-Cash\n- All orders require valid customer segment and region coding.\n- Discounts > 15% require Sales Director approval.\n- Returns must be logged within "
+      },
+      "createdAt": "2026-10-09T23:51:03.022Z"
+    },
+    {
+      "id": "doc-bc9ba165",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Customer_Feedback.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Customer_Feedback.md",
+      "fileType": "MD",
+      "sizeBytes": 946,
+      "contentHash": "7c4fcd294d73f6c030e916266c20a7691c40f91c46eab916bd648ecbcbd5f4e5",
+      "status": "READY",
+      "chunkCount": 0,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Customer Feedback Summary\n**Company:** LumenForge Products Inc.  \n**Period:** 2024 – mid-2025  \n**Document ID:** BUS-FB-001",
+          "Themes (Synthetic)\n1. **Product Reliability** — Majority of Enterprise and SMB feedback positive on LumenSense Pro and ForgeHub Gateway uptime.\n2. **Delivery Timeliness** — Recurring comments about occasional 5–12 day delays on Partner-channel orders (see Supply_Chain_Incidents.txt).\n3. **PulseMonitor Industrial** — Declining satisfaction scores and higher return mentions in 2025; consistent with sales volume drop.\n4. **Support Responsiveness** — Generally favorable; a minority of Consumer tickets cite longer resolution times.",
+          "Quantitative Snapshot\nSatisfaction scores by segment/region are stored in Customer_Segments.csv (range approx. 3.2–4.8).",
+          "Use in Testing\nFeedback text and linked incident/sales data support multi-document reasoning about product decline and supply-chain impact."
+        ],
+        "title": "Customer_Feedback.md",
+        "summary": "# Customer Feedback Summary\n**Company:** LumenForge Products Inc.  \n**Period:** 2024 – mid-2025  \n**Document ID:** BUS-FB-001\n\n## Themes (Synthetic)\n1. **Product Reliability** — Majority of Enterprise and SMB feedback positive on LumenSense Pro and ForgeHub Gateway uptime.\n2. **Delivery Timeliness**"
+      },
+      "createdAt": "2026-10-09T23:51:03.022Z"
+    },
+    {
+      "id": "doc-660d5b24",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Customer_Segments.csv",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Customer_Segments.csv",
+      "fileType": "CSV",
+      "sizeBytes": 800,
+      "contentHash": "0c716d773e891535225082a471b03b972aa549ec9845f3e34cc39d0c15fa7592",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 20,
+        "columnNames": [
+          "Segment",
+          "Region",
+          "Customer_Count",
+          "Avg_Order_Value",
+          "Satisfaction_Score",
+          "Repeat_Purchase_Rate_Pct"
+        ],
+        "title": "Customer_Segments.csv",
+        "summary": "Columns: Segment, Region, Customer_Count, Avg_Order_Value, Satisfaction_Score, Repeat_Purchase_Rate_Pct\n\nSegment: Enterprise | Region: North | Customer_Count: 66 | Avg_Order_Value: 889.2 | Satisfaction_Score: 3.2 | Repeat_Purchase_Rate_Pct: 36.9\nSegment: Enterprise | Region: South | Customer_Count: "
+      },
+      "createdAt": "2026-10-09T23:51:03.023Z"
+    },
+    {
+      "id": "doc-f0c65217",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Inventory_Operations.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Inventory_Operations.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 6084,
+      "contentHash": "b4fa1ed3214b8655a175cf107fb7b443bd145319f891b769cdd35680022a3a1a",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Inventory Snapshot"
+        ],
+        "rowCount": 15,
+        "columnNames": [
+          "SKU",
+          "Product_Name",
+          "Warehouse",
+          "On_Hand",
+          "Reorder_Point",
+          "On_Order",
+          "Avg_Daily_Demand",
+          "Days_of_Supply",
+          "Status",
+          "Last_Count_Date"
+        ],
+        "title": "Inventory_Operations.xlsx",
+        "summary": "Sheet: Inventory Snapshot | Columns: SKU, Product_Name, Warehouse, On_Hand, Reorder_Point, On_Order, Avg_Daily_Demand, Days_of_Supply, Status, Last_Count_Date\n\nSKU: PRD-LF-100 | Product_Name: LumenSense Pro Sensor | Warehouse: WH-North | On_Hand: 369 | Reorder_Point: 67 | On_Order: 45 | Avg_Daily_De"
+      },
+      "createdAt": "2026-10-09T23:51:03.026Z"
+    },
+    {
+      "id": "doc-17ecfd39",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Quarterly_Business_Review.docx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Quarterly_Business_Review.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37277,
+      "contentHash": "e9908843fcaa5187fd83434c2641224ba3858ef36461bdf2644fbbdb728ae01e",
+      "status": "READY",
+      "chunkCount": 4,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "1. Executive Snapshot",
+          "2. Product Performance",
+          "3. Customer & Channel",
+          "4. Actions"
+        ],
+        "title": "Quarterly_Business_Review.docx",
+        "summary": "Quarterly Business Review — Q2 2025\n\nLumenForge Products Inc. — Synthetic QBR\n\nDocument ID: BUS-QBR-2025-Q2\n\n1. Executive Snapshot\n\nOverall revenue trajectory remains positive for the core sensor and gateway lines. PulseMonitor Industrial (PRD-LF-500) continues to underperform relative to 2023–2024 "
+      },
+      "createdAt": "2026-10-09T23:51:03.092Z"
+    },
+    {
+      "id": "doc-2d7f4905",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Sales_Transactions.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Sales_Transactions.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 34942,
+      "contentHash": "31bc6ef33b2f8fbd979e716bf883a51536cddd4f21cf23ec3f422c13fbea5475",
+      "status": "READY",
+      "chunkCount": 68,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Sales Transactions",
+          "Product Summary"
+        ],
+        "rowCount": 507,
+        "columnNames": [
+          "Transaction_ID",
+          "Order_Date",
+          "Product_ID",
+          "Product_Name",
+          "Customer_Segment",
+          "Region",
+          "Units",
+          "Unit_Price",
+          "Revenue",
+          "Discount_Pct",
+          "Channel",
+          "Return_Flag",
+          "Product Sales Summary (Synthetic)"
+        ],
+        "title": "Sales_Transactions.xlsx",
+        "summary": "Sheet: Sales Transactions | Columns: Transaction_ID, Order_Date, Product_ID, Product_Name, Customer_Segment, Region, Units, Unit_Price, Revenue, Discount_Pct, Channel, Return_Flag\n\nTransaction_ID: SO-SYN-80000 | Order_Date: 2023-04-03 | Product_ID: PRD-LF-200 | Product_Name: ForgeHub Gateway | Custo"
+      },
+      "createdAt": "2026-10-09T23:51:03.123Z"
+    },
+    {
+      "id": "doc-3eaec066",
+      "workspaceId": "business",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Supply_Chain_Incidents.txt",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Business\\Supply_Chain_Incidents.txt",
+      "fileType": "TXT",
+      "sizeBytes": 1262,
+      "contentHash": "05cf8f9e6a2db42af8e465bf1446be5cf110e780d8c674e8aa442fc471ce8934",
+      "status": "READY",
+      "chunkCount": 7,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "Supply_Chain_Incidents.txt",
+        "summary": "LUMENFORGE PRODUCTS — SUPPLY CHAIN INCIDENT LOG (SYNTHETIC)\n===========================================================\nPeriod: 2024-01 to 2025-08\n\nINC-SC-001 | 2024-03-12 | Partner channel | East region\n  Delay: 9 days | Cause: Carrier capacity shortfall\n  SKUs affected: PRD-LF-100, PRD-LF-200\n  Re"
+      },
+      "createdAt": "2026-10-09T23:51:03.124Z"
+    },
+    {
+      "id": "doc-c9fc0889",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Equipment_Inspection_Form.png",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Equipment_Inspection_Form.png",
+      "fileType": "PNG",
+      "sizeBytes": 56716,
+      "contentHash": "fdc8466d21918c5389bf84afe9ffad4e24107b8f96931238cd8c503a7d381e8d",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "Equipment_Inspection_Form.png",
+        "summary": "[OCR Extract for Equipment_Inspection_Form.png]\nInvoice Reference: Equipment_Inspection_Form\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.124Z"
+    },
+    {
+      "id": "doc-c2461cb0",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Incident_Register.csv",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Incident_Register.csv",
+      "fileType": "CSV",
+      "sizeBytes": 6619,
+      "contentHash": "6f4e292a272fce730eba21999f917e00532b179978e47bc802d474e233fca3da",
+      "status": "READY",
+      "chunkCount": 8,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 50,
+        "columnNames": [
+          "Incident_ID",
+          "Reported_Date",
+          "Equipment_ID",
+          "Severity",
+          "Category",
+          "Description",
+          "Assigned_Team",
+          "Status",
+          "Resolution_Days",
+          "Linked_WO"
+        ],
+        "title": "Incident_Register.csv",
+        "summary": "Columns: Incident_ID, Reported_Date, Equipment_ID, Severity, Category, Description, Assigned_Team, Status, Resolution_Days, Linked_WO\n\nIncident_ID: INC-OP-4000 | Reported_Date: 45479.22928240741 | Equipment_ID: EQ-OP-PLC-06 | Severity: Low | Category: Safety | Description: Synthetic incident involvi"
+      },
+      "createdAt": "2026-10-09T23:51:03.127Z"
+    },
+    {
+      "id": "doc-25bff492",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Maintenance_Records.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Maintenance_Records.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 9966,
+      "contentHash": "8338113b1b613217959e53570ede94e7c7673d57bb9af2bb1fa6ca7e7e150711",
+      "status": "READY",
+      "chunkCount": 13,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Work Orders"
+        ],
+        "rowCount": 80,
+        "columnNames": [
+          "Work_Order_ID",
+          "Equipment_ID",
+          "Equipment_Desc",
+          "Requested_Date",
+          "Scheduled_Date",
+          "Completed_Date",
+          "Status",
+          "Priority",
+          "Assigned_Team",
+          "Resolution_Hours",
+          "Failure_Code",
+          "Notes"
+        ],
+        "title": "Maintenance_Records.xlsx",
+        "summary": "Sheet: Work Orders | Columns: Work_Order_ID, Equipment_ID, Equipment_Desc, Requested_Date, Scheduled_Date, Completed_Date, Status, Priority, Assigned_Team, Resolution_Hours, Failure_Code, Notes\n\nWork_Order_ID: WO-OP-9000 | Equipment_ID: EQ-OP-CMP-05 | Equipment_Desc: Air Compressor 5 | Requested_Dat"
+      },
+      "createdAt": "2026-10-09T23:51:03.133Z"
+    },
+    {
+      "id": "doc-1b948396",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Operations_Knowledge_Base.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Operations_Knowledge_Base.json",
+      "fileType": "JSON",
+      "sizeBytes": 806,
+      "contentHash": "fe9f0ef89ec472523665b5c5bd0c266dc7ac545143e56dadd80e969140ff8ef7",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Operations_Knowledge_Base.json",
+        "summary": "{\n  \"workspace\": \"Custom_Operations\",\n  \"entity\": \"Apex Continuity Operations Center\",\n  \"period\": \"2024-2025\",\n  \"planted_anomalies\": [\n    {\n      \"id\": \"ANOM-OPS-001\",\n      \"type\": \"overdue_maintenance\",\n      \"equipment\": [\n        \"EQ-OP-CNV-02\",\n        \"EQ-OP-CMP-05\"\n      ],\n      \"descript"
+      },
+      "createdAt": "2026-10-09T23:51:03.134Z"
+    },
+    {
+      "id": "doc-926acf9d",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Operations_Overview.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Operations_Overview.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 2918,
+      "contentHash": "c2c18074d43a8f412c926f8bd83bc39722650a348bb5ef3d4c17115229a0efb6",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "Operations_Overview.pdf",
+        "summary": "Apex Continuity Operations Center  Operations Overview — Synthetic Dataset Document ID: OPS-OVER-2025-01 | SYNAPTIX COMMAND Prototype  1. Scope  This workspace models a fictional industrial operations center responsible for preventive and corrective maintenance, incident management, and shift handov"
+      },
+      "createdAt": "2026-10-09T23:51:03.140Z"
+    },
+    {
+      "id": "doc-33f98d2d",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Operations_Workflow_Definitions.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Operations_Workflow_Definitions.json",
+      "fileType": "JSON",
+      "sizeBytes": 923,
+      "contentHash": "db69f4269ad7d32f85f04acab08e7a0d4aa72f713e796d8a42443f48edd813d1",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Operations_Workflow_Definitions.json",
+        "summary": "{\n  \"workspace\": \"Custom_Operations\",\n  \"entity\": \"Apex Continuity Operations Center\",\n  \"workflows\": [\n    {\n      \"name\": \"WorkOrderLifecycle\",\n      \"states\": [\n        \"Requested\",\n        \"Scheduled\",\n        \"In Progress\",\n        \"Completed\",\n        \"Overdue\",\n        \"Cancelled\"\n      ],\n  "
+      },
+      "createdAt": "2026-10-09T23:51:03.140Z"
+    },
+    {
+      "id": "doc-1250b52e",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Shift_Handover_Notes.txt",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Shift_Handover_Notes.txt",
+      "fileType": "TXT",
+      "sizeBytes": 928,
+      "contentHash": "d98f2170714d36ac5a57650d59b87b91eb3c9627daf2bec069ece1a817c10713",
+      "status": "READY",
+      "chunkCount": 7,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "Shift_Handover_Notes.txt",
+        "summary": "APEX CONTINUITY OPERATIONS — SHIFT HANDOVER NOTES\n================================================\nShift: Night → Day\nDate: 2025-08-14\nOutgoing: Team Gamma | Incoming: Team Alpha\n\nOPEN CRITICAL / HIGH\n- WO-OP-9072 | EQ-OP-CMP-05 Air Compressor 5 | Status: Overdue | Priority: High\n  Notes: Awaiting p"
+      },
+      "createdAt": "2026-10-09T23:51:03.140Z"
+    },
+    {
+      "id": "doc-d165720b",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Standard_Operating_Procedure.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Custom_Operations\\Standard_Operating_Procedure.md",
+      "fileType": "MD",
+      "sizeBytes": 1334,
+      "contentHash": "535ed5248a2fe171d84970dc6861456d6c4e01cbc22c7328768879649b3c6887",
+      "status": "READY",
+      "chunkCount": 0,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Standard Operating Procedure — Maintenance & Incident Management\n**Apex Continuity Operations Center**  \n**Document ID:** OPS-SOP-001  \n**Version:** 1.3  \n**Effective:** 2025-01-01",
+          "1. Work Order Lifecycle\n1. Request logged → Work_Order_ID assigned (WO-OP-####).\n2. Scheduling within priority SLA:\n   - Critical: 4 hours\n   - High: 24 hours\n   - Medium: 72 hours\n   - Low: 7 days\n3. Execution by Assigned_Team.\n4. Completion requires Resolution_Hours and Failure_Code.\n5. Overdue status is automatic when Scheduled_Date passes without completion.",
+          "2. Incident Management\n- All incidents receive Incident_ID (INC-OP-####).\n- Severity drives escalation path.\n- Linked_WO field connects incidents to corrective work orders.\n- Recurring incidents on the same Equipment_ID within 90 days trigger root-cause review.",
+          "3. Shift Handover\n- Outgoing shift documents open critical/high items and any Overdue work orders.\n- Incoming shift acknowledges via Shift_Handover_Notes format.",
+          "4. Approval Requirements\n- Critical priority work orders require Operations Supervisor sign-off before close.\n- Any equipment returned to service after Critical failure requires dual verification.",
+          "5. Synthetic Data Notice\nThis SOP and all linked records are fictional and exist solely for SYNAPTIX COMMAND workflow and analytics testing."
+        ],
+        "title": "Standard_Operating_Procedure.md",
+        "summary": "# Standard Operating Procedure — Maintenance & Incident Management\n**Apex Continuity Operations Center**  \n**Document ID:** OPS-SOP-001  \n**Version:** 1.3  \n**Effective:** 2025-01-01\n\n## 1. Work Order Lifecycle\n1. Request logged → Work_Order_ID assigned (WO-OP-####).\n2. Scheduling within priority SL"
+      },
+      "createdAt": "2026-10-09T23:51:03.140Z"
+    },
+    {
+      "id": "doc-8460b646",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Academic_Performance_Report.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Academic_Performance_Report.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 2980,
+      "contentHash": "33650e49b946d2b00278d2b01addb4fb2e97f40dd333662f0780c24bbeb07431",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "Academic_Performance_Report.pdf",
+        "summary": "Northbridge Synthetic University  Academic Performance Report — 2022-23 to 2024-25 Synthetic Dataset for SYNAPTIX COMMAND Testing  1. Institution Overview  Northbridge Synthetic University (NSU) is a fictional higher-education institution created solely for generating synthetic academic data. Studen"
+      },
+      "createdAt": "2026-10-09T23:51:03.146Z"
+    },
+    {
+      "id": "doc-2bb7d1ed",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Attendance_Records.csv",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Attendance_Records.csv",
+      "fileType": "CSV",
+      "sizeBytes": 18943,
+      "contentHash": "ec507e36b4c0a40a9034117da8fe6ac5a4c5f7f128fe52d4b25f0cf609184436",
+      "status": "READY",
+      "chunkCount": 30,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 300,
+        "columnNames": [
+          "Record_ID",
+          "Student_ID",
+          "Course_Code",
+          "Session_Date",
+          "Present",
+          "Session_Type",
+          "Academic_Year"
+        ],
+        "title": "Attendance_Records.csv",
+        "summary": "Columns: Record_ID, Student_ID, Course_Code, Session_Date, Present, Session_Type, Academic_Year\n\nRecord_ID: ATT-SYN-7000 | Student_ID: STU-SYN-5000 | Course_Code: CS-410 | Session_Date: 45724.22928240741 | Present: 1 | Session_Type: Lecture | Academic_Year: 2022-23\nRecord_ID: ATT-SYN-7001 | Student_"
+      },
+      "createdAt": "2026-10-09T23:51:03.153Z"
+    },
+    {
+      "id": "doc-3aae2c44",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Course_Enrollment.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Course_Enrollment.json",
+      "fileType": "JSON",
+      "sizeBytes": 2623,
+      "contentHash": "a79388c249cffcf57e7d2097b463bbd7eacfe8db1bd1b078dece5741d847282b",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Course_Enrollment.json",
+        "summary": "{\n  \"institution\": \"Northbridge Synthetic University\",\n  \"academic_years\": [\n    \"2022-23\",\n    \"2023-24\",\n    \"2024-25\"\n  ],\n  \"courses\": [\n    {\n      \"code\": \"CS-201\",\n      \"name\": \"Data Structures\",\n      \"by_year\": {\n        \"2022-23\": {\n          \"enrolled\": 19,\n          \"completed\": 17\n    "
+      },
+      "createdAt": "2026-10-09T23:51:03.153Z"
+    },
+    {
+      "id": "doc-056df294",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Curriculum_Review.docx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Curriculum_Review.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37137,
+      "contentHash": "c6727d3766b675b8797c3ff7c773a20b6d61533a6849ab08b4890917830c990f",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "1. Courses Reviewed",
+          "2. Observations",
+          "3. Recommendations"
+        ],
+        "title": "Curriculum_Review.docx",
+        "summary": "Curriculum Review Committee Notes\n\nNorthbridge Synthetic University — Academic Year 2024-25\n\nDocument ID: EDU-CUR-2025-02 | Synthetic\n\n1. Courses Reviewed\n\nCS-201 Data Structures, CS-305 Machine Learning Fundamentals, CS-410 Distributed Systems, MATH-210, ENG-110, PHYS-150, BUS-220.\n\n2. Observations"
+      },
+      "createdAt": "2026-10-09T23:51:03.206Z"
+    },
+    {
+      "id": "doc-7789cfa3",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Education_Knowledge_Base.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Education_Knowledge_Base.json",
+      "fileType": "JSON",
+      "sizeBytes": 828,
+      "contentHash": "d8bd6fb837b92fd51aacbf28e48f32c74984dacf723d56e0e6f9a2f1a1bf0232",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Education_Knowledge_Base.json",
+        "summary": "{\n  \"workspace\": \"Education\",\n  \"institution\": \"Northbridge Synthetic University\",\n  \"academic_years\": [\n    \"2022-23\",\n    \"2023-24\",\n    \"2024-25\"\n  ],\n  \"student_id_pattern\": \"STU-SYN-####\",\n  \"courses\": [\n    \"CS-201\",\n    \"CS-305\",\n    \"MATH-210\",\n    \"ENG-110\",\n    \"PHYS-150\",\n    \"BUS-220\",\n "
+      },
+      "createdAt": "2026-10-09T23:51:03.207Z"
+    },
+    {
+      "id": "doc-2c76b74f",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Education_Operations_Notes.txt",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Education_Operations_Notes.txt",
+      "fileType": "TXT",
+      "sizeBytes": 831,
+      "contentHash": "f48581aaf867412779c92d6ea914c01a736f39509ac8250f9e58b44b41f50708",
+      "status": "READY",
+      "chunkCount": 6,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "Education_Operations_Notes.txt",
+        "summary": "NORTHBRIDGE SYNTHETIC UNIVERSITY — EDUCATION OPERATIONS NOTES\n=============================================================\nPeriod: Academic Years 2022-23 through 2024-25\nLast Updated: 2025-08-01\n\n1. Data Volume\n   - 350 student-course performance records\n   - 300 attendance session records\n   - 7 c"
+      },
+      "createdAt": "2026-10-09T23:51:03.207Z"
+    },
+    {
+      "id": "doc-02b0d84f",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Examination_Analysis.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Examination_Analysis.md",
+      "fileType": "MD",
+      "sizeBytes": 1312,
+      "contentHash": "3417243d996f01acde4812ab12bcac11eb48c0bd6e668a51e0ef5bbd1edd1871",
+      "status": "READY",
+      "chunkCount": 0,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Examination & Completion Analysis\n**Institution:** Northbridge Synthetic University  \n**Period:** 2022-23 to 2024-25  \n**Document ID:** EDU-EXAM-001",
+          "1. Overall Patterns\nStudent-level scores (Assessment 1, Assessment 2, Final Exam) produce overall percentages that map cleanly to letter grades. Aggregate course averages and completion rates are computed in the Course Summary sheet of Student_Performance_Synthetic.xlsx and in Course_Enrollment.json.",
+          "2. Declining Completion — CS-410\nIn academic year 2024-25 the synthetic dataset intentionally elevates the non-completion rate for CS-410 Distributed Systems to ~35%. Earlier years show substantially higher completion. This is the primary planted academic anomaly for detection testing.",
+          "3. Attendance Correlation\nAttendance_Records.csv and the Attendance_Pct column in the student performance file support queries that compare attendance with final grades or completion status.",
+          "4. Consistency Notes\n- Enrollment counts in Course_Enrollment.json match the student-course rows in the Excel file.\n- Overall_Pct is a weighted combination (30/30/40) of the three assessments.\n- Completed flag is 0 for non-completers (including the planted CS-410 cases).",
+          "5. Synthetic Notice\nAll student IDs (STU-SYN-*) and performance figures are fictional."
+        ],
+        "title": "Examination_Analysis.md",
+        "summary": "# Examination & Completion Analysis\n**Institution:** Northbridge Synthetic University  \n**Period:** 2022-23 to 2024-25  \n**Document ID:** EDU-EXAM-001\n\n## 1. Overall Patterns\nStudent-level scores (Assessment 1, Assessment 2, Final Exam) produce overall percentages that map cleanly to letter grades. "
+      },
+      "createdAt": "2026-10-09T23:51:03.207Z"
+    },
+    {
+      "id": "doc-62d18ad1",
+      "workspaceId": "education",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Student_Performance_Synthetic.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Education\\Student_Performance_Synthetic.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 25462,
+      "contentHash": "6b32a55bbb7700fe0bbeb28ccdb5a1858a6e51f0571e0f9dde7cbfa2782ac2d5",
+      "status": "READY",
+      "chunkCount": 48,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Student Scores",
+          "Course Summary"
+        ],
+        "rowCount": 359,
+        "columnNames": [
+          "Student_ID",
+          "Course_Code",
+          "Course_Name",
+          "Term",
+          "Academic_Year",
+          "Assessment_1",
+          "Assessment_2",
+          "Final_Exam",
+          "Overall_Pct",
+          "Grade",
+          "Attendance_Pct",
+          "Completed",
+          "Course Performance Summary (Synthetic)"
+        ],
+        "title": "Student_Performance_Synthetic.xlsx",
+        "summary": "Sheet: Student Scores | Columns: Student_ID, Course_Code, Course_Name, Term, Academic_Year, Assessment_1, Assessment_2, Final_Exam, Overall_Pct, Grade, Attendance_Pct, Completed\n\nStudent_ID: STU-SYN-5000 | Course_Code: ENG-110 | Course_Name: Technical Communication | Term: Fall | Academic_Year: 2023"
+      },
+      "createdAt": "2026-10-09T23:51:03.226Z"
+    },
+    {
+      "id": "doc-48f5f366",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Budget_Variance_Report.docx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Budget_Variance_Report.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37822,
+      "contentHash": "dc2844a1ded35e396bf34236434a053647afcf9968d67ee4981c4a4f065b97cc",
+      "status": "READY",
+      "chunkCount": 5,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Aether Dynamics Corp — Fiscal Year 2024 (Synthetic)",
+          "1. Purpose",
+          "3. Narrative Analysis",
+          "4. Recommended Actions (Synthetic)",
+          "• Finance_Approval_Policy.md"
+        ],
+        "title": "Budget_Variance_Report.docx",
+        "summary": "Budget Variance Report\n\nAether Dynamics Corp — Fiscal Year 2024 (Synthetic)\n\nDocument ID: FIN-BVR-2024-Q4 | Prepared: 2025-01-22 | Classification: Internal Synthetic\n\n1. Purpose\n\nThis report quantifies variances between the approved 2024 operating budget and actual results. It highlights material ov"
+      },
+      "createdAt": "2026-10-09T23:51:03.266Z"
+    },
+    {
+      "id": "doc-693846fe",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Duplicate_Invoice_Investigation.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Duplicate_Invoice_Investigation.md",
+      "fileType": "MD",
+      "sizeBytes": 2149,
+      "contentHash": "e7d01ecfd8f888cd818732a8235d53492ed0a13c4e5139e0214e03b1580fe537",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Duplicate Invoice Investigation Report\n**Aether Dynamics Corp — Finance Operations**  \n**Document ID:** FIN-INV-INV-2024-001  \n**Date Prepared:** 2025-03-12  \n**Prepared by:** Synthetic Finance Controls Team  \n**Status:** Closed — Synthetic Test Case",
+          "1. Executive Summary\nTwo potential duplicate invoice scenarios were identified during routine AP reconciliation for fiscal periods 2023–2024. Both cases have been flagged for prototype testing of anomaly detection and evidence tracking within SYNAPTIX COMMAND.",
+          "2. Case A — Exact Invoice Number Reuse\n| Field | Occurrence 1 | Occurrence 2 |\n|-------|--------------|--------------|\n| Invoice Number | INV-2023-1087 | INV-2023-1087 |\n| Transaction ID | TXN-10087 | TXN-10222 |\n| Vendor | Quantum Parts Supply (VND-1002) | Quantum Parts Supply (VND-1002) |\n| Amount | $12,847.50 | $12,847.50 |\n| Dates | 2023-08-14 | 2023-08-16 |\n| Status | Paid | Pending |",
+          "3. Case B — Near-Duplicate with Variance\n| Field | Occurrence 1 | Occurrence 2 |\n|-------|--------------|--------------|\n| Invoice Number | INV-2024-1112 | INV-2024-1112 |\n| Transaction ID | TXN-10112 | TXN-10223 |\n| Amount | Original | +2% variance |\n| Status | Approved | Pending |",
+          "4. Recommended Controls\n1. Enforce unique Invoice_Number + Vendor_ID constraint at ingestion.\n2. Flag any second submission within 14 days of original for same vendor/amount ±3%.\n3. Require dual approval for any invoice > $10,000 that matches an existing number.",
+          "5. Evidence References\n- Source file: `Expense_Transactions.csv`\n- Source file: `Invoice_Register.xlsx`\n- Related policy: `Finance_Approval_Policy.md`",
+          "6. Synthetic Test Notes\nThis document intentionally documents planted anomalies for RAG and analytics testing. No real financial loss occurred. All identifiers are fictional."
+        ],
+        "title": "Duplicate_Invoice_Investigation.md",
+        "summary": "# Duplicate Invoice Investigation Report\n**Aether Dynamics Corp — Finance Operations**  \n**Document ID:** FIN-INV-INV-2024-001  \n**Date Prepared:** 2025-03-12  \n**Prepared by:** Synthetic Finance Controls Team  \n**Status:** Closed — Synthetic Test Case\n\n## 1. Executive Summary\nTwo potential duplicat"
+      },
+      "createdAt": "2026-10-09T23:51:03.266Z"
+    },
+    {
+      "id": "doc-a51770c5",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Expense_Transactions.csv",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Expense_Transactions.csv",
+      "fileType": "CSV",
+      "sizeBytes": 27981,
+      "contentHash": "72e81a975290e3e16d2fc0157468adf23524b61979f2e2a841c2bc76b577bb97",
+      "status": "READY",
+      "chunkCount": 37,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 222,
+        "columnNames": [
+          "Transaction_ID",
+          "Invoice_Number",
+          "Date",
+          "Vendor_ID",
+          "Vendor_Name",
+          "Category",
+          "Department",
+          "Amount_USD",
+          "Currency",
+          "Status",
+          "Approval_Code",
+          "Fiscal_Year",
+          "Fiscal_Quarter"
+        ],
+        "title": "Expense_Transactions.csv",
+        "summary": "Columns: Transaction_ID, Invoice_Number, Date, Vendor_ID, Vendor_Name, Category, Department, Amount_USD, Currency, Status, Approval_Code, Fiscal_Year, Fiscal_Quarter\n\nTransaction_ID: TXN-10000 | Invoice_Number: INV-2025-1000 | Date: 45871.22928240741 | Vendor_ID: VND-1002 | Vendor_Name: Quantum Part"
+      },
+      "createdAt": "2026-10-09T23:51:03.274Z"
+    },
+    {
+      "id": "doc-423a8975",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Finance_Approval_Policy.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Finance_Approval_Policy.md",
+      "fileType": "MD",
+      "sizeBytes": 2023,
+      "contentHash": "4fbc0814999cf3556c121b98c692bf982c81e07d5bee8eb80497c5ae2d83ff62",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Finance Approval Policy\n**Aether Dynamics Corp**  \n**Document ID:** FIN-POL-APP-001  \n**Version:** 3.2  \n**Effective Date:** 2024-01-01  \n**Owner:** Corporate Controller (Synthetic)",
+          "1. Purpose\nEstablish clear authority levels for expenditure approval, invoice processing, and budget variances to ensure fiscal control and audit readiness.",
+          "2. Approval Thresholds",
+          "3. Invoice Processing Rules\n- All invoices must reference a valid Purchase Order (PO) for amounts ≥ $5,000.\n- Duplicate invoice numbers for the same vendor are prohibited.\n- Invoices older than 90 days require special justification.\n- Any variance > 5% between PO and invoice requires re-approval at original threshold.",
+          "4. Budget Variance Authority\n- Department heads may reallocate within their cost centers up to 8% of annual budget without escalation.\n- Variances > 8% or any capital expenditure variance require Controller review.\n- Year-end forecast variances > 10% escalate to CFO.",
+          "5. Segregation of Duties\n- Requestor cannot approve their own expenditure.\n- AP processor cannot be the final approver for the same transaction.\n- System access to create vendors is restricted to Finance Operations with dual control.",
+          "6. Exceptions\nEmergency purchases (safety, production stoppage) may be ratified post-facto within 5 business days under the Emergency Purchase Protocol (FIN-POL-EMG-002).",
+          "7. Related Documents\n- Finance_Operations_Notes.txt\n- Budget_Variance_Report.docx\n- Invoice_Register.xlsx"
+        ],
+        "title": "Finance_Approval_Policy.md",
+        "summary": "# Finance Approval Policy\n**Aether Dynamics Corp**  \n**Document ID:** FIN-POL-APP-001  \n**Version:** 3.2  \n**Effective Date:** 2024-01-01  \n**Owner:** Corporate Controller (Synthetic)\n\n## 1. Purpose\nEstablish clear authority levels for expenditure approval, invoice processing, and budget variances t"
+      },
+      "createdAt": "2026-10-09T23:51:03.274Z"
+    },
+    {
+      "id": "doc-95fd216a",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Finance_Executive_Report_2010_2026.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Finance_Executive_Report_2010_2026.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 5336,
+      "contentHash": "b8be7d57587e6b93ebe6313c7b52dfe3ecd9c816416e55a7ad2cf83c111ecb64",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 2,
+        "title": "Finance_Executive_Report_2010_2026.pdf",
+        "summary": "AETHER DYNAMICS CORP  Executive Financial Report 2010 – 2026 Synthetic Dataset for SYNAPTIX COMMAND Prototype Testing  Generated: 2026-03-15 | Classification: Internal Synthetic  1. Executive Summary  This report presents a comprehensive synthetic financial history of Aether Dynamics Corp, a fiction"
+      },
+      "createdAt": "2026-10-09T23:51:03.285Z"
+    },
+    {
+      "id": "doc-831dc745",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Finance_Knowledge_Base.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Finance_Knowledge_Base.json",
+      "fileType": "JSON",
+      "sizeBytes": 2600,
+      "contentHash": "c72fd82685df2b87dc5308892a94d994fcae76985ebc04137655ea99864fb2d1",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Finance_Knowledge_Base.json",
+        "summary": "{\n  \"workspace\": \"Finance\",\n  \"entity\": \"Aether Dynamics Corp\",\n  \"last_updated\": \"2026-03-01\",\n  \"version\": \"1.0-synthetic\",\n  \"key_metrics\": {\n    \"peak_revenue_year\": 2018,\n    \"peak_revenue_usd_m\": 118.9,\n    \"largest_decline_year\": 2020,\n    \"yoy_decline_2019_2020_pct\": -26.9,\n    \"anomaly_year"
+      },
+      "createdAt": "2026-10-09T23:51:03.285Z"
+    },
+    {
+      "id": "doc-e280409a",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Finance_Operations_Notes.txt",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Finance_Operations_Notes.txt",
+      "fileType": "TXT",
+      "sizeBytes": 1661,
+      "contentHash": "0d82deeb0842495edd4cbccce11fe3089b44a67e105f4130cf87f7b498215538",
+      "status": "READY",
+      "chunkCount": 9,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "Finance_Operations_Notes.txt",
+        "summary": "AETHER DYNAMICS CORP — FINANCE OPERATIONS NOTES\n================================================\nPeriod Covered: FY2023 – FY2026 (Synthetic)\nLast Updated: 2026-02-18\nAuthor: Finance Ops Team (Synthetic)\n\nKEY OBSERVATIONS\n----------------\n1. Revenue trajectory shows clear multi-year cycle:\n   - Stron"
+      },
+      "createdAt": "2026-10-09T23:51:03.285Z"
+    },
+    {
+      "id": "doc-645ae2ed",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Invoice_Register.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Invoice_Register.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 20197,
+      "contentHash": "b2aa22fc788b513e5c36a24d69cf4aae658664c9ee891d82cd4d28c84fcb7a42",
+      "status": "READY",
+      "chunkCount": 27,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Invoice Register",
+          "Vendor Summary"
+        ],
+        "rowCount": 192,
+        "columnNames": [
+          "Invoice_Number",
+          "Vendor_ID",
+          "Vendor_Name",
+          "Invoice_Date",
+          "Due_Date",
+          "Amount_USD",
+          "Tax_USD",
+          "Total_USD",
+          "Status",
+          "Payment_Date",
+          "PO_Number",
+          "Notes",
+          "Vendor Spend Summary (Synthetic)"
+        ],
+        "title": "Invoice_Register.xlsx",
+        "summary": "Sheet: Invoice Register | Columns: Invoice_Number, Vendor_ID, Vendor_Name, Invoice_Date, Due_Date, Amount_USD, Tax_USD, Total_USD, Status, Payment_Date, PO_Number, Notes\n\nInvoice_Number: INV-2025-1000 | Vendor_ID: VND-1002 | Vendor_Name: Quantum Parts Supply | Invoice_Date: 2025-08-02 | Due_Date: 20"
+      },
+      "createdAt": "2026-10-09T23:51:03.298Z"
+    },
+    {
+      "id": "doc-730ff2aa",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Quarterly_Financial_Statements.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Quarterly_Financial_Statements.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 9097,
+      "contentHash": "178adef8d79171d34bf93d90c2cafaa0fb9de483cca2f4c634358e1dd9223fd6",
+      "status": "READY",
+      "chunkCount": 5,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Income Statement Q",
+          "Balance Sheet Snapshot",
+          "Cash Flow Highlights"
+        ],
+        "rowCount": 52,
+        "columnNames": [
+          "Fiscal_Year",
+          "Quarter",
+          "Revenue",
+          "COGS",
+          "Gross_Profit",
+          "R&D",
+          "SG&A",
+          "Other_OpEx",
+          "Operating_Income",
+          "Interest",
+          "Tax",
+          "Net_Income",
+          "Aether Dynamics Corp - Synthetic Balance Sheet (Year-End)",
+          "Synthetic Cash Flow Summary (USD M)"
+        ],
+        "title": "Quarterly_Financial_Statements.xlsx",
+        "summary": "Sheet: Income Statement Q | Columns: Fiscal_Year, Quarter, Revenue, COGS, Gross_Profit, R&D, SG&A, Other_OpEx, Operating_Income, Interest, Tax, Net_Income\n\nFiscal_Year: 2020 | Quarter: Q1 | Revenue: 15.8 | COGS: 10.14 | Gross_Profit: 5.66 | R&D: 1.42 | SG&A: 1.74 | Other_OpEx: 0.47 | Operating_Incom"
+      },
+      "createdAt": "2026-10-09T23:51:03.302Z"
+    },
+    {
+      "id": "doc-c9b26d38",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Revenue_History_2010_2026.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Revenue_History_2010_2026.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 7348,
+      "contentHash": "77c0acee6b1e24eb87bb005deadbfc7448aada32dfbde392e178d367bc708b08",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Revenue History",
+          "Summary Metrics"
+        ],
+        "rowCount": 28,
+        "columnNames": [
+          "Year",
+          "Revenue_USD_M",
+          "COGS_USD_M",
+          "Gross_Profit_USD_M",
+          "Gross_Margin_Pct",
+          "OpEx_USD_M",
+          "Operating_Income_USD_M",
+          "Op_Margin_Pct",
+          "Net_Income_USD_M",
+          "Notes",
+          "Aether Dynamics Corp - Synthetic Financial Summary"
+        ],
+        "title": "Revenue_History_2010_2026.xlsx",
+        "summary": "Sheet: Revenue History | Columns: Year, Revenue_USD_M, COGS_USD_M, Gross_Profit_USD_M, Gross_Margin_Pct, OpEx_USD_M, Operating_Income_USD_M, Op_Margin_Pct, Net_Income_USD_M, Notes\n\nYear: 2010 | Revenue_USD_M: 42.5 | COGS_USD_M: 30.31 | Gross_Profit_USD_M: 12.19 | Gross_Margin_Pct: 28.7 | OpEx_USD_M:"
+      },
+      "createdAt": "2026-10-09T23:51:03.305Z"
+    },
+    {
+      "id": "doc-7b483b41",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Scanned_Invoice_Sample.jpg",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Scanned_Invoice_Sample.jpg",
+      "fileType": "JPG",
+      "sizeBytes": 67138,
+      "contentHash": "2089fe8385f41abe63e6735fea599c20df0fbd07632fd5dda6b67c8fee51be13",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "Scanned_Invoice_Sample.jpg",
+        "summary": "[OCR Extract for Scanned_Invoice_Sample.jpg]\nInvoice Reference: Scanned_Invoice_Sample\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.305Z"
+    },
+    {
+      "id": "doc-24ec9cfc",
+      "workspaceId": "finance",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Vendor_Invoices.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Finance\\Vendor_Invoices.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 4749,
+      "contentHash": "ea0ace6a52d177fba104f4546aa6b0d886c73f6cafad4c872b6a28e79c5b80c4",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 3,
+        "title": "Vendor_Invoices.pdf",
+        "summary": "INVOICE  Invoice #: INV-2024-0891 Date: 2024-06-12   Due: 2024-07-12 PO Reference: PO-54821  Bill To:  Aether Dynamics Corp 1200 Innovation Drive, Suite 400 Synthetic City, SC 00000  Vendor:  NovaForge Materials LLC Vendor ID: VND-1001  Description   Qty   Unit Price   Amount  Industrial Sensor Hous"
+      },
+      "createdAt": "2026-10-09T23:51:03.313Z"
+    },
+    {
+      "id": "doc-9dd50ff5",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Department_Utilization.csv",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Department_Utilization.csv",
+      "fileType": "CSV",
+      "sizeBytes": 2912,
+      "contentHash": "9d0d4b3ead2f09fa7ca1122cb3d48c5add8b6ae47a917dae96aa34e1abf681a7",
+      "status": "READY",
+      "chunkCount": 7,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 72,
+        "columnNames": [
+          "Year",
+          "Month",
+          "Department",
+          "Scheduled_Slots",
+          "Filled_Slots",
+          "Utilization_Pct",
+          "Avg_Wait_Minutes",
+          "Staff_FTE"
+        ],
+        "title": "Department_Utilization.csv",
+        "summary": "Columns: Year, Month, Department, Scheduled_Slots, Filled_Slots, Utilization_Pct, Avg_Wait_Minutes, Staff_FTE\n\nYear: 2025 | Month: 1 | Department: Emergency | Scheduled_Slots: 194 | Filled_Slots: 365 | Utilization_Pct: 98 | Avg_Wait_Minutes: 61 | Staff_FTE: 8\nYear: 2025 | Month: 1 | Department: Card"
+      },
+      "createdAt": "2026-10-09T23:51:03.315Z"
+    },
+    {
+      "id": "doc-767ef37e",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Equipment_Maintenance_Log.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Equipment_Maintenance_Log.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 6759,
+      "contentHash": "f71821e39e0a99526a3125f5134c3c91c93604e6d94ee0d2721cee46bec6d572",
+      "status": "READY",
+      "chunkCount": 4,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Maintenance Log"
+        ],
+        "rowCount": 24,
+        "columnNames": [
+          "Work_Order_ID",
+          "Equipment_ID",
+          "Equipment_Name",
+          "Department",
+          "Last_Service_Date",
+          "Next_Due_Date",
+          "Status",
+          "Priority",
+          "Technician_ID",
+          "Downtime_Hours",
+          "Notes"
+        ],
+        "title": "Equipment_Maintenance_Log.xlsx",
+        "summary": "Sheet: Maintenance Log | Columns: Work_Order_ID, Equipment_ID, Equipment_Name, Department, Last_Service_Date, Next_Due_Date, Status, Priority, Technician_ID, Downtime_Hours, Notes\n\nWork_Order_ID: WO-SYN-3000 | Equipment_ID: EQ-SYN-MRI-01 | Equipment_Name: MRI Scanner A | Department: Radiology | Last"
+      },
+      "createdAt": "2026-10-09T23:51:03.318Z"
+    },
+    {
+      "id": "doc-fa9e904b",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Healthcare_Knowledge_Base.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Healthcare_Knowledge_Base.json",
+      "fileType": "JSON",
+      "sizeBytes": 1174,
+      "contentHash": "59e2cea841c06aadd743c77e31d5fbf1b1905a6e954d600dd71d2a21fac41e60",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Healthcare_Knowledge_Base.json",
+        "summary": "{\n  \"workspace\": \"Healthcare\",\n  \"facility\": \"Meridian Synthetic Medical Center\",\n  \"period\": \"2024-2025\",\n  \"key_entities\": {\n    \"patient_id_pattern\": \"PAT-SYN-####\",\n    \"appointment_id_pattern\": \"APT-SYN-#####\",\n    \"equipment_id_pattern\": \"EQ-SYN-*\",\n    \"departments\": [\n      \"Emergency\",\n    "
+      },
+      "createdAt": "2026-10-09T23:51:03.318Z"
+    },
+    {
+      "id": "doc-b1115f1f",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Healthcare_Operations_Policy.docx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Healthcare_Operations_Policy.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37327,
+      "contentHash": "6104588794dac735d3415efb42b276372cbbe54d98a939f8c5874893164c1a4d",
+      "status": "READY",
+      "chunkCount": 4,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "1. Purpose",
+          "2. Appointment Management",
+          "3. Equipment Maintenance",
+          "4. Data Handling"
+        ],
+        "title": "Healthcare_Operations_Policy.docx",
+        "summary": "Healthcare Operations Policy\n\nMeridian Synthetic Medical Center — Synthetic Policy Document\n\nDocument ID: HC-POL-OPS-001 | Version 1.4 | Effective: 2025-01-01\n\n1. Purpose\n\nDefine operational standards for appointment management, equipment maintenance, and patient flow monitoring within the synthetic"
+      },
+      "createdAt": "2026-10-09T23:51:03.357Z"
+    },
+    {
+      "id": "doc-03187f54",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Hospital_Operations_Notes.txt",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Hospital_Operations_Notes.txt",
+      "fileType": "TXT",
+      "sizeBytes": 960,
+      "contentHash": "7753fef3b7374714e9ec9e09ea34efe11b4262bb3dff728aa503537c85754b50",
+      "status": "READY",
+      "chunkCount": 6,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "Hospital_Operations_Notes.txt",
+        "summary": "MERIDIAN SYNTHETIC MEDICAL CENTER — OPERATIONS NOTES\n====================================================\nPeriod: 2024-01 to 2025-06 (Synthetic)\nLast Update: 2025-07-01\n\n1. Appointment Volume\n   - 400 synthetic appointments loaded for testing.\n   - Emergency and Radiology are the primary focus for w"
+      },
+      "createdAt": "2026-10-09T23:51:03.357Z"
+    },
+    {
+      "id": "doc-6e74e8eb",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Hospital_Operations_Report.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Hospital_Operations_Report.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 3292,
+      "contentHash": "1112cf33995451ff5289aa8c86dbcc2a36b6754883b29be48ff10ce205004906",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "Hospital_Operations_Report.pdf",
+        "summary": "Meridian Synthetic Medical Center  Hospital Operations Report — FY2024 / FY2025 (Synthetic) Document ID: HC-OPS-2025-001 | For SYNAPTIX COMMAND Prototype Testing  1. Facility Overview  Meridian Synthetic Medical Center (MSMC) is a fictional 320-bed acute-care facility used exclusively for generating"
+      },
+      "createdAt": "2026-10-09T23:51:03.363Z"
+    },
+    {
+      "id": "doc-cf701c7c",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Patient_Flow_Analysis.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Patient_Flow_Analysis.md",
+      "fileType": "MD",
+      "sizeBytes": 1369,
+      "contentHash": "c92b164391c4bf145c9860dd5c2a27db465184a75e3435e2b35561e3f35f1fa2",
+      "status": "READY",
+      "chunkCount": 0,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Patient Flow Analysis\n**Facility:** Meridian Synthetic Medical Center (MSMC)  \n**Period:** 2024–2025 (Synthetic)  \n**Document ID:** HC-FLOW-001",
+          "1. Scope\nAnalysis of appointment throughput, waiting times, and no-show patterns across six departments using the synthetic appointment extract (400 records).",
+          "2. Findings\n- **Emergency** consistently records the longest waits; 90th-percentile waits exceed 100 minutes in the sample.\n- **Radiology** shows bimodal wait distribution — most appointments under 30 minutes, with a secondary cluster of 60–120 minute waits associated with high-utilization days.\n- **No-show rates** are highest in General Medicine and Orthopedics within this synthetic sample.\n- **Utilization** (from Department_Utilization.csv) frequently exceeds 85% for Cardiology and Surgery in peak months, indicating limited spare capacity.",
+          "3. Overdue Equipment Impact\nTwo overdue assets (CT Scanner B, Ventilator Bank 5) are flagged. Prolonged downtime on CT would be expected to cascade into Radiology wait times; the dataset retains the overdue status for detection testing.",
+          "4. Data Sources\n- Synthetic_Appointment_Data.xlsx\n- Department_Utilization.csv\n- Equipment_Maintenance_Log.xlsx\n- Hospital_Operations_Report.pdf",
+          "5. Synthetic Notice\nAll identifiers (PAT-SYN-*, APT-SYN-*, EQ-SYN-*) are fictional. No real PHI is present."
+        ],
+        "title": "Patient_Flow_Analysis.md",
+        "summary": "# Patient Flow Analysis\n**Facility:** Meridian Synthetic Medical Center (MSMC)  \n**Period:** 2024–2025 (Synthetic)  \n**Document ID:** HC-FLOW-001\n\n## 1. Scope\nAnalysis of appointment throughput, waiting times, and no-show patterns across six departments using the synthetic appointment extract (400 r"
+      },
+      "createdAt": "2026-10-09T23:51:03.363Z"
+    },
+    {
+      "id": "doc-5646c125",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Scanned_Referral_Form_Synthetic.png",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Scanned_Referral_Form_Synthetic.png",
+      "fileType": "PNG",
+      "sizeBytes": 49659,
+      "contentHash": "4473c223ed89671a8cbc56e8f9d21ce2d5a6205b1e6ec62b98dd9638151ba017",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "Scanned_Referral_Form_Synthetic.png",
+        "summary": "[OCR Extract for Scanned_Referral_Form_Synthetic.png]\nInvoice Reference: Scanned_Referral_Form_Synthetic\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.363Z"
+    },
+    {
+      "id": "doc-563455b5",
+      "workspaceId": "healthcare",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Synthetic_Appointment_Data.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Healthcare\\Synthetic_Appointment_Data.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 28763,
+      "contentHash": "42b32a88b9fc28992d13a8d0e4676b9768600b88b267893d75082c05e44a7f6a",
+      "status": "READY",
+      "chunkCount": 55,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Appointments",
+          "Dept Summary"
+        ],
+        "rowCount": 408,
+        "columnNames": [
+          "Appointment_ID",
+          "Patient_ID",
+          "Department",
+          "Appointment_Date",
+          "Scheduled_Time",
+          "CheckIn_Time",
+          "Wait_Minutes",
+          "Duration_Minutes",
+          "Provider_ID",
+          "Status",
+          "No_Show_Flag",
+          "Department Utilization & Wait Summary (Synthetic)"
+        ],
+        "title": "Synthetic_Appointment_Data.xlsx",
+        "summary": "Sheet: Appointments | Columns: Appointment_ID, Patient_ID, Department, Appointment_Date, Scheduled_Time, CheckIn_Time, Wait_Minutes, Duration_Minutes, Provider_ID, Status, No_Show_Flag\n\nAppointment_ID: APT-SYN-20000 | Patient_ID: PAT-SYN-1000 | Department: Orthopedics | Appointment_Date: 2024-09-15 "
+      },
+      "createdAt": "2026-10-09T23:51:03.384Z"
+    },
+    {
+      "id": "doc-46b098a7",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Experimental_Results.xlsx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Experimental_Results.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 7021,
+      "contentHash": "47df30bb35fba23b0de61cfb772a215993d55d02ac3f63e5925ebc8e7069cc9c",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Experiment Results",
+          "Summary Statistics"
+        ],
+        "rowCount": 21,
+        "columnNames": [
+          "Experiment_ID",
+          "Test_Date",
+          "Sensor_Type",
+          "Sample_Size",
+          "Baseline_Fail_Rate_Pct",
+          "Model_Precision",
+          "Model_Recall",
+          "F1_Score",
+          "False_Positive_Rate",
+          "Lead_Time_Days",
+          "Energy_Saving_Pct",
+          "Notes",
+          "Predictive Maintenance Research — Experimental Summary"
+        ],
+        "title": "Experimental_Results.xlsx",
+        "summary": "Sheet: Experiment Results | Columns: Experiment_ID, Test_Date, Sensor_Type, Sample_Size, Baseline_Fail_Rate_Pct, Model_Precision, Model_Recall, F1_Score, False_Positive_Rate, Lead_Time_Days, Energy_Saving_Pct, Notes\n\nExperiment_ID: EXP-PM-001 | Test_Date: 2023-03-15 | Sensor_Type: Vibration | Sample"
+      },
+      "createdAt": "2026-10-09T23:51:03.387Z"
+    },
+    {
+      "id": "doc-cc6842d3",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Limitations_and_Future_Work.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Limitations_and_Future_Work.md",
+      "fileType": "MD",
+      "sizeBytes": 1511,
+      "contentHash": "08a2e4ff4ed445a0d8ef33850429855f0cb8b49eba8310e9b0256f3bd58c000a",
+      "status": "READY",
+      "chunkCount": 0,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Limitations and Future Work\n**Project:** SYNAPTIX-PM-2023-2025",
+          "Limitations\n1. **Acoustic data scarcity** — EXP-PM-006 demonstrated that acoustic-only models suffer from high false-positive rates when labeled failure events are sparse. Multi-modal fusion mitigates but does not eliminate this constraint.\n2. **Synthetic / controlled data** — All experiments used synthetic sensor streams with known degradation profiles. Real-world noise, sensor drift, and rare failure modes are underrepresented.\n3. **Energy savings estimation** — Savings percentages are derived from duty-cycle models rather than continuous power measurement on deployed hardware.\n4. **Lead time shortfall** — Peak median lead time reached 9.8 days against a 10-day target. The difference is small but formally means the lead-time criterion was not fully met.\n5. **Single industrial domain** — Results are specific to the synthetic sensor-network environment modeled; transfer to other equipment classes is untested.",
+          "Future Work Recommendations\n- Collect and label additional real acoustic failure events.\n- Conduct a field pilot with continuous power metering.\n- Explore transfer learning / domain adaptation for new equipment types.\n- Investigate online / continual learning to handle concept drift.",
+          "Relation to Test Cases\nThe acoustic underperformance (ANOM-RES-001) is intentionally retained so that analytics and RAG systems can surface the limitation when queried about model weaknesses or experiment anomalies."
+        ],
+        "title": "Limitations_and_Future_Work.md",
+        "summary": "# Limitations and Future Work\n**Project:** SYNAPTIX-PM-2023-2025\n\n## Limitations\n1. **Acoustic data scarcity** — EXP-PM-006 demonstrated that acoustic-only models suffer from high false-positive rates when labeled failure events are sparse. Multi-modal fusion mitigates but does not eliminate this co"
+      },
+      "createdAt": "2026-10-09T23:51:03.388Z"
+    },
+    {
+      "id": "doc-d230dfae",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Literature_Review.docx",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Literature_Review.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37605,
+      "contentHash": "1f9ca1606fc9ebe889097c24369370faea4748b59c77844ba7ef3bac0fbf4b62",
+      "status": "READY",
+      "chunkCount": 5,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "1. Scope",
+          "2. Internal Prior Studies (Fictional)",
+          "3. Conceptual Foundations",
+          "4. Gaps Addressed by Current Project",
+          "5. References to Project Artifacts"
+        ],
+        "title": "Literature_Review.docx",
+        "summary": "Literature Review — Predictive Maintenance Edge ML\n\nProject: SYNAPTIX-PM-2023-2025 | Internal Synthetic Review\n\n1. Scope\n\nThis document synthesizes prior internal studies and conceptual foundations used to design the predictive maintenance experiments. No external academic citations are claimed as o"
+      },
+      "createdAt": "2026-10-09T23:51:03.425Z"
+    },
+    {
+      "id": "doc-98cee072",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Methodology.md",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Methodology.md",
+      "fileType": "MD",
+      "sizeBytes": 1736,
+      "contentHash": "3a885c31d4311e98c58d0368e98a765f5d55796f0bfa5b82d8caa971e5c58a48",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Methodology — Edge ML Predictive Maintenance\n**Project:** SYNAPTIX-PM-2023-2025  \n**Document ID:** RES-METH-001  \n**Version:** 2.1",
+          "1. Experimental Design\nTen sequential experiments (EXP-PM-001 to EXP-PM-010) were conducted. Each experiment increased either the feature set, sample size, or model sophistication.",
+          "2. Data Collection\nSynthetic industrial sensor streams were generated and labeled with failure-imminent flags based on controlled degradation profiles. Sample sizes ranged from 720 to 2,750 per experiment.",
+          "3. Model Architecture\n- Backbone: quantized 1D CNN + temporal attention (edge-optimized)\n- Input windows: 64-timestep sliding windows\n- Output: binary probability of failure within next 10 operating days\n- Training: 70/15/15 train/val/test splits, stratified",
+          "4. Evaluation Metrics\nPrecision, Recall, F1, False Positive Rate, estimated lead time (median days from first true positive to actual failure event), and modeled energy saving from reduced continuous sensing duty cycle.",
+          "5. Anomaly Handling\nEXP-PM-006 was retained in the series despite underperformance to document modality limitations. No post-hoc exclusion was applied.",
+          "6. Reproducibility\nAll experiment identifiers, metrics, and the 500-row feature sample (Research_Dataset.csv) are provided for independent verification within the SYNAPTIX COMMAND test environment."
+        ],
+        "title": "Methodology.md",
+        "summary": "# Methodology — Edge ML Predictive Maintenance\n**Project:** SYNAPTIX-PM-2023-2025  \n**Document ID:** RES-METH-001  \n**Version:** 2.1\n\n## 1. Experimental Design\nTen sequential experiments (EXP-PM-001 to EXP-PM-010) were conducted. Each experiment increased either the feature set, sample size, or mode"
+      },
+      "createdAt": "2026-10-09T23:51:03.425Z"
+    },
+    {
+      "id": "doc-783eb466",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Research_Chart.png",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Research_Chart.png",
+      "fileType": "PNG",
+      "sizeBytes": 61335,
+      "contentHash": "d3c7db89377df455ed438db05bf8213aab59a0a13a905f40df1cafff3da37833",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "Research_Chart.png",
+        "summary": "[OCR Extract for Research_Chart.png]\nInvoice Reference: Research_Chart\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.425Z"
+    },
+    {
+      "id": "doc-f709206c",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Research_Dataset.csv",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Research_Dataset.csv",
+      "fileType": "CSV",
+      "sizeBytes": 34999,
+      "contentHash": "bd31a6bca79c9a6cf240acec028a1804e18a6f54b23d611e5c30a51e75957d7f",
+      "status": "READY",
+      "chunkCount": 67,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 500,
+        "columnNames": [
+          "Sample_ID",
+          "Experiment_ID",
+          "Timestamp",
+          "Vibration_RMS",
+          "Temp_C",
+          "Acoustic_dB",
+          "Operating_Hours",
+          "Label_Failure_Imminent",
+          "Predicted_Prob"
+        ],
+        "title": "Research_Dataset.csv",
+        "summary": "Columns: Sample_ID, Experiment_ID, Timestamp, Vibration_RMS, Temp_C, Acoustic_dB, Operating_Hours, Label_Failure_Imminent, Predicted_Prob\n\nSample_ID: SMP-10000 | Experiment_ID: EXP-PM-009 | Timestamp: 45689.00011574074 | Vibration_RMS: 0.63 | Temp_C: 31.8 | Acoustic_dB: 62.5 | Operating_Hours: 1986 "
+      },
+      "createdAt": "2026-10-09T23:51:03.435Z"
+    },
+    {
+      "id": "doc-c6bc081a",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Research_Findings.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Research_Findings.json",
+      "fileType": "JSON",
+      "sizeBytes": 2318,
+      "contentHash": "07aaba74a9a2346516ea9dd7c4d36632c570c6cf5dbc5f94f66a613adb535e90",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Research_Findings.json",
+        "summary": "{\n  \"project_id\": \"SYNAPTIX-PM-2023-2025\",\n  \"title\": \"Edge Machine Learning for Predictive Maintenance of Industrial Sensor Networks\",\n  \"hypothesis\": \"Multi-modal edge ML models can detect impending equipment failures with ≥10 days lead time and reduce energy consumption by ≥15% compared with reac"
+      },
+      "createdAt": "2026-10-09T23:51:03.436Z"
+    },
+    {
+      "id": "doc-ba20a7d8",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Research_Knowledge_Base.json",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Research_Knowledge_Base.json",
+      "fileType": "JSON",
+      "sizeBytes": 959,
+      "contentHash": "7b7d99818f048af0c3fcc47b86a21d172e288737905a516d00553fef03010927",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "title": "Research_Knowledge_Base.json",
+        "summary": "{\n  \"workspace\": \"Research\",\n  \"project_id\": \"SYNAPTIX-PM-2023-2025\",\n  \"title\": \"Edge Machine Learning for Predictive Maintenance of Industrial Sensor Networks\",\n  \"status\": \"Completed\",\n  \"period\": \"2023-03 to 2025-06\",\n  \"hypothesis_supported\": true,\n  \"key_metrics\": {\n    \"best_f1\": 0.92,\n    \"b"
+      },
+      "createdAt": "2026-10-09T23:51:03.436Z"
+    },
+    {
+      "id": "doc-275bcffc",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Research_Meeting_Notes.txt",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Research_Meeting_Notes.txt",
+      "fileType": "TXT",
+      "sizeBytes": 1185,
+      "contentHash": "493e334f6d8566056563f3d07a8fd9f5bca76a74a04135bc6027e450fe3ab37c",
+      "status": "READY",
+      "chunkCount": 6,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "Research_Meeting_Notes.txt",
+        "summary": "SYNAPTIX RESEARCH — MEETING NOTES\n================================\nProject: Edge ML Predictive Maintenance (SYNAPTIX-PM)\nDate: 2025-07-09\nAttendees: Research Lead, ML Engineer, Domain Specialist, Ops Liaison (all synthetic roles)\n\nAGENDA\n1. Final validation results review (EXP-PM-010)\n2. Decision on"
+      },
+      "createdAt": "2026-10-09T23:51:03.436Z"
+    },
+    {
+      "id": "doc-507b9b4a",
+      "workspaceId": "research",
+      "organizationId": "synaptix-enterprise",
+      "filename": "Research_Project_Overview.pdf",
+      "relativePath": "SYNAPTIX_DUMMY_DATA\\Research\\Research_Project_Overview.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 3779,
+      "contentHash": "784a80e7f4c2d6ac4c89c4716f363f9c0d7062369e8a466ee1d00485ba9731dc",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "Research_Project_Overview.pdf",
+        "summary": "SYNAPTIX Research Division  Project Overview: Edge ML for Predictive Maintenance Project ID: SYNAPTIX-PM-2023-2025 | Period: March 2023 – June 2025  1. Objective  Develop and validate multi-modal machine learning models that run at the edge to predict equipment failures in industrial sensor networks"
+      },
+      "createdAt": "2026-10-09T23:51:03.442Z"
+    },
+    {
+      "id": "doc-9e2a53db",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-CSV-001_Entity_Events_Dirty.csv",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\csv\\ING-CSV-001_Entity_Events_Dirty.csv",
+      "fileType": "CSV",
+      "sizeBytes": 586,
+      "contentHash": "ae9ab56cd9fe82576c704277eccfe9cce92e18270b0d338a570d6bcc8f563a3e",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 7,
+        "columnNames": [
+          "record_id",
+          "event_date",
+          "entity_id",
+          "entity_name",
+          "metric_value",
+          "unit",
+          "source_system"
+        ],
+        "title": "ING-CSV-001_Entity_Events_Dirty.csv",
+        "summary": "Columns: record_id, event_date, entity_id, entity_name, metric_value, unit, source_system\n\nrecord_id: REC-001 | event_date: 45667.22928240741 | entity_id: EQ-SYN-CT-02 | entity_name: CT Scanner B | metric_value: 14 | unit: days_overdue | source_system: CMMS\nrecord_id: REC-002 | event_date: 45932.000"
+      },
+      "createdAt": "2026-10-09T23:51:03.442Z"
+    },
+    {
+      "id": "doc-33cfcb65",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-CSV-002_Vendor_List_Clean.csv",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\csv\\ING-CSV-002_Vendor_List_Clean.csv",
+      "fileType": "CSV",
+      "sizeBytes": 325,
+      "contentHash": "e447a2a908ca1e87f1f68f52b3be9f960fd015ca99368b9b8f099352bc6135c6",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "rowCount": 5,
+        "columnNames": [
+          "vendor_id",
+          "vendor_name",
+          "category",
+          "risk_tier",
+          "status"
+        ],
+        "title": "ING-CSV-002_Vendor_List_Clean.csv",
+        "summary": "Columns: vendor_id, vendor_name, category, risk_tier, status\n\nvendor_id: VND-1001 | vendor_name: NovaForge Materials LLC | category: Raw Materials | risk_tier: Medium | status: Active\nvendor_id: VND-1002 | vendor_name: Quantum Parts Supply | category: Components | risk_tier: Medium | status: Active\n"
+      },
+      "createdAt": "2026-10-09T23:51:03.443Z"
+    },
+    {
+      "id": "doc-30ae48c3",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-DOCX-001_Onboarding_Checklist_Form.docx",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\docx\\ING-DOCX-001_Onboarding_Checklist_Form.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37546,
+      "contentHash": "325a3b5776b8768a053764d4f4d52e65bf4a66200ff130026cc7ae9941ea335d",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Employee Onboarding Checklist — Synthetic Form",
+          "HR",
+          "Section C — Abbreviations"
+        ],
+        "title": "ING-DOCX-001_Onboarding_Checklist_Form.docx",
+        "summary": "Employee Onboarding Checklist — Synthetic Form\n\nDocument ID: ING-DOCX-001 | Status: Synthetic Test Form | Org: Aether Dynamics Corp / Asterion cross-ref\n\nSection A — Employee Details (labelled fields)\n\nEmployee ID\n\nEMP-SYN-88421\n\nFull Name\n\nPriya Sharma (synthetic)\n\nDepartment\n\nResearch and Developm"
+      },
+      "createdAt": "2026-10-09T23:51:03.483Z"
+    },
+    {
+      "id": "doc-02a45e28",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-DOCX-002_Ops_Digest_CrossEntity.docx",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\docx\\ING-DOCX-002_Ops_Digest_CrossEntity.docx",
+      "fileType": "DOCX",
+      "sizeBytes": 37257,
+      "contentHash": "d04763b32de772f6a0a4fc4dc749d53f776e35cac61ef0138f4d6957dac70a29",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "1. Overview",
+          "Critical Care Ops"
+        ],
+        "title": "ING-DOCX-002_Ops_Digest_CrossEntity.docx",
+        "summary": "Quarterly Operations Digest — Synthetic\n\nDocument ID: ING-DOCX-002 | Multi-section narrative with table | Synthetic\n\n1. Overview\n\nMeridian Synthetic Medical Center (MSMC) and Aether Dynamics operations coordinators jointly review shared facility equipment maintenance themes for ingestion testing. Th"
+      },
+      "createdAt": "2026-10-09T23:51:03.523Z"
+    },
+    {
+      "id": "doc-cfcd23ba",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-IMG-001_Scanned_Invoice.jpg",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\images\\ING-IMG-001_Scanned_Invoice.jpg",
+      "fileType": "JPG",
+      "sizeBytes": 59123,
+      "contentHash": "9d00fb26db1211ecd56ceff7be1f1c20f06041c3f1b274e45d36fb45d6772bd8",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "ING-IMG-001_Scanned_Invoice.jpg",
+        "summary": "[OCR Extract for ING-IMG-001_Scanned_Invoice.jpg]\nInvoice Reference: ING-IMG-001_Scanned_Invoice\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.524Z"
+    },
+    {
+      "id": "doc-b80c165f",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-IMG-002_Referral_Form.png",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\images\\ING-IMG-002_Referral_Form.png",
+      "fileType": "PNG",
+      "sizeBytes": 41640,
+      "contentHash": "1c092087cb68844f346e9f049161a9b217f8772a7affd4c7320f5d7178536ab4",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "ING-IMG-002_Referral_Form.png",
+        "summary": "[OCR Extract for ING-IMG-002_Referral_Form.png]\nInvoice Reference: ING-IMG-002_Referral_Form\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.524Z"
+    },
+    {
+      "id": "doc-f6b4ac1c",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-IMG-003_Poor_Quality_Inspection.jpg",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\images\\ING-IMG-003_Poor_Quality_Inspection.jpg",
+      "fileType": "JPG",
+      "sizeBytes": 20024,
+      "contentHash": "a46961e98cdcf5bc64ef8db203513bedd888dbd82b10a13e14756474abea733d",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "ING-IMG-003_Poor_Quality_Inspection.jpg",
+        "summary": "[OCR Extract for ING-IMG-003_Poor_Quality_Inspection.jpg]\nInvoice Reference: ING-IMG-003_Poor_Quality_Inspection\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.524Z"
+    },
+    {
+      "id": "doc-9f14376e",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-IMG-004_Utilization_Table.png",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\images\\ING-IMG-004_Utilization_Table.png",
+      "fileType": "PNG",
+      "sizeBytes": 22293,
+      "contentHash": "0076cc5f8e7b0b658ed62fcbdf329674dddfb49c0e6d1adab162a6d74439a133",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": true,
+      "metadata": {
+        "title": "ING-IMG-004_Utilization_Table.png",
+        "summary": "[OCR Extract for ING-IMG-004_Utilization_Table.png]\nInvoice Reference: ING-IMG-004_Utilization_Table\nAmount: 1,250.00 USD\nVendor: Global Tech Solutions\nDate: 2025-06-15"
+      },
+      "createdAt": "2026-10-09T23:51:03.524Z"
+    },
+    {
+      "id": "doc-f0b8262b",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-MD-001_Travel_Approval_Excerpt.md",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\md\\ING-MD-001_Travel_Approval_Excerpt.md",
+      "fileType": "MD",
+      "sizeBytes": 1228,
+      "contentHash": "64643510705482008ba8aeea1faf2565c3f7f73ea0df4940168d3beb0641e559",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Policy Extract — Travel Approval Thresholds (Synthetic)",
+          "Purpose\nProvide a clean Markdown policy fragment with tables, abbreviations, and cross-references.",
+          "Approval Bands (INR)",
+          "Abbreviations\n- **CFO** — Chief Financial Officer  \n- **INR** — Indian Rupee  \n- **PO** — Purchase Order  \n- **AL** — Annual Leave (see POL-HR-001 in Asterion pack)",
+          "Related Entities\nVendor travel often booked via Horizon Logistics Inc (**VND-1003**). Employee example: **EMP-SYN-88421**.  \nFinance contact (synthetic): `travel.desk@aether-dynamics.example.com`.",
+          "Known Limitations\nThis is an excerpt, not a full policy. Full authority remains with POL-FIN-003 / POL-HR-003 in the parent corpora."
+        ],
+        "title": "ING-MD-001_Travel_Approval_Excerpt.md",
+        "summary": "# Policy Extract — Travel Approval Thresholds (Synthetic)\n\n**Document ID:** ING-MD-001  \n**Source alignment:** POL-HR-003 / POL-FIN-003 style rules from Asterion & Aether test corpora  \n**Status:** Synthetic excerpt for Markdown ingestion testing  \n\n## Purpose\nProvide a clean Markdown policy fragmen"
+      },
+      "createdAt": "2026-10-09T23:51:03.524Z"
+    },
+    {
+      "id": "doc-6fd47963",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-MD-002_Abbreviation_Glossary.md",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\md\\ING-MD-002_Abbreviation_Glossary.md",
+      "fileType": "MD",
+      "sizeBytes": 518,
+      "contentHash": "cc4b742475d5d49f36bf3b4af2777844cc7d92913bb6b37a2cc62365e84cab4e",
+      "status": "READY",
+      "chunkCount": 3,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [
+          "Abbreviation Glossary Snippet"
+        ],
+        "title": "ING-MD-002_Abbreviation_Glossary.md",
+        "summary": "# Abbreviation Glossary Snippet\n\n**Document ID:** ING-MD-002  \n**Synthetic**\n\n| Abbr | Expansion | Domain |\n|------|-----------|--------|\n| OTIF | On-Time In-Full | Logistics |\n| QMS | Quality Management System | Operations |\n| CMMS | Computerized Maintenance Management System | Operations |\n| HIS |"
+      },
+      "createdAt": "2026-10-09T23:51:03.524Z"
+    },
+    {
+      "id": "doc-dce24bac",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-PDF-001_Vendor_Performance_Report.pdf",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\pdf\\ING-PDF-001_Vendor_Performance_Report.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 4479,
+      "contentHash": "4a1b4683e8eb35fa46d01129a50f9f0e43c2e3a76f6a6ce95811f66660da3c8b",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 2,
+        "title": "ING-PDF-001_Vendor_Performance_Report.pdf",
+        "summary": "Aether Dynamics Corp — SYNTHETIC TEST DOCUMENT   Classification: Internal Synthetic SYNAPTIX Ingestion Test Pack — Not for operational use   Page 1  Vendor Performance Report — Q2 FY2025  Aether Dynamics Corp | Document ID: ING-PDF-001 | Synthetic  1. Executive Summary  This   multi-page   synthetic"
+      },
+      "createdAt": "2026-10-09T23:51:03.531Z"
+    },
+    {
+      "id": "doc-1e8e41c0",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-PDF-002_Synthetic_Invoice.pdf",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\pdf\\ING-PDF-002_Synthetic_Invoice.pdf",
+      "fileType": "PDF",
+      "sizeBytes": 2470,
+      "contentHash": "15fe72399e4b1b2c0b70e220c9c0a6cee25c1c78bdcbd7167f539054a05323cd",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "pageCount": 1,
+        "title": "ING-PDF-002_Synthetic_Invoice.pdf",
+        "summary": "TAX INVOICE  Document ID: ING-PDF-002 | SYNTHETIC — Not a real commercial invoice  Seller:  NovaForge Materials LLC (VND-1001) Industrial Estate, Synthetic City 560001 Email: billing@novaforge.example.com | Phone: +91-80-5555-1001  Buyer:  Aether Dynamics Corp 1200 Innovation Drive, Bengaluru 560102"
+      },
+      "createdAt": "2026-10-09T23:51:03.535Z"
+    },
+    {
+      "id": "doc-08c7de67",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-TXT-001_Shift_Handover_Extract.txt",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\txt\\ING-TXT-001_Shift_Handover_Extract.txt",
+      "fileType": "TXT",
+      "sizeBytes": 879,
+      "contentHash": "521bb6b1a568061868ded0032e37a26f224a2303ef9fefbe935f23983d9b7636",
+      "status": "READY",
+      "chunkCount": 7,
+      "ocrApplied": false,
+      "metadata": {
+        "headings": [],
+        "title": "ING-TXT-001_Shift_Handover_Extract.txt",
+        "summary": "SYNAPTIX INGESTION TEST — PLAIN TEXT OPERATIONAL NOTE\nDocument ID: ING-TXT-001\nClassification: Internal Synthetic\nEntity: Aether Dynamics Corp / Apex Continuity Operations\n\nSHIFT HANDOVER EXTRACT (SYNTHETIC)\nDate: 2025-08-14\nOutgoing: Team Gamma\nIncoming: Team Alpha\n\nOPEN ITEMS\n1. WO-OP-9072 | EQ-OP"
+      },
+      "createdAt": "2026-10-09T23:51:03.536Z"
+    },
+    {
+      "id": "doc-0c46993a",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-XLSX-001_Transactions_Mixed_Quality.xlsx",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\xlsx\\ING-XLSX-001_Transactions_Mixed_Quality.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 6375,
+      "contentHash": "736f49364ea9537a9ee8146dc57b577bd405bf3ef696188dccaf794b10aa9c95",
+      "status": "READY",
+      "chunkCount": 2,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Transactions",
+          "Legend"
+        ],
+        "rowCount": 14,
+        "columnNames": [
+          "Txn_ID",
+          "Txn_Date",
+          "Vendor_ID",
+          "Vendor_Name",
+          "Amount_INR",
+          "Status",
+          "Invoice_Ref",
+          "Notes",
+          "SYNTHETIC DATASET — ING-XLSX-001"
+        ],
+        "title": "ING-XLSX-001_Transactions_Mixed_Quality.xlsx",
+        "summary": "Sheet: Transactions | Columns: Txn_ID, Txn_Date, Vendor_ID, Vendor_Name, Amount_INR, Status, Invoice_Ref, Notes\n\nTxn_ID: TXN-ING-9001 | Txn_Date: 2025-03-15 | Vendor_ID: VND-1001 | Vendor_Name: NovaForge Materials LLC | Amount_INR: 12847.5 | Status: Paid | Invoice_Ref: INV-SYN-2025-1001 | Notes: Cle"
+      },
+      "createdAt": "2026-10-09T23:51:03.537Z"
+    },
+    {
+      "id": "doc-b921f292",
+      "workspaceId": "custom_operations",
+      "organizationId": "synaptix-enterprise",
+      "filename": "ING-XLSX-002_Budget_Summary_Clean.xlsx",
+      "relativePath": "SYNAPTIX_INGESTION_TEST_PACK\\xlsx\\ING-XLSX-002_Budget_Summary_Clean.xlsx",
+      "fileType": "XLSX",
+      "sizeBytes": 5226,
+      "contentHash": "d3ab1d7fce03f70992a2bcba445f7196a6cf9e9529620d2346a365bc8d7a1f32",
+      "status": "READY",
+      "chunkCount": 1,
+      "ocrApplied": false,
+      "metadata": {
+        "sheetNames": [
+          "Budget Summary"
+        ],
+        "rowCount": 6,
+        "columnNames": [
+          "Cost_Center",
+          "Department",
+          "FY2025_Budget_INR",
+          "FY2025_Actual_INR",
+          "Variance_INR",
+          "Variance_Pct"
+        ],
+        "title": "ING-XLSX-002_Budget_Summary_Clean.xlsx",
+        "summary": "Sheet: Budget Summary | Columns: Cost_Center, Department, FY2025_Budget_INR, FY2025_Actual_INR, Variance_INR, Variance_Pct\n\nCost_Center: CC-MFG-01 | Department: Manufacturing | FY2025_Budget_INR: 9450000 | FY2025_Actual_INR: 10413000 | Variance_INR: 963000 | Variance_Pct: 10.19\nCost_Center: CC-RND-0"
+      },
+      "createdAt": "2026-10-09T23:51:03.539Z"
+    }
+  ],
+  "totalChunks": 645,
+  "timestamp": "2026-10-09T23:51:03.753Z"
+}

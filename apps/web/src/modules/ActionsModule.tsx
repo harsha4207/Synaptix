@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ShieldCheck,
   CheckSquare,
@@ -18,6 +18,8 @@ import { EmptyState } from '../components/ui/EmptyState';
 interface ActionsModuleProps {
   workspace: WorkspaceItem;
   onAddToast: (msg: string) => void;
+  activeSubTab?: ActionStatusTab;
+  onSubTabChange?: (tab: ActionStatusTab) => void;
 }
 
 export type ActionStatusTab =
@@ -29,8 +31,19 @@ export type ActionStatusTab =
   | 'Unknown'
   | 'Rolled Back';
 
-export const ActionsModule: React.FC<ActionsModuleProps> = ({ workspace, onAddToast }) => {
-  const [activeTab, setActiveTab] = useState<ActionStatusTab>('Pending');
+export const ActionsModule: React.FC<ActionsModuleProps> = ({
+  workspace,
+  onAddToast,
+  activeSubTab,
+  onSubTabChange,
+}) => {
+  const [activeTab, setActiveTab] = useState<ActionStatusTab>(activeSubTab || 'Pending');
+
+  useEffect(() => {
+    if (activeSubTab) {
+      setActiveTab(activeSubTab);
+    }
+  }, [activeSubTab]);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [riskFilter, setRiskFilter] = useState<string>('All');
   const [systemFilter, setSystemFilter] = useState<string>('All');
@@ -400,7 +413,7 @@ export const ActionsModule: React.FC<ActionsModuleProps> = ({ workspace, onAddTo
         description="Cryptographically governed operational action queue, authorization review, audit trail, and instant rollback controls."
         badge={
           <Badge variant="blue">
-            <ShieldCheck size={13} style={{ marginRight: '4px' }} />
+            <ShieldCheck size={13} />
             Governed Execution Authority
           </Badge>
         }
@@ -518,7 +531,10 @@ export const ActionsModule: React.FC<ActionsModuleProps> = ({ workspace, onAddTo
                 <button
                   key={tab}
                   type="button"
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => {
+                    setActiveTab(tab);
+                    onSubTabChange?.(tab);
+                  }}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',

@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Search, Bell, LogOut, ChevronDown, Sliders, User, Shield } from 'lucide-react';
+import { Search, Bell, LogOut, ChevronDown, Sliders, User, Shield, Mic } from 'lucide-react';
 import { UserProfileInfo } from '../types/workspace';
 import { NotificationItem } from '../types/notification';
 import { WorkspaceModuleId } from '../design-system/components/Sidebar';
 import { NotificationPanel } from './notifications/NotificationPanel';
+import { useVoiceCommand } from '../lib/voice/VoiceContext';
 
 import { SynaptixLogo } from './ui/SynaptixLogo';
 
@@ -32,6 +33,7 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
   onMarkAllAsRead = () => {},
   onOpenNotificationTarget = () => {},
 }) => {
+  const { startVoiceCommand, stopVoiceCapture, isListening } = useVoiceCommand();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchVal, setSearchVal] = useState('');
@@ -119,6 +121,18 @@ export const TopNavigation: React.FC<TopNavigationProps> = ({
 
         {/* Right: Notifications & Profile */}
         <div className="navbar-actions-wrapper">
+          {/* Voice Assistant Trigger */}
+          <button
+            type="button"
+            className={`navbar-icon-btn voice-command-trigger-btn ${isListening ? 'listening' : ''}`}
+            onClick={isListening ? stopVoiceCapture : startVoiceCommand}
+            aria-label="Voice Assistant (Ctrl+Shift+Space)"
+            title="Voice Assistant (Ctrl+Shift+Space)"
+          >
+            <Mic size={17} />
+            {isListening && <span className="voice-mic-active-dot" />}
+          </button>
+
           {/* System Status Indicator */}
           <div className="system-live-pill" title="All reasoning engines operational">
             <span className="status-dot-green"></span>

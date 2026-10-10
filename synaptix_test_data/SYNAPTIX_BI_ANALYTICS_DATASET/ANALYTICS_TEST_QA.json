@@ -1,0 +1,104 @@
+[
+  {
+    "id": "BQ-01",
+    "question": "How did total revenue change from 2010 to 2026?",
+    "expected_answer": "Revenue increased from 42.5 USD M in 2010 to 124.7 USD M in 2026, with a peak of 118.9 in 2018, a trough of 68.5 in 2021, and an anomalous dip to 88.1 in 2024.",
+    "source": "Yearly_PnL",
+    "answerable": true
+  },
+  {
+    "id": "BQ-02",
+    "question": "In which year did the largest year-over-year revenue decline occur, and by how much?",
+    "expected_answer": "2020. Revenue fell from 97.4 (2019) to 71.2 (2020), a decline of -26.9% (ANOM-BI-001).",
+    "source": "Yearly_PnL",
+    "answerable": true,
+    "calculation": {
+      "from": 97.4,
+      "to": 71.2,
+      "yoy_pct": -26.9
+    }
+  },
+  {
+    "id": "BQ-03",
+    "question": "What was revenue in the peak year?",
+    "expected_answer": "Peak year is 2018 with revenue 118.9 USD M.",
+    "source": "Yearly_PnL / KPI_Summary",
+    "answerable": true
+  },
+  {
+    "id": "BQ-04",
+    "question": "Describe the 2024 anomaly in quantitative terms.",
+    "expected_answer": "In 2024 revenue was 88.1 USD M versus 95.8 in 2023 (YoY -8.0%). Gross margin was 25.0% versus 32.0% in 2023. Monthly data shows compressed Jul\u2013Sep share (~17.0% of annual). These are observed values (ANOM-BI-002/003/004); causal explanation is not established by this dataset alone.",
+    "source": "Yearly_PnL, Monthly_Revenue",
+    "answerable": true
+  },
+  {
+    "id": "BQ-05",
+    "question": "What was total revenue in 2024 Q3 (Jul\u2013Sep)?",
+    "expected_answer": "Approximately 14.98 USD M, about 17.0% of 2024 annual revenue (vs a more typical ~25\u201328% quarterly share in non-anomaly years).",
+    "source": "Monthly_Revenue",
+    "answerable": true,
+    "calculation": {
+      "q3_sum": 14.976,
+      "annual": 88.1,
+      "share_pct": 17.0
+    }
+  },
+  {
+    "id": "BQ-06",
+    "question": "Which business segment had the highest revenue in 2026?",
+    "expected_answer": "Industrial Sensors with 42.398 USD M in 2026.",
+    "source": "Segment_Revenue",
+    "answerable": true,
+    "note": "Engine must read table max, not assume"
+  },
+  {
+    "id": "BQ-07",
+    "question": "What share of 2026 revenue came from Asia-Pacific?",
+    "expected_answer": "Asia-Pacific revenue was 37.41 USD M, 30.0% of 124.7 USD M total in 2026.",
+    "source": "Region_Revenue",
+    "answerable": true
+  },
+  {
+    "id": "BQ-08",
+    "question": "Did gross margin improve or worsen in 2024 versus 2023?",
+    "expected_answer": "Worsened. Gross margin 25.0% in 2024 vs 32.0% in 2023 (ANOM-BI-004 margin pressure).",
+    "source": "Yearly_PnL",
+    "answerable": true
+  },
+  {
+    "id": "BQ-09",
+    "question": "What is the CAGR of revenue from 2021 trough to 2026?",
+    "expected_answer": "CAGR = (124.7/68.5)^(1/5) \u2212 1 \u2248 12.7% over 5 years.",
+    "source": "Yearly_PnL",
+    "answerable": true,
+    "calculation": {
+      "start": 68.5,
+      "end": 124.7,
+      "years": 5,
+      "cagr_approx_pct": 12.7
+    }
+  },
+  {
+    "id": "BQ-10",
+    "question": "Why did revenue decline in 2024?",
+    "expected_answer": "The BI tables show that revenue declined in 2024 (observed). This dataset does not contain verified causal drivers. Finance workspace notes hypothesize inventory write-down and project delays (synthetic labels). Distinguish observation from hypothesis; do not present hypothesis as proven fact.",
+    "source": "DATASET_REPORT.md, Yearly_PnL",
+    "answerable": true,
+    "behavior": "Separate fact vs hypothesis"
+  },
+  {
+    "id": "BQ-11",
+    "question": "What was net income in 2015?",
+    "expected_answer": "Net income 2015 = 8.46 USD M (from Yearly_PnL).",
+    "source": "Yearly_PnL",
+    "answerable": true
+  },
+  {
+    "id": "BQ-12",
+    "question": "List all planted anomaly IDs in this BI pack.",
+    "expected_answer": "ANOM-BI-001 through ANOM-BI-005 (see Anomalies_Log sheet / DATASET_REPORT).",
+    "source": "Anomalies_Log",
+    "answerable": true
+  }
+]

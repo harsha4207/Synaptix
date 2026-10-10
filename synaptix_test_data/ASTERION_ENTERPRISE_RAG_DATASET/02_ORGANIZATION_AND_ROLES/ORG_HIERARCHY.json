@@ -1,0 +1,56 @@
+{
+  "organization_id": "ORG-ASTERION-001",
+  "effective_date": "2025-04-01",
+  "root": {
+    "role_id": "ROLE-CEO-001",
+    "title": "Chief Executive Officer",
+    "direct_reports": [
+      {
+        "role_id": "ROLE-CFO-001",
+        "title": "CFO",
+        "dept": "DEPT-FIN-001"
+      },
+      {
+        "role_id": "ROLE-CHRO-001",
+        "title": "CHRO",
+        "dept": "DEPT-HR-001"
+      },
+      {
+        "role_id": "ROLE-COO-001",
+        "title": "COO",
+        "dept": "DEPT-OPS-001"
+      },
+      {
+        "role_id": "ROLE-CIO-001",
+        "title": "CIO",
+        "dept": "DEPT-IT-001"
+      },
+      {
+        "role_id": "ROLE-CISO-001",
+        "title": "CISO",
+        "dept": "DEPT-SEC-001"
+      },
+      {
+        "role_id": "ROLE-CTO-001",
+        "title": "CTO",
+        "dept": "DEPT-RND-001"
+      },
+      {
+        "role_id": "ROLE-CCO-001",
+        "title": "Chief Compliance Officer",
+        "dept": "DEPT-LEG-001"
+      },
+      {
+        "role_id": "ROLE-VP-SAL-001",
+        "title": "VP Sales",
+        "dept": "DEPT-SAL-001"
+      },
+      {
+        "role_id": "ROLE-VP-MKT-001",
+        "title": "VP Marketing",
+        "dept": "DEPT-MKT-001"
+      }
+    ]
+  },
+  "synthetic": true
+}

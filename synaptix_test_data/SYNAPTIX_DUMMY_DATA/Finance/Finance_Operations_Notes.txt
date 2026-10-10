@@ -1,0 +1,46 @@
+AETHER DYNAMICS CORP — FINANCE OPERATIONS NOTES
+================================================
+Period Covered: FY2023 – FY2026 (Synthetic)
+Last Updated: 2026-02-18
+Author: Finance Ops Team (Synthetic)
+
+KEY OBSERVATIONS
+----------------
+1. Revenue trajectory shows clear multi-year cycle:
+   - Strong growth phase 2010–2018
+   - Sharp contraction 2019–2021 (synthetic market shock)
+   - Recovery commencing 2022 with temporary setback in 2024
+
+2. 2024 Anomaly:
+   - Q3 revenue share dropped to ~18% of annual (vs typical 25–28%)
+   - Inventory elevated to $28.4M (vs $19–22M range)
+   - Large consulting spend spikes noted in Expense_Transactions
+   - Root cause documented as synthetic inventory write-down + project delays
+
+3. Duplicate Invoice Cases:
+   - INV-2023-1087 and INV-2024-1112 flagged
+   - Full investigation in Duplicate_Invoice_Investigation.md
+   - Both cases retained in dataset for detection testing
+
+4. Budget Overruns (Synthetic):
+   - Manufacturing OpEx exceeded budget by 11.4% in 2024
+   - R&D consulting line exceeded by ~$210k in Q2-Q3 2024
+   - Details in Budget_Variance_Report.docx
+
+5. Vendor Concentration:
+   - Top 3 vendors account for ~38% of recorded spend 2022–2026
+   - NovaForge Materials and Quantum Parts Supply are primary materials suppliers
+
+6. Process Notes:
+   - Approval policy updated Jan 2024 (v3.2)
+   - New duplicate detection rule recommended but not yet system-enforced
+   - Quarterly close typically completes by 12th business day
+
+DATA SOURCES
+------------
+- Revenue_History_2010_2026.xlsx
+- Expense_Transactions.csv
+- Quarterly_Financial_Statements.xlsx
+- Invoice_Register.xlsx
+
+END OF NOTES

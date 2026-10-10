@@ -1,0 +1,8 @@
+record_id,event_date,entity_id,entity_name,metric_value,unit,source_system
+REC-001,2025-01-10,EQ-SYN-CT-02,CT Scanner B,14,days_overdue,CMMS
+REC-002,10/02/2025,EQ-OP-CNV-02,Conveyor Line 2,3,incidents,OpsLog
+REC-003,2025-03-05,EQ-SYN-VENT-05,Ventilator Bank 5,21,days_overdue,CMMS
+REC-004,2025-01-10,EQ-SYN-CT-02,CT Scanner B,14,days_overdue,CMMS
+REC-005,"March 18, 2025",PAT-SYN-1142,Referral patient (synthetic),,wait_minutes,HIS
+REC-006,2025/04/22,VND-1002,Quantum Parts Supply,2,open_issues,AP
+REC-007,22-05-2025,EMP-SYN-88421,Priya Sharma (synthetic),1,onboarding_gap,HRIS

@@ -1,0 +1,27 @@
+NORTHBRIDGE SYNTHETIC UNIVERSITY — EDUCATION OPERATIONS NOTES
+=============================================================
+Period: Academic Years 2022-23 through 2024-25
+Last Updated: 2025-08-01
+
+1. Data Volume
+   - 350 student-course performance records
+   - 300 attendance session records
+   - 7 courses tracked
+
+2. Planted Anomaly
+   - CS-410 Distributed Systems completion rate declines markedly in 2024-25
+   - Purpose: enable testing of "courses with declining completion rates" queries
+
+3. Key Files
+   - Student_Performance_Synthetic.xlsx
+   - Attendance_Records.csv
+   - Course_Enrollment.json
+   - Academic_Performance_Report.pdf
+   - Curriculum_Review.docx
+   - Examination_Analysis.md
+
+4. Identifier Pattern
+   - Students: STU-SYN-####
+   - Attendance: ATT-SYN-####
+
+All records are synthetic. No real student data.

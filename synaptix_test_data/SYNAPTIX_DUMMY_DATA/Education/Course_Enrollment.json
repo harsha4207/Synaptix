@@ -1,0 +1,136 @@
+{
+  "institution": "Northbridge Synthetic University",
+  "academic_years": [
+    "2022-23",
+    "2023-24",
+    "2024-25"
+  ],
+  "courses": [
+    {
+      "code": "CS-201",
+      "name": "Data Structures",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 19,
+          "completed": 17
+        },
+        "2023-24": {
+          "enrolled": 24,
+          "completed": 20
+        },
+        "2024-25": {
+          "enrolled": 15,
+          "completed": 15
+        }
+      }
+    },
+    {
+      "code": "CS-305",
+      "name": "Machine Learning Fundamentals",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 14,
+          "completed": 12
+        },
+        "2023-24": {
+          "enrolled": 16,
+          "completed": 16
+        },
+        "2024-25": {
+          "enrolled": 19,
+          "completed": 17
+        }
+      }
+    },
+    {
+      "code": "MATH-210",
+      "name": "Linear Algebra",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 14,
+          "completed": 14
+        },
+        "2023-24": {
+          "enrolled": 16,
+          "completed": 11
+        },
+        "2024-25": {
+          "enrolled": 14,
+          "completed": 13
+        }
+      }
+    },
+    {
+      "code": "ENG-110",
+      "name": "Technical Communication",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 19,
+          "completed": 16
+        },
+        "2023-24": {
+          "enrolled": 12,
+          "completed": 10
+        },
+        "2024-25": {
+          "enrolled": 18,
+          "completed": 17
+        }
+      }
+    },
+    {
+      "code": "PHYS-150",
+      "name": "Introductory Physics",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 21,
+          "completed": 20
+        },
+        "2023-24": {
+          "enrolled": 21,
+          "completed": 21
+        },
+        "2024-25": {
+          "enrolled": 12,
+          "completed": 11
+        }
+      }
+    },
+    {
+      "code": "BUS-220",
+      "name": "Operations Management",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 14,
+          "completed": 11
+        },
+        "2023-24": {
+          "enrolled": 15,
+          "completed": 15
+        },
+        "2024-25": {
+          "enrolled": 17,
+          "completed": 17
+        }
+      }
+    },
+    {
+      "code": "CS-410",
+      "name": "Distributed Systems",
+      "by_year": {
+        "2022-23": {
+          "enrolled": 13,
+          "completed": 11
+        },
+        "2023-24": {
+          "enrolled": 18,
+          "completed": 16
+        },
+        "2024-25": {
+          "enrolled": 19,
+          "completed": 11
+        }
+      }
+    }
+  ]
+}

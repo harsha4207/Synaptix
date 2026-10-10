@@ -18,7 +18,9 @@ import {
 import { WidgetConfigPanel } from '../components/dashboards/WidgetConfigPanel';
 import { AiAssistToolbar } from '../components/dashboards/AiAssistToolbar';
 import { TimeSeriesPoint, CategoryComparisonItem } from '../components/analytics/AnalyticsCharts';
-import { PageContainer, PageContent } from '../components/layout';
+import { PageContainer, PageContent, PageHeader } from '../components/layout';
+import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
 
 interface DashboardsModuleProps {
   workspace: WorkspaceItem;
@@ -86,7 +88,7 @@ export const DashboardsModule: React.FC<DashboardsModuleProps> = ({ workspace, o
       width: 'third',
       dataset: 'FY2026 Enterprise Operational Ledger',
       metric: 'Gross Margin %',
-      period: '2010 â€“ 2026',
+      period: '2010 – 2026',
       evidenceGrade: 'G1 Verified',
       kpiValue: '41.2%',
       kpiChange: '+1.8% YoY',
@@ -116,7 +118,7 @@ export const DashboardsModule: React.FC<DashboardsModuleProps> = ({ workspace, o
       width: 'third',
       dataset: 'Supply Chain Latency & Freight Audit',
       metric: 'Anomaly Count',
-      period: '2019 â€“ 2021',
+      period: '2019 – 2021',
       evidenceGrade: 'G1 Verified',
       kpiValue: '3 Clusters',
       kpiChange: '-14.2% Margin Drift',
@@ -131,19 +133,19 @@ export const DashboardsModule: React.FC<DashboardsModuleProps> = ({ workspace, o
       width: 'full',
       dataset: 'FY2026 Enterprise Operational Ledger',
       metric: 'Executive Narrative',
-      period: '2010 â€“ 2026',
+      period: '2010 – 2026',
       summaryText:
         'Executive Overview: Longitudinal tracking of gross margin variance demonstrates a significant 14.2% margin contraction between 2019 and 2021, primarily driven by logistics overhead surcharges and EMEA customs penalties. Strategic restructuring since 2022 has restored operating margin to 41.2% in FY2026.',
     },
     {
       id: 'w-line-1',
       type: 'line_chart',
-      title: '16-Year Operating Margin Trajectory (2010 â€“ 2026)',
+      title: '16-Year Operating Margin Trajectory (2010 – 2026)',
       description: 'Time-series curve highlighting historical trough and recovery phase',
       width: 'half',
       dataset: 'FY2026 Enterprise Operational Ledger',
       metric: 'Gross Margin %',
-      period: '2010 â€“ 2026',
+      period: '2010 – 2026',
       evidenceGrade: 'G1 Verified',
       lineData: sampleLineData,
     },
@@ -162,12 +164,12 @@ export const DashboardsModule: React.FC<DashboardsModuleProps> = ({ workspace, o
     {
       id: 'w-insight-1',
       type: 'insight',
-      title: 'Major Margin Decline Detected (2019â€“2021)',
+      title: 'Major Margin Decline Detected (2019–2021)',
       description: 'Autonomous AI insight identifying $42.8M total margin drift across EMEA and logistics overhead streams.',
       width: 'half',
       dataset: 'FY2026 Enterprise Operational Ledger',
       metric: 'Margin Drift',
-      period: '2019 â€“ 2021',
+      period: '2019 – 2021',
       insightDistinction: 'Observed',
       insightMagnitude: '-14.2% Total Drift ($42.8M)',
     },
@@ -179,7 +181,7 @@ export const DashboardsModule: React.FC<DashboardsModuleProps> = ({ workspace, o
       width: 'half',
       dataset: 'FY2026 Enterprise Operational Ledger',
       metric: 'Ledger Audit',
-      period: '2019 â€“ 2026',
+      period: '2019 – 2026',
       evidenceGrade: 'G1 Verified',
     },
   ]);
@@ -370,158 +372,206 @@ export const DashboardsModule: React.FC<DashboardsModuleProps> = ({ workspace, o
 
   return (
     <PageContainer>
-      <PageContent>
-      {/* TOP AI DASHBOARD COMMAND BAR */}
-      <div style={{
-        background: 'var(--c-navy)', border: '1px solid rgba(255,255,255,0.08)',
-        borderRadius: 'var(--r-xl)', padding: 'var(--sp-5)',
-        display: 'flex', flexDirection: 'column', gap: 'var(--sp-4)',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-2)' }}>
-            <Sparkles size={18} style={{ color: 'var(--c-blue-bright)' }} />
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'var(--text-lg)', fontWeight: 700, color: '#FFFFFF' }}>
-              AI Dashboard Generator
-            </h2>
+      {/* 1. STANDARDIZED PAGE HEADER */}
+      <PageHeader
+        title="Dashboards & Executive Canvas"
+        description={`Interactive executive visual canvas, KPI tracking, and generative BI intelligence for ${workspace.name}.`}
+        breadcrumb={
+          <div className="flex items-center gap-2">
+            <span>{workspace.name}</span>
+            <span className="text-[var(--c-text-3)]">/</span>
+            <span className="text-[var(--c-blue)]">Dashboards & Canvas</span>
           </div>
-          <span className="badge" style={{ background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.8)', border: '1px solid rgba(255,255,255,0.15)' }}>
-            {workspace.name} Context
-          </span>
-        </div>
-
-        <form onSubmit={handleGenerateDashboard} style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-          <input
-            type="text"
-            value={nlDashboardPrompt}
-            onChange={(e) => setNlDashboardPrompt(e.target.value)}
-            placeholder="Describe the dashboard you wantâ€¦ (e.g. executive view of revenue decline 2010â€“2026)"
-            style={{
-              width: '100%', height: '48px', paddingLeft: 'var(--sp-4)', paddingRight: '120px',
-              background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)',
-              borderRadius: 'var(--r-md)', fontSize: 'var(--text-sm)', color: '#FFFFFF',
-              outline: 'none', fontFamily: 'var(--font-sans)',
-            }}
-          />
-          <button
-            type="submit"
-            disabled={isGenerating}
-            style={{
-              position: 'absolute', right: '6px', height: '36px', padding: '0 var(--sp-4)',
-              background: 'var(--c-blue)', color: '#FFFFFF', borderRadius: 'var(--r-md)',
-              border: 'none', fontSize: 'var(--text-xs)', fontWeight: 700, cursor: 'pointer',
-              display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--font-sans)',
-              opacity: isGenerating ? 0.6 : 1,
-            }}
-          >
-            {isGenerating ? <RefreshCw size={13} style={{ animation: 'spin 1s linear infinite' }} /> : <><span>Generate</span><ArrowRight size={13} /></>}
-          </button>
-        </form>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-2)', fontSize: 'var(--text-xs)' }}>
-          <span style={{ color: 'rgba(255,255,255,0.6)' }}>Example:</span>
-          <button
-            type="button"
-            onClick={() => { setNlDashboardPrompt('Create an executive dashboard showing revenue decline from 2010 to 2026, major drivers, anomalies and current performance.'); handleGenerateDashboard(); }}
-            style={{
-              background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)',
-              borderRadius: 'var(--r-sm)', padding: '4px 12px', color: 'rgba(255,255,255,0.75)',
-              fontSize: 'var(--text-xs)', cursor: 'pointer', fontFamily: 'var(--font-sans)',
-            }}
-          >
-            "Create an executive dashboard showing revenue decline from 2010 to 2026..."
-          </button>
-        </div>
-
-        {isGenerating && (
-          <div style={{ paddingTop: 'var(--sp-4)', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 'var(--text-xs)', color: 'rgba(255,255,255,0.7)', marginBottom: 'var(--sp-2)' }}>
-              <span style={{ fontWeight: 600 }}>Workflow Generation Step:</span>
-              <span style={{ fontFamily: 'var(--font-mono)' }}>{workflowSteps[generationStep]}</span>
-            </div>
-            <div style={{ display: 'flex', gap: '4px' }}>
-              {workflowSteps.map((step, idx) => (
-                <div key={step} title={step} style={{
-                  height: '4px', flex: 1, borderRadius: '999px',
-                  background: idx <= generationStep ? 'var(--c-blue-bright)' : 'rgba(255,255,255,0.15)',
-                  transition: 'background 0.3s ease',
-                }} />
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* DASHBOARD TOOLBAR */}
-      <div className="card" style={{ padding: 'var(--sp-4) var(--sp-5)', display: 'flex', flexDirection: 'column', gap: 'var(--sp-3)' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--sp-4)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-3)' }}>
-            <div className="action-btn-icon icon-blue"><BarChart3 size={20} /></div>
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-2)' }}>
-                <input
-                  type="text"
-                  value={dashboardTitle}
-                  onChange={(e) => { setDashboardTitle(e.target.value); setIsSaved(false); }}
-                  style={{
-                    fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 'var(--text-lg)',
-                    color: 'var(--c-text-1)', background: 'transparent', border: 'none',
-                    borderBottom: '1px solid transparent', outline: 'none', padding: '0 4px',
-                    cursor: 'text', transition: 'border-color var(--t-fast)', maxWidth: '440px',
-                  }}
-                  onFocus={(e) => { e.target.style.borderBottomColor = 'var(--c-border-2)'; }}
-                  onBlur={(e) => { e.target.style.borderBottomColor = 'transparent'; }}
-                />
-                {!isSaved && <span className="badge badge-warning">Unsaved Edits</span>}
-              </div>
-              <p style={{ fontSize: 'var(--text-xs)', color: 'var(--c-text-2)', marginTop: '2px' }}>
-                Interactive BI Canvas â€” G1 Ledger Evidence Binding ({widgets.length} Widgets)
-              </p>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-2)' }}>
-            <button className="btn-secondary btn-sm" onClick={() => handleAddWidget('kpi')}
-              style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Plus size={14} style={{ color: 'var(--c-blue)' }} /> Add Widget
-            </button>
-            <button
-              onClick={handleSaveDashboard}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: '6px',
-                height: '32px', padding: '0 var(--sp-4)', borderRadius: 'var(--r-md)',
-                background: showSaveSuccess ? 'var(--c-success)' : 'var(--c-blue)',
-                color: '#FFFFFF', border: 'none', fontSize: 'var(--text-xs)',
-                fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-sans)',
-                transition: 'background 0.2s ease',
-              }}
+        }
+        badge={
+          <Badge variant="blue">
+            <BarChart3 size={13} />
+            {workspace.name} Boundary
+          </Badge>
+        }
+        actions={
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <Button
+              variant="secondary"
+              size="sm"
+              leftIcon={<Plus size={14} className="text-[var(--c-blue)]" />}
+              onClick={() => handleAddWidget('kpi')}
             >
-              {showSaveSuccess ? <><Check size={13} /> Saved!</> : <><Save size={13} /> Save Dashboard</>}
+              Add Widget
+            </Button>
+            <Button
+              variant={showSaveSuccess ? 'default' : 'blue'}
+              size="sm"
+              leftIcon={showSaveSuccess ? <Check size={14} /> : <Save size={14} />}
+              onClick={handleSaveDashboard}
+            >
+              {showSaveSuccess ? 'Saved!' : 'Save Dashboard'}
+            </Button>
+          </div>
+        }
+      />
+
+      <PageContent className="space-y-6">
+        {/* 2. REFINED AI DASHBOARD GENERATOR PANEL */}
+        <div className="nl-prompt-panel">
+          <div className="nl-prompt-header">
+            <div className="nl-prompt-header-left">
+              <div className="nl-prompt-icon-badge">
+                <Sparkles className="w-5 h-5 text-[#38BDF8]" />
+              </div>
+              <div className="nl-prompt-title-group">
+                <h2 className="nl-prompt-title">AI Dashboard Generator</h2>
+                <p className="nl-prompt-subtitle">
+                  Generate complete BI canvas layouts and visual metric cards with natural language
+                </p>
+              </div>
+            </div>
+            <span className="nl-prompt-badge">
+              {workspace.name} Context
+            </span>
+          </div>
+
+          <form onSubmit={handleGenerateDashboard} className="nl-prompt-form">
+            <div className="nl-prompt-input-wrapper">
+              <input
+                type="text"
+                value={nlDashboardPrompt}
+                onChange={(e) => setNlDashboardPrompt(e.target.value)}
+                placeholder="Describe the dashboard you want… (e.g. Executive view of revenue trajectory and anomaly drivers 2010–2026)"
+                className="nl-prompt-input"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isGenerating}
+              className="nl-prompt-btn-primary"
+            >
+              {isGenerating ? (
+                <>
+                  <RefreshCw className="w-4 h-4 animate-spin" />
+                  <span>Generating...</span>
+                </>
+              ) : (
+                <>
+                  <span>Generate</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </form>
+
+          <div className="nl-prompt-examples-row">
+            <span className="nl-prompt-examples-label">Example:</span>
+            <button
+              type="button"
+              onClick={() => {
+                setNlDashboardPrompt(
+                  'Create an executive dashboard showing revenue decline from 2010 to 2026, major drivers, anomalies and current performance.'
+                );
+                handleGenerateDashboard();
+              }}
+              className="nl-prompt-example-chip"
+            >
+              “Create an executive dashboard showing revenue decline from 2010 to 2026, major drivers, anomalies and current performance.”
             </button>
           </div>
+
+          {isGenerating && (
+            <div className="pt-3 border-t border-[rgba(255,255,255,0.12)]">
+              <div className="flex justify-between items-center text-xs text-[rgba(255,255,255,0.8)] mb-2">
+                <span className="font-semibold">Workflow Generation Step:</span>
+                <span className="font-mono text-[#38BDF8]">{workflowSteps[generationStep]}</span>
+              </div>
+              <div className="flex gap-1.5">
+                {workflowSteps.map((step, idx) => (
+                  <div
+                    key={step}
+                    title={step}
+                    className={`h-1 flex-1 rounded-full transition-all duration-300 ${
+                      idx <= generationStep ? 'bg-[#38BDF8]' : 'bg-[rgba(255,255,255,0.15)]'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
-        <AiAssistToolbar onAiAction={handleAiAssistAction} isProcessing={isGenerating} />
-      </div>
+        {/* 3. DASHBOARD CANVAS CONTROL BAR */}
+        <div className="w-full bg-[var(--c-surface)] p-5 sm:p-6 rounded-2xl border border-[var(--c-border)] shadow-xs transition-colors flex flex-col gap-4">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 min-w-0">
+            <div className="flex items-start sm:items-center gap-3.5 min-w-0 flex-1">
+              <div className="w-11 h-11 rounded-xl bg-[var(--c-blue-soft)] text-[var(--c-blue)] border border-[rgba(23,105,224,0.15)] flex items-center justify-center flex-shrink-0 shadow-2xs">
+                <BarChart3 className="w-5 h-5" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2.5 flex-wrap">
+                  <input
+                    type="text"
+                    value={dashboardTitle}
+                    onChange={(e) => {
+                      setDashboardTitle(e.target.value);
+                      setIsSaved(false);
+                    }}
+                    className="w-full max-w-xl font-display font-bold text-lg sm:text-xl text-[var(--c-text-1)] bg-transparent border border-transparent hover:border-[var(--c-border)] focus:border-[var(--c-blue)] focus:bg-[var(--c-surface)] rounded-lg px-2 py-1 outline-none transition-all"
+                    aria-label="Dashboard Title"
+                  />
+                  {!isSaved && (
+                    <span className="text-xs px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-700 font-semibold border border-amber-200 select-none">
+                      Unsaved Edits
+                    </span>
+                  )}
+                </div>
+                <p className="text-xs text-[var(--c-text-2)] mt-1 font-normal">
+                  Interactive BI Canvas • G1 Ledger Evidence Binding • <span className="font-semibold text-[var(--c-text-1)]">{widgets.length} Widgets Active</span>
+                </p>
+              </div>
+            </div>
 
-      <DashboardCanvas
-        widgets={widgets}
-        onSelectWidget={handleSelectWidgetForEdit}
-        onRemoveWidget={handleRemoveWidget}
-        onDuplicateWidget={handleDuplicateWidget}
-        onMoveWidget={handleMoveWidget}
-        onToggleWidth={handleToggleWidth}
-        onAddToast={onAddToast}
-      />
+            <div className="flex items-center gap-2.5 flex-shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--c-border)]">
+              <Button
+                variant="secondary"
+                size="sm"
+                leftIcon={<Plus size={14} className="text-[var(--c-blue)]" />}
+                onClick={() => handleAddWidget('kpi')}
+              >
+                Add Widget
+              </Button>
+              <Button
+                variant={showSaveSuccess ? 'default' : 'blue'}
+                size="sm"
+                leftIcon={showSaveSuccess ? <Check size={14} /> : <Save size={14} />}
+                onClick={handleSaveDashboard}
+              >
+                {showSaveSuccess ? 'Saved!' : 'Save Dashboard'}
+              </Button>
+            </div>
+          </div>
 
-      <WidgetConfigPanel
-        widget={selectedWidget}
-        isOpen={isInspectorOpen}
-        onClose={() => setIsInspectorOpen(false)}
-        onUpdateWidget={handleUpdateWidget}
-        onRemoveWidget={handleRemoveWidget}
-        onDuplicateWidget={handleDuplicateWidget}
-        onAddToast={onAddToast}
-      />
+          <AiAssistToolbar onAiAction={handleAiAssistAction} isProcessing={isGenerating} />
+        </div>
+
+        {/* 4. DASHBOARD CANVAS */}
+        <DashboardCanvas
+          widgets={widgets}
+          onSelectWidget={handleSelectWidgetForEdit}
+          onRemoveWidget={handleRemoveWidget}
+          onDuplicateWidget={handleDuplicateWidget}
+          onMoveWidget={handleMoveWidget}
+          onToggleWidth={handleToggleWidth}
+          onAddToast={onAddToast}
+        />
+
+        {/* 5. WIDGET CONFIG PANEL */}
+        <WidgetConfigPanel
+          widget={selectedWidget}
+          isOpen={isInspectorOpen}
+          onClose={() => setIsInspectorOpen(false)}
+          onUpdateWidget={handleUpdateWidget}
+          onRemoveWidget={handleRemoveWidget}
+          onDuplicateWidget={handleDuplicateWidget}
+          onAddToast={onAddToast}
+        />
       </PageContent>
     </PageContainer>
   );

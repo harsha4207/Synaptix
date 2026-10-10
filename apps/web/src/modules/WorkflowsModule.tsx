@@ -17,6 +17,7 @@ import { StepConfigDrawer } from '../components/workflows/StepConfigDrawer';
 import { DryRunModal } from '../components/workflows/DryRunModal';
 import { PageContainer, PageContent, PageHeader } from '../components/layout';
 import { Badge } from '../components/ui/Badge';
+import { Button } from '../components/ui/Button';
 
 interface WorkflowsModuleProps {
   workspace: WorkspaceItem;
@@ -281,7 +282,7 @@ export const WorkflowsModule: React.FC<WorkflowsModuleProps> = ({ workspace, onA
         }
         badge={
           <Badge variant="blue">
-            <Sparkles size={13} style={{ marginRight: 4 }} />
+            <Sparkles size={13} />
             Deterministic Pipelines
           </Badge>
         }
@@ -323,7 +324,6 @@ export const WorkflowsModule: React.FC<WorkflowsModuleProps> = ({ workspace, onA
               type="submit"
               disabled={isGenerating}
               className="nl-prompt-btn-primary"
-              style={{ backgroundColor: '#2496FF', color: '#0B1F3A' }}
             >
               {isGenerating ? (
                 <>
@@ -401,54 +401,46 @@ export const WorkflowsModule: React.FC<WorkflowsModuleProps> = ({ workspace, onA
             </div>
 
             {/* Right: Action Buttons (Power, Test, Dry Run, Save) */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 flex-shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--c-border)]">
-              <button
-                type="button"
+            <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 flex-shrink-0 pt-2 lg:pt-0 border-t lg:border-t-0 border-[var(--c-border)]">
+              <Button
+                variant="secondary"
+                size="sm"
                 onClick={() => {
                   setIsEnabled(!isEnabled);
                   onAddToast(isEnabled ? 'Workflow disabled' : 'Workflow enabled and listening for triggers');
                 }}
-                className={`h-10 px-3.5 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all border cursor-pointer ${
-                  isEnabled
-                    ? 'bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100'
-                    : 'bg-[var(--c-surface-2)] text-[var(--c-text-2)] border-[var(--c-border)] hover:bg-slate-200/60'
-                }`}
+                leftIcon={<Power size={14} className={isEnabled ? 'text-emerald-600' : 'text-[var(--c-text-3)]'} />}
               >
-                <Power className="w-4 h-4" />
-                <span>{isEnabled ? 'Enabled' : 'Disabled'}</span>
-              </button>
+                {isEnabled ? 'Enabled' : 'Disabled'}
+              </Button>
 
-              <button
-                type="button"
+              <Button
+                variant="secondary"
+                size="sm"
                 onClick={handleTestWorkflow}
                 disabled={isTesting}
-                className="h-10 px-4 bg-[var(--c-surface)] hover:bg-[var(--c-surface-2)] border border-[var(--c-border)] text-[var(--c-text-1)] rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all disabled:opacity-50 cursor-pointer shadow-2xs hover:shadow-xs"
+                leftIcon={<Play size={14} className={`text-[var(--c-blue)] ${isTesting ? 'animate-spin' : ''}`} />}
               >
-                <Play className={`w-3.5 h-3.5 text-[var(--c-blue)] ${isTesting ? 'animate-spin' : ''}`} />
-                <span>{isTesting ? 'Testing...' : 'Test Run'}</span>
-              </button>
+                {isTesting ? 'Testing...' : 'Test Run'}
+              </Button>
 
-              <button
-                type="button"
+              <Button
+                variant="secondary"
+                size="sm"
                 onClick={() => setIsDryRunOpen(true)}
-                className="h-10 px-4 bg-amber-50/80 hover:bg-amber-100/80 border border-amber-200 text-amber-900 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shadow-2xs hover:shadow-xs"
+                leftIcon={<Zap size={14} className="text-amber-600" />}
               >
-                <Zap className="w-3.5 h-3.5 text-amber-600" />
-                <span>Dry Run</span>
-              </button>
+                Dry Run
+              </Button>
 
-              <button
-                type="button"
+              <Button
+                variant={showSaveSuccess ? 'default' : 'blue'}
+                size="sm"
                 onClick={handleSaveWorkflow}
-                className={`h-10 px-4 rounded-lg text-xs font-bold text-white flex items-center gap-2 transition-all cursor-pointer shadow-2xs hover:shadow-xs ${
-                  showSaveSuccess
-                    ? 'bg-[#16803C] hover:bg-[#126b32]'
-                    : 'bg-[#1769E0] hover:bg-[#1254B7]'
-                }`}
+                leftIcon={showSaveSuccess ? <Check size={14} /> : <Save size={14} />}
               >
-                {showSaveSuccess ? <Check className="w-3.5 h-3.5" /> : <Save className="w-3.5 h-3.5" />}
-                <span>{showSaveSuccess ? 'Saved!' : 'Save Workflow'}</span>
-              </button>
+                {showSaveSuccess ? 'Saved!' : 'Save Workflow'}
+              </Button>
             </div>
           </div>
         </div>

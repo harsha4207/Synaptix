@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { geminiClient } from '../lib/gemini/geminiClient';
+import type { GeminiHealthStatus } from '../lib/gemini/geminiService';
 import {
   Settings,
   Users,
@@ -627,16 +629,36 @@ const DataSourcesSection: React.FC<{ workspace: WorkspaceItem; onSave: (s: strin
 // ═══════════════════════════════════════════════════════════════════════════════
 
 const AISection: React.FC<{ workspace: WorkspaceItem; onSave: (s: string) => void }> = ({ onSave }) => {
-  const [provider, setProvider] = useState('Internal Synaptix Engine');
-  const [model, setModel]       = useState('synaptix-enterprise-v4');
+  const [provider, setProvider] = useState('Google Gemini 2.5');
+  const [model, setModel]       = useState('gemini-2.5-flash');
   const [contextWindow, setContextWindow] = useState('128000');
-  const [temperature, setTemperature]     = useState('0.2');
+  const [temperature, setTemperature]     = useState('0.15');
   const [retrievalK, setRetrievalK]       = useState('8');
   const [embedModel, setEmbedModel]       = useState('synaptix-embed-v3');
   const [hybridSearch, setHybridSearch]   = useState(true);
   const [rerank, setRerank]               = useState(true);
   const [citations, setCitations]         = useState(true);
   const [streaming, setStreaming]         = useState(true);
+
+  // Live Gemini Health State
+  const [geminiHealth, setGeminiHealth] = useState<GeminiHealthStatus | null>(null);
+  const [isCheckingHealth, setIsCheckingHealth] = useState(false);
+
+  useEffect(() => {
+    geminiClient.checkHealth().then(setGeminiHealth).catch(() => {});
+  }, []);
+
+  const handleTestGemini = async () => {
+    setIsCheckingHealth(true);
+    try {
+      const status = await geminiClient.checkHealth(true);
+      setGeminiHealth(status);
+    } catch {
+      // ignore
+    } finally {
+      setIsCheckingHealth(false);
+    }
+  };
 
   return (
     <div className="settings-section">
@@ -645,23 +667,63 @@ const AISection: React.FC<{ workspace: WorkspaceItem; onSave: (s: string) => voi
         subtitle="Language model, retrieval pipeline and reasoning settings."
       />
 
+      {/* Live Gemini Provider Health Status */}
+      <div className="settings-card" style={{ borderLeft: geminiHealth?.isConfigured ? '3px solid #10b981' : '3px solid #f59e0b' }}>
+        <div className="card-section-label" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span>Gemini Intelligence Provider (Server-Side)</span>
+          <button
+            type="button"
+            className="settings-btn-outline sm"
+            onClick={handleTestGemini}
+            disabled={isCheckingHealth}
+          >
+            <RotateCcw size={12} className={isCheckingHealth ? 'spin' : ''} />
+            {isCheckingHealth ? 'Testing Connection...' : 'Test Connection'}
+          </button>
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', padding: '12px 0' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
+            <span style={{ fontWeight: 600 }}>Status:</span>
+            {geminiHealth?.isConfigured ? (
+              <span style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <CheckCircle2 size={14} /> Active & Configured ({geminiHealth.model})
+              </span>
+            ) : (
+              <span style={{ color: '#f59e0b', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                <AlertTriangle size={14} /> Unconfigured — Set GEMINI_API_KEY in .env.local
+              </span>
+            )}
+          </div>
+          {geminiHealth?.latencyMs !== undefined && (
+            <div style={{ fontSize: '12px', color: 'var(--c-text-3)' }}>
+              Provider Ping Latency: <span className="mono">{geminiHealth.latencyMs}ms</span> (Checked: {new Date(geminiHealth.lastChecked).toLocaleTimeString()})
+            </div>
+          )}
+          {geminiHealth?.error && (
+            <div style={{ fontSize: '12px', color: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.08)', padding: '6px 10px', borderRadius: '4px' }}>
+              {geminiHealth.error}
+            </div>
+          )}
+        </div>
+      </div>
+
       <div className="settings-card">
         <div className="card-section-label">Model & Provider</div>
         <SettingRow label="Inference Provider" hint="Where model inference is executed.">
           <select className="settings-select" value={provider} onChange={(e) => setProvider(e.target.value)} id="ai-provider">
+            <option>Google Gemini 2.5</option>
             <option>Internal Synaptix Engine</option>
             <option>Azure OpenAI (Enterprise)</option>
-            <option>Google Vertex AI</option>
             <option>AWS Bedrock</option>
           </select>
         </SettingRow>
 
         <SettingRow label="Primary Model" hint="Used for reasoning, planning and responses.">
           <select className="settings-select" value={model} onChange={(e) => setModel(e.target.value)} id="ai-model">
+            <option value="gemini-2.5-flash">Gemini 2.5 Flash (Recommended)</option>
+            <option value="gemini-2.5-pro">Gemini 2.5 Pro</option>
             <option value="synaptix-enterprise-v4">Synaptix Enterprise v4</option>
-            <option value="synaptix-enterprise-v3">Synaptix Enterprise v3</option>
-            <option value="gpt-4o-enterprise">GPT-4o (Enterprise)</option>
-            <option value="gemini-2.0-pro">Gemini 2.0 Pro</option>
           </select>
         </SettingRow>
 
@@ -686,7 +748,7 @@ const AISection: React.FC<{ workspace: WorkspaceItem; onSave: (s: string) => voi
             <option value="32000">32,000 tokens</option>
             <option value="64000">64,000 tokens</option>
             <option value="128000">128,000 tokens</option>
-            <option value="200000">200,000 tokens</option>
+            <option value="1000000">1,000,000 tokens (Gemini 2.5)</option>
           </select>
         </SettingRow>
       </div>

@@ -1,0 +1,34 @@
+{
+  "workspace": "Research",
+  "project_id": "SYNAPTIX-PM-2023-2025",
+  "title": "Edge Machine Learning for Predictive Maintenance of Industrial Sensor Networks",
+  "status": "Completed",
+  "period": "2023-03 to 2025-06",
+  "hypothesis_supported": true,
+  "key_metrics": {
+    "best_f1": 0.92,
+    "best_energy_saving_pct": 17.5,
+    "max_lead_time_days": 9.8,
+    "total_experiments": 10,
+    "total_samples": 15450
+  },
+  "planted_anomalies": [
+    {
+      "id": "ANOM-RES-001",
+      "type": "underperforming_experiment",
+      "experiment": "EXP-PM-006",
+      "description": "Acoustic-only model significantly underperformed (F1 0.71)"
+    }
+  ],
+  "related_documents": [
+    "Research_Project_Overview.pdf",
+    "Literature_Review.docx",
+    "Experimental_Results.xlsx",
+    "Research_Dataset.csv",
+    "Methodology.md",
+    "Research_Meeting_Notes.txt",
+    "Research_Findings.json",
+    "Research_Chart.png",
+    "Limitations_and_Future_Work.md"
+  ]
+}

@@ -73,6 +73,21 @@ export const INITIAL_WORKSPACES: WorkspaceItem[] = [
     lastActivityTime: '5 hours ago',
     colorAccent: '#F59E0B',
     isAuthorized: true
+  },
+  {
+    id: 'operations',
+    name: 'Custom Operations',
+    domain: 'Custom',
+    description: 'Autonomous execution pipelines, logistics nodes & operational workflows',
+    iconName: 'Cpu',
+    documentCount: 65,
+    datasetCount: 14,
+    dashboardCount: 4,
+    pendingActionCount: 1,
+    lastActivity: 'Workflow pipeline execution verified',
+    lastActivityTime: '30 minutes ago',
+    colorAccent: '#10B981',
+    isAuthorized: true
   }
 ];
 
@@ -320,16 +335,29 @@ export const INITIAL_WORKSPACE_INSIGHTS: WorkspaceInsightItem[] = [
     actionText: 'View Competitive Synthesis',
     targetModule: 'analytics',
   },
+  // Custom Operations Insights
   {
-    id: 'ins-biz-2',
-    workspaceId: 'business',
-    title: 'New Anomaly Detected',
-    summary: 'Churn risk probability spike detected in Tier-2 Enterprise Accounts cohort.',
+    id: 'ins-ops-1',
+    workspaceId: 'operations',
+    title: 'Autonomous DAG Pipeline Active',
+    summary: 'Automated data orchestration completed 1,420 scheduled batch jobs across regional clusters.',
+    category: 'Trend',
+    severity: 'positive',
+    confidenceScore: 97,
+    timestamp: '15m ago',
+    actionText: 'View Automation Log',
+    targetModule: 'workflows',
+  },
+  {
+    id: 'ins-ops-2',
+    workspaceId: 'operations',
+    title: 'Node Latency Threshold Warning',
+    summary: 'Edge execution node EU-WEST-4 recorded 240ms round-trip latency variance.',
     category: 'Anomaly',
     severity: 'warning',
-    confidenceScore: 90,
-    timestamp: '4h ago',
-    actionText: 'View Churn Model',
+    confidenceScore: 92,
+    timestamp: '30m ago',
+    actionText: 'Inspect Node Alert',
     targetModule: 'problems',
   }
 ];

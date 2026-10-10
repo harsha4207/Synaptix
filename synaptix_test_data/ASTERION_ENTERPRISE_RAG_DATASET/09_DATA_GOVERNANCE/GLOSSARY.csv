@@ -1,0 +1,15 @@
+term_id,term,canonical_definition,domain,approved_aliases,unit_or_format,formula_or_notes,synthetic
+TRM-001,Revenue,Total recognized income from software subscriptions and professional services in the period,Finance,Sales (ambiguous—prefer Revenue for recognized amount),INR,Per revenue recognition policy; not cash collections,Yes
+TRM-002,Gross Margin,(Revenue - Cost of Services and Hosting) / Revenue,Finance,GM%,Percentage,Expressed as percentage to 1 decimal,Yes
+TRM-003,Operating Expenses,"Expenses from ordinary operations excluding COGS, interest, and tax",Finance,OpEx,INR,,Yes
+TRM-004,Net Income,"Profit after all expenses, interest, and tax",Finance,PAT,INR,,Yes
+TRM-005,Budget Variance,Actual - Budget (favorable if Actual cost < Budget cost for expenses; opposite for revenue),Finance,Variance,INR or %,State direction explicitly,Yes
+TRM-006,Headcount,Number of active employees on payroll as of the snapshot date,HR,"HC, FTE count (FTE is weighted)",Count,Contractors excluded unless stated,Yes
+TRM-007,Attrition,Voluntary separations in period / average headcount in period,HR,Turnover (voluntary),Percentage,Annualize only if stated,Yes
+TRM-008,Utilization,Billable hours / available hours for eligible roles,Operations,Billable utilization,Percentage,Exclude leave and training if policy says so,Yes
+TRM-009,SLA,Contracted or internal target for response or resolution time,Operations,Service Level,Time,Always pair with metric name,Yes
+TRM-010,Incident Severity,Critical / High / Medium / Low as defined in POL-SEC-002,Security,Sev,Enum,Do not invent intermediate levels,Yes
+TRM-011,Risk Score,Likelihood score × Impact score using the matrix in DOC-RSK-001,Risk,Inherent risk score,Number 1-25,Residual score after controls,Yes
+TRM-012,Approval Status,Pending / Approved / Rejected / Paid / Cancelled,Finance/HR,Status,Enum,Use exact enum in datasets,Yes
+TRM-013,Annual Leave,Paid leave entitlement under POL-HR-001 Section 5,HR,"AL, Privilege Leave (do not use PL alone)",Days,18 days full-time permanent,Yes
+TRM-014,Financial Year,1 April to 31 March,Finance,FY,Date range,FY2025 = 2025-04-01 to 2026-03-31,Yes

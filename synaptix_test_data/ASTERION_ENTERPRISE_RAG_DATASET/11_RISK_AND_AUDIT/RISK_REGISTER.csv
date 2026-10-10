@@ -1,0 +1,6 @@
+risk_id,title,category,likelihood,impact,inherent_score,severity_band,owner_role,existing_controls,residual_likelihood,residual_impact,residual_score,mitigation,target_date,status,synthetic
+RSK-001,Unauthorized access to Confidential customer data,Security,3,5,15,High,ROLE-CISO-001,POL-SEC-001 MFA; access reviews,2,4,8,Quarterly access recertification automation,2025-12-31,Open,Yes
+RSK-002,Budget overrun on major cloud spend,Finance,3,3,9,Medium,ROLE-CFO-001,POL-FIN-001; monthly variance,2,3,6,Alert at 80% budget consumption,2025-09-30,In Progress,Yes
+RSK-003,AI system provides non-existent policy as fact,AI Governance,4,4,16,High,ROLE-CIO-001,POL-AI-001 human review; citation required,2,3,6,Retrieval grounding tests in CI,2025-10-31,Open,Yes
+RSK-004,Key-person dependency in payroll processing,HR/Operations,2,4,8,Medium,ROLE-CHRO-001,Documented SOP; backup trained,1,4,4,Cross-train second processor,2025-08-31,Closed,Yes
+RSK-005,Vendor concentration — single cloud provider,Procurement,3,4,12,High,ROLE-HOP-001,POL-PRC-001; exit clause in MSA,3,3,9,Evaluate secondary region/provider,2026-03-31,Open,Yes

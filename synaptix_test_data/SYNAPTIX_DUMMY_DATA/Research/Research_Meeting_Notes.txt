@@ -1,0 +1,26 @@
+SYNAPTIX RESEARCH — MEETING NOTES
+================================
+Project: Edge ML Predictive Maintenance (SYNAPTIX-PM)
+Date: 2025-07-09
+Attendees: Research Lead, ML Engineer, Domain Specialist, Ops Liaison (all synthetic roles)
+
+AGENDA
+1. Final validation results review (EXP-PM-010)
+2. Decision on production candidate
+3. Documentation package for knowledge base
+
+DISCUSSION HIGHLIGHTS
+- EXP-PM-010 achieved F1 0.92, energy saving 17.5%, lead time 9.8 days. Hypothesis largely supported.
+- Acoustic modality remains the weakest single contributor; recommendation is to keep it only in the fused model.
+- Energy savings are model-derived; recommend a follow-on field metering study (out of scope for current project).
+- All artifacts to be deposited in Research workspace for SYNAPTIX COMMAND ingestion testing.
+
+ACTION ITEMS
+- [ ] Finalize Research_Findings.json and upload (Owner: ML Engineer)
+- [ ] Generate Research_Chart.png from Experimental_Results.xlsx (Owner: Research Lead)
+- [ ] Draft Limitations_and_Future_Work.md (Owner: Domain Specialist)
+- [ ] Close project status to "Completed — Hypothesis supported"
+
+NEXT REVIEW: None scheduled (project closed)
+
+END OF NOTES

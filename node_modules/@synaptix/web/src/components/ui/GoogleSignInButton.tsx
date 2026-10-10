@@ -52,12 +52,28 @@ export const GoogleSignInButton: React.FC<GoogleSignInButtonProps> = ({
       type="button"
       onClick={onClick}
       disabled={disabled || isLoading}
-      className={`google-signin-btn ${className}`.trim()}
-      aria-label={text}
+      className={`google-signin-btn ${isLoading ? 'loading' : ''} ${className}`.trim()}
+      aria-label={isLoading ? 'Connecting to Google...' : text}
       {...props}
     >
-      <GoogleIcon size={18} />
-      <span>{text}</span>
+      {isLoading ? (
+        <span
+          className="google-btn-spinner"
+          style={{
+            width: '16px',
+            height: '16px',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            borderTopColor: '#4285F4',
+            borderRadius: '50%',
+            display: 'inline-block',
+            animation: 'spin 1s linear infinite',
+          }}
+          aria-hidden="true"
+        />
+      ) : (
+        <GoogleIcon size={18} />
+      )}
+      <span>{isLoading ? 'Connecting to Google...' : text}</span>
     </button>
   );
 };

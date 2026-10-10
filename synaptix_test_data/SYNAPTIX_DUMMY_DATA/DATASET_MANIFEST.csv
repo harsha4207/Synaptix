@@ -1,0 +1,63 @@
+workspace,filename,file_type,description,synthetic_data_period,key_entities,intended_test_scenario
+Finance,Finance_Executive_Report_2010_2026.pdf,pdf,Executive financial narrative 2010-2026,2010-2026,Aether Dynamics Corp,"Revenue trend, anomaly narrative"
+Finance,Revenue_History_2010_2026.xlsx,xlsx,"Annual revenue, costs, margins",2010-2026,"Year, Revenue, COGS","YoY analysis, largest decline"
+Finance,Expense_Transactions.csv,csv,222 AP transactions with vendors,2022-2026,"TXN-*, INV-*, VND-*","Duplicate detection, expense analysis"
+Finance,Quarterly_Financial_Statements.xlsx,xlsx,"Quarterly IS, BS, CF",2020-2026,Fiscal quarters,"Q3 2024 anomaly, margins"
+Finance,Vendor_Invoices.pdf,pdf,Sample vendor invoices incl. duplicate candidate,2023-2024,"INV-*, VND-*","OCR, invoice extraction"
+Finance,Invoice_Register.xlsx,xlsx,Invoice register + vendor summary,2022-2026,"Invoice_Number, Vendor",Register reconciliation
+Finance,Duplicate_Invoice_Investigation.md,md,Investigation of planted duplicates,2023-2024,"INV-2023-1087, INV-2024-1112","Evidence tracking, RAG"
+Finance,Budget_Variance_Report.docx,docx,2024 budget vs actual,2024,Cost centers,Budget overrun detection
+Finance,Finance_Approval_Policy.md,md,Approval thresholds and controls,2024+,Approval levels,Policy RAG
+Finance,Finance_Operations_Notes.txt,txt,Operational observations,2023-2026,Key anomalies,Notes extraction
+Finance,Scanned_Invoice_Sample.jpg,jpg,Scanned-style invoice for OCR,2024,INV-2024-0756,OCR testing
+Finance,Finance_Knowledge_Base.json,json,Structured KB with anomaly IDs,2010-2026,"Vendors, departments, anomalies",Knowledge extraction
+Finance,README.md,md,Workspace guide,—,—,Documentation
+Research,Research_Project_Overview.pdf,pdf,Project objectives and results summary,2023-2025,SYNAPTIX-PM,Research summary RAG
+Research,Literature_Review.docx,docx,Internal prior work synthesis,2021-2023,Internal studies,Document parsing
+Research,Experimental_Results.xlsx,xlsx,10 experiments with metrics,2023-2025,EXP-PM-001..010,"Compare results, anomaly"
+Research,Research_Dataset.csv,csv,500-sample feature dataset,2025,"SMP-*, EXP-PM-009","Analytics, charting"
+Research,Methodology.md,md,Experimental design protocol,2023-2025,"Modalities, metrics",Methodology RAG
+Research,Research_Meeting_Notes.txt,txt,Closing project meeting notes,2025,Actions,Notes extraction
+Research,Research_Findings.json,json,Structured findings + anomaly,2023-2025,Key metrics,Structured knowledge
+Research,Research_Chart.png,png,F1 and energy-saving charts,2023-2025,Experiments,Chart-data consistency
+Research,Limitations_and_Future_Work.md,md,Limitations and recommendations,2025,ANOM-RES-001,Limitation discovery
+Research,Research_Knowledge_Base.json,json,Project KB,2023-2025,Project metrics,Knowledge extraction
+Research,README.md,md,Workspace guide,—,—,Documentation
+Healthcare,Hospital_Operations_Report.pdf,pdf,Facility operations summary,2024-2025,"MSMC, departments",Ops report RAG
+Healthcare,Synthetic_Appointment_Data.xlsx,xlsx,400 appointments + dept summary,2024-2025,"APT-SYN-*, PAT-SYN-*",Wait-time analysis
+Healthcare,Department_Utilization.csv,csv,Monthly utilization 2025,2025,Departments,High utilization detection
+Healthcare,Patient_Flow_Analysis.md,md,Flow and wait analysis,2024-2025,Departments,Flow insights
+Healthcare,Healthcare_Operations_Policy.docx,docx,Ops policy,2025,"SLAs, maintenance",Policy RAG
+Healthcare,Equipment_Maintenance_Log.xlsx,xlsx,Equipment WOs incl. overdue,2025,EQ-SYN-*,Overdue maintenance
+Healthcare,Hospital_Operations_Notes.txt,txt,Ops notes,2024-2025,Overdue items,Notes extraction
+Healthcare,Scanned_Referral_Form_Synthetic.png,png,Referral form image,2025,"REF-SYN-*, PAT-SYN-*",OCR / form extraction
+Healthcare,Healthcare_Knowledge_Base.json,json,Facility KB,2024-2025,"Departments, anomalies",Knowledge extraction
+Healthcare,README.md,md,Workspace guide,—,—,Documentation
+Education,Academic_Performance_Report.pdf,pdf,Academic performance narrative,2022-2025,"NSU, courses",Performance report
+Education,Student_Performance_Synthetic.xlsx,xlsx,350 student-course records,2022-2025,"STU-SYN-*, courses",Performance + completion
+Education,Attendance_Records.csv,csv,300 attendance sessions,2024-2025,"ATT-SYN-*, STU-SYN-*",Attendance vs performance
+Education,Curriculum_Review.docx,docx,Curriculum committee notes,2024-25,CS-410,Curriculum RAG
+Education,Examination_Analysis.md,md,Assessment and completion analysis,2022-2025,CS-410 anomaly,Declining completion
+Education,Education_Operations_Notes.txt,txt,Ops notes,2022-2025,Anomaly note,Notes extraction
+Education,Course_Enrollment.json,json,Enrollment by course/year,2022-2025,Courses,Enrollment trends
+Education,Education_Knowledge_Base.json,json,Institution KB,2022-2025,"Courses, anomaly",Knowledge extraction
+Education,README.md,md,Workspace guide,—,—,Documentation
+Business,Business_Performance_Report.pdf,pdf,Business performance narrative,2023-2025,"LumenForge, products",Performance report
+Business,Sales_Transactions.xlsx,xlsx,500 sales transactions,2023-2025,"SO-SYN-*, PRD-LF-*",Declining product sales
+Business,Customer_Segments.csv,csv,Segment x region metrics,2023-2025,"Segments, regions",Segment comparison
+Business,Inventory_Operations.xlsx,xlsx,SKU x warehouse inventory,2025,"PRD-LF-*, warehouses",Overstock detection
+Business,Quarterly_Business_Review.docx,docx,Q2 2025 QBR,2025,PRD-LF-500,QBR narrative
+Business,Customer_Feedback.md,md,Thematic feedback summary,2024-2025,Themes,Feedback RAG
+Business,Supply_Chain_Incidents.txt,txt,Delivery delay incidents,2024-2025,INC-SC-*,Delay analysis
+Business,Business_Process_Policy.md,md,Process policy,2025,"Order-to-cash, inventory",Policy RAG
+Business,Business_Knowledge_Base.json,json,Company KB,2023-2025,"Products, anomalies",Knowledge extraction
+Business,README.md,md,Workspace guide,—,—,Documentation
+Custom_Operations,Operations_Overview.pdf,pdf,Ops center overview,2024-2025,Apex Continuity,Ops report
+Custom_Operations,Maintenance_Records.xlsx,xlsx,80 work orders,2024-2025,"WO-OP-*, EQ-OP-*",Overdue maintenance
+Custom_Operations,Incident_Register.csv,csv,50 incidents incl. recurring,2024-2025,"INC-OP-*, EQ-OP-*",Recurring incidents
+Custom_Operations,Standard_Operating_Procedure.md,md,Maintenance & incident SOP,2025,"Lifecycle, SLAs",SOP RAG
+Custom_Operations,Shift_Handover_Notes.txt,txt,Sample shift handover,2025,Open items,Handover extraction
+Custom_Operations,Equipment_Inspection_Form.png,png,Inspection form image,2025,EQ-OP-CNV-02,OCR / form extraction
+Custom_Operations,Operations_Workflow_Definitions.json,json,Workflow state definitions,—,"States, SLAs",Workflow testing
+Custom_Operations,Operations_Knowledge_Base.json,json,Ops KB,2024-2025,"Equipment, anomalies",Knowledge extraction
+Custom_Operations,README.md,md,Workspace guide,—,—,Documentation

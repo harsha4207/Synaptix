@@ -46,6 +46,8 @@ export interface CommandResultData {
   actionPlanSteps?: { step: number; title: string; desc: string; done: boolean }[];
   workflowNodes?: { id: string; name: string; status: 'completed' | 'active' | 'queued' }[];
   approvalInfo?: { title: string; amount?: string; requester: string; reason: string; approved?: boolean };
+  /** Real RAG answer with citations — populated when documents are indexed */
+  ragAnswer?: import('../../lib/rag/types').RagAnswer;
 }
 
 interface DynamicResultViewProps {

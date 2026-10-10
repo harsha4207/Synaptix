@@ -1,0 +1,11 @@
+dataset_id,name,format,owner,classification,path,primary_key,row_approx
+DS-FIN-001,Approval Matrix,csv,CFO,Internal,04_FINANCE_AND_ACCOUNTING/APPROVAL_MATRIX.csv,matrix_id,11
+DS-FIN-002,Expense Claims Sample,xlsx,CFO,Confidential,13_STRUCTURED_DATASETS/FIN_Expense_Claims_Sample.xlsx,claim_id,5
+DS-HR-001,Role Catalog,csv,CHRO,Internal,02_ORGANIZATION_AND_ROLES/ROLE_CATALOG.csv,role_id,22
+DS-ORG-001,Org Hierarchy,json,CEO,Internal,02_ORGANIZATION_AND_ROLES/ORG_HIERARCHY.json,role_id,1
+DS-PRC-001,Vendor Master,csv,Head of Procurement,Internal,13_STRUCTURED_DATASETS/VENDOR_MASTER.csv,vendor_id,5
+DS-RSK-001,Risk Register,csv,CISO/Compliance,Confidential,11_RISK_AND_AUDIT/RISK_REGISTER.csv,risk_id,5
+DS-PRJ-001,Project Master,csv,COO,Internal,13_STRUCTURED_DATASETS/PROJECT_MASTER.csv,project_id,4
+DS-GLOSS-001,Glossary,csv,CDO,Internal,GLOSSARY.csv,term_id,14
+DS-META-001,Document Metadata,csv,Compliance,Internal,DOCUMENT_METADATA.csv,document_id,26
+DS-RAG-001,RAG Test Cases,jsonl,QA,Internal,14_RAG_TEST_QUESTIONS/RAG_TEST_CASES.jsonl,test_id,100

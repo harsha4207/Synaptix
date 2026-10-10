@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   BarChart3,
   Mic,
@@ -35,6 +35,8 @@ import { Badge } from '../components/ui/Badge';
 interface AnalyticsModuleProps {
   workspace: WorkspaceItem;
   onAddToast: (msg: string) => void;
+  activeSubTab?: AnalysisSectionTab;
+  onSubTabChange?: (tab: AnalysisSectionTab) => void;
 }
 
 export type AnalysisSectionTab =
@@ -46,7 +48,12 @@ export type AnalysisSectionTab =
   | 'drivers'
   | 'detailed_data';
 
-export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onAddToast }) => {
+export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({
+  workspace,
+  onAddToast,
+  activeSubTab,
+  onSubTabChange,
+}) => {
   // Top Bar States
   const [selectedDataset, setSelectedDataset] = useState<string>('FY2026 Enterprise Operational Ledger');
   const [dateRange, setDateRange] = useState<string>('2010 – 2026');
@@ -59,7 +66,13 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
   const [isListening, setIsListening] = useState<boolean>(false);
 
   // Active Tab
-  const [activeTab, setActiveTab] = useState<AnalysisSectionTab>('overview');
+  const [activeTab, setActiveTab] = useState<AnalysisSectionTab>(activeSubTab || 'overview');
+
+  useEffect(() => {
+    if (activeSubTab) {
+      setActiveTab(activeSubTab);
+    }
+  }, [activeSubTab]);
 
   // Drill-down modal state
   const [isDrillDownOpen, setIsDrillDownOpen] = useState<boolean>(false);
@@ -273,7 +286,7 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
         }
         badge={
           <Badge variant="blue">
-            <ShieldCheck size={13} style={{ marginRight: '4px' }} />
+            <ShieldCheck size={13} />
             {workspace.name} Domain Boundary
           </Badge>
         }
@@ -462,7 +475,6 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
                 type="submit"
                 disabled={isAnalyzing || !nlQuery.trim()}
                 className="nl-prompt-btn-primary"
-                style={{ backgroundColor: '#2496FF', color: '#0B1F3A' }}
               >
                 {isAnalyzing ? (
                   <>
@@ -499,11 +511,11 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '6px',
+            gap: '8px',
             overflowX: 'auto',
             backgroundColor: 'var(--c-surface)',
-            padding: '6px',
-            borderRadius: '12px',
+            padding: '8px',
+            borderRadius: 'var(--r-xl)',
             border: '1px solid var(--c-border)',
             boxShadow: 'var(--shadow-xs)',
           }}
@@ -520,14 +532,17 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
             <button
               key={tab.id}
               type="button"
-              onClick={() => setActiveTab(tab.id as AnalysisSectionTab)}
+              onClick={() => {
+                setActiveTab(tab.id as AnalysisSectionTab);
+                onSubTabChange?.(tab.id as AnalysisSectionTab);
+              }}
               style={{
                 height: '36px',
-                padding: '0 16px',
-                borderRadius: '8px',
+                padding: '0 18px',
+                borderRadius: 'var(--r-md)',
                 fontSize: '12px',
                 fontWeight: activeTab === tab.id ? 700 : 600,
-                backgroundColor: activeTab === tab.id ? '#1769E0' : 'transparent',
+                backgroundColor: activeTab === tab.id ? 'var(--c-blue)' : 'transparent',
                 color: activeTab === tab.id ? '#FFFFFF' : 'var(--c-text-2)',
                 border: 'none',
                 cursor: 'pointer',
@@ -535,6 +550,7 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                lineHeight: '1.3',
                 transition: 'all 0.15s ease',
               }}
             >
@@ -550,96 +566,100 @@ export const AnalyticsModule: React.FC<AnalyticsModuleProps> = ({ workspace, onA
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
                 gap: '16px',
               }}
             >
               <div
                 style={{
-                  padding: '20px',
-                  borderRadius: '14px',
+                  padding: '20px 22px',
+                  borderRadius: 'var(--r-xl)',
                   border: '1px solid var(--c-border)',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: 'var(--c-surface)',
                   boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '120px',
+                  minHeight: '128px',
+                  gap: '10px',
                 }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Active Metric Value</span>
+                  <span className="text-xs font-semibold text-[var(--c-text-2)] uppercase tracking-wider">Active Metric Value</span>
                   <BarChart3 className="w-4 h-4 text-[var(--c-blue)]" />
                 </div>
-                <div className="text-2xl font-extrabold text-[var(--c-text-1)] font-mono my-1">41.2%</div>
-                <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                <div className="text-2xl sm:text-3xl font-extrabold text-[var(--c-text-1)] font-mono tracking-tight">41.2%</div>
+                <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5" /> +1.8% vs FY2025
                 </div>
               </div>
 
               <div
                 style={{
-                  padding: '20px',
-                  borderRadius: '14px',
+                  padding: '20px 22px',
+                  borderRadius: 'var(--r-xl)',
                   border: '1px solid var(--c-border)',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: 'var(--c-surface)',
                   boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '120px',
+                  minHeight: '128px',
+                  gap: '10px',
                 }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Historical Trough (2021)</span>
+                  <span className="text-xs font-semibold text-[var(--c-text-2)] uppercase tracking-wider">Historical Trough (2021)</span>
                   <TrendingDown className="w-4 h-4 text-red-500" />
                 </div>
-                <div className="text-2xl font-extrabold text-red-600 font-mono my-1">28.3%</div>
-                <div className="text-xs text-red-600 font-semibold flex items-center gap-1">
+                <div className="text-2xl sm:text-3xl font-extrabold text-red-600 font-mono tracking-tight">28.3%</div>
+                <div className="text-xs text-red-600 font-semibold flex items-center gap-1.5">
                   <TrendingDown className="w-3.5 h-3.5" /> -14.2% drop from 2019
                 </div>
               </div>
 
               <div
                 style={{
-                  padding: '20px',
-                  borderRadius: '14px',
+                  padding: '20px 22px',
+                  borderRadius: 'var(--r-xl)',
                   border: '1px solid var(--c-border)',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: 'var(--c-surface)',
                   boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '120px',
+                  minHeight: '128px',
+                  gap: '10px',
                 }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Strongest Correlation</span>
+                  <span className="text-xs font-semibold text-[var(--c-text-2)] uppercase tracking-wider">Strongest Correlation</span>
                   <Sliders className="w-4 h-4 text-amber-500" />
                 </div>
-                <div className="text-2xl font-extrabold text-amber-700 font-mono my-1">r = -0.84</div>
-                <div className="text-xs text-[var(--c-text-2)]">Logistics Latency vs Margin</div>
+                <div className="text-2xl sm:text-3xl font-extrabold text-amber-700 font-mono tracking-tight">r = -0.84</div>
+                <div className="text-xs text-[var(--c-text-2)] font-medium">Logistics Latency vs Margin</div>
               </div>
 
               <div
                 style={{
-                  padding: '20px',
-                  borderRadius: '14px',
+                  padding: '20px 22px',
+                  borderRadius: 'var(--r-xl)',
                   border: '1px solid var(--c-border)',
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: 'var(--c-surface)',
                   boxShadow: 'var(--shadow-xs)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '120px',
+                  minHeight: '128px',
+                  gap: '10px',
                 }}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold text-[var(--c-text-2)]">Verified Evidence Grade</span>
+                  <span className="text-xs font-semibold text-[var(--c-text-2)] uppercase tracking-wider">Verified Evidence Grade</span>
                   <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 </div>
-                <div className="text-2xl font-extrabold text-emerald-700 font-mono my-1">G1 Ledger</div>
-                <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                <div className="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-mono tracking-tight">G1 Ledger</div>
+                <div className="text-xs text-emerald-600 font-semibold flex items-center gap-1.5">
                   <ShieldCheck className="w-3.5 h-3.5" /> Cryptographic Integrity
                 </div>
               </div>

@@ -25,6 +25,10 @@ import { GlobalSearchModal } from './components/search/GlobalSearchModal';
 import { SearchResultItem } from './types/search';
 import { GenericWorkspaceModule } from './modules/GenericWorkspaceModule';
 import { WorkspaceOverviewScreen } from './components/WorkspaceOverviewScreen';
+import { RagProvider } from './lib/rag';
+import { VoiceProvider } from './lib/voice';
+import { VoiceCommandHud } from './components/voice/VoiceCommandHud';
+import { useSupabaseAuth } from './lib/supabase';
 
 import { INITIAL_NOTIFICATIONS } from './data/mockNotifications';
 import { NotificationItem } from './types/notification';
@@ -86,6 +90,72 @@ export const App: React.FC = () => {
   // Current user state shared across navigation and settings, initialized from persistent store
   const [currentUser, setCurrentUser] = useState<UserProfileInfo>(() => loadUserProfile(authenticatedUserEmail || undefined));
 
+  // Supabase Authentication integration
+  const supabaseAuth = useSupabaseAuth();
+  const [isGoogleAuthLoading, setIsGoogleAuthLoading] = useState(false);
+  const [authErrorMessage, setAuthErrorMessage] = useState<string | null>(null);
+
+  // Synchronize Supabase authentication state with user session
+  useEffect(() => {
+    if (supabaseAuth.user && supabaseAuth.user.email) {
+      const email = supabaseAuth.user.email;
+      setAuthenticatedUserEmail(email);
+      saveSessionEmail(email);
+
+      const existingProfile = loadUserProfile(email);
+      const meta = supabaseAuth.user.user_metadata || {};
+      const name = meta.full_name || meta.name || existingProfile.name;
+      const avatarUrl = meta.avatar_url || meta.picture || existingProfile.avatarUrl;
+      const organization = meta.organization || existingProfile.organization;
+
+      setCurrentUser({
+        ...existingProfile,
+        name,
+        email,
+        avatarUrl,
+        organization,
+      });
+
+      // If user was on auth or landing page, transition to home (or intended hash destination)
+      setViewState((currentView) => {
+        if (currentView === 'auth' || currentView === 'landing') {
+          const hash = window.location.hash.toLowerCase();
+          if (hash.startsWith('#workspace') || hash.startsWith('#settings')) {
+            window.dispatchEvent(new HashChangeEvent('hashchange'));
+            return currentView;
+          }
+          window.location.hash = '#home';
+          return 'home';
+        }
+        return currentView;
+      });
+    }
+  }, [supabaseAuth.user]);
+
+  // Server-side / state verification for protected routes
+  useEffect(() => {
+    const handleHashRouting = () => {
+      const hash = window.location.hash.toLowerCase();
+      const isProtected =
+        hash.startsWith('#workspace') ||
+        hash.startsWith('#settings') ||
+        hash === '#home';
+
+      if (isProtected && !supabaseAuth.isLoading) {
+        const hasActiveSession = Boolean(supabaseAuth.user || authenticatedUserEmail);
+        if (!hasActiveSession) {
+          setViewState('auth');
+          setAuthMode('login');
+          window.location.hash = '#login';
+          addToast('Authentication required. Please sign in with Google or your enterprise credentials.');
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashRouting);
+    return () => window.removeEventListener('hashchange', handleHashRouting);
+  }, [supabaseAuth.user, supabaseAuth.isLoading, authenticatedUserEmail]);
+
   // Load persistent avatar from IndexedDB on startup
   useEffect(() => {
     let isMounted = true;
@@ -126,6 +196,166 @@ export const App: React.FC = () => {
   const [activeModule, setActiveModule] = useState<WorkspaceModuleId>('overview');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
+
+  // Tab states for modules
+  const [analyticsSubTab, setAnalyticsSubTab] = useState<import('./modules/AnalyticsModule').AnalysisSectionTab>('overview');
+  const [actionsSubTab, setActionsSubTab] = useState<import('./modules/ActionsModule').ActionStatusTab>('Pending');
+  const [problemsSubTab, setProblemsSubTab] = useState<import('./modules/ProblemsModule').ProblemCategoryTab>('Critical');
+
+  // Navigation history state for robust voice "go back" / "go forward"
+  interface HistoryEntry {
+    viewState: 'landing' | 'auth' | 'home' | 'workspace' | 'settings';
+    workspaceId?: string;
+    moduleId?: WorkspaceModuleId;
+    settingsTab?: SettingsTab;
+  }
+
+  const [navHistory, setNavHistory] = useState<HistoryEntry[]>([
+    { viewState: 'home' }
+  ]);
+  const [navHistoryIndex, setNavHistoryIndex] = useState<number>(0);
+  const isNavigatingHistoryRef = React.useRef(false);
+
+  const pushNavHistory = (entry: HistoryEntry) => {
+    if (isNavigatingHistoryRef.current) return;
+    setNavHistory((prev) => {
+      const trimmed = prev.slice(0, navHistoryIndex + 1);
+      return [...trimmed, entry];
+    });
+    setNavHistoryIndex((prev) => prev + 1);
+  };
+
+  const handleVoiceNavigateBack = (): boolean => {
+    if (navHistoryIndex > 0) {
+      isNavigatingHistoryRef.current = true;
+      const targetEntry = navHistory[navHistoryIndex - 1];
+      setNavHistoryIndex((prev) => prev - 1);
+      restoreNavState(targetEntry);
+      setTimeout(() => {
+        isNavigatingHistoryRef.current = false;
+      }, 150);
+      return true;
+    }
+    if (typeof window !== 'undefined' && window.history.length > 1) {
+      window.history.back();
+      return true;
+    }
+    handleBackToHub();
+    return true;
+  };
+
+  const handleVoiceNavigateForward = (): boolean => {
+    if (navHistoryIndex < navHistory.length - 1) {
+      isNavigatingHistoryRef.current = true;
+      const targetEntry = navHistory[navHistoryIndex + 1];
+      setNavHistoryIndex((prev) => prev + 1);
+      restoreNavState(targetEntry);
+      setTimeout(() => {
+        isNavigatingHistoryRef.current = false;
+      }, 150);
+      return true;
+    }
+    if (typeof window !== 'undefined') {
+      window.history.forward();
+      return true;
+    }
+    return false;
+  };
+
+  const restoreNavState = (entry: HistoryEntry) => {
+    if (entry.viewState === 'home') {
+      handleBackToHub();
+    } else if (entry.viewState === 'settings') {
+      handleOpenSettings(entry.settingsTab || 'profile');
+    } else if (entry.viewState === 'workspace' && entry.workspaceId) {
+      const targetWs = workspaces.find((w) => w.id === entry.workspaceId) || selectedWorkspace;
+      if (targetWs) setSelectedWorkspace(targetWs);
+      setActiveModule(entry.moduleId || 'overview');
+      setViewState('workspace');
+      window.location.hash = `#workspace/${entry.workspaceId}/${entry.moduleId || 'overview'}`;
+    }
+  };
+
+  const handleVoiceSelectTab = (tabId: string): boolean => {
+    const tabLower = tabId.toLowerCase();
+
+    // Check Settings Tabs
+    if (tabLower === 'profile' || tabLower === 'security' || tabLower === 'preferences') {
+      handleOpenSettings(tabLower as SettingsTab);
+      return true;
+    }
+
+    // Check Analytics Tabs
+    const analyticsTabs: import('./modules/AnalyticsModule').AnalysisSectionTab[] = [
+      'overview', 'trends', 'comparisons', 'anomalies', 'relationships', 'drivers', 'detailed_data'
+    ];
+    const matchedAnalytics = analyticsTabs.find((t) => t.toLowerCase() === tabLower);
+    if (matchedAnalytics) {
+      if (viewState !== 'workspace' || activeModule !== 'analytics') {
+        const wsId = selectedWorkspace?.id || 'finance';
+        const targetWs = workspaces.find((w) => w.id === wsId);
+        if (targetWs) setSelectedWorkspace(targetWs);
+        setActiveModule('analytics');
+        setViewState('workspace');
+        window.location.hash = `#workspace/${wsId}/analytics`;
+      }
+      setAnalyticsSubTab(matchedAnalytics);
+      addToast(`Switched to Analytics: ${matchedAnalytics}`);
+      return true;
+    }
+
+    // Check Actions Tabs
+    const actionTabs: import('./modules/ActionsModule').ActionStatusTab[] = [
+      'Pending', 'Approved', 'Running', 'Completed', 'Failed'
+    ];
+    const matchedAction = actionTabs.find((t) => t.toLowerCase() === tabLower);
+    if (matchedAction) {
+      if (viewState !== 'workspace' || activeModule !== 'actions') {
+        const wsId = selectedWorkspace?.id || 'finance';
+        const targetWs = workspaces.find((w) => w.id === wsId);
+        if (targetWs) setSelectedWorkspace(targetWs);
+        setActiveModule('actions');
+        setViewState('workspace');
+        window.location.hash = `#workspace/${wsId}/actions`;
+      }
+      setActionsSubTab(matchedAction);
+      addToast(`Switched to Actions: ${matchedAction}`);
+      return true;
+    }
+
+    // Check Problems Tabs
+    const problemTabs: import('./modules/ProblemsModule').ProblemCategoryTab[] = [
+      'Critical', 'Attention', 'Investigation', 'Resolved'
+    ];
+    const matchedProblem = problemTabs.find((t) => t.toLowerCase() === tabLower);
+    if (matchedProblem) {
+      if (viewState !== 'workspace' || activeModule !== 'problems') {
+        const wsId = selectedWorkspace?.id || 'finance';
+        const targetWs = workspaces.find((w) => w.id === wsId);
+        if (targetWs) setSelectedWorkspace(targetWs);
+        setActiveModule('problems');
+        setViewState('workspace');
+        window.location.hash = `#workspace/${wsId}/problems`;
+      }
+      setProblemsSubTab(matchedProblem);
+      addToast(`Switched to Problems: ${matchedProblem}`);
+      return true;
+    }
+
+    return false;
+  };
+
+  const handleVoiceToggleDialog = (dialogId: string, open: boolean): boolean => {
+    if (dialogId === 'search_modal' || dialogId === 'search') {
+      setIsSearchModalOpen(open);
+      return true;
+    }
+    if (!open) {
+      setIsSearchModalOpen(false);
+      return true;
+    }
+    return false;
+  };
 
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
@@ -202,28 +432,30 @@ export const App: React.FC = () => {
   };
 
   const handleGoogleAuth = async () => {
-    const demoEmail = 'alex.vance@enterprise.com';
-    syncAuthenticatedSession(demoEmail);
-    const existingProfile = loadUserProfile(demoEmail);
-    const storedAvatar = await loadAvatarFromStorage(demoEmail);
-    setCurrentUser({
-      ...existingProfile,
-      avatarUrl: storedAvatar || undefined,
-    });
-    addToast('Authenticated with Google Enterprise SSO');
+    setAuthErrorMessage(null);
+    setIsGoogleAuthLoading(true);
 
-    const rawHash = window.location.hash;
-    if (rawHash && !['#login', '#signup', '#landing', '#overview', '#capabilities', '#preview', '#workflow', '#governance'].includes(rawHash.toLowerCase())) {
-      window.dispatchEvent(new HashChangeEvent('hashchange'));
+    if (supabaseAuth.isConfigured) {
+      const { error } = await supabaseAuth.signInWithGoogle();
+      if (error) {
+        setIsGoogleAuthLoading(false);
+        setAuthErrorMessage(error.message);
+        addToast(`Google Sign-In failed: ${error.message}`);
+      }
+      // If success, browser will redirect to Google OAuth login screen
     } else {
-      window.location.hash = '#home';
-      setViewState('home');
+      setIsGoogleAuthLoading(false);
+      setAuthErrorMessage(
+        'Supabase is not configured yet. Please configure NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local.'
+      );
+      addToast('Supabase key not configured in .env.local');
     }
   };
 
   const handleOpenSettings = (tab: SettingsTab = 'profile') => {
     setSettingsTab(tab);
     setViewState('settings');
+    pushNavHistory({ viewState: 'settings', settingsTab: tab });
     const newHash = tab === 'profile' ? '#settings/profile' : tab === 'security' ? '#settings/security' : '#settings/preferences';
     if (window.location.hash !== newHash) {
       window.location.hash = newHash;
@@ -232,6 +464,7 @@ export const App: React.FC = () => {
 
   const handleSelectTab = (tab: SettingsTab) => {
     setSettingsTab(tab);
+    pushNavHistory({ viewState: 'settings', settingsTab: tab });
     const newHash = tab === 'profile' ? '#settings/profile' : tab === 'security' ? '#settings/security' : '#settings/preferences';
     // Use history.replaceState so changing tabs doesn't clutter back history
     window.history.replaceState(null, '', newHash);
@@ -267,6 +500,7 @@ export const App: React.FC = () => {
     setSelectedWorkspace(ws);
     setActiveModule(targetModule);
     setViewState('workspace');
+    pushNavHistory({ viewState: 'workspace', workspaceId, moduleId: targetModule });
     window.location.hash = `#workspace/${workspaceId}/${targetModule}`;
     addToast(`Selected ${ws.name} Workspace Boundary`);
   };
@@ -384,7 +618,12 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    try {
+      await supabaseAuth.signOut();
+    } catch {
+      // Ignore network errors during signout
+    }
     clearSessionEmail();
     setAuthenticatedUserEmail('');
     setSelectedWorkspace(null);
@@ -442,7 +681,14 @@ export const App: React.FC = () => {
       case 'knowledge':
         return <KnowledgeModule workspace={selectedWorkspace} onAddToast={addToast} />;
       case 'analytics':
-        return <AnalyticsModule workspace={selectedWorkspace} onAddToast={addToast} />;
+        return (
+          <AnalyticsModule
+            workspace={selectedWorkspace}
+            onAddToast={addToast}
+            activeSubTab={analyticsSubTab}
+            onSubTabChange={setAnalyticsSubTab}
+          />
+        );
       case 'dashboards':
         return <DashboardsModule workspace={selectedWorkspace} onAddToast={addToast} />;
       case 'problems':
@@ -450,13 +696,22 @@ export const App: React.FC = () => {
           <ProblemsModule
             workspace={selectedWorkspace}
             onAddToast={addToast}
+            activeSubTab={problemsSubTab}
+            onSubTabChange={setProblemsSubTab}
             onSelectModule={(mod) => setActiveModule(mod)}
           />
         );
       case 'workflows':
         return <WorkflowsModule workspace={selectedWorkspace} onAddToast={addToast} />;
       case 'actions':
-        return <ActionsModule workspace={selectedWorkspace} onAddToast={addToast} />;
+        return (
+          <ActionsModule
+            workspace={selectedWorkspace}
+            onAddToast={addToast}
+            activeSubTab={actionsSubTab}
+            onSubTabChange={setActionsSubTab}
+          />
+        );
       case 'evidence':
         return <EvidenceModule workspace={selectedWorkspace} onAddToast={addToast} />;
       case 'audit':
@@ -469,8 +724,57 @@ export const App: React.FC = () => {
   };
 
   return (
-    <>
-      {/* 0. PUBLIC ENTERPRISE LANDING PAGE VIEW */}
+    <RagProvider>
+      <VoiceProvider
+        currentWorkspace={selectedWorkspace}
+        allWorkspaces={workspaces}
+        currentModule={activeModule}
+        currentTab={
+          viewState === 'settings'
+            ? settingsTab
+            : activeModule === 'analytics'
+            ? analyticsSubTab
+            : activeModule === 'actions'
+            ? actionsSubTab
+            : activeModule === 'problems'
+            ? problemsSubTab
+            : null
+        }
+        onNavigateToModule={(wsId, modId) => {
+          if (wsId) {
+            const targetWs = workspaces.find((w) => w.id === wsId);
+            if (targetWs) setSelectedWorkspace(targetWs);
+          }
+          setActiveModule(modId);
+          setViewState('workspace');
+          const activeWsId = wsId || selectedWorkspace?.id || 'finance';
+          pushNavHistory({ viewState: 'workspace', workspaceId: activeWsId, moduleId: modId });
+          window.location.hash = `#workspace/${activeWsId}/${modId}`;
+          return true;
+        }}
+        onSelectWorkspace={(wsId) => {
+          const targetWs = workspaces.find((w) => w.id === wsId);
+          if (targetWs) {
+            setSelectedWorkspace(targetWs);
+            setActiveModule('overview');
+            setViewState('workspace');
+            pushNavHistory({ viewState: 'workspace', workspaceId: wsId, moduleId: 'overview' });
+            window.location.hash = `#workspace/${wsId}/overview`;
+            return true;
+          }
+          return false;
+        }}
+        onBackToHub={() => {
+          handleBackToHub();
+          pushNavHistory({ viewState: 'home' });
+        }}
+        onNavigateBack={handleVoiceNavigateBack}
+        onNavigateForward={handleVoiceNavigateForward}
+        onSelectTab={handleVoiceSelectTab}
+        onToggleDialog={handleVoiceToggleDialog}
+        onAddToast={addToast}
+      >
+        {/* 0. PUBLIC ENTERPRISE LANDING PAGE VIEW */}
       {viewState === 'landing' && (
         <LandingPage
           onOpenLogin={handleOpenLogin}
@@ -486,6 +790,8 @@ export const App: React.FC = () => {
           onAddToast={addToast}
           initialMode={authMode}
           onBackToLanding={handleBackToLanding}
+          isGoogleLoading={isGoogleAuthLoading}
+          errorMessage={authErrorMessage || supabaseAuth.error}
         />
       )}
 
@@ -586,9 +892,13 @@ export const App: React.FC = () => {
         onSelectResult={handleSelectSearchResult}
       />
 
+      {/* Voice Assistant Heads-Up Display (HUD) */}
+      <VoiceCommandHud />
+
       {/* Toast Notifications across all states */}
       <Toast toasts={toasts} onDismiss={removeToast} />
-    </>
+    </VoiceProvider>
+  </RagProvider>
   );
 };
 

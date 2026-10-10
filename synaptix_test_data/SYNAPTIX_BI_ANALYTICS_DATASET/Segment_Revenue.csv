@@ -1,0 +1,69 @@
+year,segment,revenue_usd_m,units_sold
+2010,Industrial Sensors,20.4,110270
+2010,IoT Gateways,9.35,50541
+2010,Software & Analytics,5.1,27568
+2010,Professional Services,7.65,41351
+2011,Industrial Sensors,23.136,125059
+2011,IoT Gateways,10.604,57319
+2011,Software & Analytics,5.784,31265
+2011,Professional Services,8.676,46897
+2012,Industrial Sensors,26.784,144778
+2012,IoT Gateways,12.276,66357
+2012,Software & Analytics,6.696,36195
+2012,Professional Services,10.044,54292
+2013,Industrial Sensors,30.288,163719
+2013,IoT Gateways,13.882,75038
+2013,Software & Analytics,7.572,40930
+2013,Professional Services,11.358,61395
+2014,Industrial Sensors,34.752,187849
+2014,IoT Gateways,15.928,86097
+2014,Software & Analytics,8.688,46962
+2014,Professional Services,13.032,70443
+2015,Industrial Sensors,35.952,194335
+2015,IoT Gateways,20.544,111049
+2015,Software & Analytics,15.408,83286
+2015,Professional Services,13.696,74032
+2016,Industrial Sensors,41.286,223168
+2016,IoT Gateways,23.592,127524
+2016,Software & Analytics,17.694,95643
+2016,Professional Services,15.728,85016
+2017,Industrial Sensors,47.334,255859
+2017,IoT Gateways,27.048,146205
+2017,Software & Analytics,20.286,109654
+2017,Professional Services,18.032,97470
+2018,Industrial Sensors,49.938,237800
+2018,IoT Gateways,28.536,135886
+2018,Software & Analytics,21.402,101914
+2018,Professional Services,19.024,90590
+2019,Industrial Sensors,38.96,185524
+2019,IoT Gateways,21.428,102038
+2019,Software & Analytics,19.48,92762
+2019,Professional Services,17.532,83486
+2020,Industrial Sensors,28.48,135619
+2020,IoT Gateways,15.664,74590
+2020,Software & Analytics,14.24,67810
+2020,Professional Services,12.816,61029
+2021,Industrial Sensors,27.4,130476
+2021,IoT Gateways,15.07,71762
+2021,Software & Analytics,13.7,65238
+2021,Professional Services,12.33,58714
+2022,Industrial Sensors,27.982,133248
+2022,IoT Gateways,18.929,90138
+2022,Software & Analytics,23.044,109733
+2022,Professional Services,12.345,58786
+2023,Industrial Sensors,32.572,144764
+2023,IoT Gateways,22.034,97929
+2023,Software & Analytics,26.824,119218
+2023,Professional Services,14.37,63867
+2024,Industrial Sensors,31.716,140960
+2024,IoT Gateways,21.144,93973
+2024,Software & Analytics,19.382,86142
+2024,Professional Services,15.858,70480
+2025,Industrial Sensors,37.196,165316
+2025,IoT Gateways,25.162,111831
+2025,Software & Analytics,30.632,136142
+2025,Professional Services,16.41,72933
+2026,Industrial Sensors,42.398,188436
+2026,IoT Gateways,28.681,127471
+2026,Software & Analytics,34.916,155182
+2026,Professional Services,18.705,83133

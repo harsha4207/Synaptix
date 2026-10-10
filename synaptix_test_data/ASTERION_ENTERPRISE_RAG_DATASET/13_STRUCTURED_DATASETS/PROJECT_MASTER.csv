@@ -1,0 +1,5 @@
+project_id,project_name,customer_id,department_id,status,start_date,target_end_date,budget_inr,actual_cost_inr,pm_role,synthetic
+PRJ-AST-2401,Command Suite Implementation — Client Alpha,CUST-1001,DEPT-OPS-001,Active,2024-09-01,2025-06-30,4500000,3120000,ROLE-MGR-RND-001,Yes
+PRJ-AST-2402,Analytics Cloud Rollout — Client Beta,CUST-1002,DEPT-OPS-001,Active,2025-01-15,2025-09-30,2800000,1450000,ROLE-MGR-RND-001,Yes
+PRJ-AST-2308,Internal RAG Knowledge Platform,INTERNAL,DEPT-IT-001,Completed,2023-04-01,2024-12-15,3200000,3050000,ROLE-CIO-001,Yes
+PRJ-AST-2501,Security Awareness Redesign,INTERNAL,DEPT-SEC-001,Planned,2025-07-01,2025-12-31,450000,0,ROLE-MGR-SEC-001,Yes

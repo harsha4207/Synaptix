@@ -8,6 +8,8 @@ export interface AuthCardProps {
   onGoogleAuth: () => void;
   defaultMode?: 'login' | 'signup';
   onBackToLanding?: () => void;
+  isGoogleLoading?: boolean;
+  errorMessage?: string | null;
 }
 
 export const AuthCard: React.FC<AuthCardProps> = ({
@@ -16,6 +18,8 @@ export const AuthCard: React.FC<AuthCardProps> = ({
   onGoogleAuth,
   defaultMode = 'login',
   onBackToLanding,
+  isGoogleLoading = false,
+  errorMessage = null,
 }) => {
   const [mode, setMode] = useState<'login' | 'signup'>(defaultMode);
 
@@ -54,12 +58,16 @@ export const AuthCard: React.FC<AuthCardProps> = ({
             onGoogleAuth={onGoogleAuth}
             onOpenForgotPassword={onOpenForgotPassword}
             onSwitchToSignup={() => setMode('signup')}
+            isGoogleLoading={isGoogleLoading}
+            errorMessage={errorMessage}
           />
         ) : (
           <SignupForm
             onSuccess={(email) => onSuccessAuth(email, 'signup')}
             onGoogleAuth={onGoogleAuth}
             onSwitchToLogin={() => setMode('login')}
+            isGoogleLoading={isGoogleLoading}
+            errorMessage={errorMessage}
           />
         )}
       </div>

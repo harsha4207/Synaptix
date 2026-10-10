@@ -1,0 +1,26 @@
+MERIDIAN SYNTHETIC MEDICAL CENTER — OPERATIONS NOTES
+====================================================
+Period: 2024-01 to 2025-06 (Synthetic)
+Last Update: 2025-07-01
+
+1. Appointment Volume
+   - 400 synthetic appointments loaded for testing.
+   - Emergency and Radiology are the primary focus for wait-time analytics.
+
+2. Overdue Maintenance (Planted Test Cases)
+   - EQ-SYN-CT-02 (CT Scanner B) — Overdue
+   - EQ-SYN-VENT-05 (Ventilator Bank 5) — Overdue
+   - These two records exist so that queries for "overdue equipment" return concrete results.
+
+3. Utilization Hotspots
+   - Cardiology and Surgery frequently >85% utilization in 2025 monthly data.
+   - Source: Department_Utilization.csv
+
+4. Data Files
+   - Synthetic_Appointment_Data.xlsx
+   - Department_Utilization.csv
+   - Equipment_Maintenance_Log.xlsx
+   - Patient_Flow_Analysis.md
+   - Hospital_Operations_Report.pdf
+
+DISCLAIMER: Entirely synthetic. No real patients, no clinical validity.

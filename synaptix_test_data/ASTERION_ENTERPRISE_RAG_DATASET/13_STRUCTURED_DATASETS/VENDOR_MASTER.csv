@@ -1,0 +1,6 @@
+vendor_id,vendor_name,category,status,risk_tier,onboarded_date,primary_contact_email,synthetic
+VND-AST-1001,NovaCloud Infrastructure Pvt Ltd,Cloud Infrastructure,Active,Medium,2023-06-15,procurement@example.com,Yes
+VND-AST-1002,Pinnacle Office Supplies,Office Supplies,Active,Low,2022-01-10,orders@example.com,Yes
+VND-AST-1003,SecureAuth Technologies,Security Software,Active,High,2024-03-01,support@example.com,Yes
+VND-AST-1004,BrightPath Consulting,Professional Services,Active,Medium,2023-11-20,info@example.com,Yes
+VND-AST-1005,Horizon Logistics,Logistics,Inactive,Low,2021-08-05,ops@example.com,Yes

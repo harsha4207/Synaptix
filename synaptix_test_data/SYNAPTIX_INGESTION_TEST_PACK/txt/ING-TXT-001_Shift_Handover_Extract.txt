@@ -1,0 +1,29 @@
+SYNAPTIX INGESTION TEST — PLAIN TEXT OPERATIONAL NOTE
+Document ID: ING-TXT-001
+Classification: Internal Synthetic
+Entity: Aether Dynamics Corp / Apex Continuity Operations
+
+SHIFT HANDOVER EXTRACT (SYNTHETIC)
+Date: 2025-08-14
+Outgoing: Team Gamma
+Incoming: Team Alpha
+
+OPEN ITEMS
+1. WO-OP-9072 | EQ-OP-CMP-05 Air Compressor 5 | Status: Overdue | Priority: High
+2. INC-OP-4104 | EQ-OP-CNV-02 Conveyor Line 2 | Recurring belt misalignment | Status: Open
+
+ABBREVIATIONS
+WO = Work Order
+INC = Incident
+EQ = Equipment
+OTIF = On-Time In-Full
+AP = Accounts Payable
+
+SENSITIVE FIELDS (FICTIONAL — REDACTION TARGETS)
+Coordinator email: shift.lead@apex-ops.example.com
+Backup phone: +91-22-5555-7788
+
+CROSS-FILE ENTITIES
+References EQ-OP-CNV-02 and WO-OP-9072 also appear in Custom_Operations workspace of the primary dummy dataset and in ING-DOCX-002.
+
+END OF NOTE — Synthetic only.

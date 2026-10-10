@@ -1,0 +1,13 @@
+filename,format,description,period,key_entities
+BI_Financials_2010_2026.xlsx,xlsx,"Yearly PnL, monthly, segment, region, KPI, anomalies",2010-2026,Aether Dynamics
+Yearly_PnL.csv,csv,Annual financial facts,2010-2026,"revenue, margin, units"
+Monthly_Revenue.csv,csv,204 monthly rows,2010-2026,period YYYY-MM
+Segment_Revenue.csv,csv,Segment allocations,2010-2026,4 segments
+Region_Revenue.csv,csv,Regional allocations,2010-2026,4 regions
+DATA_DICTIONARY.md,md,Column definitions and KPI formulas,—,—
+DATASET_REPORT.md,md,"Assumptions, anomalies, fact vs hypothesis",2010-2026,ANOM-BI-*
+DASHBOARD_SPEC.md,md,"KPI cards, charts, anomaly panels, filters",—,—
+ANALYTICS_TEST_QA.json,json,12 test questions with expected answers,—,BQ-01..12
+BI_Executive_Summary.pdf,pdf,Executive summary for ingestion/analytics,2010-2026,Aether Dynamics
+MANIFEST.csv,csv,This manifest,—,—
+README.md,md,Package guide,—,—

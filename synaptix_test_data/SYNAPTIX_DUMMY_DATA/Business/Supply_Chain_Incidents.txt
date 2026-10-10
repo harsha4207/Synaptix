@@ -1,0 +1,31 @@
+LUMENFORGE PRODUCTS — SUPPLY CHAIN INCIDENT LOG (SYNTHETIC)
+===========================================================
+Period: 2024-01 to 2025-08
+
+INC-SC-001 | 2024-03-12 | Partner channel | East region
+  Delay: 9 days | Cause: Carrier capacity shortfall
+  SKUs affected: PRD-LF-100, PRD-LF-200
+  Resolution: Alternate carrier engaged; closed 2024-03-22
+
+INC-SC-002 | 2024-07-08 | Distributor | Central
+  Delay: 6 days | Cause: Warehouse labor shortage
+  SKUs: PRD-LF-300
+  Resolution: Temporary overtime; closed 2024-07-15
+
+INC-SC-003 | 2025-01-19 | Direct | West
+  Delay: 12 days | Cause: Component shortage at contract manufacturer
+  SKUs: PRD-LF-500 (PulseMonitor)
+  Resolution: Partial shipment + backorder; closed 2025-02-04
+  NOTE: Contributed to customer dissatisfaction cluster for this SKU
+
+INC-SC-004 | 2025-04-02 | Online | North
+  Delay: 5 days | Cause: Peak-season sorting backlog
+  SKUs: multiple
+  Resolution: Automated sort upgrade; closed 2025-04-08
+
+INC-SC-005 | 2025-06-21 | Partner | South
+  Delay: 8 days | Cause: Customs documentation error (synthetic)
+  SKUs: PRD-LF-200, PRD-LF-400
+  Resolution: Documents corrected; closed 2025-06-30
+
+These incidents are fictional and planted for analytics / RAG testing of delivery-delay patterns.

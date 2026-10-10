@@ -9,6 +9,8 @@ export interface AuthPageProps {
   onAddToast?: (msg: string) => void;
   initialMode?: 'login' | 'signup';
   onBackToLanding?: () => void;
+  isGoogleLoading?: boolean;
+  errorMessage?: string | null;
 }
 
 export const AuthPage: React.FC<AuthPageProps> = ({
@@ -17,6 +19,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({
   onAddToast,
   initialMode = 'login',
   onBackToLanding,
+  isGoogleLoading = false,
+  errorMessage = null,
 }) => {
   const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
@@ -31,6 +35,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({
             onGoogleAuth={onGoogleAuth}
             defaultMode={initialMode}
             onBackToLanding={onBackToLanding}
+            isGoogleLoading={isGoogleLoading}
+            errorMessage={errorMessage}
           />
         </section>
 

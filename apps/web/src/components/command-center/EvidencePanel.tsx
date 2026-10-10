@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { CommandResultData } from './DynamicResultView';
 import { WorkspaceItem } from '../../types/workspace';
+import { RagAnswerPanel } from './RagAnswerPanel';
 
 interface EvidencePanelProps {
   workspace: WorkspaceItem;
@@ -50,6 +51,9 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
     `[SAML 2.0 Policy] --(governs)--> [Capital Requisition #8821]`,
   ];
 
+  // When a real RAG answer is attached, show the RAG panel prominently
+  const hasRagAnswer = !!activeResult.ragAnswer;
+
   return (
     <aside className="command-evidence-panel" aria-label="Evidence & Governance Context">
       {/* Panel Top Title */}
@@ -62,6 +66,15 @@ export const EvidencePanel: React.FC<EvidencePanelProps> = ({
       </div>
 
       <div className="panel-scroll-content">
+        {/* RAG ANSWER PANEL — shown when real documents are indexed */}
+        {hasRagAnswer && activeResult.ragAnswer && (
+          <div className="panel-card" style={{ padding: '0', overflow: 'hidden' }}>
+            <div style={{ padding: '12px' }}>
+              <RagAnswerPanel answer={activeResult.ragAnswer} onAddToast={onAddToast} />
+            </div>
+          </div>
+        )}
+
         {/* 1. CONFIDENCE & RISK METER */}
         <div className="panel-card confidence-risk-card">
           <div className="card-section-row">

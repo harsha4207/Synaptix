@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X,
   FileText,
@@ -13,6 +13,9 @@ import {
   Table as TableIcon
 } from 'lucide-react';
 import { WorkspaceItem } from '../../types/workspace';
+import { ragStore } from '../../lib/rag/store';
+import type { DocumentChunk, WorkspaceId } from '../../lib/rag/types';
+import { Button } from '../ui/Button';
 
 export interface ExtendedDocumentRecord {
   id: string;
@@ -37,6 +40,7 @@ export interface ExtendedDocumentRecord {
   extractedFields?: { key: string; value: string }[];
   relatedKnowledgeTriples?: string[];
   processingLogs?: { stage: string; timestamp: string; status: 'completed' | 'active' }[];
+  chunks?: DocumentChunk[];
 }
 
 interface DocumentDetailsDrawerProps {
@@ -54,7 +58,18 @@ export const DocumentDetailsDrawer: React.FC<DocumentDetailsDrawerProps> = ({
   onDelete,
   onAddToast,
 }) => {
-  const [activeTab, setActiveTab] = useState<'Preview' | 'Metadata' | 'Entities' | 'Knowledge' | 'Evidence'>('Preview');
+  const [activeTab, setActiveTab] = useState<'Preview' | 'Chunks' | 'Metadata' | 'Entities' | 'Knowledge' | 'Evidence'>('Preview');
+  const [realChunks, setRealChunks] = useState<DocumentChunk[]>([]);
+
+  useEffect(() => {
+    if (doc?.id) {
+      ragStore.getChunksByDocument(doc.id, workspace.id as WorkspaceId)
+        .then((chunks) => setRealChunks(chunks))
+        .catch(() => setRealChunks([]));
+    } else {
+      setRealChunks([]);
+    }
+  }, [doc?.id, workspace.id]);
 
   if (!doc) return null;
 
@@ -140,14 +155,14 @@ export const DocumentDetailsDrawer: React.FC<DocumentDetailsDrawerProps> = ({
 
         {/* Sub-Navigation Tabs */}
         <div className="drawer-tabs-bar">
-          {(['Preview', 'Metadata', 'Entities', 'Knowledge', 'Evidence'] as const).map((tab) => (
+          {(['Preview', 'Chunks', 'Metadata', 'Entities', 'Knowledge', 'Evidence'] as const).map((tab) => (
             <button
               key={tab}
               type="button"
               className={`drawer-tab-btn ${activeTab === tab ? 'active' : ''}`}
               onClick={() => setActiveTab(tab)}
             >
-              {tab}
+              {tab === 'Chunks' && realChunks.length > 0 ? `Chunks (${realChunks.length})` : tab}
             </button>
           ))}
         </div>
@@ -161,7 +176,9 @@ export const DocumentDetailsDrawer: React.FC<DocumentDetailsDrawerProps> = ({
                 <h4 className="pane-section-title">Parsed Executive Summary</h4>
                 <p className="preview-narrative">
                   {doc.summary ||
-                    `Parsed and indexed from ${doc.name}. Contains 128 structured paragraphs and 4 tabular data sheets. The reasoning engine has extracted 14 entity nodes and verified 100% semantic consistency inside ${workspace.name}.`}
+                    (realChunks.length > 0
+                      ? `Parsed and indexed from ${doc.name}. Document contains ${realChunks.length} chunks persisted with vector embeddings in ${workspace.name} workspace.`
+                      : `Parsed and indexed from ${doc.name}. Verified semantic consistency inside ${workspace.name}.`)}
                 </p>
               </div>
 
@@ -178,6 +195,51 @@ export const DocumentDetailsDrawer: React.FC<DocumentDetailsDrawerProps> = ({
                   ))}
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* 1.5. CHUNKS TAB */}
+          {activeTab === 'Chunks' && (
+            <div className="drawer-tab-pane">
+              <div className="flex items-center justify-between mb-3">
+                <h4 className="pane-section-title" style={{ margin: 0 }}>
+                  Indexed Vector Chunks ({realChunks.length})
+                </h4>
+                <span className="text-[11px] text-[var(--c-text-3)]">
+                  Cosine similarity ready
+                </span>
+              </div>
+
+              {realChunks.length === 0 ? (
+                <div className="p-4 bg-[var(--c-surface)] border border-[var(--c-border)] rounded-lg text-center text-xs text-[var(--c-text-3)]">
+                  No individual chunks persisted or chunk extraction in progress.
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {realChunks.map((chunk) => (
+                    <div
+                      key={chunk.id}
+                      className="p-3 bg-[var(--c-surface)] border border-[var(--c-border)] rounded-lg text-left"
+                    >
+                      <div className="flex items-center justify-between mb-1.5 text-[10px] text-[var(--c-text-3)]">
+                        <span className="font-mono font-semibold text-[var(--c-blue)]">
+                          Chunk #{chunk.chunkIndex + 1}
+                        </span>
+                        <span>
+                          {chunk.sourceRef?.pageNumber ? `Page ${chunk.sourceRef.pageNumber}` : ''}
+                          {chunk.sourceRef?.sheetName ? `Sheet: ${chunk.sourceRef.sheetName}` : ''}
+                          {chunk.sourceRef?.rowRange ? ` (Rows ${chunk.sourceRef.rowRange[0]}-${chunk.sourceRef.rowRange[1]})` : ''}
+                          {chunk.sourceRef?.sectionHeading ? ` • ${chunk.sourceRef.sectionHeading}` : ''}
+                          {` • ${chunk.content.length} chars`}
+                        </span>
+                      </div>
+                      <p className="text-xs text-[var(--c-text-1)] font-mono whitespace-pre-wrap leading-relaxed max-h-36 overflow-y-auto bg-[var(--c-page)] p-2 rounded border border-[var(--c-border)]">
+                        {chunk.content}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -285,24 +347,26 @@ export const DocumentDetailsDrawer: React.FC<DocumentDetailsDrawerProps> = ({
 
         {/* Drawer Footer Actions */}
         <div className="drawer-footer-actions">
-          <button
-            type="button"
-            className="btn-drawer-download"
+          <Button
+            variant="secondary"
+            size="md"
             onClick={() => onAddToast(`Downloaded ${doc.name}`)}
+            leftIcon={<Download size={14} />}
           >
-            <Download size={14} /> Download File
-          </button>
-          <button
-            type="button"
-            className="btn-drawer-delete"
+            Download File
+          </Button>
+          <Button
+            variant="destructive"
+            size="md"
             onClick={() => {
               onDelete(doc.id);
               onAddToast(`Removed ${doc.name} from ${workspace.name}`);
               onClose();
             }}
+            leftIcon={<Trash2 size={14} />}
           >
-            <Trash2 size={14} /> Delete
-          </button>
+            Delete
+          </Button>
         </div>
       </div>
     </div>

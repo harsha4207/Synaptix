@@ -120,18 +120,19 @@ export const DashboardCanvas: React.FC<DashboardCanvasProps> = ({
               {/* Header bar */}
               <div
                 style={{
-                  padding: 'var(--sp-2) var(--sp-4)',
+                  padding: '10px 16px',
                   backgroundColor: 'var(--c-page)',
                   borderBottom: '1px solid var(--c-border)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
+                  gap: '8px',
                   fontSize: 'var(--text-xs)',
                   color: 'var(--c-text-2)',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--sp-2)', minWidth: 0 }}>
-                  <span style={{ cursor: 'grab', color: 'var(--c-text-3)', display: 'inline-flex' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, flex: 1 }}>
+                  <span style={{ cursor: 'grab', color: 'var(--c-text-3)', display: 'inline-flex', flexShrink: 0 }}>
                     <GripVertical size={15} />
                   </span>
                   <span
@@ -142,13 +143,14 @@ export const DashboardCanvas: React.FC<DashboardCanvasProps> = ({
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       whiteSpace: 'nowrap',
-                      maxWidth: 220,
+                      maxWidth: '170px',
                     }}
+                    title={widget.title}
                   >
                     {widget.title}
                   </span>
                   {widget.evidenceGrade && (
-                    <Badge variant="success" size="sm">
+                    <Badge variant="success" size="sm" className="whitespace-nowrap flex-shrink-0">
                       <ShieldCheck size={12} style={{ marginRight: 3 }} />
                       {widget.evidenceGrade}
                     </Badge>
@@ -156,8 +158,9 @@ export const DashboardCanvas: React.FC<DashboardCanvasProps> = ({
                 </div>
 
                 {/* Widget Controls */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 3, flexShrink: 0 }}>
                   <button
+                    type="button"
                     onClick={() => onMoveWidget(widget.id, 'up')}
                     disabled={index === 0}
                     style={{
@@ -165,15 +168,19 @@ export const DashboardCanvas: React.FC<DashboardCanvasProps> = ({
                       border: 'none',
                       cursor: index === 0 ? 'not-allowed' : 'pointer',
                       opacity: index === 0 ? 0.3 : 1,
-                      padding: 4,
+                      padding: 5,
                       borderRadius: 'var(--radius-sm)',
                       color: 'var(--c-text-2)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                     title="Move Up"
                   >
-                    <ArrowUp size={14} />
+                    <ArrowUp size={13} />
                   </button>
                   <button
+                    type="button"
                     onClick={() => onMoveWidget(widget.id, 'down')}
                     disabled={index === widgets.length - 1}
                     style={{
@@ -181,106 +188,125 @@ export const DashboardCanvas: React.FC<DashboardCanvasProps> = ({
                       border: 'none',
                       cursor: index === widgets.length - 1 ? 'not-allowed' : 'pointer',
                       opacity: index === widgets.length - 1 ? 0.3 : 1,
-                      padding: 4,
+                      padding: 5,
                       borderRadius: 'var(--radius-sm)',
                       color: 'var(--c-text-2)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                     title="Move Down"
                   >
-                    <ArrowDown size={14} />
+                    <ArrowDown size={13} />
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => onToggleWidth(widget.id)}
                     style={{
                       background: 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      padding: 4,
+                      padding: 5,
                       borderRadius: 'var(--radius-sm)',
                       color: 'var(--c-text-2)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                     title={`Width: ${widget.width}. Click to toggle width.`}
                   >
-                    {widget.width === 'full' ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
+                    {widget.width === 'full' ? <Minimize2 size={13} /> : <Maximize2 size={13} />}
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => onSelectWidget(widget)}
                     style={{
                       background: 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      padding: 4,
+                      padding: 5,
                       borderRadius: 'var(--radius-sm)',
                       color: 'var(--c-blue)',
-                      fontWeight: 700,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                     title="Edit Widget"
                   >
-                    <Edit2 size={14} />
+                    <Edit2 size={13} />
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => onDuplicateWidget(widget)}
                     style={{
                       background: 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      padding: 4,
+                      padding: 5,
                       borderRadius: 'var(--radius-sm)',
                       color: 'var(--c-text-2)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                     title="Duplicate Widget"
                   >
-                    <Copy size={14} />
+                    <Copy size={13} />
                   </button>
 
                   <button
+                    type="button"
                     onClick={() => onRemoveWidget(widget.id)}
                     style={{
                       background: 'transparent',
                       border: 'none',
                       cursor: 'pointer',
-                      padding: 4,
+                      padding: 5,
                       borderRadius: 'var(--radius-sm)',
                       color: 'var(--c-danger)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
                     }}
                     title="Remove Widget"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={13} />
                   </button>
                 </div>
               </div>
 
               {/* Widget Body Content */}
-              <div style={{ padding: 'var(--sp-4)', flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '20px 22px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 {widget.type === 'kpi' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--sp-2)' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <span
                       style={{
                         fontSize: '11px',
-                        fontWeight: 600,
+                        fontWeight: 700,
                         color: 'var(--c-text-3)',
                         textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
+                        letterSpacing: '0.06em',
                       }}
                     >
                       {widget.metric}
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '8px', flexWrap: 'wrap' }}>
                       <span
                         style={{
                           fontSize: 'var(--text-3xl)',
                           fontWeight: 800,
                           color: 'var(--c-text-1)',
                           fontFamily: 'var(--font-mono)',
+                          letterSpacing: '-0.02em',
                         }}
                       >
                         {widget.kpiValue || '41.2%'}
                       </span>
                       {widget.kpiChange && (
-                        <Badge variant={widget.isPositiveChange ? 'success' : 'destructive'}>
+                        <Badge variant={widget.isPositiveChange ? 'success' : 'destructive'} className="whitespace-nowrap">
                           {widget.isPositiveChange ? (
                             <TrendingUp size={13} style={{ marginRight: 3 }} />
                           ) : (
@@ -290,7 +316,7 @@ export const DashboardCanvas: React.FC<DashboardCanvasProps> = ({
                         </Badge>
                       )}
                     </div>
-                    <p style={{ fontSize: 'var(--text-xs)', color: 'var(--c-text-3)', margin: 0 }}>
+                    <p style={{ fontSize: 'var(--text-xs)', color: 'var(--c-text-2)', margin: 0, lineHeight: 1.4 }}>
                       {widget.kpiSubtext || widget.description}
                     </p>
                   </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AlertTriangle,
   Search,
@@ -21,6 +21,8 @@ interface ProblemsModuleProps {
   workspace: WorkspaceItem;
   onAddToast: (msg: string) => void;
   onSelectModule?: (moduleId: any) => void;
+  activeSubTab?: ProblemCategoryTab;
+  onSubTabChange?: (tab: ProblemCategoryTab) => void;
 }
 
 export type ProblemCategoryTab = 'Critical' | 'Attention' | 'Investigation' | 'Resolved';
@@ -29,10 +31,18 @@ export const ProblemsModule: React.FC<ProblemsModuleProps> = ({
   workspace,
   onAddToast,
   onSelectModule,
+  activeSubTab,
+  onSubTabChange,
 }) => {
   // Search & Filter States
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [activeTab, setActiveTab] = useState<ProblemCategoryTab>('Critical');
+  const [activeTab, setActiveTab] = useState<ProblemCategoryTab>(activeSubTab || 'Critical');
+
+  useEffect(() => {
+    if (activeSubTab) {
+      setActiveTab(activeSubTab);
+    }
+  }, [activeSubTab]);
   const [severityFilter, setSeverityFilter] = useState<string>('All');
   const [evidenceFilter, setEvidenceFilter] = useState<string>('All');
   const [statusFilter, setStatusFilter] = useState<string>('All');
@@ -269,7 +279,7 @@ export const ProblemsModule: React.FC<ProblemsModuleProps> = ({
         description="Autonomous pattern detection identifies anomalies, margin drift, and operational bottlenecks from workspace datasets & evidence."
         badge={
           <Badge variant="blue">
-            <ShieldCheck size={13} style={{ marginRight: '4px' }} />
+            <ShieldCheck size={13} />
             {workspace.name} Boundary
           </Badge>
         }
@@ -411,7 +421,10 @@ export const ProblemsModule: React.FC<ProblemsModuleProps> = ({
                 <button
                   key={tab}
                   type="button"
-                  onClick={() => setActiveTab(tab)}
+                  onClick={() => {
+                    setActiveTab(tab);
+                    onSubTabChange?.(tab);
+                  }}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',

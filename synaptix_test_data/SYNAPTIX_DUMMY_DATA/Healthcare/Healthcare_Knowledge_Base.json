@@ -1,0 +1,43 @@
+{
+  "workspace": "Healthcare",
+  "facility": "Meridian Synthetic Medical Center",
+  "period": "2024-2025",
+  "key_entities": {
+    "patient_id_pattern": "PAT-SYN-####",
+    "appointment_id_pattern": "APT-SYN-#####",
+    "equipment_id_pattern": "EQ-SYN-*",
+    "departments": [
+      "Emergency",
+      "Cardiology",
+      "Orthopedics",
+      "Radiology",
+      "General Medicine",
+      "Surgery"
+    ]
+  },
+  "planted_anomalies": [
+    {
+      "id": "ANOM-HC-001",
+      "type": "overdue_maintenance",
+      "equipment": "EQ-SYN-CT-02",
+      "description": "CT Scanner B past due date"
+    },
+    {
+      "id": "ANOM-HC-002",
+      "type": "overdue_maintenance",
+      "equipment": "EQ-SYN-VENT-05",
+      "description": "Ventilator Bank 5 past due date"
+    }
+  ],
+  "related_documents": [
+    "Hospital_Operations_Report.pdf",
+    "Synthetic_Appointment_Data.xlsx",
+    "Department_Utilization.csv",
+    "Patient_Flow_Analysis.md",
+    "Healthcare_Operations_Policy.docx",
+    "Equipment_Maintenance_Log.xlsx",
+    "Hospital_Operations_Notes.txt",
+    "Scanned_Referral_Form_Synthetic.png"
+  ],
+  "disclaimer": "All data synthetic. No real PHI. Not for clinical use."
+}

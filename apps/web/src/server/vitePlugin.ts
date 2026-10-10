@@ -17,12 +17,24 @@ import { geminiService } from '../lib/gemini/geminiService';
 import * as http from 'http';
 
 function parseJsonBody(req: http.IncomingMessage): Promise<any> {
+  if ((req as any).body) {
+    if (typeof (req as any).body === 'object') {
+      return Promise.resolve((req as any).body);
+    }
+    if (typeof (req as any).body === 'string') {
+      try {
+        return Promise.resolve(JSON.parse((req as any).body));
+      } catch {
+        return Promise.resolve({});
+      }
+    }
+  }
   return new Promise((resolve, reject) => {
     let body = '';
     req.on('data', (chunk) => {
       body += chunk;
-      if (body.length > 5 * 1024 * 1024) {
-        // 5MB limit
+      if (body.length > 10 * 1024 * 1024) {
+        // 10MB limit
         reject(new Error('Payload Too Large'));
       }
     });

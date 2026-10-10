@@ -6,12 +6,56 @@
  */
 
 import * as http from 'http';
+import * as fs from 'fs';
+import * as path from 'path';
 import { geminiService } from '../lib/gemini/geminiService.js';
+
+// Auto-populate process.env from local .env files if present
+function loadLocalEnv(): void {
+  const candidatePaths = [
+    path.resolve(process.cwd(), '.env.local'),
+    path.resolve(process.cwd(), '.env'),
+    path.resolve(process.cwd(), 'apps/web/.env.local'),
+    path.resolve(process.cwd(), 'apps/web/.env'),
+  ];
+  for (const p of candidatePaths) {
+    if (fs.existsSync(p)) {
+      try {
+        const content = fs.readFileSync(p, 'utf8');
+        for (const line of content.split('\n')) {
+          const trimmed = line.trim();
+          if (trimmed && !trimmed.startsWith('#') && trimmed.includes('=')) {
+            const idx = trimmed.indexOf('=');
+            const key = trimmed.slice(0, idx).trim();
+            const val = trimmed.slice(idx + 1).trim().replace(/^["']|["']$/g, '');
+            if (process.env[key] === undefined || process.env[key] === '') {
+              process.env[key] = val;
+            }
+          }
+        }
+      } catch {}
+    }
+  }
+}
+
+loadLocalEnv();
 
 const PORT = parseInt(process.env.PORT || '10000', 10);
 const HOST = '0.0.0.0';
 
 function parseJsonBody(req: http.IncomingMessage): Promise<any> {
+  if ((req as any).body) {
+    if (typeof (req as any).body === 'object') {
+      return Promise.resolve((req as any).body);
+    }
+    if (typeof (req as any).body === 'string') {
+      try {
+        return Promise.resolve(JSON.parse((req as any).body));
+      } catch {
+        return Promise.resolve({});
+      }
+    }
+  }
   return new Promise((resolve, reject) => {
     let body = '';
     req.on('data', (chunk) => {

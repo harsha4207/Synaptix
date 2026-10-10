@@ -53,7 +53,7 @@ export interface RagEvidenceContext {
 class GeminiService {
   private client: GoogleGenAI | null = null;
   private apiKey: string = '';
-  private defaultModel: string = 'gemini-2.5-flash';
+  private defaultModel: string = 'gemini-flash-latest';
   private lastHealthCheck: GeminiHealthStatus | null = null;
 
   constructor() {
@@ -74,7 +74,7 @@ class GeminiService {
     const model =
       env.GEMINI_MODEL ||
       env.GOOGLE_MODEL ||
-      'gemini-2.5-flash';
+      'gemini-flash-latest';
 
     this.apiKey = key.trim();
     this.defaultModel = model.trim();
@@ -99,6 +99,19 @@ class GeminiService {
     return this.defaultModel;
   }
 
+  private getCandidateModels(): string[] {
+    const list = [
+      this.defaultModel,
+      'gemini-flash-latest',
+      'gemini-3.5-flash',
+      'gemini-3.7-flash',
+      'gemini-flash-lite-latest',
+      'gemini-3-flash-preview',
+      'gemini-2.5-flash'
+    ];
+    return Array.from(new Set(list.filter(Boolean)));
+  }
+
   /**
    * Performs an active health check against the configured Gemini API.
    * Safe to call without exposing secret keys.
@@ -121,46 +134,71 @@ class GeminiService {
     }
 
     const t0 = Date.now();
-    try {
-      const response = await this.client!.models.generateContent({
-        model: this.defaultModel,
-        contents: 'Respond with the single word "OK"',
-        config: {
-          temperature: 0.1,
-          maxOutputTokens: 10,
-        },
-      });
+    let lastError: any = null;
 
-      const latencyMs = Date.now() - t0;
-      const text = response.text?.trim() || '';
+    for (const model of this.getCandidateModels()) {
+      try {
+        const response = await this.client!.models.generateContent({
+          model,
+          contents: 'Respond with the single word "OK"',
+          config: {
+            temperature: 0.1,
+            maxOutputTokens: 10,
+          },
+        });
 
-      const status: GeminiHealthStatus = {
-        isConfigured: true,
-        model: this.defaultModel,
-        status: text ? 'healthy' : 'error',
-        latencyMs,
-        lastChecked: now,
-      };
+        const latencyMs = Date.now() - t0;
+        const text = response.text?.trim() || '';
 
-      this.lastHealthCheck = status;
-      return status;
-    } catch (err: any) {
-      const safeErrorMsg = err.message || 'Unknown provider error';
-      const status: GeminiHealthStatus = {
-        isConfigured: true,
-        model: this.defaultModel,
-        status: 'error',
-        latencyMs: Date.now() - t0,
-        error: safeErrorMsg.replace(this.apiKey, '[REDACTED]'),
-        lastChecked: now,
-      };
-      this.lastHealthCheck = status;
-      return status;
+        if (text) {
+          this.defaultModel = model;
+          const status: GeminiHealthStatus = {
+            isConfigured: true,
+            model: this.defaultModel,
+            status: 'healthy',
+            latencyMs,
+            lastChecked: now,
+          };
+          this.lastHealthCheck = status;
+          return status;
+        }
+      } catch (err: any) {
+        lastError = err;
+        const msg = (err.message || '').toLowerCase();
+        const isQuotaOrMissing =
+          err.status === 429 ||
+          err.status === 404 ||
+          err.status === 400 ||
+          msg.includes('429') ||
+          msg.includes('quota') ||
+          msg.includes('resource_exhausted') ||
+          msg.includes('404') ||
+          msg.includes('not found') ||
+          msg.includes('not supported') ||
+          msg.includes('invalid model');
+
+        if (isQuotaOrMissing) {
+          continue;
+        }
+        break;
+      }
     }
+
+    const safeErrorMsg = lastError?.message || 'Health check failed across candidate models';
+    const status: GeminiHealthStatus = {
+      isConfigured: true,
+      model: this.defaultModel,
+      status: 'error',
+      latencyMs: Date.now() - t0,
+      error: safeErrorMsg.replace(this.apiKey, '[REDACTED]'),
+      lastChecked: now,
+    };
+    this.lastHealthCheck = status;
+    return status;
   }
 
   /**
-   * Executes a standard text generation request with retry backoff.
+   * Executes a standard text generation request with retry and model fallback.
    */
   public async generateText(prompt: string, options: GenerateTextOptions = {}): Promise<string> {
     if (!this.isConfigured()) {
@@ -169,52 +207,71 @@ class GeminiService {
       );
     }
 
-    const maxRetries = 3;
+    const candidateModels = this.getCandidateModels();
     let lastError: Error | null = null;
 
-    for (let attempt = 0; attempt < maxRetries; attempt++) {
-      try {
-        const response = await this.client!.models.generateContent({
-          model: this.defaultModel,
-          contents: prompt,
-          config: {
-            systemInstruction: options.systemInstruction,
-            temperature: options.temperature ?? 0.2,
-            maxOutputTokens: options.maxOutputTokens ?? 2048,
-          },
-        });
+    for (const model of candidateModels) {
+      const maxRetries = 2;
+      for (let attempt = 0; attempt < maxRetries; attempt++) {
+        try {
+          const response = await this.client!.models.generateContent({
+            model,
+            contents: prompt,
+            config: {
+              systemInstruction: options.systemInstruction,
+              temperature: options.temperature ?? 0.2,
+              maxOutputTokens: options.maxOutputTokens ?? 2048,
+            },
+          });
 
-        const text = response.text || '';
-        if (!text) {
-          throw new Error('Empty response returned from Gemini API');
+          const text = response.text || '';
+          if (!text) {
+            throw new Error('Empty response returned from Gemini API');
+          }
+
+          this.defaultModel = model;
+          return text;
+        } catch (err: any) {
+          lastError = err;
+          const msg = (err.message || '').toLowerCase();
+          const isQuotaOrMissing =
+            err.status === 429 ||
+            err.status === 404 ||
+            err.status === 400 ||
+            msg.includes('429') ||
+            msg.includes('quota') ||
+            msg.includes('resource_exhausted') ||
+            msg.includes('404') ||
+            msg.includes('not found') ||
+            msg.includes('not supported') ||
+            msg.includes('invalid model');
+
+          if (isQuotaOrMissing) {
+            // Immediately try next model in candidate list
+            break;
+          }
+
+          const isRetryable =
+            msg.includes('rate limit') ||
+            msg.includes('timeout') ||
+            msg.includes('econnreset');
+
+          if (isRetryable && attempt < maxRetries - 1) {
+            const delay = Math.pow(2, attempt) * 1000 + Math.random() * 500;
+            await new Promise((r) => setTimeout(r, delay));
+            continue;
+          }
+
+          break;
         }
-
-        return text;
-      } catch (err: any) {
-        lastError = err;
-        const msg = (err.message || '').toLowerCase();
-        const isRetryable =
-          msg.includes('429') ||
-          msg.includes('quota') ||
-          msg.includes('rate limit') ||
-          msg.includes('timeout') ||
-          msg.includes('econnreset');
-
-        if (isRetryable && attempt < maxRetries - 1) {
-          const delay = Math.pow(2, attempt) * 1000 + Math.random() * 500;
-          await new Promise((r) => setTimeout(r, delay));
-          continue;
-        }
-
-        throw new Error(`Gemini generation failed: ${err.message?.replace(this.apiKey, '[REDACTED]')}`);
       }
     }
 
-    throw lastError || new Error('Gemini generation failed after retries');
+    throw new Error(`Gemini generation failed: ${lastError?.message?.replace(this.apiKey, '[REDACTED]') || 'Unknown error'}`);
   }
 
   /**
-   * Executes a structured JSON output request with schema adherence.
+   * Executes a structured JSON output request with schema adherence and fallback.
    */
   public async generateStructured<T>(
     prompt: string,
@@ -224,31 +281,56 @@ class GeminiService {
       throw new Error('Gemini API key is not configured.');
     }
 
-    const response = await this.client!.models.generateContent({
-      model: this.defaultModel,
-      contents: prompt,
-      config: {
-        systemInstruction: options.systemInstruction,
-        temperature: options.temperature ?? 0.1,
-        responseMimeType: 'application/json',
-        responseSchema: options.responseSchema,
-      },
-    });
+    const candidateModels = this.getCandidateModels();
+    let lastError: Error | null = null;
 
-    const text = response.text || '';
-    if (!text) {
-      throw new Error('Empty JSON response returned from Gemini');
-    }
+    for (const model of candidateModels) {
+      try {
+        const response = await this.client!.models.generateContent({
+          model,
+          contents: prompt,
+          config: {
+            systemInstruction: options.systemInstruction,
+            temperature: options.temperature ?? 0.1,
+            responseMimeType: 'application/json',
+            responseSchema: options.responseSchema,
+          },
+        });
 
-    try {
-      const parsed = JSON.parse(text) as T;
-      if (options.validator && !options.validator(parsed)) {
-        throw new Error('Response JSON failed schema validation');
+        const text = response.text || '';
+        if (!text) {
+          throw new Error('Empty JSON response returned from Gemini');
+        }
+
+        const parsed = JSON.parse(text) as T;
+        if (options.validator && !options.validator(parsed)) {
+          throw new Error('Response JSON failed schema validation');
+        }
+        this.defaultModel = model;
+        return parsed;
+      } catch (err: any) {
+        lastError = err;
+        const msg = (err.message || '').toLowerCase();
+        const isQuotaOrMissing =
+          err.status === 429 ||
+          err.status === 404 ||
+          err.status === 400 ||
+          msg.includes('429') ||
+          msg.includes('quota') ||
+          msg.includes('resource_exhausted') ||
+          msg.includes('404') ||
+          msg.includes('not found') ||
+          msg.includes('not supported') ||
+          msg.includes('invalid model');
+
+        if (isQuotaOrMissing) {
+          continue;
+        }
+        throw new Error(`Failed to parse structured Gemini output: ${err.message?.replace(this.apiKey, '[REDACTED]')}`);
       }
-      return parsed;
-    } catch (parseErr: any) {
-      throw new Error(`Failed to parse structured Gemini output: ${parseErr.message}`);
     }
+
+    throw new Error(`Gemini structured generation failed: ${lastError?.message?.replace(this.apiKey, '[REDACTED]') || 'Unknown error'}`);
   }
 
   /**

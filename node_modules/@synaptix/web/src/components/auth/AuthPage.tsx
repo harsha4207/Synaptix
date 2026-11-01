@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrandPanel } from './BrandPanel';
 import { AuthCard } from './AuthCard';
-import { ForgotPasswordModal } from '../ForgotPasswordModal';
+import { ForgotPasswordModal } from './ForgotPasswordModal';
 
 export interface AuthPageProps {
   onSuccessAuth: (email: string, mode: 'login' | 'signup') => void;

@@ -9,6 +9,8 @@
  */
 
 import type { RoutingDecision } from './types';
+import { workspaceRagConfigService } from '../rag/workspaceRagConfig';
+import { domainRegistry } from '../rag/domainRegistry';
 
 export class AdaptiveAiRouter {
   private defaultModel: string = 'gemini-2.5-flash';
@@ -19,13 +21,16 @@ export class AdaptiveAiRouter {
 
   /**
    * Evaluates query complexity and assigns the optimal processing tier and resource strategy.
+   * Leverages workspace-specific domain context to calibrate routing decisions.
    */
   public evaluateQuery(
     query: string,
-    _workspaceId: string = 'finance',
+    workspaceId: string = 'finance',
     hasAuthorizedEvidence: boolean = true
   ): RoutingDecision {
     const q = query.trim().toLowerCase();
+    const config = workspaceRagConfigService.getConfig(workspaceId);
+    const domain = config ? domainRegistry.getDomain(config.domain_id) : domainRegistry.getDomain(workspaceId);
 
     // ── TIER 4: Consequential Operations (Mutating, approvals, high risk) ────
     const consequentialPatterns = [

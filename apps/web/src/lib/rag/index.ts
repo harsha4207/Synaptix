@@ -34,6 +34,26 @@ export {
 // Retrieval
 export { ragQuery, searchWorkspace } from './retrieval';
 
+// Multi-Domain & Workspace Isolation Architecture
+export { domainRegistry, BUILT_IN_DOMAINS } from './domainRegistry';
+export type { WorkspaceDomain } from './domainRegistry';
+
+export { workspaceRagConfigService } from './workspaceRagConfig';
+export type {
+  WorkspaceRagConfig,
+  RerankingConfig,
+  ChunkingStrategy,
+  RetrievalStrategy,
+  IndexingStatus,
+  WorkspaceKnowledgeBaseStatus,
+} from './workspaceRagConfig';
+
+export { multiDomainRetrieval, MultiDomainRetrievalEngine } from './multiDomainRetrieval';
+export type { MultiDomainQueryParams, RetrievalDiagnosticInfo } from './multiDomainRetrieval';
+
+export { ingestionPipeline, IngestionPipelineService } from './ingestionPipeline';
+export type { IngestionJob, IngestionJobStatus, IngestionStage, IngestOptions } from './ingestionPipeline';
+
 // React context
 export { RagProvider, useRag } from './RagContext';
 export type { RagDocumentWithProgress, RagProviderProps } from './RagContext';

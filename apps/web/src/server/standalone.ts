@@ -9,6 +9,7 @@ import * as http from 'http';
 import * as fs from 'fs';
 import * as path from 'path';
 import { geminiService } from '../lib/gemini/geminiService.js';
+import { handleRagApiRoute } from './ragApiRouter.js';
 
 // Auto-populate process.env from local .env files if present
 function loadLocalEnv(): void {
@@ -113,6 +114,18 @@ const server = http.createServer(async (req, res) => {
       timestamp: new Date().toISOString(),
     });
     return;
+  }
+
+  // 2b. Dispatch Multi-Domain Workspace RAG API Endpoints
+  if (url.startsWith('/api/workspaces/') || url.startsWith('/api/domains')) {
+    try {
+      const parsedBody = (req.method === 'POST' || req.method === 'PUT') ? await parseJsonBody(req) : {};
+      const handled = await handleRagApiRoute(req, res, parsedBody);
+      if (handled) return;
+    } catch (err: any) {
+      sendJson(res, 500, { error: err.message || 'Internal RAG API Error' });
+      return;
+    }
   }
 
   // 3. GET /api/health/gemini

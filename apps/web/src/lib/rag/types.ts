@@ -58,6 +58,14 @@ export interface RagDocument {
   uploadedAt: string;
   /** Last updated timestamp */
   updatedAt: string;
+  /** Domain identifier (e.g. domain-healthcare, domain-finance) */
+  domainId?: string;
+  /** Domain display name */
+  domainName?: string;
+  /** Knowledge base version snapshot */
+  knowledgeVersion?: number;
+  /** Document version number */
+  versionNumber?: number;
   /** Domain-specific metadata */
   metadata: DocumentMetadata;
 }
@@ -101,6 +109,16 @@ export interface DocumentChunk {
   sourceRef: ChunkSourceRef;
   /** SHA-256 hash of chunk content */
   contentHash: string;
+  /** Domain identifier (e.g. domain-healthcare, domain-finance) */
+  domainId?: string;
+  /** Embedding model name */
+  embeddingModel?: string;
+  /** Knowledge version snapshot */
+  knowledgeVersion?: number;
+  /** Evidence verification grade (G0, G1, G2) */
+  evidenceGrade?: 'G0' | 'G1' | 'G2';
+  /** Additional domain/source metadata */
+  sourceMetadata?: Record<string, unknown>;
   /** Created timestamp */
   createdAt: string;
 }

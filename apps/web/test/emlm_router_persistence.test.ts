@@ -8,7 +8,13 @@
  * 4. Workspace Isolation & Tenant Boundary Enforcement
  */
 
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
+
+// Mock Supabase client to avoid remote network timeout in isolated unit test runner
+vi.mock('../src/lib/supabase/client', () => ({
+  supabase: null,
+}));
+
 import { aiRouter } from '../src/lib/ai/aiRouter';
 import { emlmOrchestrator, EMLM_STAGES } from '../src/lib/ai/emlmOrchestrator';
 import { conversationPersistence } from '../src/lib/ai/conversationPersistence';

@@ -13,6 +13,7 @@ import {
   Bell,
   Archive,
   Lock,
+  History,
   Save,
   RotateCcw,
   Plus,
@@ -32,10 +33,12 @@ import {
 } from 'lucide-react';
 import { WorkspaceItem } from '../types/workspace';
 import { PageContainer, PageContent } from '../components/layout';
+import { AuditModule } from './AuditModule';
 
 interface SettingsModuleProps {
   workspace: WorkspaceItem;
   onAddToast: (msg: string) => void;
+  initialSection?: SettingsSection;
 }
 
 type SettingsSection =
@@ -49,7 +52,8 @@ type SettingsSection =
   | 'integrations'
   | 'notifications'
   | 'retention'
-  | 'security';
+  | 'security'
+  | 'audit';
 
 interface NavItem {
   id: SettingsSection;
@@ -69,6 +73,7 @@ const NAV_ITEMS: NavItem[] = [
   { id: 'notifications', label: 'Notifications',        icon: <Bell size={15} /> },
   { id: 'retention',     label: 'Retention',            icon: <Archive size={15} /> },
   { id: 'security',      label: 'Security',             icon: <Lock size={15} /> },
+  { id: 'audit',         label: 'Audit Trail',          icon: <History size={15} /> },
 ];
 
 // ── Shared UI primitives ────────────────────────────────────────────────────
@@ -123,8 +128,14 @@ const SettingsBadge: React.FC<{ label: string; variant?: 'success' | 'warn' | 'd
 // MAIN COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export const SettingsModule: React.FC<SettingsModuleProps> = ({ workspace, onAddToast }) => {
-  const [activeSection, setActiveSection] = useState<SettingsSection>('general');
+export const SettingsModule: React.FC<SettingsModuleProps> = ({ workspace, onAddToast, initialSection }) => {
+  const [activeSection, setActiveSection] = useState<SettingsSection>(initialSection || 'general');
+
+  useEffect(() => {
+    if (initialSection) {
+      setActiveSection(initialSection);
+    }
+  }, [initialSection]);
 
   const handleSave = (section: string) => {
     onAddToast(`${section} settings saved`);
@@ -142,9 +153,9 @@ export const SettingsModule: React.FC<SettingsModuleProps> = ({ workspace, onAdd
               <ChevronRight size={13} />
               <span className="bc-active">Settings</span>
             </div>
-            <h1 className="settings-main-title">Domain Settings</h1>
+            <h1 className="settings-main-title">Domain Settings & Governance</h1>
             <p className="settings-main-subtitle">
-              Configure access, data, AI behaviour and governance for the {workspace.name} workspace.
+              Configure access, data, AI behavior, compliance policies, and immutable audit logs for the {workspace.name} workspace.
             </p>
           </div>
         </header>
@@ -180,6 +191,7 @@ export const SettingsModule: React.FC<SettingsModuleProps> = ({ workspace, onAdd
             {activeSection === 'notifications' && <NotificationsSection workspace={workspace} onSave={handleSave} />}
             {activeSection === 'retention'     && <RetentionSection    workspace={workspace} onSave={handleSave} />}
             {activeSection === 'security'      && <SecuritySection     workspace={workspace} onSave={handleSave} />}
+            {activeSection === 'audit'         && <AuditModule         workspace={workspace} onAddToast={onAddToast} />}
           </main>
         </div>
       </div>

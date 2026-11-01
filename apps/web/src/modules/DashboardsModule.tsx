@@ -14,9 +14,9 @@ import {
   DashboardWidget,
   WidgetWidth,
   WidgetType
-} from '../components/dashboards/DashboardCanvas';
-import { WidgetConfigPanel } from '../components/dashboards/WidgetConfigPanel';
-import { AiAssistToolbar } from '../components/dashboards/AiAssistToolbar';
+} from '../components/dashboard/canvas/DashboardCanvas';
+import { WidgetConfigPanel } from '../components/dashboard/canvas/WidgetConfigPanel';
+import { AiAssistToolbar } from '../components/dashboard/canvas/AiAssistToolbar';
 import { TimeSeriesPoint, CategoryComparisonItem } from '../components/analytics/AnalyticsCharts';
 import { PageContainer, PageContent, PageHeader } from '../components/layout';
 import { Badge } from '../components/ui/Badge';

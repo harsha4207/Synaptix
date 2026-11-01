@@ -438,7 +438,8 @@ export const NAVIGATION_REGISTRY: NavigationTarget[] = [
     description: 'Open the Command Center for the current workspace',
     aliases: [
       'command center', 'command', 'ai command', 'open command center',
-      'go to command', 'command center ai', 'chat', 'ask a question',
+      'go to command', 'command center ai', 'chat', 'open chat', 'go to chat',
+      'synaptix chat', 'ask a question',
     ],
   },
   {
@@ -449,7 +450,8 @@ export const NAVIGATION_REGISTRY: NavigationTarget[] = [
     description: 'Open Documents & Data for the current workspace',
     aliases: [
       'documents', 'documents and data', 'my documents', 'show documents',
-      'upload documents', 'files', 'data files',
+      'upload documents', 'files', 'data files', 'data', 'uploads',
+      'uploads and data', 'uploads & data', 'open data', 'go to data',
     ],
   },
   {
@@ -470,7 +472,8 @@ export const NAVIGATION_REGISTRY: NavigationTarget[] = [
     requiresWorkspace: true,
     description: 'Open Dashboards for the current workspace',
     aliases: [
-      'dashboards', 'dashboard', 'dashboard builder', 'dashboard generator',
+      'dashboards', 'dashboard', 'unified dashboard', 'open dashboard',
+      'monitoring', 'metrics', 'dashboard builder', 'dashboard generator',
       'create dashboard', 'open dashboards', 'charts',
     ],
   },
@@ -503,8 +506,8 @@ export const NAVIGATION_REGISTRY: NavigationTarget[] = [
     requiresWorkspace: true,
     description: 'Open Workflows & Automation for the current workspace',
     aliases: [
-      'workflows', 'workflow automation', 'automation', 'open workflows',
-      'go to workflows',
+      'workflows', 'agent workflows', 'workflow automation', 'automation',
+      'open workflows', 'go to workflows', 'my workflows',
     ],
   },
   {

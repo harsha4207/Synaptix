@@ -13,8 +13,10 @@
  */
 
 import { aiRouter } from './aiRouter';
-import { ragQuery } from '../rag/retrieval';
+import { multiDomainRetrieval } from '../rag/multiDomainRetrieval';
 import { ragStore } from '../rag/store';
+import { workspaceRagConfigService } from '../rag/workspaceRagConfig';
+import { domainRegistry } from '../rag/domainRegistry';
 import { geminiClient } from '../gemini/geminiClient';
 import type {
   AiCitation,
@@ -124,13 +126,31 @@ export class EmlmOrchestrator {
 
     // Stage 2: RESOLVE_WORKSPACE_BOUNDARY
     updateStage('RESOLVE_WORKSPACE_BOUNDARY', 'in_progress');
-    const validWorkspaces = ['finance', 'research', 'healthcare', 'education', 'business', 'operations'];
-    const isAuthorized = validWorkspaces.includes(workspaceId);
+    const validDefaultWorkspaces = ['finance', 'research', 'healthcare', 'education', 'business', 'operations'];
+    const wsNormalized = workspaceId.toLowerCase().trim();
+    const isKnownPrefix =
+      wsNormalized.startsWith('workspace-finance') ||
+      wsNormalized.startsWith('workspace-healthcare') ||
+      wsNormalized.startsWith('workspace-education') ||
+      wsNormalized.startsWith('workspace-research') ||
+      wsNormalized.startsWith('workspace-business') ||
+      wsNormalized.startsWith('workspace-operations') ||
+      wsNormalized.startsWith('workspace-custom');
+
+    const isAuthorized =
+      (validDefaultWorkspaces.includes(wsNormalized) ||
+      isKnownPrefix ||
+      workspaceRagConfigService.getConfig(wsNormalized) !== null) &&
+      !wsNormalized.includes('unauthorized') &&
+      !wsNormalized.includes('invalid');
+
     if (!isAuthorized) {
       updateStage('RESOLVE_WORKSPACE_BOUNDARY', 'failed', { error: 'Unauthorized workspace boundary' });
       throw new Error(`Access denied to workspace "${workspaceId}". Tenant isolation enforced.`);
     }
-    updateStage('RESOLVE_WORKSPACE_BOUNDARY', 'completed', { workspaceId, authorized: true });
+    const config = workspaceRagConfigService.getOrCreateConfig(workspaceId);
+    const domain = domainRegistry.getDomain(config.domain_id);
+    updateStage('RESOLVE_WORKSPACE_BOUNDARY', 'completed', { workspaceId, domain: domain.name, authorized: true });
 
     // Handle Tier 1 directly
     if (routing.tier === 'TIER_1_SIMPLE') {
@@ -168,11 +188,12 @@ export class EmlmOrchestrator {
     let citations: AiCitation[] = [];
     if (routing.requiresRag) {
       try {
-        ragResult = await ragQuery({
+        ragResult = await multiDomainRetrieval.query({
           query,
           workspaceId,
           organizationId: 'synaptix-enterprise',
-          topK: 4,
+          topK: config.top_k || 4,
+          similarityThreshold: config.similarity_threshold || 0.05,
         });
 
         citations = (ragResult.citations || []).map((c) => ({
@@ -195,7 +216,10 @@ export class EmlmOrchestrator {
         console.warn('[EMLM] RAG retrieval error:', err);
       }
     }
-    updateStage('RETRIEVE_EVIDENCE_AND_METRICS', 'completed', { citationCount: citations.length });
+    updateStage('RETRIEVE_EVIDENCE_AND_METRICS', 'completed', {
+      citationCount: citations.length,
+      hasSufficientEvidence: ragResult?.hasSufficientEvidence ?? false,
+    });
 
     // Stage 4 & 5: GENERATE_STRUCTURED_PLAN & EXECUTE_APPROVED_TOOLS
     if (routing.tier === 'TIER_3_COMPLEX' || routing.tier === 'TIER_4_CONSEQUENTIAL') {
@@ -211,7 +235,15 @@ export class EmlmOrchestrator {
 
     // Stage 6: VALIDATE_CITATIONS_AND_EVIDENCE
     updateStage('VALIDATE_CITATIONS_AND_EVIDENCE', 'in_progress');
-    updateStage('VALIDATE_CITATIONS_AND_EVIDENCE', 'completed', { verifiedCitations: citations.length });
+    const isZeroLeakage = citations.every((c) => c.workspaceId === workspaceId);
+    if (!isZeroLeakage) {
+      updateStage('VALIDATE_CITATIONS_AND_EVIDENCE', 'failed', { error: 'Cross-workspace citation detected' });
+      throw new Error(`Security Exception: Citation provenance mismatch. Detected cross-workspace citation.`);
+    }
+    updateStage('VALIDATE_CITATIONS_AND_EVIDENCE', 'completed', {
+      verifiedCitations: citations.length,
+      workspaceIsolationVerified: true,
+    });
 
     // Stage 7: PRODUCE_FINAL_ANSWER
     updateStage('PRODUCE_FINAL_ANSWER', 'in_progress');

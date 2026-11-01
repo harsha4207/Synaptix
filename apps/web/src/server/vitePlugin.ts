@@ -14,6 +14,7 @@
 
 import type { Plugin, ViteDevServer } from 'vite';
 import { geminiService } from '../lib/gemini/geminiService';
+import { handleRagApiRoute } from './ragApiRouter';
 import * as http from 'http';
 
 function parseJsonBody(req: http.IncomingMessage): Promise<any> {
@@ -74,11 +75,23 @@ export function synaptixServerApi(): Plugin {
         if (req.method === 'OPTIONS' && url.startsWith('/api/')) {
           res.writeHead(204, {
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Workspace-Id, X-User-Role, X-Organization-Id',
           });
           res.end();
           return;
+        }
+
+        // Multi-Domain Workspace RAG API Endpoints
+        if (url.startsWith('/api/workspaces/') || url.startsWith('/api/domains')) {
+          try {
+            const parsedBody = (req.method === 'POST' || req.method === 'PUT') ? await parseJsonBody(req) : {};
+            const handled = await handleRagApiRoute(req, res, parsedBody);
+            if (handled) return;
+          } catch (err: any) {
+            sendJson(res, 500, { error: err.message || 'Internal RAG API Error' });
+            return;
+          }
         }
 
         // 1. GET /api/health/gemini

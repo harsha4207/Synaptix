@@ -11,6 +11,8 @@ import { AppShell } from './design-system/components/AppShell';
 import { WorkspaceModuleId } from './design-system/components/Sidebar';
 import { CommandModule } from './modules/CommandModule';
 import { DocumentsModule } from './modules/DocumentsModule';
+import { UploadsDataModule } from './modules/UploadsDataModule';
+import { UnifiedDashboardModule } from './modules/UnifiedDashboardModule';
 import { KnowledgeModule } from './modules/KnowledgeModule';
 import { AnalyticsModule } from './modules/AnalyticsModule';
 import { DashboardsModule } from './modules/DashboardsModule';
@@ -24,7 +26,6 @@ import { GlobalSearchModule } from './modules/GlobalSearchModule';
 import { GlobalSearchModal } from './components/search/GlobalSearchModal';
 import { SearchResultItem } from './types/search';
 import { GenericWorkspaceModule } from './modules/GenericWorkspaceModule';
-import { WorkspaceOverviewScreen } from './components/WorkspaceOverviewScreen';
 import { RagProvider } from './lib/rag';
 import { VoiceProvider } from './lib/voice';
 import { VoiceCommandHud } from './components/voice/VoiceCommandHud';
@@ -193,7 +194,7 @@ export const App: React.FC = () => {
 
   const [workspaces, setWorkspaces] = useState<WorkspaceItem[]>(INITIAL_WORKSPACES);
   const [selectedWorkspace, setSelectedWorkspace] = useState<WorkspaceItem | null>(null);
-  const [activeModule, setActiveModule] = useState<WorkspaceModuleId>('overview');
+  const [activeModule, setActiveModule] = useState<WorkspaceModuleId>('chat');
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
 
@@ -270,9 +271,9 @@ export const App: React.FC = () => {
     } else if (entry.viewState === 'workspace' && entry.workspaceId) {
       const targetWs = workspaces.find((w) => w.id === entry.workspaceId) || selectedWorkspace;
       if (targetWs) setSelectedWorkspace(targetWs);
-      setActiveModule(entry.moduleId || 'overview');
+      setActiveModule(entry.moduleId || 'chat');
       setViewState('workspace');
-      window.location.hash = `#workspace/${entry.workspaceId}/${entry.moduleId || 'overview'}`;
+      window.location.hash = `#workspace/${entry.workspaceId}/${entry.moduleId || 'chat'}`;
     }
   };
 
@@ -481,7 +482,7 @@ export const App: React.FC = () => {
     }
   };
 
-  const handleSelectWorkspace = (workspaceId: string, targetModule: WorkspaceModuleId = 'overview') => {
+  const handleSelectWorkspace = (workspaceId: string, targetModule: WorkspaceModuleId = 'chat') => {
     const ws = workspaces.find((w) => w.id === workspaceId) || {
       id: workspaceId,
       name: workspaceId.charAt(0).toUpperCase() + workspaceId.slice(1),
@@ -560,7 +561,10 @@ export const App: React.FC = () => {
       if (hash.startsWith('#workspace/')) {
         const parts = rawHash.replace('#workspace/', '').split('/');
         const wsId = parts[0];
-        const modId = (parts[1] || 'overview') as WorkspaceModuleId;
+        let modId = (parts[1] || 'chat') as WorkspaceModuleId;
+        if (modId === 'command') modId = 'chat';
+        if (modId === 'documents') modId = 'data';
+        if (modId === 'overview') modId = 'dashboard';
         const targetWs = workspaces.find((w) => w.id === wsId);
         if (targetWs) {
           setSelectedWorkspace(targetWs);
@@ -648,18 +652,116 @@ export const App: React.FC = () => {
     if (!selectedWorkspace) return null;
 
     switch (activeModule) {
+      case 'chat':
+      case 'command':
+        return <CommandModule workspace={selectedWorkspace} onAddToast={addToast} />;
+      case 'data':
+      case 'documents':
+        return <UploadsDataModule workspace={selectedWorkspace} onAddToast={addToast} />;
+      case 'dashboard':
       case 'overview':
         return (
-          <WorkspaceOverviewScreen
+          <UnifiedDashboardModule
             workspace={selectedWorkspace}
-            onBackToHub={handleBackToHub}
+            currentUser={currentUser}
+            userEmail={authenticatedUserEmail || 'alex.vance@enterprise.com'}
+            onAddToast={addToast}
+            activeView="overview"
+            onViewChange={(v) => {
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${v}`;
+            }}
+            analyticsSubTab={analyticsSubTab}
+            onAnalyticsSubTabChange={setAnalyticsSubTab}
+            problemsSubTab={problemsSubTab}
+            onProblemsSubTabChange={setProblemsSubTab}
             onSelectModule={(mod) => {
               setActiveModule(mod);
               window.location.hash = `#workspace/${selectedWorkspace.id}/${mod}`;
             }}
-            onAddToast={addToast}
           />
         );
+      case 'analytics':
+        return (
+          <UnifiedDashboardModule
+            workspace={selectedWorkspace}
+            currentUser={currentUser}
+            userEmail={authenticatedUserEmail || 'alex.vance@enterprise.com'}
+            onAddToast={addToast}
+            activeView="analytics"
+            onViewChange={(v) => {
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${v}`;
+            }}
+            analyticsSubTab={analyticsSubTab}
+            onAnalyticsSubTabChange={setAnalyticsSubTab}
+            problemsSubTab={problemsSubTab}
+            onProblemsSubTabChange={setProblemsSubTab}
+            onSelectModule={(mod) => {
+              setActiveModule(mod);
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${mod}`;
+            }}
+          />
+        );
+      case 'dashboards':
+        return (
+          <UnifiedDashboardModule
+            workspace={selectedWorkspace}
+            currentUser={currentUser}
+            userEmail={authenticatedUserEmail || 'alex.vance@enterprise.com'}
+            onAddToast={addToast}
+            activeView="dashboards"
+            onViewChange={(v) => {
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${v}`;
+            }}
+            analyticsSubTab={analyticsSubTab}
+            onAnalyticsSubTabChange={setAnalyticsSubTab}
+            problemsSubTab={problemsSubTab}
+            onProblemsSubTabChange={setProblemsSubTab}
+            onSelectModule={(mod) => {
+              setActiveModule(mod);
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${mod}`;
+            }}
+          />
+        );
+      case 'problems':
+        return (
+          <UnifiedDashboardModule
+            workspace={selectedWorkspace}
+            currentUser={currentUser}
+            userEmail={authenticatedUserEmail || 'alex.vance@enterprise.com'}
+            onAddToast={addToast}
+            activeView="problems"
+            onViewChange={(v) => {
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${v}`;
+            }}
+            analyticsSubTab={analyticsSubTab}
+            onAnalyticsSubTabChange={setAnalyticsSubTab}
+            problemsSubTab={problemsSubTab}
+            onProblemsSubTabChange={setProblemsSubTab}
+            onSelectModule={(mod) => {
+              setActiveModule(mod);
+              window.location.hash = `#workspace/${selectedWorkspace.id}/${mod}`;
+            }}
+          />
+        );
+      case 'workflows':
+        return <WorkflowsModule workspace={selectedWorkspace} onAddToast={addToast} />;
+      case 'actions':
+        return (
+          <ActionsModule
+            workspace={selectedWorkspace}
+            onAddToast={addToast}
+            activeSubTab={actionsSubTab}
+            onSubTabChange={setActionsSubTab}
+          />
+        );
+      case 'knowledge':
+        return <KnowledgeModule workspace={selectedWorkspace} onAddToast={addToast} />;
+      case 'evidence':
+        return <EvidenceModule workspace={selectedWorkspace} onAddToast={addToast} />;
+      case 'audit':
+        return <AuditModule workspace={selectedWorkspace} onAddToast={addToast} />;
+      case 'settings':
+        return <SettingsModule workspace={selectedWorkspace} onAddToast={addToast} />;
       case 'search':
         return (
           <GlobalSearchModule
@@ -674,50 +776,6 @@ export const App: React.FC = () => {
             }}
           />
         );
-      case 'command':
-        return <CommandModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'documents':
-        return <DocumentsModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'knowledge':
-        return <KnowledgeModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'analytics':
-        return (
-          <AnalyticsModule
-            workspace={selectedWorkspace}
-            onAddToast={addToast}
-            activeSubTab={analyticsSubTab}
-            onSubTabChange={setAnalyticsSubTab}
-          />
-        );
-      case 'dashboards':
-        return <DashboardsModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'problems':
-        return (
-          <ProblemsModule
-            workspace={selectedWorkspace}
-            onAddToast={addToast}
-            activeSubTab={problemsSubTab}
-            onSubTabChange={setProblemsSubTab}
-            onSelectModule={(mod) => setActiveModule(mod)}
-          />
-        );
-      case 'workflows':
-        return <WorkflowsModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'actions':
-        return (
-          <ActionsModule
-            workspace={selectedWorkspace}
-            onAddToast={addToast}
-            activeSubTab={actionsSubTab}
-            onSubTabChange={setActionsSubTab}
-          />
-        );
-      case 'evidence':
-        return <EvidenceModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'audit':
-        return <AuditModule workspace={selectedWorkspace} onAddToast={addToast} />;
-      case 'settings':
-        return <SettingsModule workspace={selectedWorkspace} onAddToast={addToast} />;
       default:
         return <GenericWorkspaceModule workspace={selectedWorkspace} moduleId={activeModule} onAddToast={addToast} />;
     }

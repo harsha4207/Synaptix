@@ -4,3 +4,4 @@ export * from './SignupForm';
 export * from './AuthCard';
 export * from './AuthPage';
 export * from './ForgotPasswordModal';
+export * from './ResetPasswordModal';

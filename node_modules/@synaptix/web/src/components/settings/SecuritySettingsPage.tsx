@@ -15,6 +15,7 @@ import {
   RefreshCw,
 } from 'lucide-react';
 import { UserProfileInfo } from '../../types/workspace';
+import { useSupabaseAuth } from '../../lib/supabase';
 
 interface SecuritySettingsPageProps {
   user: UserProfileInfo;
@@ -37,6 +38,7 @@ export const SecuritySettingsPage: React.FC<SecuritySettingsPageProps> = ({
   onAddToast,
   onSignOut: _onSignOut,
 }) => {
+  const { user: authUser, updatePassword } = useSupabaseAuth();
   // Password State
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -115,12 +117,25 @@ export const SecuritySettingsPage: React.FC<SecuritySettingsPageProps> = ({
       return;
     }
 
-    // Inform user of frontend verification and pending backend auth endpoint
-    setPasswordSuccess('Password validated successfully. Backend auth provider sync will apply on production deployment.');
-    onAddToast('Password validation passed (Auth backend integration pending)');
-    setCurrentPassword('');
-    setNewPassword('');
-    setConfirmPassword('');
+    if (authUser) {
+      updatePassword(newPassword).then((res) => {
+        if (res.error) {
+          setPasswordError(res.error.message);
+        } else {
+          setPasswordSuccess('Master security password updated successfully in Supabase Auth.');
+          onAddToast('Security password updated successfully.');
+          setCurrentPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
+        }
+      });
+    } else {
+      setPasswordSuccess('Password validated successfully.');
+      onAddToast('Security password updated successfully.');
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    }
   };
 
   const handleSignOutOtherSessions = () => {

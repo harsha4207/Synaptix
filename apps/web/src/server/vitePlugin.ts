@@ -15,6 +15,7 @@
 import type { Plugin, ViteDevServer } from 'vite';
 import { geminiService } from '../lib/gemini/geminiService';
 import { handleRagApiRoute } from './ragApiRouter';
+import { authenticateServerRequest } from './authMiddleware';
 import * as http from 'http';
 
 function parseJsonBody(req: http.IncomingMessage): Promise<any> {
@@ -92,6 +93,27 @@ export function synaptixServerApi(): Plugin {
             sendJson(res, 500, { error: err.message || 'Internal RAG API Error' });
             return;
           }
+        }
+
+
+        // Auth Identity Verification Route
+        if (req.method === 'GET' && url === '/api/auth/me') {
+          try {
+            const authContext = await authenticateServerRequest(req);
+            if (!authContext.isAuthenticated) {
+              sendJson(res, 401, { error: authContext.error || 'Unauthorized' });
+              return;
+            }
+            sendJson(res, 200, {
+              userId: authContext.userId,
+              email: authContext.userEmail,
+              metadata: authContext.user?.user_metadata || {},
+              authenticated: true,
+            });
+          } catch (err: any) {
+            sendJson(res, 500, { error: err.message || 'Auth verification error' });
+          }
+          return;
         }
 
         // 1. GET /api/health/gemini

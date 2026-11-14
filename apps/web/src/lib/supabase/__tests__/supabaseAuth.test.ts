@@ -1,13 +1,26 @@
 /**
  * SYNAPTIX COMMAND — Supabase Integration & Authentication Test Suite
  * Tests configuration resolution, Google OAuth sign-in flow,
- * session retrieval, and error handling.
+ * manual email/password registration & sign-in, password recovery,
+ * profile fetching & updating, and server-side JWT verification.
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { getSupabaseConfig, getAuthCallbackUrl, DEFAULT_SUPABASE_URL } from '../config';
-import { signInWithGoogle, signInWithEmail, signUpWithEmail, signOut, getCurrentSession, getCurrentUser } from '../auth';
+import {
+  signInWithGoogle,
+  signInWithEmail,
+  signUpWithEmail,
+  signOut,
+  getCurrentSession,
+  getCurrentUser,
+  resetPasswordForEmail,
+  updatePassword,
+  fetchUserProfile,
+  updateUserProfile,
+} from '../auth';
 import { getSupabaseClient, supabase } from '../client';
+import { authenticateServerRequest } from '../../../server/authMiddleware';
 
 describe('Supabase Configuration', () => {
   it('resolves the configured Supabase Project URL', () => {
@@ -42,13 +55,24 @@ describe('Supabase Authentication Service', () => {
     vi.clearAllMocks();
   });
 
-  it('handles Google OAuth sign-in gracefully when unconfigured', async () => {
-    const res = await signInWithGoogle();
-    if (res.error) {
-      expect(res.error.message).toContain('NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY');
-    } else {
-      expect(res.error).toBeNull();
-    }
+  it('handles Google OAuth sign-in gracefully', async () => {
+    const signInSpy = vi.spyOn(supabase.auth, 'signInWithOAuth').mockResolvedValueOnce({
+      data: { provider: 'google', url: 'https://accounts.google.com/o/oauth2/v2/auth' },
+      error: null,
+    });
+
+    const res = await signInWithGoogle('http://localhost:3000/');
+    expect(signInSpy).toHaveBeenCalledWith({
+      provider: 'google',
+      options: {
+        redirectTo: 'http://localhost:3000/',
+        queryParams: {
+          access_type: 'offline',
+          prompt: 'consent',
+        },
+      },
+    });
+    expect(res.error).toBeNull();
   });
 
   it('signs in with email and password successfully when credentials are valid', async () => {
@@ -160,3 +184,102 @@ describe('Supabase Authentication Service', () => {
   });
 });
 
+describe('Supabase Password Recovery & Profile Management', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('dispatches password reset request with redirect callback URL', async () => {
+    const resetSpy = vi.spyOn(supabase.auth, 'resetPasswordForEmail').mockResolvedValueOnce({
+      data: {} as any,
+      error: null,
+    });
+
+    const res = await resetPasswordForEmail('user@enterprise.com', 'http://localhost:3000/#reset-password');
+    expect(resetSpy).toHaveBeenCalledWith('user@enterprise.com', {
+      redirectTo: 'http://localhost:3000/#reset-password',
+    });
+    expect(res.error).toBeNull();
+  });
+
+  it('updates master user password during recovery session', async () => {
+    const updateSpy = vi.spyOn(supabase.auth, 'updateUser').mockResolvedValueOnce({
+      data: { user: { id: 'usr-reset-1' } as any },
+      error: null,
+    });
+
+    const res = await updatePassword('NewSecurePassword123!');
+    expect(updateSpy).toHaveBeenCalledWith({ password: 'NewSecurePassword123!' });
+    expect(res.error).toBeNull();
+  });
+
+  it('fetches linked profile record from public.profiles', async () => {
+    const mockProfile = {
+      id: 'usr-123',
+      email: 'user@enterprise.com',
+      full_name: 'Test User',
+      display_name: 'Test User',
+      role: 'Enterprise Specialist',
+      organization: 'SYNAPTIX COMMAND',
+      avatar_url: null,
+      created_at: '2026-11-02T10:00:00Z',
+      updated_at: '2026-11-02T10:00:00Z',
+    };
+
+    const fromSpy = vi.spyOn(supabase, 'from').mockReturnValueOnce({
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValueOnce({ data: mockProfile, error: null }),
+    } as any);
+
+    const profile = await fetchUserProfile('usr-123');
+    expect(fromSpy).toHaveBeenCalledWith('profiles');
+    expect(profile?.email).toBe('user@enterprise.com');
+    expect(profile?.full_name).toBe('Test User');
+  });
+
+  it('updates permitted profile fields in public.profiles', async () => {
+    const updatedProfile = {
+      id: 'usr-123',
+      email: 'user@enterprise.com',
+      display_name: 'Updated Display Name',
+      full_name: 'Updated Name',
+      role: 'Enterprise Specialist',
+      organization: 'SYNAPTIX COMMAND',
+      avatar_url: 'https://example.com/avatar.png',
+      created_at: '2026-11-02T10:00:00Z',
+      updated_at: '2026-11-02T10:30:00Z',
+    };
+
+    vi.spyOn(supabase, 'from').mockReturnValueOnce({
+      update: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      select: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValueOnce({ data: updatedProfile, error: null }),
+    } as any);
+
+    const res = await updateUserProfile('usr-123', {
+      display_name: 'Updated Display Name',
+      full_name: 'Updated Name',
+    });
+
+    expect(res.error).toBeNull();
+    expect(res.data?.display_name).toBe('Updated Display Name');
+  });
+});
+
+describe('Server-Side Supabase Token Verification Middleware', () => {
+  it('rejects inbound requests without authorization header', async () => {
+    const mockReq = { headers: {} } as any;
+    const ctx = await authenticateServerRequest(mockReq);
+    expect(ctx.isAuthenticated).toBe(false);
+    expect(ctx.error).toContain('No authorization header');
+  });
+
+  it('rejects malformed authorization header', async () => {
+    const mockReq = { headers: { authorization: 'Basic dXNlcjpwYXNz' } } as any;
+    const ctx = await authenticateServerRequest(mockReq);
+    expect(ctx.isAuthenticated).toBe(false);
+    expect(ctx.error).toContain('Malformed authorization header');
+  });
+});

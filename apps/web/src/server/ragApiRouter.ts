@@ -13,6 +13,7 @@ import { workspaceRagConfigService } from '../lib/rag/workspaceRagConfig.js';
 import { multiDomainRetrieval } from '../lib/rag/multiDomainRetrieval.js';
 import { ingestionPipeline } from '../lib/rag/ingestionPipeline.js';
 import type { SupportedFileType } from '../lib/rag/types.js';
+import { authenticateServerRequest, type AuthenticatedUserContext } from './authMiddleware.js';
 
 export interface RouteMatchResult {
   handled: boolean;
@@ -49,6 +50,17 @@ export async function handleRagApiRoute(
   const authWorkspaceHeader = req.headers['x-workspace-id'] as string | undefined;
   const userRole = (req.headers['x-user-role'] as string | undefined)?.toLowerCase() || 'member';
   const orgId = (req.headers['x-organization-id'] as string | undefined) || 'synaptix-enterprise';
+
+  // Server-side Supabase token verification
+  let authContext: AuthenticatedUserContext = {
+    isAuthenticated: false,
+    user: null,
+    userId: null,
+    userEmail: null,
+  };
+  if (req.headers['authorization']) {
+    authContext = await authenticateServerRequest(req);
+  }
 
   // ── Global Domain Endpoints ──────────────────────────────────────────────
   // GET /api/domains

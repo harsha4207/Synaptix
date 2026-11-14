@@ -4,6 +4,7 @@ import { Dialog, DialogHeader, DialogBody, DialogFooter } from '../ui/Dialog';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { FormField } from '../ui/FormField';
+import { useSupabaseAuth } from '../../lib/supabase/SupabaseAuthContext';
 
 interface ForgotPasswordModalProps {
   isOpen: boolean;
@@ -16,12 +17,13 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
   onClose,
   onSuccessToast,
 }) => {
+  const { resetPasswordForEmail } = useSupabaseAuth();
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
       setError('Please enter your work email address');
@@ -35,11 +37,21 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
     setError('');
     setLoading(true);
 
-    setTimeout(() => {
+    try {
+      const res = await resetPasswordForEmail(email.trim());
       setLoading(false);
+
+      if (res.error) {
+        setError(res.error.message || 'Unable to process reset request. Please try again.');
+        return;
+      }
+
       setSubmitted(true);
-      onSuccessToast(`Reset instructions sent to ${email}`);
-    }, 1000);
+      onSuccessToast(`Reset instructions sent to ${email.trim()}`);
+    } catch (err: any) {
+      setLoading(false);
+      setError(err?.message || 'Failed to dispatch recovery instructions');
+    }
   };
 
   const handleResetState = () => {

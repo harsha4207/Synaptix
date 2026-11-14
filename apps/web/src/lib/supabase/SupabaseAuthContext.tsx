@@ -1,7 +1,7 @@
 /**
  * SYNAPTIX COMMAND — Supabase Auth React Context & Provider
  * Manages reactive user session state, OAuth redirect handling,
- * and unified sign-in/sign-out actions across the app.
+ * database profile synchronization, and unified sign-in/sign-out/recovery actions.
  */
 
 import React, { createContext, useContext, useEffect, useState, useMemo, useCallback } from 'react';
@@ -12,17 +12,24 @@ import {
   signInWithEmail as authSignInWithEmail,
   signUpWithEmail as authSignUpWithEmail,
   signOut as authSignOut,
+  resetPasswordForEmail as authResetPasswordForEmail,
+  updatePassword as authUpdatePassword,
+  fetchUserProfile,
+  updateUserProfile as authUpdateUserProfile,
   getCurrentSession,
 } from './auth';
+import type { UserProfileRow } from './types';
 import { getSupabaseConfig, getAuthCallbackUrl } from './config';
 import { saveSessionEmail, clearSessionEmail, saveUserProfile, loadUserProfile } from '../../services/profileStorage';
 
 export interface SupabaseAuthContextValue {
   user: User | null;
   session: Session | null;
+  profile: UserProfileRow | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   isConfigured: boolean;
+  isPasswordRecovery: boolean;
   error: string | null;
   signInWithGoogle: (redirectTo?: string) => Promise<{ error: Error | null }>;
   signInWithEmail: (
@@ -38,8 +45,12 @@ export interface SupabaseAuthContextValue {
     requiresConfirmation?: boolean;
     error: Error | null;
   }>;
+  resetPasswordForEmail: (email: string) => Promise<{ error: Error | null }>;
+  updatePassword: (newPassword: string) => Promise<{ error: Error | null }>;
+  updateProfile: (updates: Partial<UserProfileRow>) => Promise<{ data: UserProfileRow | null; error: Error | null }>;
   signOut: () => Promise<void>;
   clearError: () => void;
+  clearPasswordRecovery: () => void;
 }
 
 const SupabaseAuthContext = createContext<SupabaseAuthContextValue | null>(null);
@@ -55,13 +66,15 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [profile, setProfile] = useState<UserProfileRow | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPasswordRecovery, setIsPasswordRecovery] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const { isConfigured } = useMemo(() => getSupabaseConfig(), []);
 
-  // Sync profile data to profileStorage for existing views
-  const syncUserProfile = useCallback((supabaseUser: User) => {
+  // Sync profile data to public.profiles and client-side profileStorage
+  const syncUserProfile = useCallback(async (supabaseUser: User) => {
     const email = supabaseUser.email || '';
     if (!email) return;
 
@@ -72,11 +85,17 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
     const existing = loadUserProfile(email);
 
     const displayName =
+      userMeta.display_name ||
       userMeta.full_name ||
       userMeta.name ||
-      userMeta.display_name ||
       existing.displayName ||
       email.split('@')[0].replace('.', ' ');
+
+    const fullName =
+      userMeta.full_name ||
+      userMeta.name ||
+      existing.name ||
+      displayName;
 
     const avatarUrl =
       userMeta.avatar_url ||
@@ -88,14 +107,53 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
       existing.organization ||
       'SYNAPTIX COMMAND Enterprise';
 
+    // 1. First populate local storage for instant responsiveness
     saveUserProfile({
-      name: displayName,
+      name: fullName,
       email,
       role: existing.role || 'Enterprise Specialist',
       organization,
       avatarUrl,
       displayName,
     });
+
+    // 2. Fetch or initialize the linked database profile in public.profiles
+    try {
+      let dbProfile = await fetchUserProfile(supabaseUser.id);
+      if (!dbProfile) {
+        // Idempotently create profile record if trigger was delayed
+        const { data: createdProfile } = await supabase
+          .from('profiles')
+          .upsert({
+            id: supabaseUser.id,
+            email,
+            full_name: fullName,
+            display_name: displayName,
+            avatar_url: avatarUrl,
+            organization,
+            role: 'Enterprise Specialist',
+            updated_at: new Date().toISOString(),
+          })
+          .select()
+          .maybeSingle();
+
+        dbProfile = createdProfile as UserProfileRow | null;
+      }
+
+      if (dbProfile) {
+        setProfile(dbProfile);
+        saveUserProfile({
+          name: dbProfile.full_name || dbProfile.display_name || fullName,
+          email: dbProfile.email || email,
+          role: dbProfile.role || 'Enterprise Specialist',
+          organization: dbProfile.organization || organization,
+          avatarUrl: dbProfile.avatar_url || avatarUrl,
+          displayName: dbProfile.display_name || displayName,
+        });
+      }
+    } catch (err) {
+      console.warn('Could not synchronize database profile from Supabase:', err);
+    }
   }, []);
 
   // Initialize session and subscribe to auth state changes
@@ -112,6 +170,12 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
         const cleanUrl = window.location.pathname + window.location.hash;
         window.history.replaceState(null, '', cleanUrl);
       }
+
+      // Check for recovery type in hash or search
+      const hashStr = window.location.hash;
+      if (hashStr.includes('type=recovery') || hashStr.includes('#reset-password')) {
+        setIsPasswordRecovery(true);
+      }
     }
 
     const initAuth = async () => {
@@ -121,7 +185,7 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
           setSession(initialSession);
           setUser(initialSession?.user ?? null);
           if (initialSession?.user) {
-            syncUserProfile(initialSession.user);
+            await syncUserProfile(initialSession.user);
           }
           setIsLoading(false);
         }
@@ -137,17 +201,20 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
 
     // Listen to Supabase auth events
     const { data: authSubscription } = supabase.auth.onAuthStateChange(
-      (event, currentSession) => {
+      async (event, currentSession) => {
         if (!isMounted) return;
 
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
         setIsLoading(false);
 
-        if (event === 'SIGNED_IN' && currentSession?.user) {
-          syncUserProfile(currentSession.user);
+        if (event === 'PASSWORD_RECOVERY') {
+          setIsPasswordRecovery(true);
+        } else if (event === 'SIGNED_IN' && currentSession?.user) {
+          await syncUserProfile(currentSession.user);
           setError(null);
         } else if (event === 'SIGNED_OUT') {
+          setProfile(null);
           clearSessionEmail();
         }
 
@@ -185,9 +252,9 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
       return { data: undefined, error: res.error };
     }
     if (res.data?.session?.user) {
-      syncUserProfile(res.data.session.user);
       setUser(res.data.session.user);
       setSession(res.data.session);
+      await syncUserProfile(res.data.session.user);
     }
     return { data: res.data, error: null };
   }, [syncUserProfile]);
@@ -201,9 +268,9 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
         return { data: undefined, requiresConfirmation: false, error: res.error };
       }
       if (res.data?.session?.user) {
-        syncUserProfile(res.data.session.user);
         setUser(res.data.session.user);
         setSession(res.data.session);
+        await syncUserProfile(res.data.session.user);
       }
       return {
         data: res.data,
@@ -214,11 +281,48 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
     [syncUserProfile]
   );
 
+  const handleResetPasswordForEmail = useCallback(async (email: string) => {
+    setError(null);
+    const res = await authResetPasswordForEmail(email);
+    if (res.error) {
+      setError(res.error.message);
+      return { error: res.error };
+    }
+    return { error: null };
+  }, []);
+
+  const handleUpdatePassword = useCallback(async (newPassword: string) => {
+    setError(null);
+    const res = await authUpdatePassword(newPassword);
+    if (res.error) {
+      setError(res.error.message);
+      return { error: res.error };
+    }
+    setIsPasswordRecovery(false);
+    return { error: null };
+  }, []);
+
+  const handleUpdateProfile = useCallback(
+    async (updates: Partial<UserProfileRow>) => {
+      if (!user) {
+        return { data: null, error: new Error('User is not authenticated') };
+      }
+      const res = await authUpdateUserProfile(user.id, updates);
+      if (res.data) {
+        setProfile(res.data);
+      }
+      return res;
+    },
+    [user]
+  );
+
   const handleSignOut = useCallback(async () => {
     setError(null);
     clearSessionEmail();
     setUser(null);
     setSession(null);
+    setProfile(null);
+    setIsPasswordRecovery(false);
     await authSignOut();
   }, []);
 
@@ -226,31 +330,47 @@ export const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({
     setError(null);
   }, []);
 
+  const clearPasswordRecovery = useCallback(() => {
+    setIsPasswordRecovery(false);
+  }, []);
+
   const value = useMemo<SupabaseAuthContextValue>(
     () => ({
       user,
       session,
+      profile,
       isLoading,
       isAuthenticated: user !== null,
       isConfigured,
+      isPasswordRecovery,
       error,
       signInWithGoogle: handleSignInWithGoogle,
       signInWithEmail: handleSignInWithEmail,
       signUpWithEmail: handleSignUpWithEmail,
+      resetPasswordForEmail: handleResetPasswordForEmail,
+      updatePassword: handleUpdatePassword,
+      updateProfile: handleUpdateProfile,
       signOut: handleSignOut,
       clearError,
+      clearPasswordRecovery,
     }),
     [
       user,
       session,
+      profile,
       isLoading,
       isConfigured,
+      isPasswordRecovery,
       error,
       handleSignInWithGoogle,
       handleSignInWithEmail,
       handleSignUpWithEmail,
+      handleResetPasswordForEmail,
+      handleUpdatePassword,
+      handleUpdateProfile,
       handleSignOut,
       clearError,
+      clearPasswordRecovery,
     ]
   );
 

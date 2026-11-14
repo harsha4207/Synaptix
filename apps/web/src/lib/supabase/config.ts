@@ -45,12 +45,24 @@ export function getSupabaseConfig(): SupabaseConfig {
 }
 
 /**
- * Returns the application OAuth callback origin URL.
- * Automatically aligns with http://localhost:3000 in local development or the live origin.
+ * Returns the application OAuth and recovery callback origin URL.
+ * Dynamically resolves to window.location.origin (e.g. Vercel deployment or custom domain)
+ * when executing in the browser, supports VITE_APP_URL/NEXT_PUBLIC_APP_URL overrides,
+ * and safely defaults to http://localhost:3000/ during local offline development.
  */
 export function getAuthCallbackUrl(): string {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && window.location?.origin) {
     return `${window.location.origin}/`;
   }
+
+  const envUrl =
+    (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_APP_URL) ||
+    (typeof process !== 'undefined' && process.env?.VITE_APP_URL) ||
+    (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_APP_URL);
+
+  if (envUrl) {
+    return envUrl.endsWith('/') ? envUrl : `${envUrl}/`;
+  }
+
   return 'http://localhost:3000/';
 }

@@ -10,6 +10,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { geminiService } from '../lib/gemini/geminiService.js';
 import { handleRagApiRoute } from './ragApiRouter.js';
+import { authenticateServerRequest } from './authMiddleware.js';
 
 // Auto-populate process.env from local .env files if present
 function loadLocalEnv(): void {
@@ -126,6 +127,27 @@ const server = http.createServer(async (req, res) => {
       sendJson(res, 500, { error: err.message || 'Internal RAG API Error' });
       return;
     }
+  }
+
+
+  // 2c. GET /api/auth/me (Server-Side Supabase Token Verification)
+  if (req.method === 'GET' && url === '/api/auth/me') {
+    try {
+      const authContext = await authenticateServerRequest(req);
+      if (!authContext.isAuthenticated) {
+        sendJson(res, 401, { error: authContext.error || 'Unauthorized' });
+        return;
+      }
+      sendJson(res, 200, {
+        userId: authContext.userId,
+        email: authContext.userEmail,
+        metadata: authContext.user?.user_metadata || {},
+        authenticated: true,
+      });
+    } catch (err: any) {
+      sendJson(res, 500, { error: err.message || 'Auth verification error' });
+    }
+    return;
   }
 
   // 3. GET /api/health/gemini

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrandPanel } from './BrandPanel';
 import { AuthCard } from './AuthCard';
 import { ForgotPasswordModal } from './ForgotPasswordModal';
+import { ResetPasswordModal } from './ResetPasswordModal';
 
 export interface AuthPageProps {
   onSuccessAuth: (email: string, mode: 'login' | 'signup') => void;
@@ -11,6 +12,9 @@ export interface AuthPageProps {
   onBackToLanding?: () => void;
   isGoogleLoading?: boolean;
   errorMessage?: string | null;
+  isResetPasswordOpen?: boolean;
+  onCloseResetPassword?: () => void;
+  onResetPasswordSuccess?: () => void;
 }
 
 export const AuthPage: React.FC<AuthPageProps> = ({
@@ -21,6 +25,9 @@ export const AuthPage: React.FC<AuthPageProps> = ({
   onBackToLanding,
   isGoogleLoading = false,
   errorMessage = null,
+  isResetPasswordOpen = false,
+  onCloseResetPassword = () => {},
+  onResetPasswordSuccess = () => {},
 }) => {
   const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
@@ -49,6 +56,14 @@ export const AuthPage: React.FC<AuthPageProps> = ({
         isOpen={isForgotPasswordOpen}
         onClose={() => setIsForgotPasswordOpen(false)}
         onSuccessToast={onAddToast || (() => {})}
+      />
+
+      {/* Reset Password Modal (Recovery Flow) */}
+      <ResetPasswordModal
+        isOpen={isResetPasswordOpen}
+        onClose={onCloseResetPassword}
+        onSuccess={onResetPasswordSuccess}
+        onAddToast={onAddToast || (() => {})}
       />
     </main>
   );

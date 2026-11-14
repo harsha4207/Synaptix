@@ -11,9 +11,11 @@ import { getSupabaseConfig, DEFAULT_SUPABASE_URL } from './config';
 let clientInstance: SupabaseClient<Database> | null = null;
 
 /**
- * Cookie storage helper ensuring tokens can be read/written securely across reloads.
+ * Hybrid storage adapter:
+ * Uses localStorage as the primary reliable persistence engine across browser reloads,
+ * while synchronizing a lightweight session cookie flag (`sb-auth-active`) for edge/server awareness.
  */
-function createCookieStorage() {
+function createHybridStorageWithCookieSync() {
   if (typeof window === 'undefined') return undefined;
 
   return {
@@ -27,18 +29,19 @@ function createCookieStorage() {
     setItem: (key: string, value: string): void => {
       try {
         window.localStorage.setItem(key, value);
-        // Also mirror session indicator in cookies for server awareness if needed
+        // Mirror session indicator in cookie for edge / reverse proxy awareness
         if (key.includes('-auth-token')) {
-          document.cookie = `sb-auth-active=true; path=/; max-age=2592000; SameSite=Lax`;
+          const isSecure = window.location.protocol === 'https:' ? '; Secure' : '';
+          document.cookie = `sb-auth-active=true; path=/; max-age=2592000; SameSite=Lax${isSecure}`;
         }
       } catch {
-        // Fallback for private browsing
+        // Graceful fallback for restricted/private browsing modes
       }
     },
     removeItem: (key: string): void => {
       try {
         window.localStorage.removeItem(key);
-        document.cookie = `sb-auth-active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`;
+        document.cookie = `sb-auth-active=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
       } catch {
         // Fallback
       }
@@ -65,7 +68,7 @@ export function getSupabaseClient(): SupabaseClient<Database> {
       autoRefreshToken: true,
       detectSessionInUrl: true,
       flowType: 'pkce',
-      storage: createCookieStorage(),
+      storage: createHybridStorageWithCookieSync(),
     },
   });
 

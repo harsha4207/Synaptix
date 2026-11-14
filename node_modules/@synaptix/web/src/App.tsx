@@ -95,6 +95,7 @@ export const App: React.FC = () => {
   const supabaseAuth = useSupabaseAuth();
   const [isGoogleAuthLoading, setIsGoogleAuthLoading] = useState(false);
   const [authErrorMessage, setAuthErrorMessage] = useState<string | null>(null);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
 
   // Synchronize Supabase authentication state with user session
   useEffect(() => {
@@ -132,6 +133,32 @@ export const App: React.FC = () => {
       });
     }
   }, [supabaseAuth.user]);
+
+  
+  // Sync Supabase database profile into active currentUser state
+  useEffect(() => {
+    if (supabaseAuth.profile) {
+      setCurrentUser((prev) => ({
+        ...prev,
+        name: supabaseAuth.profile?.full_name || supabaseAuth.profile?.display_name || prev.name,
+        displayName: supabaseAuth.profile?.display_name || prev.displayName,
+        email: supabaseAuth.profile?.email || prev.email,
+        role: supabaseAuth.profile?.role || prev.role,
+        organization: supabaseAuth.profile?.organization || prev.organization,
+        avatarUrl: supabaseAuth.profile?.avatar_url || prev.avatarUrl,
+        phone: supabaseAuth.profile?.phone_number || prev.phone,
+      }));
+    }
+  }, [supabaseAuth.profile]);
+
+  // Detect Supabase password recovery mode
+  useEffect(() => {
+    const hash = typeof window !== 'undefined' ? window.location.hash.toLowerCase() : '';
+    if (supabaseAuth.isPasswordRecovery || hash.startsWith('#reset-password')) {
+      setIsResetPasswordModalOpen(true);
+      setViewState('auth');
+    }
+  }, [supabaseAuth.isPasswordRecovery]);
 
   // Server-side / state verification for protected routes
   useEffect(() => {
@@ -479,6 +506,17 @@ export const App: React.FC = () => {
     // If avatarUrl was modified or explicitly set to undefined (removed)
     if ('avatarUrl' in updated) {
       await saveAvatarToStorage(merged.email, updated.avatarUrl || null);
+    }
+
+    // Persist to Supabase public.profiles if user has active session
+    if (supabaseAuth.user) {
+      await supabaseAuth.updateProfile({
+        display_name: merged.displayName || merged.name,
+        full_name: merged.name,
+        avatar_url: merged.avatarUrl,
+        organization: merged.organization,
+        phone_number: merged.phone,
+      });
     }
   };
 
@@ -850,6 +888,20 @@ export const App: React.FC = () => {
           onBackToLanding={handleBackToLanding}
           isGoogleLoading={isGoogleAuthLoading}
           errorMessage={authErrorMessage || supabaseAuth.error}
+          isResetPasswordOpen={isResetPasswordModalOpen}
+          onCloseResetPassword={() => {
+            setIsResetPasswordModalOpen(false);
+            supabaseAuth.clearPasswordRecovery();
+            if (window.location.hash.includes('reset-password')) {
+              window.location.hash = '#login';
+            }
+          }}
+          onResetPasswordSuccess={() => {
+            setIsResetPasswordModalOpen(false);
+            supabaseAuth.clearPasswordRecovery();
+            window.location.hash = '#login';
+            setAuthMode('login');
+          }}
         />
       )}
 

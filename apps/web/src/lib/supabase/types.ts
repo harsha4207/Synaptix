@@ -8,10 +8,12 @@ import type { User, Session } from '@supabase/supabase-js';
 export interface UserProfileRow {
   id: string; // matches auth.users.id
   email: string;
+  full_name?: string | null;
   display_name: string | null;
   role: string | null;
   organization: string | null;
   avatar_url: string | null;
+  phone_number?: string | null;
   created_at: string;
   updated_at: string;
 }
